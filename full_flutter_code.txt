@@ -5729,7 +5729,7 @@ class AiPostureResult {
 
 class GeminiService {
   // Твой ключ
-  static const String _apiKey = 'AIzaSyD1ZMAcFTnDeJdR9mtrodGuGxkGcnc3OXI';
+  static const String _apiKey = String.fromEnvironment('GEMINI_API_KEY');
 
   // Используем 1.5-flash (или 2.5/3.0 если доступно)
   static const String _modelName = 'gemini-3-flash-preview';
