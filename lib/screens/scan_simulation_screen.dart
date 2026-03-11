@@ -114,6 +114,7 @@ class _ScanSimulationScreenState extends State<ScanSimulationScreen>
                     boxShadow: [
                       BoxShadow(
                         color: VytalColors.primaryAccent.withOpacity(0.5),
+                        color: VytalColors.primaryNeon.withValues(alpha: 0.5),
                         blurRadius: 4,
                         spreadRadius: 1,
                       ),

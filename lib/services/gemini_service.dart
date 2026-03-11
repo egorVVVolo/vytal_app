@@ -33,9 +33,9 @@ class AiPostureResult {
 }
 
 class GeminiService {
-  // Твой ключ (лучше вынести в .env)
-  static const String _apiKey =
-      'AIzaSyD1ZMAcFTnDeJdR9mtrodGuGxkGcnc3OXI'; // <--- ВЕРНИ СЮДА СВОЙ КЛЮЧ
+  // The API key is now retrieved from the environment.
+  // Use --dart-define=GEMINI_API_KEY=your_key when building/running.
+  static const String _apiKey = String.fromEnvironment('GEMINI_API_KEY');
 
   // Используем flash для скорости
   static const String _modelName = 'gemini-3-flash-preview';

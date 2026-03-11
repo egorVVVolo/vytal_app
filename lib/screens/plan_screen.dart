@@ -176,6 +176,29 @@ class _PlanScreenState extends State<PlanScreen> {
       return h.copyWith(isCompleted: _completedIdsForDate.contains(h.id));
     }).toList();
 
+    // Group habits by type in a single pass
+    final vitaminHabits = <Habit>[];
+    final activityHabits = <Habit>[];
+    final mentalHabits = <Habit>[];
+    final sleepHabits = <Habit>[];
+
+    for (final habit in visibleHabits) {
+      switch (habit.type) {
+        case HabitType.vitamin:
+          vitaminHabits.add(habit);
+          break;
+        case HabitType.activity:
+          activityHabits.add(habit);
+          break;
+        case HabitType.mental:
+          mentalHabits.add(habit);
+          break;
+        case HabitType.sleep:
+          sleepHabits.add(habit);
+          break;
+      }
+    }
+
     return Scaffold(
       backgroundColor: VytalColors.background,
       body: SafeArea(
@@ -223,6 +246,20 @@ class _PlanScreenState extends State<PlanScreen> {
                           visibleHabits
                               .where((h) => h.type == HabitType.sleep)
                               .toList(),
+                          "PROTOCOLS",
+                          vitaminHabits,
+                        ),
+                        _buildTimeSection(
+                          "ACTIVITY",
+                          activityHabits,
+                        ),
+                        _buildTimeSection(
+                          "MENTAL",
+                          mentalHabits,
+                        ),
+                        _buildTimeSection(
+                          "SLEEP & ROUTINE",
+                          sleepHabits,
                         ),
                         const SizedBox(height: 80),
                       ],
