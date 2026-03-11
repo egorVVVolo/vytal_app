@@ -43,12 +43,12 @@ class WeeklyCalendar extends StatelessWidget {
                 border: Border.all(
                   color: isSelected
                       ? VytalColors.primaryNeon
-                      : Colors.white.withOpacity(0.05),
+                      : Colors.white.withValues(alpha: 0.05),
                 ),
                 boxShadow: isSelected
                     ? [
                   BoxShadow(
-                    color: VytalColors.primaryNeon.withOpacity(0.4),
+                    color: VytalColors.primaryNeon.withValues(alpha: 0.4),
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                   )

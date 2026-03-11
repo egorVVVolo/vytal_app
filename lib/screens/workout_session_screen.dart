@@ -249,7 +249,7 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
                       child: Container(
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.05),
+                          color: Colors.white.withValues(alpha: 0.05),
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(color: Colors.white10),
                         ),
@@ -317,7 +317,7 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
         width: double.infinity,
         decoration: BoxDecoration(
           gradient: RadialGradient(
-            colors: [widget.workout.color.withOpacity(0.3), Colors.black],
+            colors: [widget.workout.color.withValues(alpha: 0.3), Colors.black],
             radius: 1.5,
             center: Alignment.topCenter,
           ),
@@ -347,7 +347,7 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.1),
+                color: Colors.white.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(30),
               ),
               child: Row(

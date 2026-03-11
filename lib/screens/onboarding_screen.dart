@@ -142,7 +142,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           style: const TextStyle(fontSize: 24, color: Colors.white),
           decoration: InputDecoration(
             hintText: "Введи имя...",
-            hintStyle: TextStyle(color: Colors.white.withOpacity(0.3)),
+            hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.3)),
             enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.white24)),
             focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: VytalColors.primaryNeon)),
           ),
@@ -211,7 +211,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget _buildGlowOrb(Color color) {
     return Container(
       width: 300, height: 300,
-      decoration: BoxDecoration(shape: BoxShape.circle, color: color.withOpacity(0.15)),
+      decoration: BoxDecoration(shape: BoxShape.circle, color: color.withValues(alpha: 0.15)),
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 80, sigmaY: 80),
         child: Container(color: Colors.transparent),

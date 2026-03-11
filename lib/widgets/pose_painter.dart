@@ -21,7 +21,7 @@ class PosePainter extends CustomPainter {
     final linePaint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 3.0
-      ..color = Colors.white.withOpacity(0.8);
+      ..color = Colors.white.withValues(alpha: 0.8);
 
     for (final pose in poses) {
       // Рисуем связи

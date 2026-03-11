@@ -277,11 +277,11 @@ class _PlanScreenState extends State<PlanScreen> {
         width: 40,
         height: 40,
         decoration: BoxDecoration(
-          color: color?.withOpacity(0.1) ?? VytalColors.surface,
+          color: color?.withValues(alpha: 0.1) ?? VytalColors.surface,
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: color?.withOpacity(0.5) ?? Colors.white10),
+          border: Border.all(color: color?.withValues(alpha: 0.5) ?? Colors.white10),
           boxShadow: color != null
-              ? [BoxShadow(color: color.withOpacity(0.2), blurRadius: 8)]
+              ? [BoxShadow(color: color.withValues(alpha: 0.2), blurRadius: 8)]
               : [],
         ),
         child: Icon(icon, color: color ?? Colors.white70, size: 20),
@@ -294,7 +294,7 @@ class _PlanScreenState extends State<PlanScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.memory, size: 60, color: Colors.white.withOpacity(0.1)),
+          Icon(Icons.memory, size: 60, color: Colors.white.withValues(alpha: 0.1)),
           const SizedBox(height: 16),
           const Text(
             "SCHEDULE EMPTY",
@@ -336,7 +336,7 @@ class _PlanScreenState extends State<PlanScreen> {
                   shape: BoxShape.rectangle,
                   boxShadow: [
                     BoxShadow(
-                      color: VytalColors.primaryNeon.withOpacity(0.5),
+                      color: VytalColors.primaryNeon.withValues(alpha: 0.5),
                       blurRadius: 4,
                     ),
                   ],
@@ -357,7 +357,7 @@ class _PlanScreenState extends State<PlanScreen> {
               Expanded(
                 child: Container(
                   height: 1,
-                  color: VytalColors.primaryNeon.withOpacity(0.2),
+                  color: VytalColors.primaryNeon.withValues(alpha: 0.2),
                 ),
               ),
             ],

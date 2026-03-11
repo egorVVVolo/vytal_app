@@ -119,7 +119,7 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
                   });
                 },
                 backgroundColor: VytalColors.background,
-                selectedColor: VytalColors.primaryNeon.withOpacity(0.2),
+                selectedColor: VytalColors.primaryNeon.withValues(alpha: 0.2),
                 labelStyle: TextStyle(
                   color: isSelected ? VytalColors.primaryNeon : Colors.white54,
                   fontWeight: FontWeight.bold,
@@ -168,8 +168,8 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: isSelected
-                          ? VytalColors.primaryNeon.withOpacity(0.2)
-                          : Colors.white.withOpacity(0.05),
+                          ? VytalColors.primaryNeon.withValues(alpha: 0.2)
+                          : Colors.white.withValues(alpha: 0.05),
                       shape: BoxShape.circle,
                       border: Border.all(
                         color: isSelected
@@ -220,9 +220,9 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.05),
+        color: Colors.white.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Colors.white.withOpacity(0.1)),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
       ),
       child: TextField(
         controller: controller,
@@ -231,7 +231,7 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
           border: InputBorder.none,
           hintText: hint,
           hintStyle: TextStyle(
-            color: Colors.white.withOpacity(0.3),
+            color: Colors.white.withValues(alpha: 0.3),
             fontFamily: 'monospace',
           ),
         ),

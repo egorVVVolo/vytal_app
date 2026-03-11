@@ -123,7 +123,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
                       height: 300,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: VytalColors.primaryNeon.withOpacity(0.08),
+                        color: VytalColors.primaryNeon.withValues(alpha: 0.08),
                       ),
                     )
                     .animate(onPlay: (c) => c.repeat(reverse: true))
@@ -242,12 +242,12 @@ class _OnboardingV2State extends State<OnboardingV2> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: VytalColors.primaryNeon.withOpacity(0.3),
+                          color: VytalColors.primaryNeon.withValues(alpha: 0.3),
                           width: 1,
                         ),
                         gradient: LinearGradient(
                           colors: [
-                            VytalColors.primaryNeon.withOpacity(0.1),
+                            VytalColors.primaryNeon.withValues(alpha: 0.1),
                             Colors.transparent,
                           ],
                           begin: Alignment.topLeft,
@@ -473,7 +473,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
           duration: const Duration(milliseconds: 200),
           decoration: BoxDecoration(
             color: isSel
-                ? VytalColors.primaryNeon.withOpacity(0.1)
+                ? VytalColors.primaryNeon.withValues(alpha: 0.1)
                 : VytalColors.surface,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
@@ -483,7 +483,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
             boxShadow: isSel
                 ? [
                     BoxShadow(
-                      color: VytalColors.primaryNeon.withOpacity(0.2),
+                      color: VytalColors.primaryNeon.withValues(alpha: 0.2),
                       blurRadius: 20,
                     ),
                   ]
@@ -535,9 +535,9 @@ class _OnboardingV2State extends State<OnboardingV2> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           decoration: BoxDecoration(
-            color: statusColor.withOpacity(0.1),
+            color: statusColor.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: statusColor.withOpacity(0.3)),
+            border: Border.all(color: statusColor.withValues(alpha: 0.3)),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -567,7 +567,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
               Container(
                 height: 60,
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.05),
+                  color: Colors.white.withValues(alpha: 0.05),
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(color: Colors.white10),
                 ),
@@ -672,7 +672,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
         Center(
           child: Icon(
             Icons.group_work_rounded,
-            color: VytalColors.primaryNeon.withOpacity(0.5),
+            color: VytalColors.primaryNeon.withValues(alpha: 0.5),
             size: 40,
           ),
         ),
@@ -738,7 +738,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
                 decoration: BoxDecoration(
                   border: Border.symmetric(
                     horizontal: BorderSide(
-                      color: VytalColors.primaryNeon.withOpacity(0.3),
+                      color: VytalColors.primaryNeon.withValues(alpha: 0.3),
                     ),
                   ),
                 ),
@@ -826,7 +826,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
                 height: 100,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
-                  color: VytalColors.primaryNeon.withOpacity(0.3),
+                  color: VytalColors.primaryNeon.withValues(alpha: 0.3),
                 ),
               ),
               const SizedBox(
@@ -895,7 +895,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  "${_targetHeight.toStringAsFixed(1)}",
+                  _targetHeight.toStringAsFixed(1),
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 72,
@@ -927,10 +927,10 @@ class _OnboardingV2State extends State<OnboardingV2> {
               decoration: BoxDecoration(
                 color: VytalColors.surface,
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: Colors.white.withOpacity(0.05)),
+                border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.5),
+                    color: Colors.black.withValues(alpha: 0.5),
                     blurRadius: 20,
                   ),
                 ],
@@ -943,7 +943,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
                         show: true,
                         drawVerticalLine: false,
                         getDrawingHorizontalLine: (v) =>
-                            FlLine(color: Colors.white.withOpacity(0.05)),
+                            FlLine(color: Colors.white.withValues(alpha: 0.05)),
                       ),
                       titlesData: const FlTitlesData(show: false),
                       borderData: FlBorderData(show: false),
@@ -963,7 +963,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
                             show: true,
                             gradient: LinearGradient(
                               colors: [
-                                VytalColors.primaryNeon.withOpacity(0.3),
+                                VytalColors.primaryNeon.withValues(alpha: 0.3),
                                 Colors.transparent,
                               ],
                               begin: Alignment.topCenter,
@@ -999,7 +999,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
                 border: Border(
                   left: BorderSide(color: VytalColors.primaryNeon, width: 4),
                 ),
-                color: Colors.white.withOpacity(0.02),
+                color: Colors.white.withValues(alpha: 0.02),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -1088,7 +1088,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
                     borderRadius: BorderRadius.circular(8),
                     boxShadow: [
                       BoxShadow(
-                        color: VytalColors.primaryNeon.withOpacity(0.4),
+                        color: VytalColors.primaryNeon.withValues(alpha: 0.4),
                         blurRadius: 20,
                         offset: const Offset(0, 5),
                       ),

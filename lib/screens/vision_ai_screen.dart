@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:google_mlkit_pose_detection/google_mlkit_pose_detection.dart';
 import '../theme/colors.dart';
 import '../utils/camera_view_painter.dart'; // Import our painter
-import 'ai_posture_screen.dart'; // For navigating to results (or logic can be used here)
+// For navigating to results (or logic can be used here)
 
 class VisionAiScreen extends StatefulWidget {
   const VisionAiScreen({super.key});
@@ -79,7 +79,7 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
         });
       }
     } catch (e) {
-      print("Error analyzing pose: $e");
+      // Error analyzing pose
     } finally {
       _isDetecting = false;
     }
@@ -124,7 +124,7 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
     await _controller?.stopImageStream();
 
     try {
-      final XFile file = await _controller!.takePicture();
+      await _controller!.takePicture();
 
       if (!mounted) return;
 
@@ -164,7 +164,7 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
               Text(
                 "Data transmitted to Neural Engine.",
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.7),
+                  color: Colors.white.withValues(alpha: 0.7),
                   fontFamily: 'monospace',
                 ),
               ),
@@ -189,7 +189,7 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
         ),
       );
     } catch (e) {
-      print("Capture error: $e");
+      // Capture error
       setState(() => _isCapturing = false);
       _startImageStream(); // Restart on error
     }
@@ -248,9 +248,6 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
         ),
       );
     }
-
-    // Preview size
-    final size = MediaQuery.of(context).size;
 
     // Calculate scale for CustomPaint to match camera
     // (Simply pass the camera size, painter will adjust)
@@ -343,12 +340,12 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
                       vertical: 16,
                     ),
                     decoration: BoxDecoration(
-                      color: _statusColor.withOpacity(0.15),
+                      color: _statusColor.withValues(alpha: 0.15),
                       borderRadius: BorderRadius.circular(0), // Sharp corners
                       border: Border.all(color: _statusColor, width: 0.5),
                       boxShadow: [
                         BoxShadow(
-                          color: _statusColor.withOpacity(0.2),
+                          color: _statusColor.withValues(alpha: 0.2),
                           blurRadius: 20,
                         ),
                       ],

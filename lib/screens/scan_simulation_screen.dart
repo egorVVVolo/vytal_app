@@ -113,7 +113,7 @@ class _ScanSimulationScreenState extends State<ScanSimulationScreen>
                     color: VytalColors.primaryNeon,
                     boxShadow: [
                       BoxShadow(
-                        color: VytalColors.primaryNeon.withOpacity(0.5),
+                        color: VytalColors.primaryNeon.withValues(alpha: 0.5),
                         blurRadius: 4,
                         spreadRadius: 1,
                       ),
@@ -197,10 +197,6 @@ class _ScanSimulationScreenState extends State<ScanSimulationScreen>
 class _GridPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = VytalColors.primaryNeon.withOpacity(0.2)
-      ..strokeWidth = 1;
-
     // Draw corners
     final double cornerSize = 40;
     final double stroke = 1; // Thinner border for minimalism

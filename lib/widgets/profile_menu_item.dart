@@ -22,7 +22,7 @@ class ProfileMenuItem extends StatelessWidget {
       decoration: BoxDecoration(
         color: VytalColors.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withOpacity(0.03)),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.03)),
       ),
       child: ListTile(
         onTap: onTap,
@@ -30,8 +30,8 @@ class ProfileMenuItem extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             color: isDestructive
-                ? VytalColors.warningNeon.withOpacity(0.1)
-                : VytalColors.primaryNeon.withOpacity(0.1),
+                ? VytalColors.warningNeon.withValues(alpha: 0.1)
+                : VytalColors.primaryNeon.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Icon(
@@ -49,7 +49,7 @@ class ProfileMenuItem extends StatelessWidget {
         ),
         trailing: Icon(
           Icons.chevron_right_rounded,
-          color: Colors.white.withOpacity(0.2),
+          color: Colors.white.withValues(alpha: 0.2),
         ),
       ),
     );

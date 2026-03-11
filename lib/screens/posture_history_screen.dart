@@ -140,7 +140,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
           Icon(
             Icons.center_focus_weak,
             size: 60,
-            color: Colors.white.withOpacity(0.1),
+            color: Colors.white.withValues(alpha: 0.1),
           ),
           const SizedBox(height: 16),
           const Text(
@@ -174,7 +174,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
       decoration: BoxDecoration(
         color: VytalColors.surface,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: VytalColors.primaryNeon.withOpacity(0.2)),
+        border: Border.all(color: VytalColors.primaryNeon.withValues(alpha: 0.2)),
       ),
       child: Stack(
         alignment: Alignment.center,
@@ -185,7 +185,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
             bottom: 0,
             child: Container(
               width: 1,
-              color: VytalColors.primaryNeon.withOpacity(0.1),
+              color: VytalColors.primaryNeon.withValues(alpha: 0.1),
             ),
           ),
           Positioned(
@@ -193,7 +193,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
             right: 0,
             child: Container(
               height: 1,
-              color: VytalColors.primaryNeon.withOpacity(0.1),
+              color: VytalColors.primaryNeon.withValues(alpha: 0.1),
             ),
           ),
 
@@ -204,7 +204,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(color: VytalColors.primaryNeon, width: 2),
-              color: VytalColors.primaryNeon.withOpacity(0.1),
+              color: VytalColors.primaryNeon.withValues(alpha: 0.1),
             ),
             child: Center(
               child: Column(
@@ -341,7 +341,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
           child: Container(
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.2), // Легкое затемнение
+              color: Colors.black.withValues(alpha: 0.2), // Легкое затемнение
               borderRadius: BorderRadius.circular(20),
             ),
             child: Column(
@@ -386,8 +386,9 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
 
   // Генератор текста
   String _getDynamicAnalysisText(PostureLog log) {
-    if (log.advice.length > 20)
+    if (log.advice.length > 20) {
       return log.advice; // Если AI вернул нормальный совет, используем его
+    }
 
     // Иначе генерируем заглушку на основе баллов
     if (log.overallScore < 50) {
@@ -453,7 +454,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.transparent, // Minimalist transparent
-        border: Border.all(color: Colors.white.withOpacity(0.1), width: 0.5),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.1), width: 0.5),
       ),
       child: Row(
         children: [
@@ -542,7 +543,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
             show: true,
             gradient: LinearGradient(
               colors: [
-                VytalColors.primaryNeon.withOpacity(0.3),
+                VytalColors.primaryNeon.withValues(alpha: 0.3),
                 Colors.transparent,
               ],
               begin: Alignment.topCenter,

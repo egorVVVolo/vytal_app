@@ -55,9 +55,9 @@ class _CyberpunkGridBackgroundState extends State<CyberpunkGridBackground> with 
                 end: Alignment.bottomCenter,
                 colors: [
                   VytalColors.background,
-                  VytalColors.background.withOpacity(0.8),
+                  VytalColors.background.withValues(alpha: 0.8),
                   Colors.transparent,
-                  VytalColors.background.withOpacity(0.9),
+                  VytalColors.background.withValues(alpha: 0.9),
                 ],
                 stops: const [0.0, 0.15, 0.5, 1.0],
               ),
@@ -79,7 +79,7 @@ class _GridPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = VytalColors.primaryNeon.withOpacity(0.12)
+      ..color = VytalColors.primaryNeon.withValues(alpha: 0.12)
       ..strokeWidth = 1.0
       ..style = PaintingStyle.stroke;
 
@@ -99,7 +99,7 @@ class _GridPainter extends CustomPainter {
       final y = size.height - (size.height - horizonY) * (progress * progress);
 
       if (y > horizonY && y < size.height) {
-        paint.color = VytalColors.primaryNeon.withOpacity(0.15 * progress);
+        paint.color = VytalColors.primaryNeon.withValues(alpha: 0.15 * progress);
         canvas.drawLine(Offset(0, y), Offset(size.width, y), paint);
       }
     }

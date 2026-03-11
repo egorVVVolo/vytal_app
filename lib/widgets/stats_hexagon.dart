@@ -66,7 +66,7 @@ class StatsHexagon extends StatelessWidget {
           // Сам график (Паутина)
           dataSets: [
             RadarDataSet(
-              fillColor: VytalColors.primaryNeon.withOpacity(0.2),
+              fillColor: VytalColors.primaryNeon.withValues(alpha: 0.2),
               borderColor: VytalColors.primaryNeon,
               // itemColors удален, так как он устарел.
               // Цвет точек теперь берется из borderColor автоматически.

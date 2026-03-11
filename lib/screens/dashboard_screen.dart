@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // For haptics
 import 'package:pedometer/pedometer.dart';
@@ -44,10 +45,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
   List<Habit> _todayHabits = [];
   int _completedCount = 0;
 
-  double _sleepProgress = 0.0;
-  double _nutritionProgress = 0.0;
-  double _postureProgress = 0.0;
-
   int _streak = 0;
   double _growthVelocity = 0.0;
 
@@ -78,7 +75,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           setState(() => _steps = event.steps);
           _checkStepGoal(event.steps);
         }
-      }, onError: (error) => print("Step Error: $error"));
+      }, onError: (error) => debugPrint("Step Error: $error"));
 
       _statusSubscription = _pedometerService.statusStream!.listen((event) {
         if (mounted) {
@@ -88,7 +85,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 : "IDLE",
           );
         }
-      }, onError: (error) => print("Status Error: $error"));
+      }, onError: (error) => debugPrint("Status Error: $error"));
     }
   }
 
@@ -176,26 +173,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
         _baselineLog = baselineScan;
         _startHeight = startH;
         _startDateStr = startD;
-
-        _sleepProgress = _calculateCategoryProgress(actualHabits, [
-          HabitType.sleep,
-          HabitType.mental,
-        ]);
-        _nutritionProgress = _calculateCategoryProgress(actualHabits, [
-          HabitType.vitamin,
-        ]);
-        _postureProgress = _calculateCategoryProgress(actualHabits, [
-          HabitType.activity,
-        ]);
       });
     }
-  }
-
-  double _calculateCategoryProgress(List<Habit> all, List<HabitType> types) {
-    final categoryHabits = all.where((h) => types.contains(h.type)).toList();
-    if (categoryHabits.isEmpty) return 0.0;
-    final completed = categoryHabits.where((h) => h.isCompleted).length;
-    return completed / categoryHabits.length;
   }
 
   void _showNotifications() {
@@ -316,7 +295,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       Text(
                         "Good morning,",
                         style: TextStyle(
-                          color: VytalColors.textSecondary.withOpacity(0.6),
+                          color: VytalColors.textSecondary.withValues(alpha: 0.6),
                           fontSize: 14,
                         ),
                       ),
@@ -362,12 +341,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       vertical: 12,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.orangeAccent.withOpacity(
+                      color: Colors.orangeAccent.withValues(alpha:
                         0.05,
                       ), // Minimalist
                       borderRadius: BorderRadius.circular(0),
                       border: Border.all(
-                        color: Colors.orangeAccent.withOpacity(0.3),
+                        color: Colors.orangeAccent.withValues(alpha: 0.3),
                         width: 0.5,
                       ),
                     ),
@@ -557,7 +536,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                             decoration: BoxDecoration(
                               color: _baselineLog != null
-                                  ? VytalColors.primaryNeon.withOpacity(0.2)
+                                  ? VytalColors.primaryNeon.withValues(alpha: 0.2)
                                   : Colors.white10,
                               borderRadius: BorderRadius.circular(4),
                             ),
@@ -595,10 +574,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   decoration: BoxDecoration(
                     color: const Color(
                       0xFF0038FF,
-                    ).withOpacity(0.05), // Minimalist solid
+                    ).withValues(alpha: 0.05), // Minimalist solid
                     borderRadius: BorderRadius.circular(0),
                     border: Border.all(
-                      color: const Color(0xFF0038FF).withOpacity(0.3),
+                      color: const Color(0xFF0038FF).withValues(alpha: 0.3),
                       width: 0.5,
                     ),
                   ),
@@ -607,7 +586,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       Container(
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: const Color(0xFF0038FF).withOpacity(0.1),
+                          color: const Color(0xFF0038FF).withValues(alpha: 0.1),
                           shape: BoxShape.rectangle, // Square corners
                         ),
                         child: const Icon(
@@ -776,7 +755,7 @@ class _VelocityWavePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = VytalColors.secondaryNeon.withOpacity(0.6)
+      ..color = VytalColors.secondaryNeon.withValues(alpha: 0.6)
       ..strokeWidth =
           1 // Thinner line
       ..style = PaintingStyle.stroke;

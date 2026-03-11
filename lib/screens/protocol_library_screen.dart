@@ -58,15 +58,15 @@ class ProtocolLibraryScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      VytalColors.primaryNeon.withOpacity(0.2),
-                      VytalColors.primaryNeon.withOpacity(0.05),
+                      VytalColors.primaryNeon.withValues(alpha: 0.2),
+                      VytalColors.primaryNeon.withValues(alpha: 0.05),
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: VytalColors.primaryNeon.withOpacity(0.5),
+                    color: VytalColors.primaryNeon.withValues(alpha: 0.5),
                     width: 1,
                     style: BorderStyle.solid,
                   ),
@@ -164,7 +164,7 @@ class _ProtocolCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: VytalColors.surface,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Colors.white.withOpacity(0.05)),
+          border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
         ),
         child: Column(
           children: [
@@ -176,7 +176,7 @@ class _ProtocolCard extends StatelessWidget {
                   top: Radius.circular(16),
                 ),
                 gradient: LinearGradient(
-                  colors: [accentColor.withOpacity(0.15), Colors.transparent],
+                  colors: [accentColor.withValues(alpha: 0.15), Colors.transparent],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -188,9 +188,9 @@ class _ProtocolCard extends StatelessWidget {
                     width: 50,
                     height: 50,
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.3),
+                      color: Colors.black.withValues(alpha: 0.3),
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: accentColor.withOpacity(0.5)),
+                      border: Border.all(color: accentColor.withValues(alpha: 0.5)),
                     ),
                     child: Center(
                       child: Text(
@@ -399,13 +399,13 @@ class _ProtocolCard extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 12.0),
                     child: GlassContainer(
                       padding: const EdgeInsets.all(12),
-                      color: Colors.white.withOpacity(0.02),
+                      color: Colors.white.withValues(alpha: 0.02),
                       child: Row(
                         children: [
                           Container(
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.05),
+                              color: Colors.white.withValues(alpha: 0.05),
                               shape: BoxShape.circle,
                             ),
                             child: Text(h.icon),
@@ -490,9 +490,9 @@ class _ProtocolCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
-        border: Border.all(color: color.withOpacity(0.5)),
+        border: Border.all(color: color.withValues(alpha: 0.5)),
         borderRadius: BorderRadius.circular(8),
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
       ),
       child: Text(
         text,

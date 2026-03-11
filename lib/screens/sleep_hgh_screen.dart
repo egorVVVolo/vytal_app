@@ -272,7 +272,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                     decoration: BoxDecoration(
                       color: Colors.transparent, // Minimalist
                       border: Border.all(
-                        color: VytalColors.primaryNeon.withOpacity(0.5),
+                        color: VytalColors.primaryNeon.withValues(alpha: 0.5),
                         width: 0.5,
                       ), // Sharp thin borders
                     ),
@@ -309,7 +309,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
             decoration: BoxDecoration(
               color: VytalColors.background,
               border: Border(
-                top: BorderSide(color: Colors.white.withOpacity(0.1)),
+                top: BorderSide(color: Colors.white.withValues(alpha: 0.1)),
               ),
             ),
             child: GestureDetector(
@@ -431,7 +431,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
               ],
             ),
           ),
-          Icon(icon, color: color.withOpacity(0.5), size: 30),
+          Icon(icon, color: color.withValues(alpha: 0.5), size: 30),
         ],
       ),
     );

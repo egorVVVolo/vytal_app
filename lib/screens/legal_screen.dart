@@ -163,7 +163,7 @@ class _LegalScreenState extends State<LegalScreen> {
         border: Border.all(
           color: value
               ? VytalColors.primaryNeon
-              : Colors.white.withOpacity(0.1),
+              : Colors.white.withValues(alpha: 0.1),
           width: 0.5,
         ),
         child: Row(

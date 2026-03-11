@@ -14,8 +14,9 @@ class NotificationService {
       FlutterLocalNotificationsPlugin();
 
   Future<void> init() async {
-    if (kIsWeb)
+    if (kIsWeb) {
       return; // Local notifications are not supported on standard web without extra config
+    }
 
     // 1. Initialize Timezones
     tz.initializeTimeZones();

@@ -63,14 +63,14 @@ class WikiScreen extends StatelessWidget {
                       color: Colors
                           .transparent, // Minimalist transparent background
                       border: Border.all(
-                        color: WikiData.articles[0].color.withOpacity(0.5),
+                        color: WikiData.articles[0].color.withValues(alpha: 0.5),
                         width: 0.5,
                       ),
                       gradient: LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          WikiData.articles[0].color.withOpacity(0.2),
+                          WikiData.articles[0].color.withValues(alpha: 0.2),
                           Colors.transparent,
                         ],
                       ),
@@ -163,9 +163,9 @@ class WikiScreen extends StatelessWidget {
                                 Container(
                                   padding: const EdgeInsets.all(12),
                                   decoration: BoxDecoration(
-                                    color: article.color.withOpacity(0.1),
+                                    color: article.color.withValues(alpha: 0.1),
                                     border: Border.all(
-                                      color: article.color.withOpacity(0.3),
+                                      color: article.color.withValues(alpha: 0.3),
                                       width: 0.5,
                                     ),
                                   ),
@@ -261,7 +261,7 @@ class _ArticleDetailScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      article.color.withOpacity(0.2),
+                      article.color.withValues(alpha: 0.2),
                       VytalColors.background,
                     ],
                     begin: Alignment.topCenter,
@@ -272,7 +272,7 @@ class _ArticleDetailScreen extends StatelessWidget {
                   child: Icon(
                     article.icon,
                     size: 80,
-                    color: article.color.withOpacity(0.5),
+                    color: article.color.withValues(alpha: 0.5),
                   ),
                 ),
               ),
@@ -328,7 +328,7 @@ class _ArticleDetailScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.transparent,
                     border: Border.all(
-                      color: article.color.withOpacity(0.5),
+                      color: article.color.withValues(alpha: 0.5),
                       width: 0.5,
                     ),
                   ),

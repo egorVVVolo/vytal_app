@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme/colors.dart';
 import '../models/habit.dart';
-import '../widgets/glass_container.dart';
 
 class CreateProtocolScreen extends StatefulWidget {
   final Function(List<Habit>) onCreate;
@@ -164,6 +163,13 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
     _tabController = TabController(length: 4, vsync: this);
   }
 
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _tabController.dispose();
+    super.dispose();
+  }
+
   void _toggleHabit(Habit habit) {
     setState(() {
       if (_selectedHabits.any((h) => h.title == habit.title)) {
@@ -240,7 +246,7 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
               style: const TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 hintText: "Название протокола (например, Утро)",
-                hintStyle: TextStyle(color: Colors.white.withOpacity(0.3)),
+                hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.3)),
                 filled: true,
                 fillColor: VytalColors.surface,
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
@@ -286,7 +292,7 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: isSelected
-                  ? VytalColors.primaryNeon.withOpacity(0.1)
+                  ? VytalColors.primaryNeon.withValues(alpha: 0.1)
                   : VytalColors.surface,
               borderRadius: BorderRadius.circular(16),
               border: Border.all(
@@ -348,7 +354,7 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: VytalColors.background,
-        border: Border(top: BorderSide(color: Colors.white.withOpacity(0.1))),
+        border: Border(top: BorderSide(color: Colors.white.withValues(alpha: 0.1))),
       ),
       child: SafeArea(
         child: Row(

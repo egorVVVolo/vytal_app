@@ -7,7 +7,6 @@ import 'package:vytal_app/screens/vision_ai_screen.dart';
 import '../theme/colors.dart';
 import '../widgets/growth_capsule.dart';
 import '../services/storage_service.dart';
-import 'ai_posture_screen.dart';
 import '../models/height_log.dart';
 import 'paywall_screen.dart';
 
@@ -378,7 +377,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
                             show: true,
                             drawVerticalLine: false,
                             getDrawingHorizontalLine: (value) => FlLine(
-                              color: Colors.white.withOpacity(0.05),
+                              color: Colors.white.withValues(alpha: 0.05),
                               strokeWidth: 1,
                             ),
                           ),
@@ -395,7 +394,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
                               dotData: const FlDotData(show: true),
                               belowBarData: BarAreaData(
                                 show: true,
-                                color: VytalColors.primaryNeon.withOpacity(0.1),
+                                color: VytalColors.primaryNeon.withValues(alpha: 0.1),
                               ),
                             ),
                           ],
@@ -569,7 +568,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
             activeTrackColor: Colors.white,
             inactiveTrackColor: Colors.white10,
             thumbColor: VytalColors.primaryNeon,
-            overlayColor: VytalColors.primaryNeon.withOpacity(0.2),
+            overlayColor: VytalColors.primaryNeon.withValues(alpha: 0.2),
             trackHeight: 2,
           ),
           child: Slider(value: value, min: 150, max: 220, onChanged: onChanged),

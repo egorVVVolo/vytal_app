@@ -1,5 +1,5 @@
+import 'package:flutter/foundation.dart';
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // Haptic
 import 'package:flutter_animate/flutter_animate.dart';
@@ -99,7 +99,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ], text: 'My biohacking progress in Vytal: Level $_level 🧬');
       }
     } catch (e) {
-      print("Share error: $e");
+      debugPrint("Share error: $e");
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -198,7 +198,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                        VytalColors.primaryNeon.withOpacity(0.1),
+                        VytalColors.primaryNeon.withValues(alpha: 0.1),
                         VytalColors.background,
                       ],
                     ),
@@ -230,7 +230,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: VytalColors.primaryNeon.withOpacity(
+                              color: VytalColors.primaryNeon.withValues(alpha:
                                 0.1,
                               ), // Reduced glow
                               blurRadius: 10,
@@ -293,7 +293,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Text(
                             "$_xp XP Total",
                             style: TextStyle(
-                              color: Colors.white.withOpacity(0.4),
+                              color: Colors.white.withValues(alpha: 0.4),
                               fontSize: 10,
                               fontFamily: 'monospace',
                             ),
@@ -576,8 +576,9 @@ class _DevicesSheetState extends State<_DevicesSheet> {
     if (mounted) {
       setState(() {
         _isScanning = false;
-        if (key == 'apple_watch')
+        if (key == 'apple_watch') {
           _isAppleWatchConnected = !_isAppleWatchConnected;
+        }
         if (key == 'oura_ring') _isOuraRingConnected = !_isOuraRingConnected;
       });
     }
@@ -662,7 +663,7 @@ class _DeviceTile extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: isConnected
-              ? VytalColors.primaryNeon.withOpacity(0.05)
+              ? VytalColors.primaryNeon.withValues(alpha: 0.05)
               : Colors.transparent,
           border: Border.all(
             color: isConnected ? VytalColors.primaryNeon : Colors.white10,
@@ -771,7 +772,7 @@ class _SwitchRow extends StatelessWidget {
         ),
       ),
       value: value,
-      activeColor: VytalColors.primaryNeon,
+      activeThumbColor: VytalColors.primaryNeon,
       onChanged: onChanged,
     );
   }

@@ -1,3 +1,4 @@
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -65,10 +66,11 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
       final XFile? image = await _picker.pickImage(source: source);
       if (image != null) {
         setState(() {
-          if (isSide)
+          if (isSide) {
             _sidePhoto = File(image.path);
-          else
+          } else {
             _backPhoto = File(image.path);
+          }
           _result = null;
         });
       }
@@ -174,7 +176,7 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
   Widget _buildBody() {
     if (_isLoading) return const _LoadingView();
     // SHOW RESULT IF AVAILABLE
-    if (_result != null)
+    if (_result != null) {
       return SingleChildScrollView(
         padding: const EdgeInsets.all(24),
         child: _ResultView(
@@ -183,6 +185,7 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
           onSave: _saveResult,
         ),
       );
+    }
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),
@@ -246,7 +249,7 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
                     boxShadow: (_sidePhoto != null && _backPhoto != null)
                         ? [
                             BoxShadow(
-                              color: VytalColors.primaryNeon.withOpacity(0.6),
+                              color: VytalColors.primaryNeon.withValues(alpha: 0.6),
                               blurRadius: 20,
                             ),
                           ]
@@ -327,7 +330,7 @@ class _ScannerSlot extends StatelessWidget {
                         children: [
                           Icon(
                             Icons.add,
-                            color: Colors.white.withOpacity(0.3),
+                            color: Colors.white.withValues(alpha: 0.3),
                             size: 40,
                           ),
                         ],
@@ -337,7 +340,7 @@ class _ScannerSlot extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.7),
+                          color: Colors.black.withValues(alpha: 0.7),
                           shape: BoxShape.circle,
                         ),
                         child: const Icon(
@@ -391,7 +394,7 @@ class _ResultView extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
           decoration: BoxDecoration(
-            color: statusColor.withOpacity(0.1),
+            color: statusColor.withValues(alpha: 0.1),
             border: Border(left: BorderSide(color: statusColor, width: 4)),
           ),
           child: Row(
@@ -442,9 +445,9 @@ class _ResultView extends StatelessWidget {
               width: 100,
               height: 250,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.02),
+                color: Colors.white.withValues(alpha: 0.02),
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: Colors.white.withOpacity(0.05)),
+                border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
               ),
               child: CustomPaint(
                 painter: _SpinePainter(score: result.kyphosisScore),
@@ -517,7 +520,7 @@ class _ResultView extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             color: Colors.black,
-            border: Border.all(color: VytalColors.primaryNeon.withOpacity(0.5)),
+            border: Border.all(color: VytalColors.primaryNeon.withValues(alpha: 0.5)),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Column(
@@ -558,7 +561,7 @@ class _ResultView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(4),
                   boxShadow: [
                     BoxShadow(
-                      color: VytalColors.primaryNeon.withOpacity(0.5),
+                      color: VytalColors.primaryNeon.withValues(alpha: 0.5),
                       blurRadius: 20,
                     ),
                   ],
@@ -698,7 +701,7 @@ class _CornerPainter extends CustomPainter {
 
     if (!isActive) {
       final gridPaint = Paint()
-        ..color = Colors.white.withOpacity(0.05)
+        ..color = Colors.white.withValues(alpha: 0.05)
         ..strokeWidth = 1;
       canvas.drawLine(
         Offset(size.width / 2, 20),
@@ -768,7 +771,7 @@ class _GridPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.white.withOpacity(0.03)
+      ..color = Colors.white.withValues(alpha: 0.03)
       ..strokeWidth = 1;
     double step = 40;
     for (double x = 0; x < size.width; x += step) {
@@ -796,7 +799,7 @@ class _LoadingView extends StatelessWidget {
           Text(
             "AI ANALYZING...",
             style: TextStyle(
-              color: VytalColors.primaryNeon.withOpacity(0.8),
+              color: VytalColors.primaryNeon.withValues(alpha: 0.8),
               fontFamily: 'monospace',
               letterSpacing: 2,
             ),
