@@ -234,13 +234,18 @@ class _LevelChainList extends StatelessWidget {
         final workout = workouts[index];
         final isLast = index == workouts.length - 1;
 
-        return IntrinsicHeight(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Левая часть: Линия и Кружок
-              Column(
-                children: [
+        return Padding(
+          padding: EdgeInsets.only(
+            left: index % 2 == 0 ? 0 : 40.0,
+            right: index % 2 == 0 ? 40.0 : 0,
+          ),
+          child: IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Левая часть: Линия и Кружок
+                Column(
+                  children: [
                   GestureDetector(
                     onTap: () => _showWorkoutDetails(context, workout),
                     child: Container(
@@ -270,16 +275,16 @@ class _LevelChainList extends StatelessWidget {
                     curve: Curves.easeOutBack,
                   ),
 
-                  if (!isLast)
-                    Expanded(
-                      child: Container(width: 2, color: color.withValues(alpha: 0.3)),
-                    ),
-                ],
-              ),
-              const SizedBox(width: 24),
-              // Правая часть: Текст
-              Expanded(
-                    child: Padding(
+                    if (!isLast)
+                      Expanded(
+                        child: Container(width: 2, color: color.withValues(alpha: 0.3)),
+                      ),
+                  ],
+                ),
+                const SizedBox(width: 24),
+                // Правая часть: Текст
+                Expanded(
+                  child: Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: GestureDetector(
                         onTap: () => _showWorkoutDetails(context, workout),
@@ -315,16 +320,17 @@ class _LevelChainList extends StatelessWidget {
 
                               ),
                             ),
-                            const SizedBox(height: 40),
-                          ],
+                              const SizedBox(height: 40),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  )
-                  .animate()
-                  .fadeIn(delay: (index * 100 + 100).ms)
-                  .slideX(begin: 0.2),
-            ],
+                    )
+                    .animate()
+                    .fadeIn(delay: (index * 100 + 100).ms)
+                    .slideX(begin: 0.2),
+              ],
+            ),
           ),
         );
       }),
@@ -446,6 +452,20 @@ class _LevelChainList extends StatelessWidget {
                                 ],
                               ),
                             ),
+                            if (ex.visualUrl != null)
+                              Padding(
+                                padding: const EdgeInsets.only(right: 12),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8),
+                                  child: Image.network(
+                                    ex.visualUrl!,
+                                    width: 40,
+                                    height: 40,
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (_, __, ___) => const SizedBox(),
+                                  ),
+                                ),
+                              ),
                             Icon(
                               ex.type == ExerciseType.timer
                                   ? Icons.timer_outlined

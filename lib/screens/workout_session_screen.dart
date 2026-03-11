@@ -162,9 +162,9 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
               ),
             ),
 
-            // 2. CENTRAL TIMER AREA (Гибкое пространство, Flex = 4)
+            // 2. CENTRAL TIMER AREA
             Expanded(
-              flex: 4,
+              flex: 2,
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -211,9 +211,37 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
               ),
             ),
 
-            // 3. EXERCISE INFO (Гибкое пространство, Flex = 5)
+            // 2.5. VISUALIZER
+            if (currentEx.visualUrl != null)
+              Expanded(
+                flex: 3,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(24),
+                      border: Border.all(
+                        color: VytalColors.textSecondary.withValues(alpha: 0.2),
+                      ),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(24),
+                      child: Image.network(
+                        currentEx.visualUrl!,
+                        fit: BoxFit.cover,
+                        errorBuilder: (_, __, ___) => const Center(
+                          child: Icon(Icons.broken_image, color: VytalColors.textSecondary, size: 40),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+            // 3. EXERCISE INFO
             Expanded(
-              flex: 5,
+              flex: 4,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Column(
