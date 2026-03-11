@@ -131,7 +131,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
                       child: const Text(
                         "SAVE",
                         style: TextStyle(
-                          color: VytalColors.primaryNeon,
+                          color: VytalColors.primaryAccent,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 2,
 
@@ -194,7 +194,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
                       child: Text(
                         ".",
                         style: TextStyle(
-                          color: VytalColors.primaryNeon,
+                          color: VytalColors.primaryAccent,
                           fontSize: 32,
                           fontWeight: FontWeight.bold,
                         ),
@@ -221,7 +221,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
                               child: Text(
                                 "$index",
                                 style: const TextStyle(
-                                  color: VytalColors.primaryNeon,
+                                  color: VytalColors.primaryAccent,
                                   fontSize: 32,
                                   fontWeight: FontWeight.bold,
 
@@ -344,7 +344,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
                     onPressed: _showAddLogDialog,
                     icon: const Icon(
                       Icons.add_circle_outline,
-                      color: VytalColors.primaryNeon,
+                      color: VytalColors.primaryAccent,
                     ),
                     tooltip: "Add Measurement",
                   ),
@@ -389,12 +389,12 @@ class _GrowthScreenState extends State<GrowthScreen> {
                                 return FlSpot(e.key.toDouble(), e.value.value);
                               }).toList(),
                               isCurved: true,
-                              color: VytalColors.primaryNeon,
+                              color: VytalColors.primaryAccent,
                               barWidth: 3,
                               dotData: const FlDotData(show: true),
                               belowBarData: BarAreaData(
                                 show: true,
-                                color: VytalColors.primaryNeon.withValues(alpha: 0.1),
+                                color: VytalColors.primaryAccent.withValues(alpha: 0.1),
                               ),
                             ),
                           ],
@@ -422,7 +422,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
                     decoration: BoxDecoration(
                       color: Colors.transparent,
                       border: Border.all(
-                        color: VytalColors.warningNeon,
+                        color: VytalColors.warningAccent,
                         width: 0.5,
                       ),
                     ),
@@ -431,14 +431,14 @@ class _GrowthScreenState extends State<GrowthScreen> {
                       children: const [
                         Icon(
                           Icons.lock_outline,
-                          color: VytalColors.warningNeon,
+                          color: VytalColors.warningAccent,
                           size: 16,
                         ),
                         SizedBox(width: 10),
                         Text(
                           "UNLOCK AI FORECAST",
                           style: TextStyle(
-                            color: VytalColors.warningNeon,
+                            color: VytalColors.warningAccent,
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
                             letterSpacing: 2,
@@ -460,7 +460,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
   Widget _buildSectionHeader(String title) {
     return Row(
       children: [
-        Container(width: 4, height: 16, color: VytalColors.primaryNeon),
+        Container(width: 4, height: 16, color: VytalColors.primaryAccent),
         const SizedBox(width: 10),
         Text(
           title.toUpperCase(),
@@ -490,7 +490,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
         decoration: BoxDecoration(
           color: Colors.transparent, // Transparent minimalism
           border: Border.all(
-            color: VytalColors.primaryNeon,
+            color: VytalColors.primaryAccent,
             width: 0.5,
           ), // Thin border
         ),
@@ -504,7 +504,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
               ),
               child: const Icon(
                 Icons.center_focus_strong,
-                color: VytalColors.primaryNeon,
+                color: VytalColors.primaryAccent,
               ),
             ),
             const SizedBox(width: 16),
@@ -525,7 +525,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
                 Text(
                   "ACCURACY: 98%",
                   style: TextStyle(
-                    color: VytalColors.primaryNeon,
+                    color: VytalColors.primaryAccent,
                     fontSize: 10,
 
                     letterSpacing: 1,
@@ -567,8 +567,8 @@ class _GrowthScreenState extends State<GrowthScreen> {
           data: SliderTheme.of(context).copyWith(
             activeTrackColor: VytalColors.textPrimary,
             inactiveTrackColor: VytalColors.textSecondary,
-            thumbColor: VytalColors.primaryNeon,
-            overlayColor: VytalColors.primaryNeon.withValues(alpha: 0.2),
+            thumbColor: VytalColors.primaryAccent,
+            overlayColor: VytalColors.primaryAccent.withValues(alpha: 0.2),
             trackHeight: 2,
           ),
           child: Slider(value: value, min: 150, max: 220, onChanged: onChanged),

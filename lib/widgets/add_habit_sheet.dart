@@ -75,7 +75,7 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
           const Text(
             "NEW DIRECTIVE",
             style: TextStyle(
-              color: VytalColors.primaryNeon,
+              color: VytalColors.primaryAccent,
               fontSize: 20,
               fontWeight: FontWeight.bold,
               letterSpacing: 2,
@@ -119,9 +119,9 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
                   });
                 },
                 backgroundColor: VytalColors.background,
-                selectedColor: VytalColors.primaryNeon.withValues(alpha: 0.2),
+                selectedColor: VytalColors.primaryAccent.withValues(alpha: 0.2),
                 labelStyle: TextStyle(
-                  color: isSelected ? VytalColors.primaryNeon : VytalColors.textSecondary,
+                  color: isSelected ? VytalColors.primaryAccent : VytalColors.textSecondary,
                   fontWeight: FontWeight.bold,
                   fontSize: 10,
 
@@ -130,7 +130,7 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
                   borderRadius: BorderRadius.circular(24),
                   side: BorderSide(
                     color: isSelected
-                        ? VytalColors.primaryNeon
+                        ? VytalColors.primaryAccent
                         : VytalColors.textSecondary,
                   ),
                 ),
@@ -168,12 +168,12 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: isSelected
-                          ? VytalColors.primaryNeon.withValues(alpha: 0.2)
+                          ? VytalColors.primaryAccent.withValues(alpha: 0.2)
                           : VytalColors.textPrimary.withValues(alpha: 0.05),
                       shape: BoxShape.circle,
                       border: Border.all(
                         color: isSelected
-                            ? VytalColors.primaryNeon
+                            ? VytalColors.primaryAccent
                             : Colors.transparent,
                       ),
                     ),
@@ -193,7 +193,7 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
             child: ElevatedButton(
               onPressed: _save,
               style: ElevatedButton.styleFrom(
-                backgroundColor: VytalColors.primaryNeon,
+                backgroundColor: VytalColors.primaryAccent,
                 foregroundColor: VytalColors.textPrimary,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24),

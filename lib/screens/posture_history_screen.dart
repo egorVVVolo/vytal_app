@@ -174,7 +174,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
       decoration: BoxDecoration(
         color: VytalColors.textPrimary,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: VytalColors.primaryNeon.withValues(alpha: 0.2)),
+        border: Border.all(color: VytalColors.primaryAccent.withValues(alpha: 0.2)),
       ),
       child: Stack(
         alignment: Alignment.center,
@@ -185,7 +185,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
             bottom: 0,
             child: Container(
               width: 1,
-              color: VytalColors.primaryNeon.withValues(alpha: 0.1),
+              color: VytalColors.primaryAccent.withValues(alpha: 0.1),
             ),
           ),
           Positioned(
@@ -193,7 +193,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
             right: 0,
             child: Container(
               height: 1,
-              color: VytalColors.primaryNeon.withValues(alpha: 0.1),
+              color: VytalColors.primaryAccent.withValues(alpha: 0.1),
             ),
           ),
 
@@ -203,8 +203,8 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
             height: 80,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(color: VytalColors.primaryNeon, width: 2),
-              color: VytalColors.primaryNeon.withValues(alpha: 0.1),
+              border: Border.all(color: VytalColors.primaryAccent, width: 2),
+              color: VytalColors.primaryAccent.withValues(alpha: 0.1),
             ),
             child: Center(
               child: Column(
@@ -222,7 +222,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
                   const Text(
                     "BASE",
                     style: TextStyle(
-                      color: VytalColors.primaryNeon,
+                      color: VytalColors.primaryAccent,
                       fontSize: 10,
                       fontWeight: FontWeight.bold,
 
@@ -259,7 +259,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
         const Text(
           "DEEP ANALYSIS (PRO)",
           style: TextStyle(
-            color: VytalColors.secondaryNeon,
+            color: VytalColors.secondaryAccent,
             fontSize: 12,
             fontWeight: FontWeight.bold,
             letterSpacing: 2,
@@ -349,7 +349,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
               children: [
                 const Icon(
                   Icons.lock_outline,
-                  color: VytalColors.primaryNeon,
+                  color: VytalColors.primaryAccent,
                   size: 32,
                 ),
                 const SizedBox(height: 16),
@@ -357,12 +357,12 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
                   onPressed: _handleUnlock, // <--- ВЫЗЫВАЕМ НОВУЮ ФУНКЦИЮ
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent, // Minimalist
-                    foregroundColor: VytalColors.primaryNeon,
+                    foregroundColor: VytalColors.primaryAccent,
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(24),
                       side: const BorderSide(
-                        color: VytalColors.primaryNeon,
+                        color: VytalColors.primaryAccent,
                         width: 0.5,
                       ),
                     ),
@@ -420,7 +420,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, color: VytalColors.secondaryNeon, size: 20),
+          Icon(icon, color: VytalColors.secondaryAccent, size: 20),
           const SizedBox(height: 10),
           Text(
             value,
@@ -447,8 +447,8 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
 
   Widget _buildLogCard(PostureLog log) {
     Color scoreColor = log.overallScore < 60
-        ? VytalColors.warningNeon
-        : VytalColors.secondaryNeon;
+        ? VytalColors.warningAccent
+        : VytalColors.secondaryAccent;
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
@@ -535,7 +535,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
               )
               .toList(),
           isCurved: true,
-          color: VytalColors.primaryNeon,
+          color: VytalColors.primaryAccent,
           barWidth: 3,
           isStrokeCapRound: true,
           dotData: const FlDotData(show: true),
@@ -543,7 +543,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
             show: true,
             gradient: LinearGradient(
               colors: [
-                VytalColors.primaryNeon.withValues(alpha: 0.3),
+                VytalColors.primaryAccent.withValues(alpha: 0.3),
                 Colors.transparent,
               ],
               begin: Alignment.topCenter,

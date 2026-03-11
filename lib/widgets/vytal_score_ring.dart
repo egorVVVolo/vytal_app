@@ -14,9 +14,9 @@ class VytalScoreRing extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Определяем цвет в зависимости от оценки (как в светофоре)
-    Color ringColor = VytalColors.primaryNeon;
-    if (score < 50) ringColor = VytalColors.warningNeon;
-    if (score >= 80) ringColor = VytalColors.secondaryNeon;
+    Color ringColor = VytalColors.primaryAccent;
+    if (score < 50) ringColor = VytalColors.warningAccent;
+    if (score >= 80) ringColor = VytalColors.secondaryAccent;
 
     return Column(
       children: [

@@ -104,7 +104,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text("Error sharing data"),
-            backgroundColor: VytalColors.warningNeon,
+            backgroundColor: VytalColors.warningAccent,
           ),
         );
       }
@@ -121,7 +121,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           side: BorderSide(color: VytalColors.textSecondary),
         ),
         title: const Text(
-          "BIOHACKER METRICS",
+          "Biohacker Metrics",
           style: TextStyle(
             color: VytalColors.textPrimary,
             fontWeight: FontWeight.bold,
@@ -147,7 +147,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: const Text(
               "GOT IT",
               style: TextStyle(
-                color: VytalColors.primaryNeon,
+                color: VytalColors.primaryAccent,
 
                 letterSpacing: 1,
               ),
@@ -198,7 +198,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                        VytalColors.primaryNeon.withValues(alpha: 0.1),
+                        VytalColors.primaryAccent.withValues(alpha: 0.1),
                         VytalColors.background,
                       ],
                     ),
@@ -225,15 +225,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
-                            color: VytalColors.primaryNeon,
+                            color: VytalColors.primaryAccent,
                             width: 1, // Thinner border
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: VytalColors.primaryNeon.withValues(alpha:
+                              color: VytalColors.primaryAccent.withValues(alpha:
                                 0.1,
                               ), // Reduced glow
-                              blurRadius: 10,
+                              blurRadius: 4,
                             ),
                           ],
                         ),
@@ -269,7 +269,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Text(
                             "Level $_level Biohacker",
                             style: const TextStyle(
-                              color: VytalColors.primaryNeon,
+                              color: VytalColors.primaryAccent,
                               fontSize: 12,
                               letterSpacing: 1,
                               fontWeight: FontWeight.bold,
@@ -284,8 +284,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               borderRadius: BorderRadius.circular(24),
                               child: LinearProgressIndicator(
                                 value: _levelProgress,
-                                backgroundColor: VytalColors.textSecondary,
-                                color: VytalColors.primaryNeon,
+                                backgroundColor: VytalColors.textSecondary.withValues(alpha: 0.2),
+                                color: VytalColors.textPrimary,
                               ),
                             ),
                           ),
@@ -346,13 +346,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               onPressed: _shareStats,
               icon: const Icon(
                 Icons.share,
-                color: VytalColors.primaryNeon,
+                color: VytalColors.primaryAccent,
                 size: 16,
               ),
               label: const Text(
-                "SHARE PROGRESS",
+                "Share Progress",
                 style: TextStyle(
-                  color: VytalColors.primaryNeon,
+                  color: VytalColors.primaryAccent,
                   letterSpacing: 1,
                 ),
               ),
@@ -456,7 +456,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Text(
               unit,
               style: const TextStyle(
-                color: VytalColors.primaryNeon,
+                color: VytalColors.primaryAccent,
                 fontSize: 10,
                 fontWeight: FontWeight.bold,
               ),
@@ -506,7 +506,7 @@ class _RealSettingsSheetState extends State<_RealSettingsSheet> {
       child: Column(
         children: [
           const Text(
-            "SYSTEM CONFIG",
+            "System Config",
             style: TextStyle(
               color: VytalColors.textPrimary,
               fontSize: 16,
@@ -595,7 +595,7 @@ class _DevicesSheetState extends State<_DevicesSheet> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                "DATA SOURCES",
+                "Data Sources",
                 style: TextStyle(
                   color: VytalColors.textPrimary,
                   fontSize: 16,
@@ -610,7 +610,7 @@ class _DevicesSheetState extends State<_DevicesSheet> {
                   height: 16,
                   child: CircularProgressIndicator(
                     strokeWidth: 2,
-                    color: VytalColors.primaryNeon,
+                    color: VytalColors.primaryAccent,
                   ),
                 ),
             ],
@@ -663,10 +663,10 @@ class _DeviceTile extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: isConnected
-              ? VytalColors.primaryNeon.withValues(alpha: 0.05)
+              ? VytalColors.primaryAccent.withValues(alpha: 0.05)
               : Colors.transparent,
           border: Border.all(
-            color: isConnected ? VytalColors.primaryNeon : VytalColors.textSecondary,
+            color: isConnected ? VytalColors.primaryAccent : VytalColors.textSecondary,
             width: 0.5,
           ),
         ),
@@ -674,7 +674,7 @@ class _DeviceTile extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: isConnected ? VytalColors.primaryNeon : VytalColors.textSecondary,
+              color: isConnected ? VytalColors.primaryAccent : VytalColors.textSecondary,
             ),
             const SizedBox(width: 16),
             Expanded(
@@ -694,7 +694,7 @@ class _DeviceTile extends StatelessWidget {
                     isConnected ? "Synchronized" : "Tap to connect",
                     style: TextStyle(
                       color: isConnected
-                          ? VytalColors.primaryNeon
+                          ? VytalColors.primaryAccent
                           : VytalColors.textSecondary,
                       fontSize: 10,
                     ),
@@ -705,7 +705,7 @@ class _DeviceTile extends StatelessWidget {
             if (isConnected)
               const Icon(
                 Icons.check_circle,
-                color: VytalColors.primaryNeon,
+                color: VytalColors.primaryAccent,
                 size: 18,
               ),
           ],
@@ -731,7 +731,7 @@ class _InfoRow extends StatelessWidget {
             child: Text(
               label.toUpperCase(),
               style: const TextStyle(
-                color: VytalColors.primaryNeon,
+                color: VytalColors.primaryAccent,
                 fontWeight: FontWeight.bold,
 
               ),
@@ -772,7 +772,7 @@ class _SwitchRow extends StatelessWidget {
         ),
       ),
       value: value,
-      activeThumbColor: VytalColors.primaryNeon,
+      activeThumbColor: VytalColors.primaryAccent,
       onChanged: onChanged,
     );
   }

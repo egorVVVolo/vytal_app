@@ -36,7 +36,7 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
             ListTile(
               leading: const Icon(
                 Icons.camera_alt,
-                color: VytalColors.primaryNeon,
+                color: VytalColors.primaryAccent,
               ),
               title: const Text(
                 'Camera',
@@ -47,7 +47,7 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
             ListTile(
               leading: const Icon(
                 Icons.photo_library,
-                color: VytalColors.secondaryNeon,
+                color: VytalColors.secondaryAccent,
               ),
               title: const Text(
                 'Gallery',
@@ -119,7 +119,7 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text("Result saved to History"),
-          backgroundColor: VytalColors.secondaryNeon,
+          backgroundColor: VytalColors.secondaryAccent,
         ),
       );
 
@@ -145,7 +145,7 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
           "NEURAL SCAN",
           style: TextStyle(
 
-            color: VytalColors.primaryNeon,
+            color: VytalColors.primaryAccent,
             letterSpacing: 2,
             fontWeight: FontWeight.bold,
           ),
@@ -243,13 +243,13 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: (_sidePhoto != null && _backPhoto != null)
-                        ? VytalColors.primaryNeon
+                        ? VytalColors.primaryAccent
                         : VytalColors.textSecondary,
                     borderRadius: BorderRadius.circular(24),
                     boxShadow: (_sidePhoto != null && _backPhoto != null)
                         ? [
                             BoxShadow(
-                              color: VytalColors.primaryNeon.withValues(alpha: 0.6),
+                              color: VytalColors.primaryAccent.withValues(alpha: 0.6),
                               blurRadius: 20,
                             ),
                           ]
@@ -345,7 +345,7 @@ class _ScannerSlot extends StatelessWidget {
                         ),
                         child: const Icon(
                           Icons.check,
-                          color: VytalColors.secondaryNeon,
+                          color: VytalColors.secondaryAccent,
                         ),
                       ).animate().scale(curve: Curves.elasticOut),
                     ),
@@ -355,7 +355,7 @@ class _ScannerSlot extends StatelessWidget {
           Text(
             label,
             style: const TextStyle(
-              color: VytalColors.primaryNeon,
+              color: VytalColors.primaryAccent,
 
               fontWeight: FontWeight.bold,
               letterSpacing: 2,
@@ -383,8 +383,8 @@ class _ResultView extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isBad = result.overallScore < 60;
     Color statusColor = isBad
-        ? VytalColors.warningNeon
-        : VytalColors.secondaryNeon;
+        ? VytalColors.warningAccent
+        : VytalColors.secondaryAccent;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -520,7 +520,7 @@ class _ResultView extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             color: VytalColors.textPrimary,
-            border: Border.all(color: VytalColors.primaryNeon.withValues(alpha: 0.5)),
+            border: Border.all(color: VytalColors.primaryAccent.withValues(alpha: 0.5)),
             borderRadius: BorderRadius.circular(24),
           ),
           child: Column(
@@ -529,7 +529,7 @@ class _ResultView extends StatelessWidget {
               const Text(
                 "> AI_PROTOCOL_RECOMMENDATION:",
                 style: TextStyle(
-                  color: VytalColors.primaryNeon,
+                  color: VytalColors.primaryAccent,
                   fontSize: 10,
 
                 ),
@@ -557,11 +557,11 @@ class _ResultView extends StatelessWidget {
                 height: 60,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: VytalColors.primaryNeon,
+                  color: VytalColors.primaryAccent,
                   borderRadius: BorderRadius.circular(24),
                   boxShadow: [
                     BoxShadow(
-                      color: VytalColors.primaryNeon.withValues(alpha: 0.5),
+                      color: VytalColors.primaryAccent.withValues(alpha: 0.5),
                       blurRadius: 20,
                     ),
                   ],
@@ -613,8 +613,8 @@ class _MetricRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color color = score < 60
-        ? VytalColors.warningNeon
-        : VytalColors.primaryNeon;
+        ? VytalColors.warningAccent
+        : VytalColors.primaryAccent;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -664,7 +664,7 @@ class _CornerPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = isActive ? VytalColors.secondaryNeon : VytalColors.primaryNeon
+      ..color = isActive ? VytalColors.secondaryAccent : VytalColors.primaryAccent
       ..strokeWidth = 2
       ..style = PaintingStyle.stroke;
 
@@ -727,7 +727,7 @@ class _SpinePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = score < 60 ? VytalColors.warningNeon : VytalColors.secondaryNeon
+      ..color = score < 60 ? VytalColors.warningAccent : VytalColors.secondaryAccent
       ..strokeWidth = 3
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
@@ -794,12 +794,12 @@ class _LoadingView extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const CircularProgressIndicator(color: VytalColors.primaryNeon),
+          const CircularProgressIndicator(color: VytalColors.primaryAccent),
           const SizedBox(height: 20),
           Text(
             "AI ANALYZING...",
             style: TextStyle(
-              color: VytalColors.primaryNeon.withValues(alpha: 0.8),
+              color: VytalColors.primaryAccent.withValues(alpha: 0.8),
 
               letterSpacing: 2,
             ),

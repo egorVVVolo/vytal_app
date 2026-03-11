@@ -23,7 +23,7 @@ class ProtocolLibraryScreen extends StatelessWidget {
             fontWeight: FontWeight.bold,
             letterSpacing: 2,
             fontSize: 16,
-            color: VytalColors.primaryNeon,
+            color: VytalColors.primaryAccent,
 
           ),
         ),
@@ -32,7 +32,7 @@ class ProtocolLibraryScreen extends StatelessWidget {
           icon: const Icon(
             Icons.arrow_back_ios_new_rounded,
             size: 20,
-            color: VytalColors.primaryNeon,
+            color: VytalColors.primaryAccent,
           ),
           onPressed: () => Navigator.pop(context),
         ),
@@ -58,15 +58,15 @@ class ProtocolLibraryScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      VytalColors.primaryNeon.withValues(alpha: 0.2),
-                      VytalColors.primaryNeon.withValues(alpha: 0.05),
+                      VytalColors.primaryAccent.withValues(alpha: 0.2),
+                      VytalColors.primaryAccent.withValues(alpha: 0.05),
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: VytalColors.primaryNeon.withValues(alpha: 0.5),
+                    color: VytalColors.primaryAccent.withValues(alpha: 0.5),
                     width: 1,
                     style: BorderStyle.solid,
                   ),
@@ -76,7 +76,7 @@ class ProtocolLibraryScreen extends StatelessWidget {
                   children: [
                     const Icon(
                       Icons.build_circle_outlined,
-                      color: VytalColors.primaryNeon,
+                      color: VytalColors.primaryAccent,
                       size: 28,
                     ),
                     const SizedBox(width: 12),
@@ -142,10 +142,10 @@ class _ProtocolCard extends StatelessWidget {
     Color accentColor;
     switch (protocol.accentColor) {
       case ColorHex.blue:
-        accentColor = VytalColors.primaryNeon;
+        accentColor = VytalColors.primaryAccent;
         break;
       case ColorHex.green:
-        accentColor = VytalColors.secondaryNeon;
+        accentColor = VytalColors.secondaryAccent;
         break;
       case ColorHex.purple:
         accentColor = const Color(0xFFA020F0);

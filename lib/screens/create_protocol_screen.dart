@@ -207,7 +207,7 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
         title: const Text(
           "CONSTRUCTOR",
           style: TextStyle(
-            color: VytalColors.primaryNeon,
+            color: VytalColors.primaryAccent,
             fontWeight: FontWeight.bold,
             letterSpacing: 2,
 
@@ -217,14 +217,14 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
         leading: const BackButton(color: VytalColors.textPrimary),
         actions: [
           IconButton(
-            icon: const Icon(Icons.check, color: VytalColors.secondaryNeon),
+            icon: const Icon(Icons.check, color: VytalColors.secondaryAccent),
             onPressed: _saveProtocol,
           ),
         ],
         bottom: TabBar(
           controller: _tabController,
-          indicatorColor: VytalColors.primaryNeon,
-          labelColor: VytalColors.primaryNeon,
+          indicatorColor: VytalColors.primaryAccent,
+          labelColor: VytalColors.primaryAccent,
           unselectedLabelColor: VytalColors.textSecondary,
           isScrollable: true, // Чтобы влазило на маленькие экраны
           tabs: const [
@@ -292,12 +292,12 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: isSelected
-                  ? VytalColors.primaryNeon.withValues(alpha: 0.1)
+                  ? VytalColors.primaryAccent.withValues(alpha: 0.1)
                   : VytalColors.surface,
               borderRadius: BorderRadius.circular(16),
               border: Border.all(
                 color: isSelected
-                    ? VytalColors.primaryNeon
+                    ? VytalColors.primaryAccent
                     : Colors.transparent,
               ),
             ),
@@ -334,7 +334,7 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: isSelected
-                        ? VytalColors.primaryNeon
+                        ? VytalColors.primaryAccent
                         : VytalColors.textSecondary,
                   ),
                   child: isSelected
@@ -399,7 +399,7 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
                 ),
               ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: VytalColors.primaryNeon,
+                backgroundColor: VytalColors.primaryAccent,
                 foregroundColor: VytalColors.textPrimary,
                 padding: const EdgeInsets.symmetric(
                   horizontal: 24,

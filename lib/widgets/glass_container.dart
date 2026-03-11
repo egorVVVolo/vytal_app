@@ -38,7 +38,7 @@ class GlassContainer extends StatelessWidget {
             children: [
               // 1. Apple Liquid Glass Blur Layer
               BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20), // Increased blur for glassmorphism
+                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10), // Increased blur for glassmorphism
                 child: Container(
                   width: width,
                   height: height,
@@ -61,9 +61,9 @@ class GlassContainer extends StatelessWidget {
                   color: color ?? Colors.white.withValues(alpha: 0.5), // Highly transparent white
                   boxShadow: [
                     BoxShadow(
-                      color: VytalColors.textPrimary.withValues(alpha: 0.05), // Soft drop shadow
-                      blurRadius: 20,
-                      offset: const Offset(0, 10),
+                      color: VytalColors.textPrimary.withValues(alpha: 0.02), // Soft drop shadow
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
                     )
                   ],
                 ),

@@ -45,7 +45,7 @@ class _LegalScreenState extends State<LegalScreen> {
               // Заголовок
               const Icon(
                 Icons.shield_outlined,
-                color: VytalColors.warningNeon,
+                color: VytalColors.warningAccent,
                 size: 40,
               ),
               const SizedBox(height: 20),
@@ -121,7 +121,7 @@ class _LegalScreenState extends State<LegalScreen> {
                           : Colors.transparent, // Minimalist bg
                       border: Border.all(
                         color: _allAgreed
-                            ? VytalColors.primaryNeon
+                            ? VytalColors.primaryAccent
                             : VytalColors.textSecondary,
                         width: 0.5,
                       ),
@@ -130,7 +130,7 @@ class _LegalScreenState extends State<LegalScreen> {
                       "ACCEPT AND ENTER",
                       style: TextStyle(
                         color: _allAgreed
-                            ? VytalColors.primaryNeon
+                            ? VytalColors.primaryAccent
                             : VytalColors.textSecondary,
                         fontWeight: FontWeight.w900,
                         letterSpacing: 2,
@@ -162,7 +162,7 @@ class _LegalScreenState extends State<LegalScreen> {
         padding: const EdgeInsets.all(16),
         border: Border.all(
           color: value
-              ? VytalColors.primaryNeon
+              ? VytalColors.primaryAccent
               : VytalColors.textPrimary.withValues(alpha: 0.1),
           width: 0.5,
         ),
@@ -175,9 +175,9 @@ class _LegalScreenState extends State<LegalScreen> {
               width: 24,
               height: 24,
               decoration: BoxDecoration(
-                color: value ? VytalColors.primaryNeon : Colors.transparent,
+                color: value ? VytalColors.primaryAccent : Colors.transparent,
                 border: Border.all(
-                  color: value ? VytalColors.primaryNeon : VytalColors.textSecondary,
+                  color: value ? VytalColors.primaryAccent : VytalColors.textSecondary,
                   width: 1,
                 ),
               ),
@@ -193,7 +193,7 @@ class _LegalScreenState extends State<LegalScreen> {
                   Text(
                     title,
                     style: TextStyle(
-                      color: value ? VytalColors.primaryNeon : VytalColors.textPrimary,
+                      color: value ? VytalColors.primaryAccent : VytalColors.textPrimary,
                       fontWeight: FontWeight.bold,
                       fontSize: 12,
                       letterSpacing: 2,
