@@ -5,7 +5,7 @@ class ProfileMenuItem extends StatelessWidget {
   final String title;
   final IconData icon;
   final VoidCallback onTap;
-  final bool isDestructive; // Для кнопки "Выйти" (красная)
+  final bool isDestructive; // Для кнопки "Log Out" (красная)
 
   const ProfileMenuItem({
     super.key,
@@ -20,9 +20,9 @@ class ProfileMenuItem extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
-        color: VytalColors.surface,
+        color: VytalColors.textPrimary,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.03)),
+        border: Border.all(color: VytalColors.textPrimary.withValues(alpha: 0.03)),
       ),
       child: ListTile(
         onTap: onTap,
@@ -32,7 +32,7 @@ class ProfileMenuItem extends StatelessWidget {
             color: isDestructive
                 ? VytalColors.warningNeon.withValues(alpha: 0.1)
                 : VytalColors.primaryNeon.withValues(alpha: 0.1),
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(24),
           ),
           child: Icon(
             icon,
@@ -49,7 +49,7 @@ class ProfileMenuItem extends StatelessWidget {
         ),
         trailing: Icon(
           Icons.chevron_right_rounded,
-          color: Colors.white.withValues(alpha: 0.2),
+          color: VytalColors.textPrimary.withValues(alpha: 0.2),
         ),
       ),
     );

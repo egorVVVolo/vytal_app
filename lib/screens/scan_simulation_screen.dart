@@ -81,17 +81,17 @@ class _ScanSimulationScreenState extends State<ScanSimulationScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: VytalColors.surface,
       body: Stack(
         children: [
           // 1. BACKGROUND (Pure black for minimalism)
           Container(
-            color: Colors.black,
+            color: VytalColors.textPrimary,
             child: const Center(
               child: Icon(
                 Icons.person_outline,
                 size: 300,
-                color: Colors.white10,
+                color: VytalColors.textSecondary,
               ),
             ),
           ),
@@ -113,7 +113,7 @@ class _ScanSimulationScreenState extends State<ScanSimulationScreen>
                     color: VytalColors.primaryNeon,
                     boxShadow: [
                       BoxShadow(
-                        color: VytalColors.primaryNeon.withValues(alpha: 0.5),
+                        color: VytalColors.primaryNeon.withOpacity(0.5),
                         blurRadius: 4,
                         spreadRadius: 1,
                       ),
@@ -132,7 +132,7 @@ class _ScanSimulationScreenState extends State<ScanSimulationScreen>
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.close, color: Colors.white54),
+                    icon: const Icon(Icons.close, color: VytalColors.textSecondary),
                     onPressed: () => Navigator.pop(context),
                   ),
                   Container(
@@ -150,7 +150,7 @@ class _ScanSimulationScreenState extends State<ScanSimulationScreen>
                         color: Colors.red,
                         fontWeight: FontWeight.bold,
                         fontSize: 10,
-                        fontFamily: 'monospace',
+
                         letterSpacing: 2,
                       ),
                     ),
@@ -172,7 +172,7 @@ class _ScanSimulationScreenState extends State<ScanSimulationScreen>
                   _statusText.toUpperCase(),
                   style: const TextStyle(
                     color: VytalColors.primaryNeon,
-                    fontFamily: 'monospace',
+
                     letterSpacing: 2,
                     fontSize: 12,
                   ),
@@ -180,7 +180,7 @@ class _ScanSimulationScreenState extends State<ScanSimulationScreen>
                 const SizedBox(height: 10),
                 LinearProgressIndicator(
                   value: _progress,
-                  backgroundColor: Colors.white10,
+                  backgroundColor: VytalColors.textSecondary,
                   color: VytalColors.primaryNeon,
                   minHeight: 2, // Thinner progress bar
                 ),
@@ -197,6 +197,10 @@ class _ScanSimulationScreenState extends State<ScanSimulationScreen>
 class _GridPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = VytalColors.primaryNeon.withOpacity(0.2)
+      ..strokeWidth = 1;
+
     // Draw corners
     final double cornerSize = 40;
     final double stroke = 1; // Thinner border for minimalism
@@ -252,7 +256,7 @@ class _ScanResultSheet extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(32),
       decoration: const BoxDecoration(
-        color: VytalColors.surface, // minimal surface color, likely deep dark
+        color: VytalColors.textPrimary, // minimal surface color, likely deep dark
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(0),
         ), // sharp corners
@@ -269,9 +273,9 @@ class _ScanResultSheet extends StatelessWidget {
           const Text(
             "ANALYSIS COMPLETE",
             style: TextStyle(
-              color: Colors.white,
+              color: VytalColors.textPrimary,
               fontSize: 18,
-              fontFamily: 'monospace',
+
               letterSpacing: 2,
             ),
           ),
@@ -279,8 +283,8 @@ class _ScanResultSheet extends StatelessWidget {
           const Text(
             "Forward head posture (Text Neck) detected. Estimated height loss: 1.2 cm.",
             style: TextStyle(
-              color: Colors.white70,
-              fontFamily: 'monospace',
+              color: VytalColors.textSecondary,
+
               fontSize: 12,
             ),
           ),
@@ -298,13 +302,13 @@ class _ScanResultSheet extends StatelessWidget {
                   width: 1,
                 ),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0),
+                  borderRadius: BorderRadius.circular(24),
                 ), // Square edges
                 elevation: 0,
               ),
               child: const Text(
                 "SAVE TO PROFILE",
-                style: TextStyle(fontFamily: 'monospace', letterSpacing: 2),
+                style: TextStyle( letterSpacing: 2),
               ),
             ),
           ),

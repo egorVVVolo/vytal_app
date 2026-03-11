@@ -12,7 +12,7 @@ class PostureReport {
 class PostureAnalyzer {
 
   // --- МАГИЯ УСРЕДНЕНИЯ ---
-  // Берет список последних 10 поз и создает одну "стабильную"
+  // Берет список последних 10 поз и создает одну "stable"
   static Pose getAveragePose(List<Pose> buffer) {
     if (buffer.isEmpty) return Pose(landmarks: {});
 

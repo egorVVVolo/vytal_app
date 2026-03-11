@@ -1,3 +1,4 @@
+import '../theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_pose_detection/google_mlkit_pose_detection.dart';
 
@@ -18,7 +19,7 @@ class PosePainter extends CustomPainter {
 
     final paintJoint = Paint()
       ..style = PaintingStyle.fill
-      ..color = Colors.white;
+      ..color = VytalColors.textPrimary;
 
     for (final pose in poses) {
       // Рисуем связи (кости)

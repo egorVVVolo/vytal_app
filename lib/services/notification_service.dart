@@ -59,16 +59,16 @@ class NotificationService {
       hour: 9,
       minute: 0,
       id: 100,
-      title: "Утренний протокол ☀️",
-      body: "Пора проверить план на день и активировать биохакинг!",
+      title: "Morning Protocol ☀️",
+      body: "Time to check your daily plan and activate biohacking!",
     );
 
     await scheduleDailyReminder(
       hour: 21,
       minute: 30,
       id: 101,
-      title: "Подготовка ко сну 🌙",
-      body: "Не забудь принять магний и подготовить организм к восстановлению.",
+      title: "Sleep Preparation 🌙",
+      body: "Don't forget to take magnesium and prepare your body for recovery.",
     );
   }
 

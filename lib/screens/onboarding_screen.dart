@@ -22,7 +22,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     // 1. Скрываем клавиатуру ПЕРЕД анимацией, чтобы не было лагов
     FocusScope.of(context).unfocus();
 
-    // 2. Делаем анимацию чуть быстрее (400ms), чтобы она чувствовалась "сноровистой"
+    // 2. Делаем анимацию чуть быстрее (400ms), чтобы она чувствовалась "skillful"
     _controller.nextPage(
       duration: const Duration(milliseconds: 400),
       curve: Curves.easeInOut, // Более плавная и стандартная кривая
@@ -57,7 +57,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: VytalColors.background,
-      // resizeToAvoidBottomInset: false, // Можно раскомментировать, если фон "прыгает" при открытии клавиатуры
+      // resizeToAvoidBottomInset: false, // Можно раскомментировать, если фон "jumps" при открытии клавиатуры
       body: Stack(
         children: [
           // Фоновые эффекты
@@ -111,16 +111,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         const Spacer(),
         const Text(
           "VYTAL",
-          style: TextStyle(fontSize: 48, fontWeight: FontWeight.w900, letterSpacing: 12, color: Colors.white),
+          style: TextStyle(fontSize: 48, fontWeight: FontWeight.w900, letterSpacing: 12, color: VytalColors.textPrimary),
         ),
         const SizedBox(height: 24),
         const Text(
-          "Твой генетический максимум.\nРазблокирован.",
+          "Your genetic maximum.\nUnlocked.",
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 18, color: Colors.white70, height: 1.5),
+          style: TextStyle(fontSize: 18, color: VytalColors.textSecondary, height: 1.5),
         ),
         const Spacer(),
-        _buildPrimaryButton("НАЧАТЬ ПУТЬ", _nextPage),
+        _buildPrimaryButton("START JOURNEY", _nextPage),
         const SizedBox(height: 20),
       ],
     );
@@ -132,18 +132,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Spacer(),
-        const Text("Идентификация", style: TextStyle(color: VytalColors.primaryNeon, letterSpacing: 2, fontWeight: FontWeight.bold)),
+        const Text("Identification", style: TextStyle(color: VytalColors.primaryNeon, letterSpacing: 2, fontWeight: FontWeight.bold)),
         const SizedBox(height: 16),
-        const Text("Как к тебе обращаться?", style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white, height: 1.2)),
+        const Text("How should we address you?", style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: VytalColors.textPrimary, height: 1.2)),
         const SizedBox(height: 40),
         TextField(
           autofocus: true,
           onChanged: (val) => _name = val,
-          style: const TextStyle(fontSize: 24, color: Colors.white),
+          style: const TextStyle(fontSize: 24, color: VytalColors.textPrimary),
           decoration: InputDecoration(
-            hintText: "Введи имя...",
-            hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.3)),
-            enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.white24)),
+            hintText: "Enter name...",
+            hintStyle: TextStyle(color: VytalColors.textPrimary.withValues(alpha: 0.3)),
+            enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: VytalColors.textSecondary)),
             focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: VytalColors.primaryNeon)),
           ),
           // При нажатии Enter на клавиатуре тоже переходим дальше
@@ -152,7 +152,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           },
         ),
         const Spacer(),
-        _buildPrimaryButton("ПРОДОЛЖИТЬ", () {
+        _buildPrimaryButton("CONTINUE", () {
           if (_name.isNotEmpty) _nextPage();
         }),
         const SizedBox(height: 20),
@@ -161,7 +161,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   Widget _buildGoalsContent() {
-    final goals = ["Максимизация Роста", "Исправление Осанки", "Качество Сна", "Фокус & Дофамин"];
+    final goals = ["Height Maximization", "Posture Correction", "Sleep Quality", "Focus & Dopamine"];
 
     return StatefulBuilder(
       builder: (context, setState) {
@@ -170,9 +170,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Spacer(),
-            const Text("Приоритеты", style: TextStyle(color: VytalColors.primaryNeon, letterSpacing: 2, fontWeight: FontWeight.bold)),
+            const Text("Priorities", style: TextStyle(color: VytalColors.primaryNeon, letterSpacing: 2, fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
-            const Text("Выбери фокус на ближайший месяц", style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white)),
+            const Text("Choose your focus for the next month", style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: VytalColors.textPrimary)),
             const SizedBox(height: 40),
 
             Wrap(
@@ -190,16 +190,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   },
                   backgroundColor: VytalColors.surface,
                   selectedColor: VytalColors.primaryNeon,
-                  labelStyle: TextStyle(color: isSelected ? Colors.black : Colors.white, fontWeight: FontWeight.bold),
-                  checkmarkColor: Colors.black,
+                  labelStyle: TextStyle(color: isSelected ? VytalColors.textPrimary : VytalColors.textPrimary, fontWeight: FontWeight.bold),
+                  checkmarkColor: VytalColors.textPrimary,
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12), side: BorderSide.none),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24), side: BorderSide.none),
                 );
               }).toList(),
             ),
 
             const Spacer(),
-            _buildPrimaryButton("ЗАПУСТИТЬ СИСТЕМУ", _finish),
+            _buildPrimaryButton("START SYSTEM", _finish),
             const SizedBox(height: 20),
           ],
         );
@@ -227,7 +227,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
           backgroundColor: VytalColors.primaryNeon,
-          foregroundColor: Colors.black,
+          foregroundColor: VytalColors.textPrimary,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           elevation: 0,
         ),

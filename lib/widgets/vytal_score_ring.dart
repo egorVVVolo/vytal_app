@@ -30,7 +30,7 @@ class VytalScoreRing extends StatelessWidget {
               CircularProgressIndicator(
                 value: 1.0,
                 strokeWidth: 12,
-                color: Colors.white.withValues(alpha: 0.1),
+                color: VytalColors.textPrimary.withValues(alpha: 0.1),
               ),
               // 2. Цветной круг (прогресс)
               CircularProgressIndicator(

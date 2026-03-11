@@ -48,7 +48,7 @@ class GeminiService {
       final model = GenerativeModel(
         model: _modelName,
         apiKey: _apiKey,
-        // Temperature 0.1 делает модель максимально "роботизированной" и предсказуемой
+        // Temperature 0.1 делает модель максимально "robotic" и предсказуемой
         generationConfig: GenerationConfig(
           temperature: 0.3,
           responseMimeType: 'application/json',

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // For haptics
 import 'package:pedometer/pedometer.dart';
@@ -45,6 +44,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
   List<Habit> _todayHabits = [];
   int _completedCount = 0;
 
+  double _sleepProgress = 0.0;
+  double _nutritionProgress = 0.0;
+  double _postureProgress = 0.0;
+
   int _streak = 0;
   double _growthVelocity = 0.0;
 
@@ -75,7 +78,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           setState(() => _steps = event.steps);
           _checkStepGoal(event.steps);
         }
-      }, onError: (error) => debugPrint("Step Error: $error"));
+      }, onError: (error) => print("Step Error: $error"));
 
       _statusSubscription = _pedometerService.statusStream!.listen((event) {
         if (mounted) {
@@ -85,7 +88,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 : "IDLE",
           );
         }
-      }, onError: (error) => debugPrint("Status Error: $error"));
+      }, onError: (error) => print("Status Error: $error"));
     }
   }
 
@@ -109,7 +112,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               content: Text(
                 "STEP GOAL MET: +50 XP",
                 style: TextStyle(
-                  color: Colors.black,
+                  color: VytalColors.textPrimary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -173,14 +176,32 @@ class _DashboardScreenState extends State<DashboardScreen> {
         _baselineLog = baselineScan;
         _startHeight = startH;
         _startDateStr = startD;
+
+        _sleepProgress = _calculateCategoryProgress(actualHabits, [
+          HabitType.sleep,
+          HabitType.mental,
+        ]);
+        _nutritionProgress = _calculateCategoryProgress(actualHabits, [
+          HabitType.vitamin,
+        ]);
+        _postureProgress = _calculateCategoryProgress(actualHabits, [
+          HabitType.activity,
+        ]);
       });
     }
+  }
+
+  double _calculateCategoryProgress(List<Habit> all, List<HabitType> types) {
+    final categoryHabits = all.where((h) => types.contains(h.type)).toList();
+    if (categoryHabits.isEmpty) return 0.0;
+    final completed = categoryHabits.where((h) => h.isCompleted).length;
+    return completed / categoryHabits.length;
   }
 
   void _showNotifications() {
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.black, // Minimal black
+      backgroundColor: VytalColors.surface, // Minimal black
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(0),
@@ -199,7 +220,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 fontSize: 12,
                 letterSpacing: 2,
                 fontWeight: FontWeight.bold,
-                fontFamily: 'monospace',
+
               ),
             ),
             const SizedBox(height: 20),
@@ -242,9 +263,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 Text(
                   title.toUpperCase(),
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: VytalColors.textPrimary,
                     fontWeight: FontWeight.bold,
-                    fontFamily: 'monospace',
+
                   ),
                 ),
                 Text(
@@ -260,9 +281,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
           Text(
             time,
             style: const TextStyle(
-              color: Colors.white24,
+              color: VytalColors.textSecondary,
               fontSize: 10,
-              fontFamily: 'monospace',
+
             ),
           ),
         ],
@@ -295,7 +316,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       Text(
                         "Good morning,",
                         style: TextStyle(
-                          color: VytalColors.textSecondary.withValues(alpha: 0.6),
+                          color: VytalColors.textSecondary.withOpacity(0.6),
                           fontSize: 14,
                         ),
                       ),
@@ -307,7 +328,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           child: Text(
                             _name.toUpperCase(),
                             style: const TextStyle(
-                              color: Colors.white,
+                              color: VytalColors.textPrimary,
                               fontSize: 24,
                               fontWeight: FontWeight.w900,
                               letterSpacing: 1,
@@ -323,7 +344,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       padding: const EdgeInsets.all(12),
                       child: const Icon(
                         Icons.notifications_none,
-                        color: Colors.white,
+                        color: VytalColors.textPrimary,
                       ),
                     ),
                   ),
@@ -341,12 +362,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       vertical: 12,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.orangeAccent.withValues(alpha:
+                      color: Colors.orangeAccent.withOpacity(
                         0.05,
                       ), // Minimalist
-                      borderRadius: BorderRadius.circular(0),
+                      borderRadius: BorderRadius.circular(24),
                       border: Border.all(
-                        color: Colors.orangeAccent.withValues(alpha: 0.3),
+                        color: Colors.orangeAccent.withOpacity(0.3),
                         width: 0.5,
                       ),
                     ),
@@ -364,7 +385,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             color: Colors.orangeAccent,
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
-                            fontFamily: 'monospace',
+
                           ),
                         ),
                       ],
@@ -385,7 +406,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             child: CircularProgressIndicator(
                               value: totalProgress,
                               color: VytalColors.primaryNeon,
-                              backgroundColor: Colors.white10,
+                              backgroundColor: VytalColors.textSecondary,
                               strokeWidth: 2, // Thinner
                             ),
                           ),
@@ -405,10 +426,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               Text(
                                 "$percentage% DONE",
                                 style: const TextStyle(
-                                  color: Colors.white,
+                                  color: VytalColors.textPrimary,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
-                                  fontFamily: 'monospace',
+
                                 ),
                               ),
                             ],
@@ -430,7 +451,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2,
-                  fontFamily: 'monospace',
+
                 ),
               ),
               const SizedBox(height: 16),
@@ -464,7 +485,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                   color: VytalColors.secondaryNeon,
                                   fontSize: 28,
                                   fontWeight: FontWeight.w900,
-                                  fontFamily: 'monospace',
+
                                 ),
                               ),
                               const Padding(
@@ -475,7 +496,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     color: VytalColors.secondaryNeon,
                                     fontSize: 10,
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'monospace',
+
                                   ),
                                 ),
                               ),
@@ -513,19 +534,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           Text(
                             "${_startHeight.toInt()} cm",
                             style: const TextStyle(
-                              color: Colors.white,
+                              color: VytalColors.textPrimary,
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              fontFamily: 'monospace',
+
                             ),
                           ),
                           const SizedBox(height: 4),
                           Text(
                             _startDateStr,
                             style: const TextStyle(
-                              color: Colors.white30,
+                              color: VytalColors.textSecondary,
                               fontSize: 10,
-                              fontFamily: 'monospace',
+
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -536,19 +557,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                             decoration: BoxDecoration(
                               color: _baselineLog != null
-                                  ? VytalColors.primaryNeon.withValues(alpha: 0.2)
-                                  : Colors.white10,
-                              borderRadius: BorderRadius.circular(4),
+                                  ? VytalColors.primaryNeon.withOpacity(0.2)
+                                  : VytalColors.textSecondary,
+                              borderRadius: BorderRadius.circular(24),
                             ),
                             child: Text(
                               _baselineLog != null ? "SCAN: OK" : "NO SCAN",
                               style: TextStyle(
                                 color: _baselineLog != null
                                     ? VytalColors.primaryNeon
-                                    : Colors.white38,
+                                    : VytalColors.textSecondary,
                                 fontSize: 8,
                                 fontWeight: FontWeight.bold,
-                                fontFamily: 'monospace',
+
                               ),
                             ),
                           ),
@@ -574,10 +595,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   decoration: BoxDecoration(
                     color: const Color(
                       0xFF0038FF,
-                    ).withValues(alpha: 0.05), // Minimalist solid
-                    borderRadius: BorderRadius.circular(0),
+                    ).withOpacity(0.05), // Minimalist solid
+                    borderRadius: BorderRadius.circular(24),
                     border: Border.all(
-                      color: const Color(0xFF0038FF).withValues(alpha: 0.3),
+                      color: const Color(0xFF0038FF).withOpacity(0.3),
                       width: 0.5,
                     ),
                   ),
@@ -586,7 +607,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       Container(
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: const Color(0xFF0038FF).withValues(alpha: 0.1),
+                          color: const Color(0xFF0038FF).withOpacity(0.1),
                           shape: BoxShape.rectangle, // Square corners
                         ),
                         child: const Icon(
@@ -601,11 +622,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           Text(
                             "HGH SLEEP",
                             style: TextStyle(
-                              color: Colors.white,
+                              color: VytalColors.textPrimary,
                               fontWeight: FontWeight.bold,
                               fontSize: 14,
                               letterSpacing: 1,
-                              fontFamily: 'monospace',
+
                             ),
                           ),
                           SizedBox(height: 2),
@@ -614,7 +635,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             style: TextStyle(
                               color: VytalColors.textSecondary,
                               fontSize: 10,
-                              fontFamily: 'monospace',
+
                             ),
                           ),
                         ],
@@ -622,7 +643,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       const Spacer(),
                       const Icon(
                         Icons.arrow_forward_ios,
-                        color: Colors.white24,
+                        color: VytalColors.textSecondary,
                         size: 16,
                       ),
                     ],
@@ -640,7 +661,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2,
-                  fontFamily: 'monospace',
+
                 ),
               ),
               const SizedBox(height: 16),
@@ -655,7 +676,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           height: 40,
                           child: CircularProgressIndicator(
                             value: (_steps / _stepGoal).clamp(0.0, 1.0),
-                            backgroundColor: Colors.white10,
+                            backgroundColor: VytalColors.textSecondary,
                             color: _steps >= _stepGoal
                                 ? VytalColors.secondaryNeon
                                 : VytalColors.primaryNeon,
@@ -666,7 +687,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           _motionStatus.contains("ACTIVE")
                               ? Icons.directions_run
                               : Icons.accessibility_new,
-                          color: Colors.white,
+                          color: VytalColors.textPrimary,
                           size: 20,
                         ),
                       ],
@@ -681,17 +702,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             color: VytalColors.primaryNeon,
                             fontSize: 10,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'monospace',
+
                           ),
                         ),
                         const SizedBox(height: 4),
                         Text(
                           "$_steps STEPS",
                           style: const TextStyle(
-                            color: Colors.white,
+                            color: VytalColors.textPrimary,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'monospace',
+
                           ),
                         ),
                       ],
@@ -726,17 +747,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       const Text(
                         "KNOWLEDGE BASE",
                         style: TextStyle(
-                          color: Colors.white,
+                          color: VytalColors.textPrimary,
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
                           letterSpacing: 2,
-                          fontFamily: 'monospace',
+
                         ),
                       ),
                       const Spacer(),
                       const Icon(
                         Icons.arrow_forward_rounded,
-                        color: Colors.white24,
+                        color: VytalColors.textSecondary,
                       ),
                     ],
                   ),
@@ -755,7 +776,7 @@ class _VelocityWavePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = VytalColors.secondaryNeon.withValues(alpha: 0.6)
+      ..color = VytalColors.secondaryNeon.withOpacity(0.6)
       ..strokeWidth =
           1 // Thinner line
       ..style = PaintingStyle.stroke;

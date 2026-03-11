@@ -74,11 +74,11 @@ class _MainShellState extends State<MainShell> {
             fontWeight: FontWeight.bold,
             fontSize: 10,
             letterSpacing: 1,
-            fontFamily: 'monospace',
+
           ),
           unselectedLabelStyle: const TextStyle(
             fontSize: 10,
-            fontFamily: 'monospace',
+
           ),
           showUnselectedLabels: true,
           items: const [

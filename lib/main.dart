@@ -182,7 +182,7 @@ class _AppBootstrapState extends State<AppBootstrap> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: VytalColors.primaryNeon.withValues(alpha: 0.5),
-                    fontFamily: 'monospace',
+
                     letterSpacing: 2,
                   ),
                 ),
@@ -223,7 +223,7 @@ class VytalApp extends StatelessWidget {
         // Optional: Switch to Google Fonts if the user prefers, but standardizing to Roboto/Monospace for now
         fontFamily: 'Roboto',
         useMaterial3: true,
-        colorScheme: ColorScheme.dark(
+        colorScheme: ColorScheme.light(
           primary: VytalColors.primaryNeon,
           secondary: VytalColors.secondaryNeon,
           surface: VytalColors.surface,

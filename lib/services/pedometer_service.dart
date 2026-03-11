@@ -9,7 +9,7 @@ class PedometerService {
 
   // Инициализация и запрос прав
   Future<bool> init() async {
-    // Запрашиваем разрешение на "Физическую активность"
+    // Запрашиваем разрешение на "Physical activity"
     var status = await Permission.activityRecognition.request();
 
     if (status.isGranted) {
