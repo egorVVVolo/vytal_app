@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "948323496560",
+    "project_id": "vytal-f1651",
+    "storage_bucket": "vytal-f1651.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:948323496560:android:c4b6d54d89bbe011e3bab5",
+        "android_client_info": {
+          "package_name": "com.example.vytal_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBepATPRBeSTn0pb-cyxB-IJo6TCQJNak"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
