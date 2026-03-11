@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'dart:async';
 import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -8,7 +9,7 @@ class PedometerService {
 
   // Инициализация и запрос прав
   Future<bool> init() async {
-    // Запрашиваем разрешение на "Физическую активность"
+    // Запрашиваем разрешение на "Physical activity"
     var status = await Permission.activityRecognition.request();
 
     if (status.isGranted) {
@@ -16,7 +17,7 @@ class PedometerService {
       _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
       return true;
     } else {
-      print("🛑 Pedometer permission denied");
+      debugPrint("🛑 Pedometer permission denied");
       return false;
     }
   }

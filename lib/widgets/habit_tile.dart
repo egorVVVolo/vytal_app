@@ -36,7 +36,7 @@ class HabitTile extends StatelessWidget {
               padding: EdgeInsets.zero,
               // Исправлено .withValues для новых версий Flutter, либо .withOpacity для старых
               // Используем withOpacity для надежности, если версия Flutter старая
-              color: Colors.white.withOpacity(0.02),
+              color: VytalColors.textPrimary.withValues(alpha: 0.02),
               child: Container(),
             ),
 
@@ -51,8 +51,8 @@ class HabitTile extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      VytalColors.secondaryNeon.withOpacity(0.3),
-                      VytalColors.secondaryNeon.withOpacity(0.05),
+                      VytalColors.secondaryNeon.withValues(alpha: 0.3),
+                      VytalColors.secondaryNeon.withValues(alpha: 0.05),
                     ],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
@@ -70,10 +70,10 @@ class HabitTile extends StatelessWidget {
                     width: 46, height: 46,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: habit.isCompleted ? VytalColors.secondaryNeon : Colors.white.withOpacity(0.05),
+                      color: habit.isCompleted ? VytalColors.secondaryNeon : VytalColors.textPrimary.withValues(alpha: 0.05),
                       shape: BoxShape.circle,
                       boxShadow: habit.isCompleted
-                          ? [BoxShadow(color: VytalColors.secondaryNeon.withOpacity(0.6), blurRadius: 15)]
+                          ? [BoxShadow(color: VytalColors.secondaryNeon.withValues(alpha: 0.6), blurRadius: 15)]
                           : [],
                     ),
                     child: Text(habit.icon, style: const TextStyle(fontSize: 22)),
@@ -91,7 +91,7 @@ class HabitTile extends StatelessWidget {
                           style: TextStyle(
                             fontFamily: 'Roboto',
                             fontSize: 16,
-                            color: habit.isCompleted ? Colors.white : VytalColors.textPrimary,
+                            color: habit.isCompleted ? VytalColors.textPrimary : VytalColors.textPrimary,
                             fontWeight: FontWeight.bold,
                             decoration: habit.isCompleted ? TextDecoration.lineThrough : null,
                             decorationColor: VytalColors.secondaryNeon,
@@ -114,13 +114,13 @@ class HabitTile extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                          color: habit.isCompleted ? VytalColors.secondaryNeon : Colors.white24,
+                          color: habit.isCompleted ? VytalColors.secondaryNeon : VytalColors.textSecondary,
                           width: 2
                       ),
                       color: habit.isCompleted ? VytalColors.secondaryNeon : Colors.transparent,
                     ),
                     child: habit.isCompleted
-                        ? const Icon(Icons.check, size: 16, color: Colors.black)
+                        ? const Icon(Icons.check, size: 16, color: VytalColors.textPrimary)
                         : null,
                   ),
                 ],

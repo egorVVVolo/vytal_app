@@ -65,12 +65,12 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
             fontWeight: FontWeight.bold,
             letterSpacing: 2,
             fontSize: 16,
-            color: Colors.white,
-            fontFamily: 'monospace',
+            color: VytalColors.textPrimary,
+
           ),
         ),
         centerTitle: true,
-        leading: const BackButton(color: Colors.white),
+        leading: const BackButton(color: VytalColors.textPrimary),
       ),
       body: _logs.isEmpty
           ? _buildEmptyState()
@@ -87,7 +87,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 2,
-                      fontFamily: 'monospace',
+
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -95,7 +95,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
                   _logs.length < 2
                       ? _buildBaselineVisual(
                           _logs.first,
-                        ) // Если точка одна - показываем "Прицел"
+                        ) // Если точка одна - показываем "Target"
                       : SizedBox(
                           height: 220,
                           child: LineChart(_buildChartData()),
@@ -116,7 +116,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 2,
-                      fontFamily: 'monospace',
+
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -140,24 +140,24 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
           Icon(
             Icons.center_focus_weak,
             size: 60,
-            color: Colors.white.withOpacity(0.1),
+            color: VytalColors.textPrimary.withValues(alpha: 0.1),
           ),
           const SizedBox(height: 16),
           const Text(
             "NO DATA",
             style: TextStyle(
-              color: Colors.white54,
+              color: VytalColors.textSecondary,
               fontWeight: FontWeight.bold,
               letterSpacing: 2,
-              fontFamily: 'monospace',
+
             ),
           ),
           const SizedBox(height: 8),
           const Text(
             "Perform a scan in the GROWTH section",
             style: TextStyle(
-              color: Colors.white24,
-              fontFamily: 'monospace',
+              color: VytalColors.textSecondary,
+
               fontSize: 12,
             ),
           ),
@@ -166,15 +166,15 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
     );
   }
 
-  // Виджет "Точка отсчета" (вместо одной точки на графике)
+  // Виджет "Baseline" (вместо одной точки на графике)
   Widget _buildBaselineVisual(PostureLog log) {
     return Container(
       height: 150,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: VytalColors.surface,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: VytalColors.primaryNeon.withOpacity(0.2)),
+        color: VytalColors.textPrimary,
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: VytalColors.primaryNeon.withValues(alpha: 0.2)),
       ),
       child: Stack(
         alignment: Alignment.center,
@@ -185,7 +185,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
             bottom: 0,
             child: Container(
               width: 1,
-              color: VytalColors.primaryNeon.withOpacity(0.1),
+              color: VytalColors.primaryNeon.withValues(alpha: 0.1),
             ),
           ),
           Positioned(
@@ -193,7 +193,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
             right: 0,
             child: Container(
               height: 1,
-              color: VytalColors.primaryNeon.withOpacity(0.1),
+              color: VytalColors.primaryNeon.withValues(alpha: 0.1),
             ),
           ),
 
@@ -204,7 +204,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(color: VytalColors.primaryNeon, width: 2),
-              color: VytalColors.primaryNeon.withOpacity(0.1),
+              color: VytalColors.primaryNeon.withValues(alpha: 0.1),
             ),
             child: Center(
               child: Column(
@@ -213,10 +213,10 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
                   Text(
                     "${log.overallScore}",
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: VytalColors.textPrimary,
                       fontWeight: FontWeight.bold,
                       fontSize: 24,
-                      fontFamily: 'monospace',
+
                     ),
                   ),
                   const Text(
@@ -225,7 +225,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
                       color: VytalColors.primaryNeon,
                       fontSize: 10,
                       fontWeight: FontWeight.bold,
-                      fontFamily: 'monospace',
+
                     ),
                   ),
                 ],
@@ -238,10 +238,10 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
             child: Text(
               "BASELINE ESTABLISHED",
               style: TextStyle(
-                color: Colors.white38,
+                color: VytalColors.textSecondary,
                 fontSize: 10,
                 letterSpacing: 2,
-                fontFamily: 'monospace',
+
               ),
             ),
           ),
@@ -263,7 +263,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
             fontSize: 12,
             fontWeight: FontWeight.bold,
             letterSpacing: 2,
-            fontFamily: 'monospace',
+
           ),
         ),
         const SizedBox(height: 16),
@@ -295,10 +295,10 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
               const Text(
                 "BIOMECHANICS",
                 style: TextStyle(
-                  color: Colors.white54,
+                  color: VytalColors.textSecondary,
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
-                  fontFamily: 'monospace',
+
                   letterSpacing: 1,
                 ),
               ),
@@ -309,10 +309,10 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
                     ? _getDynamicAnalysisText(latestLog)
                     : "Analysis hidden. Unlock Pro to access detailed spinal biomechanics breakdown and AI recommendations.",
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: VytalColors.textPrimary,
                   height: 1.5,
                   fontSize: 14,
-                  fontFamily: 'monospace',
+
                 ),
               ),
             ],
@@ -341,8 +341,8 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
           child: Container(
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.2), // Легкое затемнение
-              borderRadius: BorderRadius.circular(20),
+              color: VytalColors.textPrimary.withValues(alpha: 0.2), // Легкое затемнение
+              borderRadius: BorderRadius.circular(24),
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -360,7 +360,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
                     foregroundColor: VytalColors.primaryNeon,
                     elevation: 0,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(0),
+                      borderRadius: BorderRadius.circular(24),
                       side: const BorderSide(
                         color: VytalColors.primaryNeon,
                         width: 0.5,
@@ -372,7 +372,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       letterSpacing: 2,
-                      fontFamily: 'monospace',
+
                     ),
                   ),
                 ),
@@ -386,8 +386,9 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
 
   // Генератор текста
   String _getDynamicAnalysisText(PostureLog log) {
-    if (log.advice.length > 20)
+    if (log.advice.length > 20) {
       return log.advice; // Если AI вернул нормальный совет, используем его
+    }
 
     // Иначе генерируем заглушку на основе баллов
     if (log.overallScore < 50) {
@@ -424,18 +425,18 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
           Text(
             value,
             style: const TextStyle(
-              color: Colors.white,
+              color: VytalColors.textPrimary,
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              fontFamily: 'monospace',
+
             ),
           ),
           Text(
             label,
             style: const TextStyle(
-              color: Colors.white54,
+              color: VytalColors.textSecondary,
               fontSize: 12,
-              fontFamily: 'monospace',
+
               letterSpacing: 1,
             ),
           ),
@@ -453,7 +454,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.transparent, // Minimalist transparent
-        border: Border.all(color: Colors.white.withOpacity(0.1), width: 0.5),
+        border: Border.all(color: VytalColors.textPrimary.withValues(alpha: 0.1), width: 0.5),
       ),
       child: Row(
         children: [
@@ -469,7 +470,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
                 color: scoreColor,
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
-                fontFamily: 'monospace',
+
               ),
             ),
           ),
@@ -481,9 +482,9 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
                 Text(
                   "${log.date.day}.${log.date.month}  ${log.date.hour}:${log.date.minute.toString().padLeft(2, '0')}",
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: VytalColors.textPrimary,
                     fontWeight: FontWeight.bold,
-                    fontFamily: 'monospace',
+
                     letterSpacing: 1,
                   ),
                 ),
@@ -491,9 +492,9 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
                 Text(
                   "Loss: ${log.lostHeight} cm",
                   style: const TextStyle(
-                    color: Colors.white54,
+                    color: VytalColors.textSecondary,
                     fontSize: 12,
-                    fontFamily: 'monospace',
+
                   ),
                 ),
               ],
@@ -505,14 +506,14 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
               height: 40,
               margin: const EdgeInsets.only(right: 10),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
+                borderRadius: BorderRadius.circular(24),
                 image: DecorationImage(
                   image: FileImage(File(log.sideImagePath!)),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
-          if (!_isPro) const Icon(Icons.lock, size: 16, color: Colors.white24),
+          if (!_isPro) const Icon(Icons.lock, size: 16, color: VytalColors.textSecondary),
         ],
       ),
     );
@@ -542,7 +543,7 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
             show: true,
             gradient: LinearGradient(
               colors: [
-                VytalColors.primaryNeon.withOpacity(0.3),
+                VytalColors.primaryNeon.withValues(alpha: 0.3),
                 Colors.transparent,
               ],
               begin: Alignment.topCenter,

@@ -43,12 +43,12 @@ class WeeklyCalendar extends StatelessWidget {
                 border: Border.all(
                   color: isSelected
                       ? VytalColors.primaryNeon
-                      : Colors.white.withOpacity(0.05),
+                      : VytalColors.textPrimary.withValues(alpha: 0.05),
                 ),
                 boxShadow: isSelected
                     ? [
                   BoxShadow(
-                    color: VytalColors.primaryNeon.withOpacity(0.4),
+                    color: VytalColors.primaryNeon.withValues(alpha: 0.4),
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                   )
@@ -61,7 +61,7 @@ class WeeklyCalendar extends StatelessWidget {
                   Text(
                     _getWeekday(date.weekday),
                     style: TextStyle(
-                      color: isSelected ? Colors.black : VytalColors.textSecondary,
+                      color: isSelected ? VytalColors.textPrimary : VytalColors.textSecondary,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                     ),
@@ -70,7 +70,7 @@ class WeeklyCalendar extends StatelessWidget {
                   Text(
                     date.day.toString(),
                     style: TextStyle(
-                      color: isSelected ? Colors.black : VytalColors.textPrimary,
+                      color: isSelected ? VytalColors.textPrimary : VytalColors.textPrimary,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
@@ -91,7 +91,7 @@ class WeeklyCalendar extends StatelessWidget {
 
   // Простой маппинг дней недели на русский
   String _getWeekday(int day) {
-    const days = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
+    const days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
     return days[day - 1];
   }
 }

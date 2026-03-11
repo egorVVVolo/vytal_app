@@ -50,13 +50,13 @@ class _MainShellState extends State<MainShell> {
           color: VytalColors.background, // Match pure background
           border: Border(
             top: BorderSide(
-              color: VytalColors.primaryNeon.withOpacity(0.1),
+              color: VytalColors.primaryNeon.withValues(alpha: 0.1),
               width: 1,
             ),
           ),
           boxShadow: [
             BoxShadow(
-              color: VytalColors.primaryNeon.withOpacity(0.05),
+              color: VytalColors.primaryNeon.withValues(alpha: 0.05),
               blurRadius: 20,
               offset: const Offset(0, -5),
             ),
@@ -69,16 +69,16 @@ class _MainShellState extends State<MainShell> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           selectedItemColor: VytalColors.primaryNeon,
-          unselectedItemColor: VytalColors.textSecondary.withOpacity(0.5),
+          unselectedItemColor: VytalColors.textSecondary.withValues(alpha: 0.5),
           selectedLabelStyle: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 10,
             letterSpacing: 1,
-            fontFamily: 'monospace',
+
           ),
           unselectedLabelStyle: const TextStyle(
             fontSize: 10,
-            fontFamily: 'monospace',
+
           ),
           showUnselectedLabels: true,
           items: const [

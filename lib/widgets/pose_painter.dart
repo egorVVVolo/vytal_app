@@ -1,3 +1,4 @@
+import '../theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_pose_detection/google_mlkit_pose_detection.dart';
 import 'package:flutter/foundation.dart';
@@ -21,7 +22,7 @@ class PosePainter extends CustomPainter {
     final linePaint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 3.0
-      ..color = Colors.white.withOpacity(0.8);
+      ..color = VytalColors.textPrimary.withValues(alpha: 0.8);
 
     for (final pose in poses) {
       // Рисуем связи
@@ -77,7 +78,7 @@ class PosePainter extends CustomPainter {
       // 1. Поворот: меняем X и Y местами
       // 2. Зеркалирование: для фронталки зеркалим "новую X" (которая была Y)
 
-      // Считаем масштаб по "перевернутым" размерам
+      // Считаем масштаб по "inverted" размерам
       double scaleX = screenSize.width / sourceSize.height;
       double scaleY = screenSize.height / sourceSize.width;
 
@@ -101,7 +102,7 @@ class PosePainter extends CustomPainter {
 
       return Offset(screenX, screenY);
     } else {
-      // iOS (там координаты обычно приходят уже "нормальные" относительно портрета)
+      // iOS (там координаты обычно приходят уже "normal" относительно портрета)
       double scaleX = screenSize.width / sourceSize.width;
       double scaleY = screenSize.height / sourceSize.height;
 

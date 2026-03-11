@@ -135,14 +135,14 @@ class _PlanScreenState extends State<PlanScreen> {
           const SnackBar(
             content: Row(
               children: [
-                Icon(Icons.auto_awesome, color: Colors.black, size: 16),
+                Icon(Icons.auto_awesome, color: VytalColors.textPrimary, size: 16),
                 SizedBox(width: 8),
                 Text(
                   "+10 XP  Task Complete",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                    fontFamily: 'monospace',
+                    color: VytalColors.textPrimary,
+
                   ),
                 ),
               ],
@@ -247,7 +247,7 @@ class _PlanScreenState extends State<PlanScreen> {
               fontSize: 24,
               fontWeight: FontWeight.bold,
               letterSpacing: 2,
-              fontFamily: 'monospace',
+
             ),
           ),
           Row(
@@ -277,14 +277,14 @@ class _PlanScreenState extends State<PlanScreen> {
         width: 40,
         height: 40,
         decoration: BoxDecoration(
-          color: color?.withOpacity(0.1) ?? VytalColors.surface,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: color?.withOpacity(0.5) ?? Colors.white10),
+          color: color?.withValues(alpha: 0.1) ?? VytalColors.surface,
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(color: color?.withValues(alpha: 0.5) ?? VytalColors.textSecondary),
           boxShadow: color != null
-              ? [BoxShadow(color: color.withOpacity(0.2), blurRadius: 8)]
+              ? [BoxShadow(color: color.withValues(alpha: 0.2), blurRadius: 8)]
               : [],
         ),
-        child: Icon(icon, color: color ?? Colors.white70, size: 20),
+        child: Icon(icon, color: color ?? VytalColors.textSecondary, size: 20),
       ),
     );
   }
@@ -294,23 +294,23 @@ class _PlanScreenState extends State<PlanScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.memory, size: 60, color: Colors.white.withOpacity(0.1)),
+          Icon(Icons.memory, size: 60, color: VytalColors.textPrimary.withValues(alpha: 0.1)),
           const SizedBox(height: 16),
           const Text(
             "SCHEDULE EMPTY",
             style: TextStyle(
-              color: Colors.white54,
+              color: VytalColors.textSecondary,
               fontWeight: FontWeight.bold,
               letterSpacing: 1.5,
-              fontFamily: 'monospace',
+
             ),
           ),
           const SizedBox(height: 8),
           const Text(
             "Add protocols or initialize a new sequence.",
             style: TextStyle(
-              color: Colors.white30,
-              fontFamily: 'monospace',
+              color: VytalColors.textSecondary,
+
               fontSize: 12,
             ),
           ),
@@ -336,7 +336,7 @@ class _PlanScreenState extends State<PlanScreen> {
                   shape: BoxShape.rectangle,
                   boxShadow: [
                     BoxShadow(
-                      color: VytalColors.primaryNeon.withOpacity(0.5),
+                      color: VytalColors.primaryNeon.withValues(alpha: 0.5),
                       blurRadius: 4,
                     ),
                   ],
@@ -350,14 +350,14 @@ class _PlanScreenState extends State<PlanScreen> {
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2,
-                  fontFamily: 'monospace',
+
                 ),
               ),
               const SizedBox(width: 12),
               Expanded(
                 child: Container(
                   height: 1,
-                  color: VytalColors.primaryNeon.withOpacity(0.2),
+                  color: VytalColors.primaryNeon.withValues(alpha: 0.2),
                 ),
               ),
             ],

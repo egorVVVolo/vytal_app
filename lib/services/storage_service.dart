@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/habit.dart';
@@ -234,7 +235,7 @@ class StorageService {
         });
       }
     } catch(e) {
-      print("Cloud save error: $e");
+      debugPrint("Cloud save error: $e");
     }
   }
 
@@ -333,7 +334,7 @@ class StorageService {
       if (uid.isEmpty) return;
       await _userCloudDoc.collection('app_data').doc(docId).set(data, SetOptions(merge: true));
     } catch (e) {
-      print("☁️ Cloud Sync Error ($docId): $e");
+      debugPrint("☁️ Cloud Sync Error ($docId): $e");
     }
   }
 }

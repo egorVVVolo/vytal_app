@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -6,7 +7,6 @@ import 'firebase_options.dart';
 
 // Screens and Services
 import 'screens/legal_screen.dart';
-import 'screens/onboarding_v2.dart';
 import 'screens/main_shell.dart';
 import 'services/auth_service.dart';
 import 'services/storage_service.dart';
@@ -73,12 +73,15 @@ class _AppBootstrapState extends State<AppBootstrap> {
 
       // Register adapters
       if (!Hive.isAdapterRegistered(1)) Hive.registerAdapter(HabitAdapter());
-      if (!Hive.isAdapterRegistered(0))
+      if (!Hive.isAdapterRegistered(0)) {
         Hive.registerAdapter(HabitTypeAdapter());
-      if (!Hive.isAdapterRegistered(2))
+      }
+      if (!Hive.isAdapterRegistered(2)) {
         Hive.registerAdapter(HeightLogAdapter());
-      if (!Hive.isAdapterRegistered(3))
+      }
+      if (!Hive.isAdapterRegistered(3)) {
         Hive.registerAdapter(PostureLogAdapter());
+      }
 
       // Open boxes
       await Hive.openBox<Habit>('habitsBox');
@@ -98,8 +101,8 @@ class _AppBootstrapState extends State<AppBootstrap> {
         setState(() => _status = 1);
       }
     } catch (e, stack) {
-      print("CRITICAL ERROR: $e");
-      print(stack);
+      debugPrint("CRITICAL ERROR: $e");
+      debugPrint(stack.toString());
       if (mounted) {
         setState(() {
           _status = 2;
@@ -178,8 +181,8 @@ class _AppBootstrapState extends State<AppBootstrap> {
                   "VYTAL SYSTEM\nINITIALIZING...",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: VytalColors.primaryNeon.withOpacity(0.5),
-                    fontFamily: 'monospace',
+                    color: VytalColors.primaryNeon.withValues(alpha: 0.5),
+
                     letterSpacing: 2,
                   ),
                 ),
@@ -220,11 +223,10 @@ class VytalApp extends StatelessWidget {
         // Optional: Switch to Google Fonts if the user prefers, but standardizing to Roboto/Monospace for now
         fontFamily: 'Roboto',
         useMaterial3: true,
-        colorScheme: ColorScheme.dark(
+        colorScheme: ColorScheme.light(
           primary: VytalColors.primaryNeon,
           secondary: VytalColors.secondaryNeon,
           surface: VytalColors.surface,
-          background: VytalColors.background,
           error: VytalColors.warningNeon,
         ),
       ),

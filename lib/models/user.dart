@@ -6,7 +6,7 @@ class User {
   final int age;
   final double weight; // кг
   final int height; // см
-  final List<String> focusAreas; // "Сон", "Спина" и т.д.
+  final List<String> focusAreas; // "Sleep", "Back" и т.д.
 
   const User({
     required this.id,
@@ -22,11 +22,11 @@ class User {
   // Заготовка данных (Mock) для отображения прямо сейчас
   static const User currentUser = User(
     id: 'u1',
-    name: 'Егор Волощук',
+    name: 'Egor Voloshchuk',
     email: 'egor@vytal.app',
     age: 16,
     weight: 72.5,
     height: 182,
-    focusAreas: ['Масса', 'Сон', 'Энергия'],
+    focusAreas: ['Mass', 'Sleep', 'Energy'],
   );
 }

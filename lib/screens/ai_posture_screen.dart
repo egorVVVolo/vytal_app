@@ -1,3 +1,4 @@
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -39,7 +40,7 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
               ),
               title: const Text(
                 'Camera',
-                style: TextStyle(color: Colors.white, fontFamily: 'monospace'),
+                style: TextStyle(color: VytalColors.textPrimary, ),
               ),
               onTap: () => Navigator.pop(context, ImageSource.camera),
             ),
@@ -50,7 +51,7 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
               ),
               title: const Text(
                 'Gallery',
-                style: TextStyle(color: Colors.white, fontFamily: 'monospace'),
+                style: TextStyle(color: VytalColors.textPrimary, ),
               ),
               onTap: () => Navigator.pop(context, ImageSource.gallery),
             ),
@@ -65,10 +66,11 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
       final XFile? image = await _picker.pickImage(source: source);
       if (image != null) {
         setState(() {
-          if (isSide)
+          if (isSide) {
             _sidePhoto = File(image.path);
-          else
+          } else {
             _backPhoto = File(image.path);
+          }
           _result = null;
         });
       }
@@ -136,13 +138,13 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+          icon: const Icon(Icons.arrow_back_ios, color: VytalColors.textPrimary),
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
           "NEURAL SCAN",
           style: TextStyle(
-            fontFamily: 'monospace',
+
             color: VytalColors.primaryNeon,
             letterSpacing: 2,
             fontWeight: FontWeight.bold,
@@ -152,7 +154,7 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
         actions: [
           // History Button
           IconButton(
-            icon: const Icon(Icons.history, color: Colors.white),
+            icon: const Icon(Icons.history, color: VytalColors.textPrimary),
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(
@@ -174,7 +176,7 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
   Widget _buildBody() {
     if (_isLoading) return const _LoadingView();
     // SHOW RESULT IF AVAILABLE
-    if (_result != null)
+    if (_result != null) {
       return SingleChildScrollView(
         padding: const EdgeInsets.all(24),
         child: _ResultView(
@@ -183,6 +185,7 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
           onSave: _saveResult,
         ),
       );
+    }
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),
@@ -192,7 +195,7 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
           const Text(
             "BIOMETRIC UPLOAD",
             style: TextStyle(
-              color: Colors.white,
+              color: VytalColors.textPrimary,
               fontSize: 24,
               fontWeight: FontWeight.w900,
               letterSpacing: 1,
@@ -201,7 +204,7 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
           const SizedBox(height: 8),
           const Text(
             "Ensure good lighting and contrast background for high AI accuracy.",
-            style: TextStyle(color: Colors.white54, fontSize: 13, height: 1.5),
+            style: TextStyle(color: VytalColors.textSecondary, fontSize: 13, height: 1.5),
           ).animate().fadeIn(delay: 100.ms),
 
           const SizedBox(height: 40),
@@ -241,12 +244,12 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
                   decoration: BoxDecoration(
                     color: (_sidePhoto != null && _backPhoto != null)
                         ? VytalColors.primaryNeon
-                        : Colors.white10,
-                    borderRadius: BorderRadius.circular(4),
+                        : VytalColors.textSecondary,
+                    borderRadius: BorderRadius.circular(24),
                     boxShadow: (_sidePhoto != null && _backPhoto != null)
                         ? [
                             BoxShadow(
-                              color: VytalColors.primaryNeon.withOpacity(0.6),
+                              color: VytalColors.primaryNeon.withValues(alpha: 0.6),
                               blurRadius: 20,
                             ),
                           ]
@@ -254,18 +257,18 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
                     border: Border.all(
                       color: (_sidePhoto != null && _backPhoto != null)
                           ? Colors.transparent
-                          : Colors.white12,
+                          : VytalColors.textSecondary,
                     ),
                   ),
                   child: Text(
                     "INITIATE SCAN_PROTOCOL",
                     style: TextStyle(
-                      fontFamily: 'monospace',
+
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1.5,
                       color: (_sidePhoto != null && _backPhoto != null)
-                          ? Colors.black
-                          : Colors.white38,
+                          ? VytalColors.textPrimary
+                          : VytalColors.textSecondary,
                     ),
                   ),
                 ),
@@ -309,7 +312,7 @@ class _ScannerSlot extends StatelessWidget {
             height: 220,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Colors.black54,
+              color: VytalColors.textSecondary,
               image: file != null
                   ? DecorationImage(
                       image: FileImage(file!),
@@ -327,7 +330,7 @@ class _ScannerSlot extends StatelessWidget {
                         children: [
                           Icon(
                             Icons.add,
-                            color: Colors.white.withOpacity(0.3),
+                            color: VytalColors.textPrimary.withValues(alpha: 0.3),
                             size: 40,
                           ),
                         ],
@@ -337,7 +340,7 @@ class _ScannerSlot extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.7),
+                          color: VytalColors.textPrimary.withValues(alpha: 0.7),
                           shape: BoxShape.circle,
                         ),
                         child: const Icon(
@@ -353,7 +356,7 @@ class _ScannerSlot extends StatelessWidget {
             label,
             style: const TextStyle(
               color: VytalColors.primaryNeon,
-              fontFamily: 'monospace',
+
               fontWeight: FontWeight.bold,
               letterSpacing: 2,
             ),
@@ -391,7 +394,7 @@ class _ResultView extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
           decoration: BoxDecoration(
-            color: statusColor.withOpacity(0.1),
+            color: statusColor.withValues(alpha: 0.1),
             border: Border(left: BorderSide(color: statusColor, width: 4)),
           ),
           child: Row(
@@ -413,16 +416,16 @@ class _ResultView extends StatelessWidget {
                       color: statusColor,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1,
-                      fontFamily: 'monospace',
+
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     "Score: ${result.overallScore}/100",
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: VytalColors.textPrimary,
                       fontSize: 12,
-                      fontFamily: 'monospace',
+
                     ),
                   ),
                 ],
@@ -442,9 +445,9 @@ class _ResultView extends StatelessWidget {
               width: 100,
               height: 250,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.02),
+                color: VytalColors.textPrimary.withValues(alpha: 0.02),
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: Colors.white.withOpacity(0.05)),
+                border: Border.all(color: VytalColors.textPrimary.withValues(alpha: 0.05)),
               ),
               child: CustomPaint(
                 painter: _SpinePainter(score: result.kyphosisScore),
@@ -474,9 +477,9 @@ class _ResultView extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: VytalColors.surface,
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.white10),
+                      color: VytalColors.textPrimary,
+                      borderRadius: BorderRadius.circular(24),
+                      border: Border.all(color: VytalColors.textSecondary),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -484,7 +487,7 @@ class _ResultView extends StatelessWidget {
                         const Text(
                           "HEIGHT LOST",
                           style: TextStyle(
-                            color: Colors.white54,
+                            color: VytalColors.textSecondary,
                             fontSize: 10,
                             fontWeight: FontWeight.bold,
                             letterSpacing: 1,
@@ -494,10 +497,10 @@ class _ResultView extends StatelessWidget {
                         Text(
                           "-${result.lostHeight} cm",
                           style: const TextStyle(
-                            color: Colors.white,
+                            color: VytalColors.textPrimary,
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'monospace',
+
                           ),
                         ),
                       ],
@@ -516,9 +519,9 @@ class _ResultView extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            color: Colors.black,
-            border: Border.all(color: VytalColors.primaryNeon.withOpacity(0.5)),
-            borderRadius: BorderRadius.circular(8),
+            color: VytalColors.textPrimary,
+            border: Border.all(color: VytalColors.primaryNeon.withValues(alpha: 0.5)),
+            borderRadius: BorderRadius.circular(24),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -528,16 +531,16 @@ class _ResultView extends StatelessWidget {
                 style: TextStyle(
                   color: VytalColors.primaryNeon,
                   fontSize: 10,
-                  fontFamily: 'monospace',
+
                 ),
               ),
               const SizedBox(height: 10),
               Text(
                 result.advice,
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: VytalColors.textPrimary,
                   height: 1.5,
-                  fontFamily: 'monospace',
+
                 ),
               ),
             ],
@@ -555,10 +558,10 @@ class _ResultView extends StatelessWidget {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: VytalColors.primaryNeon,
-                  borderRadius: BorderRadius.circular(4),
+                  borderRadius: BorderRadius.circular(24),
                   boxShadow: [
                     BoxShadow(
-                      color: VytalColors.primaryNeon.withOpacity(0.5),
+                      color: VytalColors.primaryNeon.withValues(alpha: 0.5),
                       blurRadius: 20,
                     ),
                   ],
@@ -567,9 +570,9 @@ class _ResultView extends StatelessWidget {
                   "DUMP TO HISTORY",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontFamily: 'monospace',
+
                     fontSize: 16,
-                    color: Colors.black,
+                    color: VytalColors.textPrimary,
                     letterSpacing: 1,
                   ),
                 ),
@@ -584,12 +587,12 @@ class _ResultView extends StatelessWidget {
         Center(
           child: TextButton.icon(
             onPressed: onRetry,
-            icon: const Icon(Icons.refresh, color: Colors.white54),
+            icon: const Icon(Icons.refresh, color: VytalColors.textSecondary),
             label: const Text(
               "PURGE & RETRY",
               style: TextStyle(
-                color: Colors.white54,
-                fontFamily: 'monospace',
+                color: VytalColors.textSecondary,
+
                 letterSpacing: 1,
               ),
             ),
@@ -621,7 +624,7 @@ class _MetricRow extends StatelessWidget {
             Text(
               label,
               style: const TextStyle(
-                color: Colors.white70,
+                color: VytalColors.textSecondary,
                 fontSize: 10,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 1.5,
@@ -632,17 +635,17 @@ class _MetricRow extends StatelessWidget {
               style: TextStyle(
                 color: color,
                 fontWeight: FontWeight.bold,
-                fontFamily: 'monospace',
+
               ),
             ),
           ],
         ),
         const SizedBox(height: 6),
         ClipRRect(
-          borderRadius: BorderRadius.circular(2),
+          borderRadius: BorderRadius.circular(24),
           child: LinearProgressIndicator(
             value: score / 100,
-            backgroundColor: Colors.white10,
+            backgroundColor: VytalColors.textSecondary,
             color: color,
             minHeight: 6,
           ),
@@ -698,7 +701,7 @@ class _CornerPainter extends CustomPainter {
 
     if (!isActive) {
       final gridPaint = Paint()
-        ..color = Colors.white.withOpacity(0.05)
+        ..color = VytalColors.textPrimary.withValues(alpha: 0.05)
         ..strokeWidth = 1;
       canvas.drawLine(
         Offset(size.width / 2, 20),
@@ -768,7 +771,7 @@ class _GridPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.white.withOpacity(0.03)
+      ..color = VytalColors.textPrimary.withValues(alpha: 0.03)
       ..strokeWidth = 1;
     double step = 40;
     for (double x = 0; x < size.width; x += step) {
@@ -796,8 +799,8 @@ class _LoadingView extends StatelessWidget {
           Text(
             "AI ANALYZING...",
             style: TextStyle(
-              color: VytalColors.primaryNeon.withOpacity(0.8),
-              fontFamily: 'monospace',
+              color: VytalColors.primaryNeon.withValues(alpha: 0.8),
+
               letterSpacing: 2,
             ),
           ),

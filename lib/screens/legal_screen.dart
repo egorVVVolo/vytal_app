@@ -52,21 +52,21 @@ class _LegalScreenState extends State<LegalScreen> {
               const Text(
                 "SYSTEM\nPROTOCOL",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: VytalColors.textPrimary,
                   fontSize: 32,
                   fontWeight: FontWeight.w900,
                   letterSpacing: 2,
                   height: 1.1,
-                  fontFamily: 'monospace',
+
                 ),
               ),
               const SizedBox(height: 10),
               const Text(
                 "Verify subject status before accessing VYTAL.",
                 style: TextStyle(
-                  color: Colors.white54,
+                  color: VytalColors.textSecondary,
                   fontSize: 14,
-                  fontFamily: 'monospace',
+
                 ),
               ),
 
@@ -117,12 +117,12 @@ class _LegalScreenState extends State<LegalScreen> {
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: _allAgreed
-                          ? Colors.black
+                          ? VytalColors.textPrimary
                           : Colors.transparent, // Minimalist bg
                       border: Border.all(
                         color: _allAgreed
                             ? VytalColors.primaryNeon
-                            : Colors.white10,
+                            : VytalColors.textSecondary,
                         width: 0.5,
                       ),
                     ),
@@ -131,10 +131,10 @@ class _LegalScreenState extends State<LegalScreen> {
                       style: TextStyle(
                         color: _allAgreed
                             ? VytalColors.primaryNeon
-                            : Colors.white38,
+                            : VytalColors.textSecondary,
                         fontWeight: FontWeight.w900,
                         letterSpacing: 2,
-                        fontFamily: 'monospace',
+
                       ),
                     ),
                   ),
@@ -163,7 +163,7 @@ class _LegalScreenState extends State<LegalScreen> {
         border: Border.all(
           color: value
               ? VytalColors.primaryNeon
-              : Colors.white.withOpacity(0.1),
+              : VytalColors.textPrimary.withValues(alpha: 0.1),
           width: 0.5,
         ),
         child: Row(
@@ -177,12 +177,12 @@ class _LegalScreenState extends State<LegalScreen> {
               decoration: BoxDecoration(
                 color: value ? VytalColors.primaryNeon : Colors.transparent,
                 border: Border.all(
-                  color: value ? VytalColors.primaryNeon : Colors.white54,
+                  color: value ? VytalColors.primaryNeon : VytalColors.textSecondary,
                   width: 1,
                 ),
               ),
               child: value
-                  ? const Icon(Icons.check, size: 16, color: Colors.black)
+                  ? const Icon(Icons.check, size: 16, color: VytalColors.textPrimary)
                   : null,
             ),
             const SizedBox(width: 16),
@@ -193,21 +193,21 @@ class _LegalScreenState extends State<LegalScreen> {
                   Text(
                     title,
                     style: TextStyle(
-                      color: value ? VytalColors.primaryNeon : Colors.white,
+                      color: value ? VytalColors.primaryNeon : VytalColors.textPrimary,
                       fontWeight: FontWeight.bold,
                       fontSize: 12,
                       letterSpacing: 2,
-                      fontFamily: 'monospace',
+
                     ),
                   ),
                   const SizedBox(height: 6),
                   Text(
                     text,
                     style: const TextStyle(
-                      color: Colors.white70,
+                      color: VytalColors.textSecondary,
                       fontSize: 12,
                       height: 1.4,
-                      fontFamily: 'monospace',
+
                     ),
                   ),
                 ],

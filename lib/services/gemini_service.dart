@@ -1,7 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'dart:io';
 import 'dart:convert';
 import 'package:google_generative_ai/google_generative_ai.dart';
-import 'package:path/path.dart' as p;
 
 class AiPostureResult {
   final int overallScore;
@@ -48,7 +48,7 @@ class GeminiService {
       final model = GenerativeModel(
         model: _modelName,
         apiKey: _apiKey,
-        // Temperature 0.1 делает модель максимально "роботизированной" и предсказуемой
+        // Temperature 0.1 делает модель максимально "robotic" и предсказуемой
         generationConfig: GenerationConfig(
           temperature: 0.3,
           responseMimeType: 'application/json',
@@ -98,12 +98,12 @@ class GeminiService {
       // Чистка JSON (на всякий случай, хотя responseMimeType должен помочь)
       text = text.replaceAll('```json', '').replaceAll('```', '').trim();
 
-      print("GEMINI ANALYSIS: $text"); // Лог для отладки
+      debugPrint("GEMINI ANALYSIS: $text"); // Лог для отладки
 
       final jsonMap = json.decode(text);
       return AiPostureResult.fromJson(jsonMap);
     } catch (e) {
-      print("Gemini API Error: $e");
+      debugPrint("Gemini API Error: $e");
       // Возвращаем дефолтное значение при ошибке, чтобы приложение не падало
       return AiPostureResult(
         overallScore: 0,

@@ -24,12 +24,12 @@ class BiometricCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: VytalColors.surface,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: Colors.white.withOpacity(0.05)),
+          color: VytalColors.textPrimary,
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(color: VytalColors.textPrimary.withValues(alpha: 0.05)),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.2),
+              color: VytalColors.textPrimary.withValues(alpha: 0.2),
               blurRadius: 10,
               offset: const Offset(0, 5),
             )

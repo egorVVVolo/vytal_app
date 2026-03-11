@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme/colors.dart';
 import '../models/habit.dart';
-import '../widgets/glass_container.dart';
 
 class CreateProtocolScreen extends StatefulWidget {
   final Function(List<Habit>) onCreate;
@@ -164,6 +163,13 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
     _tabController = TabController(length: 4, vsync: this);
   }
 
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _tabController.dispose();
+    super.dispose();
+  }
+
   void _toggleHabit(Habit habit) {
     setState(() {
       if (_selectedHabits.any((h) => h.title == habit.title)) {
@@ -181,7 +187,7 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
         const SnackBar(
           content: Text(
             "Select at least one metric!",
-            style: TextStyle(fontFamily: 'monospace'),
+            style: TextStyle(),
           ),
         ),
       );
@@ -204,11 +210,11 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
             color: VytalColors.primaryNeon,
             fontWeight: FontWeight.bold,
             letterSpacing: 2,
-            fontFamily: 'monospace',
+
           ),
         ),
         centerTitle: true,
-        leading: const BackButton(color: Colors.white),
+        leading: const BackButton(color: VytalColors.textPrimary),
         actions: [
           IconButton(
             icon: const Icon(Icons.check, color: VytalColors.secondaryNeon),
@@ -219,7 +225,7 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
           controller: _tabController,
           indicatorColor: VytalColors.primaryNeon,
           labelColor: VytalColors.primaryNeon,
-          unselectedLabelColor: Colors.white54,
+          unselectedLabelColor: VytalColors.textSecondary,
           isScrollable: true, // Чтобы влазило на маленькие экраны
           tabs: const [
             Tab(text: "BIO"),
@@ -237,13 +243,13 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
             padding: const EdgeInsets.all(16.0),
             child: TextField(
               controller: _titleController,
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(color: VytalColors.textPrimary),
               decoration: InputDecoration(
-                hintText: "Название протокола (например, Утро)",
-                hintStyle: TextStyle(color: Colors.white.withOpacity(0.3)),
+                hintText: "Protocol Name (e.g., Morning)",
+                hintStyle: TextStyle(color: VytalColors.textPrimary.withValues(alpha: 0.3)),
                 filled: true,
                 fillColor: VytalColors.surface,
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(24), borderSide: BorderSide.none),
               ),
             ),
           ),
@@ -286,7 +292,7 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: isSelected
-                  ? VytalColors.primaryNeon.withOpacity(0.1)
+                  ? VytalColors.primaryNeon.withValues(alpha: 0.1)
                   : VytalColors.surface,
               borderRadius: BorderRadius.circular(16),
               border: Border.all(
@@ -306,17 +312,17 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
                       Text(
                         habit.title,
                         style: const TextStyle(
-                          color: Colors.white,
+                          color: VytalColors.textPrimary,
                           fontWeight: FontWeight.bold,
-                          fontFamily: 'monospace',
+
                         ),
                       ),
                       Text(
                         habit.subtitle,
                         style: const TextStyle(
-                          color: Colors.white54,
+                          color: VytalColors.textSecondary,
                           fontSize: 12,
-                          fontFamily: 'monospace',
+
                         ),
                       ),
                     ],
@@ -329,10 +335,10 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
                     shape: BoxShape.circle,
                     color: isSelected
                         ? VytalColors.primaryNeon
-                        : Colors.white10,
+                        : VytalColors.textSecondary,
                   ),
                   child: isSelected
-                      ? const Icon(Icons.check, size: 16, color: Colors.black)
+                      ? const Icon(Icons.check, size: 16, color: VytalColors.textPrimary)
                       : null,
                 ),
               ],
@@ -348,7 +354,7 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: VytalColors.background,
-        border: Border(top: BorderSide(color: Colors.white.withOpacity(0.1))),
+        border: Border(top: BorderSide(color: VytalColors.textPrimary.withValues(alpha: 0.1))),
       ),
       child: SafeArea(
         child: Row(
@@ -361,10 +367,10 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
                 const Text(
                   "SELECTED:",
                   style: TextStyle(
-                    color: Colors.white54,
+                    color: VytalColors.textSecondary,
                     fontSize: 10,
                     fontWeight: FontWeight.bold,
-                    fontFamily: 'monospace',
+
                     letterSpacing: 1.5,
                   ),
                 ),
@@ -372,10 +378,10 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
                 Text(
                   "${_selectedHabits.length} ASSETS",
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: VytalColors.textPrimary,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    fontFamily: 'monospace',
+
                   ),
                 ),
               ],
@@ -389,18 +395,18 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1,
-                  fontFamily: 'monospace',
+
                 ),
               ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: VytalColors.primaryNeon,
-                foregroundColor: Colors.black,
+                foregroundColor: VytalColors.textPrimary,
                 padding: const EdgeInsets.symmetric(
                   horizontal: 24,
                   vertical: 12,
                 ),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(24),
                 ),
               ),
             ),

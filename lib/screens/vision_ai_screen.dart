@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:google_mlkit_pose_detection/google_mlkit_pose_detection.dart';
 import '../theme/colors.dart';
 import '../utils/camera_view_painter.dart'; // Import our painter
-import 'ai_posture_screen.dart'; // For navigating to results (or logic can be used here)
+// For navigating to results (or logic can be used here)
 
 class VisionAiScreen extends StatefulWidget {
   const VisionAiScreen({super.key});
@@ -25,7 +25,7 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
   int _stableFrames = 0;
   bool _isCapturing = false;
   String _statusMessage = "STAND IN FULL VIEW";
-  Color _statusColor = Colors.white;
+  Color _statusColor = VytalColors.textPrimary;
 
   @override
   void initState() {
@@ -79,7 +79,7 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
         });
       }
     } catch (e) {
-      print("Error analyzing pose: $e");
+      // Error analyzing pose
     } finally {
       _isDetecting = false;
     }
@@ -90,7 +90,7 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
     if (poses.isEmpty) {
       _stableFrames = 0;
       _statusMessage = "STAND IN FULL VIEW";
-      _statusColor = Colors.white;
+      _statusColor = VytalColors.textPrimary;
       return;
     }
 
@@ -124,7 +124,7 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
     await _controller?.stopImageStream();
 
     try {
-      final XFile file = await _controller!.takePicture();
+      await _controller!.takePicture();
 
       if (!mounted) return;
 
@@ -137,7 +137,7 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
         builder: (_) => AlertDialog(
           backgroundColor: VytalColors.surface,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(0), // Sharp corners
+            borderRadius: BorderRadius.circular(24), // Sharp corners
             side: BorderSide(
               color: VytalColors.primaryNeon,
               width: 0.5,
@@ -146,9 +146,9 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
           title: const Text(
             "SCAN COMPLETE",
             style: TextStyle(
-              color: Colors.white,
+              color: VytalColors.textPrimary,
               fontWeight: FontWeight.bold,
-              fontFamily: 'monospace',
+
               letterSpacing: 1,
             ),
           ),
@@ -164,8 +164,8 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
               Text(
                 "Data transmitted to Neural Engine.",
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.7),
-                  fontFamily: 'monospace',
+                  color: VytalColors.textPrimary.withValues(alpha: 0.7),
+
                 ),
               ),
             ],
@@ -180,7 +180,7 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
                 "ACKNOWLEDGE",
                 style: TextStyle(
                   color: VytalColors.primaryNeon,
-                  fontFamily: 'monospace',
+
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -189,7 +189,7 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
         ),
       );
     } catch (e) {
-      print("Capture error: $e");
+      // Capture error
       setState(() => _isCapturing = false);
       _startImageStream(); // Restart on error
     }
@@ -242,22 +242,19 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
   Widget build(BuildContext context) {
     if (!_isCameraInitialized || _controller == null) {
       return const Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: VytalColors.surface,
         body: Center(
           child: CircularProgressIndicator(color: VytalColors.primaryNeon),
         ),
       );
     }
 
-    // Preview size
-    final size = MediaQuery.of(context).size;
-
     // Calculate scale for CustomPaint to match camera
     // (Simply pass the camera size, painter will adjust)
     final cameraSize = _controller!.value.previewSize!;
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: VytalColors.surface,
       body: Stack(
         fit: StackFit.expand,
         children: [
@@ -287,7 +284,7 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
-                        icon: const Icon(Icons.close, color: Colors.white),
+                        icon: const Icon(Icons.close, color: VytalColors.textPrimary),
                         onPressed: () => Navigator.pop(context),
                       ),
                       Container(
@@ -296,7 +293,7 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
                           vertical: 6,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.black54,
+                          color: VytalColors.textSecondary,
                           borderRadius: BorderRadius.circular(
                             0,
                           ), // Sharp corners
@@ -316,10 +313,10 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
                             Text(
                               "LIVE VISION",
                               style: TextStyle(
-                                color: Colors.white,
+                                color: VytalColors.textPrimary,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12,
-                                fontFamily: 'monospace',
+
                                 letterSpacing: 1,
                               ),
                             ),
@@ -343,12 +340,12 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
                       vertical: 16,
                     ),
                     decoration: BoxDecoration(
-                      color: _statusColor.withOpacity(0.15),
-                      borderRadius: BorderRadius.circular(0), // Sharp corners
+                      color: _statusColor.withValues(alpha: 0.15),
+                      borderRadius: BorderRadius.circular(24), // Sharp corners
                       border: Border.all(color: _statusColor, width: 0.5),
                       boxShadow: [
                         BoxShadow(
-                          color: _statusColor.withOpacity(0.2),
+                          color: _statusColor.withValues(alpha: 0.2),
                           blurRadius: 20,
                         ),
                       ],
@@ -359,7 +356,7 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
                         color: _statusColor,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 2,
-                        fontFamily: 'monospace',
+
                       ),
                     ),
                   ),

@@ -1,5 +1,5 @@
+import 'package:flutter/foundation.dart';
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // Haptic
 import 'package:flutter_animate/flutter_animate.dart';
@@ -99,7 +99,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ], text: 'My biohacking progress in Vytal: Level $_level 🧬');
       }
     } catch (e) {
-      print("Share error: $e");
+      debugPrint("Share error: $e");
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -115,17 +115,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        backgroundColor: Colors.black, // Minimal black
+        backgroundColor: VytalColors.surface, // Minimal black
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(0),
-          side: BorderSide(color: Colors.white10),
+          borderRadius: BorderRadius.circular(24),
+          side: BorderSide(color: VytalColors.textSecondary),
         ),
         title: const Text(
           "BIOHACKER METRICS",
           style: TextStyle(
-            color: Colors.white,
+            color: VytalColors.textPrimary,
             fontWeight: FontWeight.bold,
-            fontFamily: 'monospace',
+
             letterSpacing: 2,
           ),
         ),
@@ -148,7 +148,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               "GOT IT",
               style: TextStyle(
                 color: VytalColors.primaryNeon,
-                fontFamily: 'monospace',
+
                 letterSpacing: 1,
               ),
             ),
@@ -161,7 +161,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void _showSettingsSheet() {
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.black,
+      backgroundColor: VytalColors.surface,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(0)),
       ),
@@ -172,7 +172,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void _showDevicesSheet() {
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.black,
+      backgroundColor: VytalColors.surface,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(0)),
       ),
@@ -198,7 +198,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                        VytalColors.primaryNeon.withOpacity(0.1),
+                        VytalColors.primaryNeon.withValues(alpha: 0.1),
                         VytalColors.background,
                       ],
                     ),
@@ -210,7 +210,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: IconButton(
                     icon: const Icon(
                       Icons.edit_outlined,
-                      color: Colors.white54,
+                      color: VytalColors.textSecondary,
                     ),
                     onPressed: _openEdit,
                   ).animate().fadeIn(),
@@ -230,7 +230,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: VytalColors.primaryNeon.withOpacity(
+                              color: VytalColors.primaryNeon.withValues(alpha:
                                 0.1,
                               ), // Reduced glow
                               blurRadius: 10,
@@ -244,7 +244,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             _name.isNotEmpty ? _name[0].toUpperCase() : "?",
                             style: const TextStyle(
                               fontSize: 36,
-                              color: Colors.white,
+                              color: VytalColors.textPrimary,
                             ),
                           ),
                         ),
@@ -258,7 +258,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         style: const TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: VytalColors.textPrimary,
                           letterSpacing: 1,
                         ),
                       ).animate().fadeIn(delay: 200.ms),
@@ -273,7 +273,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               fontSize: 12,
                               letterSpacing: 1,
                               fontWeight: FontWeight.bold,
-                              fontFamily: 'monospace',
+
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -281,10 +281,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             width: 120,
                             height: 6,
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(3),
+                              borderRadius: BorderRadius.circular(24),
                               child: LinearProgressIndicator(
                                 value: _levelProgress,
-                                backgroundColor: Colors.white10,
+                                backgroundColor: VytalColors.textSecondary,
                                 color: VytalColors.primaryNeon,
                               ),
                             ),
@@ -293,9 +293,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Text(
                             "$_xp XP Total",
                             style: TextStyle(
-                              color: Colors.white.withOpacity(0.4),
+                              color: VytalColors.textPrimary.withValues(alpha: 0.4),
                               fontSize: 10,
-                              fontFamily: 'monospace',
+
                             ),
                           ),
                         ],
@@ -331,7 +331,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     IconButton(
                       icon: const Icon(
                         Icons.info_outline,
-                        color: Colors.white24,
+                        color: VytalColors.textSecondary,
                         size: 20,
                       ),
                       onPressed: _showHexagonInfo,
@@ -367,15 +367,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 decoration: BoxDecoration(
                   color: Colors.transparent, // Transparent for minimalism
-                  border: Border.all(color: Colors.white10, width: 0.5),
+                  border: Border.all(color: VytalColors.textSecondary, width: 0.5),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     _buildMiniStat("WEIGHT", _weight.toStringAsFixed(1), "kg"),
-                    Container(width: 1, height: 30, color: Colors.white10),
+                    Container(width: 1, height: 30, color: VytalColors.textSecondary),
                     _buildMiniStat("HEIGHT", _height.toStringAsFixed(0), "cm"),
-                    Container(width: 1, height: 30, color: Colors.white10),
+                    Container(width: 1, height: 30, color: VytalColors.textSecondary),
                     _buildMiniStat("AGE", _age.toString(), "yrs"),
                   ],
                 ),
@@ -435,7 +435,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             fontSize: 10,
             fontWeight: FontWeight.bold,
             letterSpacing: 2,
-            fontFamily: 'monospace',
+
           ),
         ),
         const SizedBox(height: 6),
@@ -446,10 +446,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Text(
               value,
               style: const TextStyle(
-                color: Colors.white,
+                color: VytalColors.textPrimary,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                fontFamily: 'monospace',
+
               ),
             ),
             const SizedBox(width: 2),
@@ -508,11 +508,11 @@ class _RealSettingsSheetState extends State<_RealSettingsSheet> {
           const Text(
             "SYSTEM CONFIG",
             style: TextStyle(
-              color: Colors.white,
+              color: VytalColors.textPrimary,
               fontSize: 16,
               fontWeight: FontWeight.bold,
               letterSpacing: 1.5,
-              fontFamily: 'monospace',
+
             ),
           ),
           const SizedBox(height: 20),
@@ -532,14 +532,14 @@ class _RealSettingsSheetState extends State<_RealSettingsSheet> {
             onChanged: (v) => _update('notifications', v),
           ),
           const SizedBox(height: 20),
-          const Divider(color: Colors.white10),
+          const Divider(color: VytalColors.textSecondary),
           const SizedBox(height: 10),
           const Text(
             "Vytal v1.2.0 (Stable)",
             style: TextStyle(
-              color: Colors.white24,
+              color: VytalColors.textSecondary,
               fontSize: 10,
-              fontFamily: 'monospace',
+
             ),
           ),
         ],
@@ -576,8 +576,9 @@ class _DevicesSheetState extends State<_DevicesSheet> {
     if (mounted) {
       setState(() {
         _isScanning = false;
-        if (key == 'apple_watch')
+        if (key == 'apple_watch') {
           _isAppleWatchConnected = !_isAppleWatchConnected;
+        }
         if (key == 'oura_ring') _isOuraRingConnected = !_isOuraRingConnected;
       });
     }
@@ -596,11 +597,11 @@ class _DevicesSheetState extends State<_DevicesSheet> {
               const Text(
                 "DATA SOURCES",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: VytalColors.textPrimary,
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1.5,
-                  fontFamily: 'monospace',
+
                 ),
               ),
               if (_isScanning)
@@ -632,7 +633,7 @@ class _DevicesSheetState extends State<_DevicesSheet> {
           const Text(
             "Connections allow automatic syncing of sleep and step data.",
             textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.white38, fontSize: 12),
+            style: TextStyle(color: VytalColors.textSecondary, fontSize: 12),
           ),
         ],
       ),
@@ -662,10 +663,10 @@ class _DeviceTile extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: isConnected
-              ? VytalColors.primaryNeon.withOpacity(0.05)
+              ? VytalColors.primaryNeon.withValues(alpha: 0.05)
               : Colors.transparent,
           border: Border.all(
-            color: isConnected ? VytalColors.primaryNeon : Colors.white10,
+            color: isConnected ? VytalColors.primaryNeon : VytalColors.textSecondary,
             width: 0.5,
           ),
         ),
@@ -673,7 +674,7 @@ class _DeviceTile extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: isConnected ? VytalColors.primaryNeon : Colors.white54,
+              color: isConnected ? VytalColors.primaryNeon : VytalColors.textSecondary,
             ),
             const SizedBox(width: 16),
             Expanded(
@@ -683,9 +684,9 @@ class _DeviceTile extends StatelessWidget {
                   Text(
                     name.toUpperCase(),
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: VytalColors.textPrimary,
                       fontWeight: FontWeight.bold,
-                      fontFamily: 'monospace',
+
                       letterSpacing: 1,
                     ),
                   ),
@@ -694,7 +695,7 @@ class _DeviceTile extends StatelessWidget {
                     style: TextStyle(
                       color: isConnected
                           ? VytalColors.primaryNeon
-                          : Colors.white38,
+                          : VytalColors.textSecondary,
                       fontSize: 10,
                     ),
                   ),
@@ -732,14 +733,14 @@ class _InfoRow extends StatelessWidget {
               style: const TextStyle(
                 color: VytalColors.primaryNeon,
                 fontWeight: FontWeight.bold,
-                fontFamily: 'monospace',
+
               ),
             ),
           ),
           Expanded(
             child: Text(
               text,
-              style: const TextStyle(color: Colors.white70, fontSize: 12),
+              style: const TextStyle(color: VytalColors.textSecondary, fontSize: 12),
             ),
           ),
         ],
@@ -765,13 +766,13 @@ class _SwitchRow extends StatelessWidget {
       title: Text(
         label.toUpperCase(),
         style: const TextStyle(
-          color: Colors.white,
-          fontFamily: 'monospace',
+          color: VytalColors.textPrimary,
+
           fontSize: 12,
         ),
       ),
       value: value,
-      activeColor: VytalColors.primaryNeon,
+      activeThumbColor: VytalColors.primaryNeon,
       onChanged: onChanged,
     );
   }

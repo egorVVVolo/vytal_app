@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart'; // Для "барабанов"
+import 'package:flutter/cupertino.dart'; // Для "drums"
 import 'package:flutter/services.dart'; // Для вибрации
 import '../theme/colors.dart';
 import '../services/notification_service.dart';
@@ -20,7 +20,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
   late DateTime _bedTime6Cycles; // 9.0 часов (Hardmode)
   late DateTime _lastMealTime; // Инсулиновая отсечка
 
-  bool _notificationsEnabled = false; // Состояние "активировано"
+  bool _notificationsEnabled = false; // Состояние "activated"
 
   @override
   void initState() {
@@ -91,7 +91,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                 'DONE',
                 style: TextStyle(
                   color: VytalColors.primaryNeon,
-                  fontFamily: 'monospace',
+
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -106,7 +106,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
   Future<void> _activateProtocol() async {
     HapticFeedback.heavyImpact();
 
-    // 1. Планируем уведомление "За час до сна"
+    // 1. Планируем уведомление "One hour before sleep"
     final preSleep = _bedTime6Cycles.subtract(const Duration(hours: 1));
 
     await NotificationService().scheduleDailyReminder(
@@ -118,7 +118,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
       minute: preSleep.minute,
     );
 
-    // 2. Планируем уведомление "Утро"
+    // 2. Планируем уведомление "Morning"
     await NotificationService().scheduleDailyReminder(
       id: 202,
       title: "☀️ CORTISOL PEAK",
@@ -134,7 +134,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
         const SnackBar(
           content: Text(
             "SYSTEM ACTIVATED. Notifications set.",
-            style: TextStyle(fontFamily: 'monospace'),
+            style: TextStyle(),
           ),
           backgroundColor: VytalColors.secondaryNeon,
         ),
@@ -145,20 +145,20 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: VytalColors.surface,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: const Text(
           "HGH PROTOCOL",
           style: TextStyle(
-            color: Colors.white,
+            color: VytalColors.textPrimary,
             letterSpacing: 2,
             fontWeight: FontWeight.bold,
           ),
         ),
         centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          icon: const Icon(Icons.arrow_back, color: VytalColors.textPrimary),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -178,7 +178,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 2,
-                      fontFamily: 'monospace',
+
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -192,7 +192,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                       decoration: BoxDecoration(
                         color: Colors.transparent, // Minimalist
                         border: Border.all(
-                          color: Colors.white12,
+                          color: VytalColors.textSecondary,
                           width: 0.5,
                         ), // Sharp edges
                       ),
@@ -202,10 +202,10 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                           Text(
                             "${_wakeTime.hour.toString().padLeft(2, '0')}:${_wakeTime.minute.toString().padLeft(2, '0')}",
                             style: const TextStyle(
-                              color: Colors.white,
+                              color: VytalColors.textPrimary,
                               fontSize: 40,
                               fontWeight: FontWeight.bold,
-                              fontFamily: 'monospace',
+
                             ),
                           ),
                           const Icon(
@@ -227,7 +227,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 2,
-                      fontFamily: 'monospace',
+
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -272,7 +272,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                     decoration: BoxDecoration(
                       color: Colors.transparent, // Minimalist
                       border: Border.all(
-                        color: VytalColors.primaryNeon.withOpacity(0.5),
+                        color: VytalColors.primaryNeon.withValues(alpha: 0.5),
                         width: 0.5,
                       ), // Sharp thin borders
                     ),
@@ -287,9 +287,9 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                           child: Text(
                             "70% of growth hormone is released during deep sleep (SWS) in the first hours of the night.",
                             style: TextStyle(
-                              color: Colors.white70,
+                              color: VytalColors.textSecondary,
                               fontSize: 12,
-                              fontFamily: 'monospace',
+
                             ),
                           ),
                         ),
@@ -309,7 +309,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
             decoration: BoxDecoration(
               color: VytalColors.background,
               border: Border(
-                top: BorderSide(color: Colors.white.withOpacity(0.1)),
+                top: BorderSide(color: VytalColors.textPrimary.withValues(alpha: 0.1)),
               ),
             ),
             child: GestureDetector(
@@ -321,7 +321,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: _notificationsEnabled
-                      ? Colors.black
+                      ? VytalColors.textPrimary
                       : Colors.transparent, // Sharp and minimal
                   border: Border.all(
                     color: _notificationsEnabled
@@ -353,7 +353,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                         fontWeight: FontWeight.w900,
                         fontSize: 16,
                         letterSpacing: 2,
-                        fontFamily: 'monospace',
+
                       ),
                     ),
                   ],
@@ -380,7 +380,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
         color: Colors.transparent, // Minimalist transparent background
         border: isHighlight
             ? Border.all(color: color, width: 1.0)
-            : Border.all(color: Colors.white10, width: 0.5),
+            : Border.all(color: VytalColors.textSecondary, width: 0.5),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -393,7 +393,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                   color: color,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  fontFamily: 'monospace',
+
                 ),
               ),
               if (isHighlight)
@@ -402,7 +402,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                   style: TextStyle(
                     color: Colors.grey,
                     fontSize: 10,
-                    fontFamily: 'monospace',
+
                     letterSpacing: 1,
                   ),
                 ),
@@ -419,19 +419,19 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                     color: color,
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
-                    fontFamily: 'monospace',
+
                     letterSpacing: 1,
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   desc,
-                  style: const TextStyle(color: Colors.white54, fontSize: 12),
+                  style: const TextStyle(color: VytalColors.textSecondary, fontSize: 12),
                 ),
               ],
             ),
           ),
-          Icon(icon, color: color.withOpacity(0.5), size: 30),
+          Icon(icon, color: color.withValues(alpha: 0.5), size: 30),
         ],
       ),
     );
@@ -442,7 +442,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
       margin: const EdgeInsets.only(left: 45), // Центрируем под временем
       height: 30,
       width: 2,
-      color: Colors.white10,
+      color: VytalColors.textSecondary,
     );
   }
 }

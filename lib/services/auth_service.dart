@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
@@ -14,12 +15,12 @@ class AuthService {
     if (currentUser == null) {
       try {
         await _auth.signInAnonymously();
-        print("✅ LOGGED IN ANONYMOUSLY: $userId");
+        debugPrint("✅ LOGGED IN ANONYMOUSLY: $userId");
       } catch (e) {
-        print("🛑 AUTH ERROR: $e");
+        debugPrint("🛑 AUTH ERROR: $e");
       }
     } else {
-      print("ℹ️ ALREADY LOGGED IN: $userId");
+      debugPrint("ℹ️ ALREADY LOGGED IN: $userId");
     }
   }
 

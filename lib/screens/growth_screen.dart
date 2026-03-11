@@ -7,7 +7,6 @@ import 'package:vytal_app/screens/vision_ai_screen.dart';
 import '../theme/colors.dart';
 import '../widgets/growth_capsule.dart';
 import '../services/storage_service.dart';
-import 'ai_posture_screen.dart';
 import '../models/height_log.dart';
 import 'paywall_screen.dart';
 
@@ -88,7 +87,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
 
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.black, // Minimal pitch black
+      backgroundColor: VytalColors.surface, // Minimal pitch black
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(0),
@@ -110,7 +109,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
                         color: VytalColors.textSecondary,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 2,
-                        fontFamily: 'monospace',
+
                       ),
                     ),
                     GestureDetector(
@@ -135,7 +134,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
                           color: VytalColors.primaryNeon,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 2,
-                          fontFamily: 'monospace',
+
                         ),
                       ),
                     ),
@@ -146,11 +145,11 @@ class _GrowthScreenState extends State<GrowthScreen> {
               const Text(
                 "CURRENT HEIGHT",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: VytalColors.textPrimary,
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2,
-                  fontFamily: 'monospace',
+
                 ),
               ),
               const SizedBox(height: 30),
@@ -179,10 +178,10 @@ class _GrowthScreenState extends State<GrowthScreen> {
                               child: Text(
                                 "${100 + index}",
                                 style: const TextStyle(
-                                  color: Colors.white,
+                                  color: VytalColors.textPrimary,
                                   fontSize: 32,
                                   fontWeight: FontWeight.bold,
-                                  fontFamily: 'monospace',
+
                                 ),
                               ),
                             ),
@@ -225,7 +224,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
                                   color: VytalColors.primaryNeon,
                                   fontSize: 32,
                                   fontWeight: FontWeight.bold,
-                                  fontFamily: 'monospace',
+
                                 ),
                               ),
                             ),
@@ -239,7 +238,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
                       child: Text(
                         "cm",
                         style: TextStyle(
-                          color: Colors.white54,
+                          color: VytalColors.textSecondary,
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
@@ -273,7 +272,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
                   fontSize: 24,
                   fontWeight: FontWeight.w900,
                   letterSpacing: 4,
-                  fontFamily: 'monospace',
+
                 ),
               ).animate().fadeIn().slideY(begin: -0.2),
               const SizedBox(height: 5),
@@ -283,7 +282,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
                   color: VytalColors.textSecondary,
                   fontSize: 10,
                   letterSpacing: 2,
-                  fontFamily: 'monospace',
+
                 ),
               ).animate().fadeIn(delay: 100.ms),
               const SizedBox(height: 32),
@@ -315,7 +314,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: Colors.transparent, // Transparent for minimalism
-                  border: Border.all(color: Colors.white10, width: 0.5),
+                  border: Border.all(color: VytalColors.textSecondary, width: 0.5),
                 ),
                 child: Column(
                   children: [
@@ -325,7 +324,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
                     }),
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 20),
-                      child: Divider(color: Colors.white10),
+                      child: Divider(color: VytalColors.textSecondary),
                     ),
                     _buildSlider("Mother's Height", motherHeight, (v) {
                       setState(() => motherHeight = v);
@@ -363,13 +362,13 @@ class _GrowthScreenState extends State<GrowthScreen> {
                 ),
                 decoration: BoxDecoration(
                   color: Colors.transparent,
-                  border: Border.all(color: Colors.white10, width: 0.5),
+                  border: Border.all(color: VytalColors.textSecondary, width: 0.5),
                 ),
                 child: _history.isEmpty
                     ? const Center(
                         child: Text(
                           "No data. Tap + to start tracking.",
-                          style: TextStyle(color: Colors.white24),
+                          style: TextStyle(color: VytalColors.textSecondary),
                         ),
                       )
                     : LineChart(
@@ -378,7 +377,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
                             show: true,
                             drawVerticalLine: false,
                             getDrawingHorizontalLine: (value) => FlLine(
-                              color: Colors.white.withOpacity(0.05),
+                              color: VytalColors.textPrimary.withValues(alpha: 0.05),
                               strokeWidth: 1,
                             ),
                           ),
@@ -395,7 +394,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
                               dotData: const FlDotData(show: true),
                               belowBarData: BarAreaData(
                                 show: true,
-                                color: VytalColors.primaryNeon.withOpacity(0.1),
+                                color: VytalColors.primaryNeon.withValues(alpha: 0.1),
                               ),
                             ),
                           ],
@@ -443,7 +442,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
                             letterSpacing: 2,
-                            fontFamily: 'monospace',
+
                           ),
                         ),
                       ],
@@ -470,7 +469,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
             fontSize: 12,
             fontWeight: FontWeight.bold,
             letterSpacing: 2,
-            fontFamily: 'monospace',
+
           ),
         ),
       ],
@@ -500,7 +499,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: const BoxDecoration(
-                color: Colors.black,
+                color: VytalColors.textPrimary,
                 shape: BoxShape.circle,
               ),
               child: const Icon(
@@ -515,11 +514,11 @@ class _GrowthScreenState extends State<GrowthScreen> {
                 Text(
                   "AI POSTURE SCAN",
                   style: TextStyle(
-                    color: Colors.white,
+                    color: VytalColors.textPrimary,
                     fontWeight: FontWeight.bold,
                     fontSize: 14,
                     letterSpacing: 1,
-                    fontFamily: 'monospace',
+
                   ),
                 ),
                 SizedBox(height: 4),
@@ -528,7 +527,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
                   style: TextStyle(
                     color: VytalColors.primaryNeon,
                     fontSize: 10,
-                    fontFamily: 'monospace',
+
                     letterSpacing: 1,
                   ),
                 ),
@@ -537,7 +536,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
             const Spacer(),
             const Icon(
               Icons.arrow_forward_ios_rounded,
-              color: Colors.white24,
+              color: VytalColors.textSecondary,
               size: 16,
             ),
           ],
@@ -552,13 +551,13 @@ class _GrowthScreenState extends State<GrowthScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(label, style: const TextStyle(color: Colors.white70)),
+            Text(label, style: const TextStyle(color: VytalColors.textSecondary)),
             Text(
               "${value.toInt()} cm",
               style: const TextStyle(
-                color: Colors.white,
+                color: VytalColors.textPrimary,
                 fontWeight: FontWeight.bold,
-                fontFamily: 'monospace',
+
               ),
             ),
           ],
@@ -566,10 +565,10 @@ class _GrowthScreenState extends State<GrowthScreen> {
         const SizedBox(height: 10),
         SliderTheme(
           data: SliderTheme.of(context).copyWith(
-            activeTrackColor: Colors.white,
-            inactiveTrackColor: Colors.white10,
+            activeTrackColor: VytalColors.textPrimary,
+            inactiveTrackColor: VytalColors.textSecondary,
             thumbColor: VytalColors.primaryNeon,
-            overlayColor: VytalColors.primaryNeon.withOpacity(0.2),
+            overlayColor: VytalColors.primaryNeon.withValues(alpha: 0.2),
             trackHeight: 2,
           ),
           child: Slider(value: value, min: 150, max: 220, onChanged: onChanged),

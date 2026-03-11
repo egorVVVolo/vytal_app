@@ -123,7 +123,7 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
     final Color accent = widget.workout.color;
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: VytalColors.surface,
       body: SafeArea(
         child: Column(
           children: [
@@ -133,7 +133,7 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
               child: Row(
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.close, color: Colors.white54),
+                    icon: const Icon(Icons.close, color: VytalColors.textSecondary),
                     onPressed: _quit,
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints(),
@@ -141,11 +141,11 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
                   const SizedBox(width: 16),
                   Expanded(
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(4),
+                      borderRadius: BorderRadius.circular(24),
                       child: LinearProgressIndicator(
                         value: progress,
                         minHeight: 8,
-                        backgroundColor: Colors.white10,
+                        backgroundColor: VytalColors.textSecondary,
                         color: accent,
                       ),
                     ),
@@ -154,7 +154,7 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
                   Text(
                     "${_currentIndex + 1}/${widget.workout.exercises.length}",
                     style: const TextStyle(
-                      color: Colors.white54,
+                      color: VytalColors.textSecondary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -226,7 +226,7 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
                         currentEx.title.toUpperCase(),
                         textAlign: TextAlign.center,
                         style: const TextStyle(
-                          color: Colors.white,
+                          color: VytalColors.textPrimary,
                           fontSize: 32,
                           fontWeight: FontWeight.w900,
                           height: 1.1,
@@ -249,9 +249,9 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
                       child: Container(
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.05),
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: Colors.white10),
+                          color: VytalColors.textPrimary.withValues(alpha: 0.05),
+                          borderRadius: BorderRadius.circular(24),
+                          border: Border.all(color: VytalColors.textSecondary),
                         ),
                         child: SingleChildScrollView(
                           // <-- ВАЖНО: Скролл для длинного текста
@@ -259,7 +259,7 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
                             currentEx.description,
                             textAlign: TextAlign.center,
                             style: const TextStyle(
-                              color: Colors.white70,
+                              color: VytalColors.textSecondary,
                               fontSize: 16,
                               height: 1.5,
                             ),
@@ -295,7 +295,7 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20,
                                 letterSpacing: 2,
-                                fontFamily: 'monospace',
+
                               ),
                             ),
                           ),
@@ -312,12 +312,12 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
 
   Widget _buildFinishScreen() {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: VytalColors.surface,
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
           gradient: RadialGradient(
-            colors: [widget.workout.color.withOpacity(0.3), Colors.black],
+            colors: [widget.workout.color.withValues(alpha: 0.3), VytalColors.textPrimary],
             radius: 1.5,
             center: Alignment.topCenter,
           ),
@@ -336,7 +336,7 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
               "SESSION\nCOMPLETE",
               textAlign: TextAlign.center,
               style: const TextStyle(
-                color: Colors.white,
+                color: VytalColors.textPrimary,
                 fontSize: 40,
                 fontWeight: FontWeight.w900,
                 letterSpacing: 2,
@@ -347,7 +347,7 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.1),
+                color: VytalColors.textPrimary.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(30),
               ),
               child: Row(
@@ -380,7 +380,7 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
                   foregroundColor: widget.workout.color,
                   minimumSize: const Size(double.infinity, 60),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
+                    borderRadius: BorderRadius.circular(24),
                     side: BorderSide(color: widget.workout.color, width: 0.5),
                   ),
                 ),
@@ -390,7 +390,7 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                     letterSpacing: 2,
-                    fontFamily: 'monospace',
+
                   ),
                 ),
               ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart'; // Нужно для "крутилок"
+import 'package:flutter/cupertino.dart'; // Нужно для "dials"
 import 'package:flutter/services.dart'; // Для вибрации
 import '../theme/colors.dart';
 import '../services/storage_service.dart';
@@ -51,7 +51,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     if (mounted) Navigator.pop(context);
   }
 
-  // --- ЛОГИКА ОТКРЫТИЯ "КРУТИЛКИ" ---
+  // --- ЛОГИКА ОТКРЫТИЯ "DIALS" ---
   void _showPicker({
     required String title,
     required int min,
@@ -83,7 +83,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     Text(
                       title,
                       style: const TextStyle(
-                        color: Colors.white54,
+                        color: VytalColors.textSecondary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -94,7 +94,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         style: TextStyle(
                           color: VytalColors.primaryNeon,
                           fontWeight: FontWeight.bold,
-                          fontFamily: 'monospace',
+
                         ),
                       ),
                     ),
@@ -109,7 +109,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         Brightness.dark, // Темная тема для iOS компонентов
                     textTheme: CupertinoTextThemeData(
                       pickerTextStyle: TextStyle(
-                        color: Colors.white,
+                        color: VytalColors.textPrimary,
                         fontSize: 22,
                       ),
                     ),
@@ -131,7 +131,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         child: Text(
                           "${min + index} $suffix",
                           style: const TextStyle(
-                            color: Colors.white,
+                            color: VytalColors.textPrimary,
                             fontSize: 20,
                             fontWeight: FontWeight.w500,
                           ),
@@ -161,12 +161,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             fontWeight: FontWeight.bold,
             fontSize: 16,
             letterSpacing: 2,
-            fontFamily: 'monospace',
+
           ),
         ),
         centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.close, color: Colors.white),
+          icon: const Icon(Icons.close, color: VytalColors.textPrimary),
           onPressed: () => Navigator.pop(context),
         ),
         actions: [
@@ -260,10 +260,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             child: ElevatedButton(
               onPressed: _save,
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black, // Minimalist black
+                backgroundColor: VytalColors.surface, // Minimalist black
                 foregroundColor: VytalColors.primaryNeon,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0),
+                  borderRadius: BorderRadius.circular(24),
                   side: BorderSide(color: VytalColors.primaryNeon, width: 0.5),
                 ), // Sharp edges
                 elevation: 0,
@@ -274,7 +274,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2,
                   fontSize: 16,
-                  fontFamily: 'monospace',
+
                 ),
               ),
             ),
@@ -294,7 +294,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           fontSize: 12,
           fontWeight: FontWeight.bold,
           letterSpacing: 2,
-          fontFamily: 'monospace',
+
         ),
       ),
     );
@@ -306,21 +306,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
       decoration: BoxDecoration(
         color: Colors.transparent, // Minimalist
-        border: Border.all(color: Colors.white12, width: 0.5), // Sharp borders
+        border: Border.all(color: VytalColors.textSecondary, width: 0.5), // Sharp borders
       ),
       child: TextField(
         controller: _nameController,
         style: const TextStyle(
-          color: Colors.white,
+          color: VytalColors.textPrimary,
           fontSize: 18,
           fontWeight: FontWeight.bold,
-          fontFamily: 'monospace',
+
         ),
         decoration: const InputDecoration(
-          label: Text("Name", style: TextStyle(fontFamily: 'monospace')),
-          labelStyle: TextStyle(color: Colors.white38, fontSize: 14),
+          label: Text("Name", style: TextStyle()),
+          labelStyle: TextStyle(color: VytalColors.textSecondary, fontSize: 14),
           border: InputBorder.none,
-          icon: Icon(Icons.person_outline, color: Colors.white54),
+          icon: Icon(Icons.person_outline, color: VytalColors.textSecondary),
         ),
       ),
     );
@@ -340,7 +340,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: Colors.transparent, // Minimalist
-          border: Border.all(color: Colors.white10, width: 0.5),
+          border: Border.all(color: VytalColors.textSecondary, width: 0.5),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -356,7 +356,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     fontSize: 10,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 2,
-                    fontFamily: 'monospace',
+
                   ),
                 ),
               ],
@@ -368,10 +368,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 Text(
                   value,
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: VytalColors.textPrimary,
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    fontFamily: 'monospace',
+
                   ),
                 ),
                 const SizedBox(width: 4),
@@ -383,7 +383,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       color: VytalColors.primaryNeon,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
-                      fontFamily: 'monospace',
+
                     ),
                   ),
                 ),

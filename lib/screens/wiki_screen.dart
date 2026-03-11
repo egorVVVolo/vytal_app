@@ -3,7 +3,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../theme/colors.dart';
 import '../data/wiki_data.dart';
 import '../widgets/glass_container.dart';
-import '../widgets/cyberpunk_grid_background.dart';
 
 class WikiScreen extends StatelessWidget {
   const WikiScreen({super.key});
@@ -25,13 +24,13 @@ class WikiScreen extends StatelessWidget {
             fontWeight: FontWeight.w900,
             letterSpacing: 2,
             fontSize: 16,
-            color: Colors.white,
+            color: VytalColors.textPrimary,
           ),
         ),
         centerTitle: true,
-        leading: const BackButton(color: Colors.white),
+        leading: const BackButton(color: VytalColors.textPrimary),
       ),
-      body: CyberpunkGridBackground(
+      body: Container(
         // Добавил сетку для красоты
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
@@ -45,7 +44,7 @@ class WikiScreen extends StatelessWidget {
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2,
-                  fontFamily: 'monospace',
+
                 ),
               ),
               const SizedBox(height: 20),
@@ -63,14 +62,14 @@ class WikiScreen extends StatelessWidget {
                       color: Colors
                           .transparent, // Minimalist transparent background
                       border: Border.all(
-                        color: WikiData.articles[0].color.withOpacity(0.5),
+                        color: WikiData.articles[0].color.withValues(alpha: 0.5),
                         width: 0.5,
                       ),
                       gradient: LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          WikiData.articles[0].color.withOpacity(0.2),
+                          WikiData.articles[0].color.withValues(alpha: 0.2),
                           Colors.transparent,
                         ],
                       ),
@@ -98,7 +97,7 @@ class WikiScreen extends StatelessWidget {
                               fontSize: 10,
                               fontWeight: FontWeight.bold,
                               decoration: TextDecoration.none,
-                              fontFamily: 'monospace',
+
                               letterSpacing: 1,
                             ),
                           ),
@@ -109,7 +108,7 @@ class WikiScreen extends StatelessWidget {
                           child: Text(
                             WikiData.articles[0].title,
                             style: const TextStyle(
-                              color: Colors.white,
+                              color: VytalColors.textPrimary,
                               fontSize: 28,
                               fontWeight: FontWeight.w900,
                               height: 1.1,
@@ -122,7 +121,7 @@ class WikiScreen extends StatelessWidget {
                           child: Text(
                             WikiData.articles[0].subtitle,
                             style: const TextStyle(
-                              color: Colors.white70,
+                              color: VytalColors.textSecondary,
                               fontSize: 14,
                             ),
                           ),
@@ -141,7 +140,7 @@ class WikiScreen extends StatelessWidget {
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2,
-                  fontFamily: 'monospace',
+
                 ),
               ),
               const SizedBox(height: 16),
@@ -163,9 +162,9 @@ class WikiScreen extends StatelessWidget {
                                 Container(
                                   padding: const EdgeInsets.all(12),
                                   decoration: BoxDecoration(
-                                    color: article.color.withOpacity(0.1),
+                                    color: article.color.withValues(alpha: 0.1),
                                     border: Border.all(
-                                      color: article.color.withOpacity(0.3),
+                                      color: article.color.withValues(alpha: 0.3),
                                       width: 0.5,
                                     ),
                                   ),
@@ -186,7 +185,7 @@ class WikiScreen extends StatelessWidget {
                                           color: article.color,
                                           fontSize: 10,
                                           fontWeight: FontWeight.bold,
-                                          fontFamily: 'monospace',
+
                                           letterSpacing: 1,
                                         ),
                                       ),
@@ -194,7 +193,7 @@ class WikiScreen extends StatelessWidget {
                                       Text(
                                         article.title,
                                         style: const TextStyle(
-                                          color: Colors.white,
+                                          color: VytalColors.textPrimary,
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -202,9 +201,9 @@ class WikiScreen extends StatelessWidget {
                                       Text(
                                         "${article.readTimeMin} min read",
                                         style: const TextStyle(
-                                          color: Colors.white38,
+                                          color: VytalColors.textSecondary,
                                           fontSize: 12,
-                                          fontFamily: 'monospace',
+
                                         ),
                                       ),
                                     ],
@@ -212,7 +211,7 @@ class WikiScreen extends StatelessWidget {
                                 ),
                                 const Icon(
                                   Icons.arrow_forward_ios_rounded,
-                                  color: Colors.white24,
+                                  color: VytalColors.textSecondary,
                                   size: 16,
                                 ),
                               ],
@@ -261,7 +260,7 @@ class _ArticleDetailScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      article.color.withOpacity(0.2),
+                      article.color.withValues(alpha: 0.2),
                       VytalColors.background,
                     ],
                     begin: Alignment.topCenter,
@@ -272,13 +271,13 @@ class _ArticleDetailScreen extends StatelessWidget {
                   child: Icon(
                     article.icon,
                     size: 80,
-                    color: article.color.withOpacity(0.5),
+                    color: article.color.withValues(alpha: 0.5),
                   ),
                 ),
               ),
             ),
             leading: IconButton(
-              icon: const Icon(Icons.arrow_back, color: Colors.white),
+              icon: const Icon(Icons.arrow_back, color: VytalColors.textPrimary),
               onPressed: () => Navigator.pop(context),
             ),
           ),
@@ -292,14 +291,14 @@ class _ArticleDetailScreen extends StatelessWidget {
                     color: article.color,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 2,
-                    fontFamily: 'monospace',
+
                   ),
                 ),
                 const SizedBox(height: 10),
                 Text(
                   article.title,
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: VytalColors.textPrimary,
                     fontSize: 32,
                     fontWeight: FontWeight.w900,
                     height: 1.1,
@@ -313,7 +312,7 @@ class _ArticleDetailScreen extends StatelessWidget {
                   child: Text(
                     article.content,
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: VytalColors.textPrimary,
                       fontSize: 16,
                       height: 1.6,
                     ),
@@ -328,7 +327,7 @@ class _ArticleDetailScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.transparent,
                     border: Border.all(
-                      color: article.color.withOpacity(0.5),
+                      color: article.color.withValues(alpha: 0.5),
                       width: 0.5,
                     ),
                   ),
@@ -340,9 +339,9 @@ class _ArticleDetailScreen extends StatelessWidget {
                         child: Text(
                           "Did you know? This method is used by Olympic athletes for recovery.",
                           style: TextStyle(
-                            color: Colors.white70,
+                            color: VytalColors.textSecondary,
                             fontSize: 12,
-                            fontFamily: 'monospace',
+
                           ),
                         ),
                       ),
@@ -365,7 +364,7 @@ class _ArticleDetailScreen extends StatelessWidget {
                       style: TextStyle(
                         color: article.color,
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'monospace',
+
                         letterSpacing: 2,
                       ),
                     ),

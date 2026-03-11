@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../theme/colors.dart';
 import '../widgets/glass_container.dart';
-import '../widgets/cyberpunk_grid_background.dart';
 import '../services/storage_service.dart'; // <--- Импорт (ОБЯЗАТЕЛЬНО)
 
 class PaywallScreen extends StatelessWidget {
@@ -12,7 +11,7 @@ class PaywallScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: VytalColors.background,
-      body: CyberpunkGridBackground(
+      body: Container(
         child: SafeArea(
           child: Column(
             children: [
@@ -22,7 +21,7 @@ class PaywallScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(right: 16, top: 8),
                   child: IconButton(
-                    icon: const Icon(Icons.close, color: Colors.white54),
+                    icon: const Icon(Icons.close, color: VytalColors.textSecondary),
                     onPressed: () => Navigator.pop(context),
                   ),
                 ),
@@ -58,11 +57,11 @@ class PaywallScreen extends StatelessWidget {
                       const Text(
                         "VYTAL PRO",
                         style: TextStyle(
-                          color: Colors.white,
+                          color: VytalColors.textPrimary,
                           fontSize: 32,
                           fontWeight: FontWeight.w900,
                           letterSpacing: 4,
-                          fontFamily: 'monospace',
+
                         ),
                       ),
                       const Text(
@@ -71,7 +70,7 @@ class PaywallScreen extends StatelessWidget {
                           color: VytalColors.primaryNeon,
                           fontSize: 12,
                           letterSpacing: 8,
-                          fontFamily: 'monospace',
+
                         ),
                       ),
 
@@ -110,11 +109,11 @@ class PaywallScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: VytalColors.background,
                   border: Border(
-                    top: BorderSide(color: Colors.white.withOpacity(0.1)),
+                    top: BorderSide(color: VytalColors.textPrimary.withValues(alpha: 0.1)),
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.5),
+                      color: VytalColors.textPrimary.withValues(alpha: 0.5),
                       blurRadius: 20,
                       offset: const Offset(0, -5),
                     ),
@@ -137,15 +136,15 @@ class PaywallScreen extends StatelessWidget {
                                 style: TextStyle(
                                   color: VytalColors.secondaryNeon,
                                   fontWeight: FontWeight.bold,
-                                  fontFamily: 'monospace',
+
                                 ),
                               ),
                               Text(
                                 "ONE-TIME PAYMENT",
                                 style: TextStyle(
-                                  color: Colors.white54,
+                                  color: VytalColors.textSecondary,
                                   fontSize: 10,
-                                  fontFamily: 'monospace',
+
                                   letterSpacing: 1,
                                 ),
                               ),
@@ -154,7 +153,7 @@ class PaywallScreen extends StatelessWidget {
                           const Text(
                             "\$19.99",
                             style: TextStyle(
-                              color: Colors.white,
+                              color: VytalColors.textPrimary,
                               fontSize: 24,
                               fontWeight: FontWeight.w900,
                             ),
@@ -203,7 +202,7 @@ class PaywallScreen extends StatelessWidget {
                             fontSize: 16,
                             fontWeight: FontWeight.w900,
                             letterSpacing: 2,
-                            fontFamily: 'monospace',
+
                           ),
                         ),
                       ),
@@ -213,10 +212,10 @@ class PaywallScreen extends StatelessWidget {
                     const Text(
                       "Restore purchases",
                       style: TextStyle(
-                        color: Colors.white30,
+                        color: VytalColors.textSecondary,
                         fontSize: 12,
                         decoration: TextDecoration.underline,
-                        fontFamily: 'monospace',
+
                       ),
                     ),
                   ],
@@ -238,9 +237,9 @@ class PaywallScreen extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: Colors.transparent,
-              border: Border.all(color: Colors.white10, width: 0.5),
+              border: Border.all(color: VytalColors.textSecondary, width: 0.5),
             ),
-            child: Icon(icon, color: Colors.white, size: 24),
+            child: Icon(icon, color: VytalColors.textPrimary, size: 24),
           ),
           const SizedBox(width: 16),
           Expanded(
@@ -250,16 +249,16 @@ class PaywallScreen extends StatelessWidget {
                 Text(
                   title,
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: VytalColors.textPrimary,
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
-                    fontFamily: 'monospace',
+
                     letterSpacing: 1,
                   ),
                 ),
                 Text(
                   subtitle,
-                  style: const TextStyle(color: Colors.white54, fontSize: 12),
+                  style: const TextStyle(color: VytalColors.textSecondary, fontSize: 12),
                 ),
               ],
             ),

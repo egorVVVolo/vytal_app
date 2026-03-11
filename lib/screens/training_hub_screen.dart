@@ -40,13 +40,13 @@ class _TrainingHubScreenState extends State<TrainingHubScreen>
         flexibleSpace: ClipRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-            child: Container(color: VytalColors.background.withOpacity(0.5)),
+            child: Container(color: VytalColors.background.withValues(alpha: 0.5)),
           ),
         ),
         title: const Text(
           "KINETIC LAB",
           style: TextStyle(
-            color: Colors.white,
+            color: VytalColors.textPrimary,
             fontWeight: FontWeight.w900,
             letterSpacing: 2,
             fontSize: 18,
@@ -57,7 +57,7 @@ class _TrainingHubScreenState extends State<TrainingHubScreen>
           icon: const Icon(
             Icons.arrow_back_ios_new_rounded,
             size: 20,
-            color: Colors.white,
+            color: VytalColors.textPrimary,
           ),
           onPressed: () => Navigator.pop(context),
         ),
@@ -67,7 +67,7 @@ class _TrainingHubScreenState extends State<TrainingHubScreen>
             margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
             padding: const EdgeInsets.all(4),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.05),
+              color: VytalColors.textPrimary.withValues(alpha: 0.05),
               borderRadius: BorderRadius.circular(25),
             ),
             child: TabBar(
@@ -77,18 +77,18 @@ class _TrainingHubScreenState extends State<TrainingHubScreen>
                 borderRadius: BorderRadius.circular(25),
                 boxShadow: [
                   BoxShadow(
-                    color: VytalColors.primaryNeon.withOpacity(0.5),
+                    color: VytalColors.primaryNeon.withValues(alpha: 0.5),
                     blurRadius: 10,
                   ),
                 ],
               ),
-              labelColor: Colors.black,
-              unselectedLabelColor: Colors.white54,
+              labelColor: VytalColors.textPrimary,
+              unselectedLabelColor: VytalColors.textSecondary,
               labelStyle: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 10,
                 letterSpacing: 2,
-                fontFamily: 'monospace',
+
               ),
               tabs: const [
                 Tab(text: "FOUNDATION"),
@@ -150,7 +150,7 @@ class _TrainingHubScreenState extends State<TrainingHubScreen>
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [color.withOpacity(0.3), VytalColors.background],
+                colors: [color.withValues(alpha: 0.3), VytalColors.background],
               ),
             ),
             child: SafeArea(
@@ -173,11 +173,11 @@ class _TrainingHubScreenState extends State<TrainingHubScreen>
                           Text(
                             title,
                             style: const TextStyle(
-                              color: Colors.white,
+                              color: VytalColors.textPrimary,
                               fontWeight: FontWeight.w900,
                               fontSize: 24,
                               letterSpacing: 1,
-                              fontFamily: 'monospace',
+
                               height: 1.1,
                             ),
                           ),
@@ -185,10 +185,10 @@ class _TrainingHubScreenState extends State<TrainingHubScreen>
                           Text(
                             subtitle,
                             style: const TextStyle(
-                              color: Colors.white70,
+                              color: VytalColors.textSecondary,
                               fontSize: 14,
                               height: 1.5,
-                              fontFamily: 'monospace',
+
                             ),
                           ),
                         ],
@@ -196,7 +196,7 @@ class _TrainingHubScreenState extends State<TrainingHubScreen>
                     ),
                     const SizedBox(width: 10),
                     // Иконка справа
-                    Icon(icon, size: 70, color: color.withOpacity(0.8))
+                    Icon(icon, size: 70, color: color.withValues(alpha: 0.8))
                         .animate(onPlay: (c) => c.repeat(reverse: true))
                         .scale(
                           begin: const Offset(1, 1),
@@ -260,7 +260,7 @@ class _LevelChainList extends StatelessWidget {
                           color: color,
                           fontWeight: FontWeight.bold,
                           fontSize: 24,
-                          fontFamily: 'monospace',
+
                         ),
                       ),
                     ),
@@ -272,7 +272,7 @@ class _LevelChainList extends StatelessWidget {
 
                   if (!isLast)
                     Expanded(
-                      child: Container(width: 2, color: color.withOpacity(0.3)),
+                      child: Container(width: 2, color: color.withValues(alpha: 0.3)),
                     ),
                 ],
               ),
@@ -293,26 +293,26 @@ class _LevelChainList extends StatelessWidget {
                                 fontSize: 10,
                                 fontWeight: FontWeight.bold,
                                 letterSpacing: 2,
-                                fontFamily: 'monospace',
+
                               ),
                             ),
                             const SizedBox(height: 4),
                             Text(
                               workout.title,
                               style: const TextStyle(
-                                color: Colors.white,
+                                color: VytalColors.textPrimary,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
-                                fontFamily: 'monospace',
+
                               ),
                             ),
                             const SizedBox(height: 4),
                             Text(
                               workout.totalDurationEst,
                               style: const TextStyle(
-                                color: Colors.white38,
+                                color: VytalColors.textSecondary,
                                 fontSize: 12,
-                                fontFamily: 'monospace',
+
                               ),
                             ),
                             const SizedBox(height: 40),
@@ -344,7 +344,7 @@ class _LevelChainList extends StatelessWidget {
             color: VytalColors.background,
             borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
             border: Border(
-              top: BorderSide(color: workout.color.withOpacity(0.5), width: 2),
+              top: BorderSide(color: workout.color.withValues(alpha: 0.5), width: 2),
             ),
           ),
           child: Column(
@@ -355,8 +355,8 @@ class _LevelChainList extends StatelessWidget {
                   width: 40,
                   height: 4,
                   decoration: BoxDecoration(
-                    color: Colors.white24,
-                    borderRadius: BorderRadius.circular(2),
+                    color: VytalColors.textSecondary,
+                    borderRadius: BorderRadius.circular(24),
                   ),
                 ),
               ),
@@ -380,16 +380,16 @@ class _LevelChainList extends StatelessWidget {
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
                               letterSpacing: 2,
-                              fontFamily: 'monospace',
+
                             ),
                           ),
                           Text(
                             workout.title,
                             style: const TextStyle(
-                              color: Colors.white,
+                              color: VytalColors.textPrimary,
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
-                              fontFamily: 'monospace',
+
                             ),
                           ),
                         ],
@@ -411,7 +411,7 @@ class _LevelChainList extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 16),
                       child: GlassContainer(
                         padding: const EdgeInsets.all(16),
-                        color: Colors.white.withOpacity(0.02),
+                        color: VytalColors.textPrimary.withValues(alpha: 0.02),
                         child: Row(
                           children: [
                             Text(
@@ -430,17 +430,17 @@ class _LevelChainList extends StatelessWidget {
                                   Text(
                                     ex.title,
                                     style: const TextStyle(
-                                      color: Colors.white,
+                                      color: VytalColors.textPrimary,
                                       fontWeight: FontWeight.bold,
-                                      fontFamily: 'monospace',
+
                                     ),
                                   ),
                                   Text(
                                     ex.subtitle,
                                     style: const TextStyle(
-                                      color: Colors.white54,
+                                      color: VytalColors.textSecondary,
                                       fontSize: 12,
-                                      fontFamily: 'monospace',
+
                                     ),
                                   ),
                                 ],
@@ -450,7 +450,7 @@ class _LevelChainList extends StatelessWidget {
                               ex.type == ExerciseType.timer
                                   ? Icons.timer_outlined
                                   : Icons.repeat_rounded,
-                              color: Colors.white24,
+                              color: VytalColors.textSecondary,
                               size: 16,
                             ),
                           ],
@@ -488,7 +488,7 @@ class _LevelChainList extends StatelessWidget {
                         backgroundColor: Colors.transparent, // Minimalist
                         foregroundColor: workout.color,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(0),
+                          borderRadius: BorderRadius.circular(24),
                           side: BorderSide(color: workout.color, width: 0.5),
                         ),
                         elevation: 0,
@@ -500,7 +500,7 @@ class _LevelChainList extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                           letterSpacing: 2,
-                          fontFamily: 'monospace',
+
                         ),
                       ),
                     ),
