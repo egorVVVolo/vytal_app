@@ -176,6 +176,29 @@ class _PlanScreenState extends State<PlanScreen> {
       return h.copyWith(isCompleted: _completedIdsForDate.contains(h.id));
     }).toList();
 
+    // Group habits by type in a single pass
+    final vitaminHabits = <Habit>[];
+    final activityHabits = <Habit>[];
+    final mentalHabits = <Habit>[];
+    final sleepHabits = <Habit>[];
+
+    for (final habit in visibleHabits) {
+      switch (habit.type) {
+        case HabitType.vitamin:
+          vitaminHabits.add(habit);
+          break;
+        case HabitType.activity:
+          activityHabits.add(habit);
+          break;
+        case HabitType.mental:
+          mentalHabits.add(habit);
+          break;
+        case HabitType.sleep:
+          sleepHabits.add(habit);
+          break;
+      }
+    }
+
     return Scaffold(
       backgroundColor: VytalColors.background,
       body: SafeArea(
@@ -202,27 +225,19 @@ class _PlanScreenState extends State<PlanScreen> {
                       children: [
                         _buildTimeSection(
                           "PROTOCOLS",
-                          visibleHabits
-                              .where((h) => h.type == HabitType.vitamin)
-                              .toList(),
+                          vitaminHabits,
                         ),
                         _buildTimeSection(
                           "ACTIVITY",
-                          visibleHabits
-                              .where((h) => h.type == HabitType.activity)
-                              .toList(),
+                          activityHabits,
                         ),
                         _buildTimeSection(
                           "MENTAL",
-                          visibleHabits
-                              .where((h) => h.type == HabitType.mental)
-                              .toList(),
+                          mentalHabits,
                         ),
                         _buildTimeSection(
                           "SLEEP & ROUTINE",
-                          visibleHabits
-                              .where((h) => h.type == HabitType.sleep)
-                              .toList(),
+                          sleepHabits,
                         ),
                         const SizedBox(height: 80),
                       ],
