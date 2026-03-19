@@ -42,13 +42,13 @@ class PaywallScreen extends StatelessWidget {
                           color: Colors.transparent, // Minimalist background
                           shape: BoxShape.circle,
                           border: Border.all(
-                            color: VytalColors.primaryNeon,
+                            color: VytalColors.primaryAccent,
                             width: 0.5,
                           ), // Sharp/thin border
                         ),
                         child: const Icon(
                           Icons.diamond_outlined,
-                          color: VytalColors.primaryNeon,
+                          color: VytalColors.primaryAccent,
                           size: 40,
                         ),
                       ),
@@ -67,7 +67,7 @@ class PaywallScreen extends StatelessWidget {
                       const Text(
                         "SYSTEM OVERRIDE",
                         style: TextStyle(
-                          color: VytalColors.primaryNeon,
+                          color: VytalColors.primaryAccent,
                           fontSize: 12,
                           letterSpacing: 8,
 
@@ -124,7 +124,7 @@ class PaywallScreen extends StatelessWidget {
                     // Цена
                     GlassContainer(
                       padding: const EdgeInsets.all(16),
-                      border: Border.all(color: VytalColors.secondaryNeon),
+                      border: Border.all(color: VytalColors.secondaryAccent),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -134,7 +134,7 @@ class PaywallScreen extends StatelessWidget {
                               Text(
                                 "LIFETIME ACCESS",
                                 style: TextStyle(
-                                  color: VytalColors.secondaryNeon,
+                                  color: VytalColors.secondaryAccent,
                                   fontWeight: FontWeight.bold,
 
                                 ),
@@ -176,7 +176,7 @@ class PaywallScreen extends StatelessWidget {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text("VYTAL PRO Активирован 🧬"),
-                              backgroundColor: VytalColors.secondaryNeon,
+                              backgroundColor: VytalColors.secondaryAccent,
                             ),
                           );
                           // 2. Закрываем экран (возвращаемся в историю, которая теперь обновится)
@@ -191,14 +191,14 @@ class PaywallScreen extends StatelessWidget {
                           color:
                               Colors.transparent, // Minimalist transparent bg
                           border: Border.all(
-                            color: VytalColors.primaryNeon,
+                            color: VytalColors.primaryAccent,
                             width: 0.5,
                           ),
                         ),
                         child: const Text(
                           "ACTIVATE PRO",
                           style: TextStyle(
-                            color: VytalColors.primaryNeon,
+                            color: VytalColors.primaryAccent,
                             fontSize: 16,
                             fontWeight: FontWeight.w900,
                             letterSpacing: 2,

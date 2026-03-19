@@ -123,7 +123,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
                       height: 300,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: VytalColors.primaryNeon.withValues(alpha: 0.08),
+                        color: VytalColors.primaryAccent.withValues(alpha: 0.08),
                       ),
                     )
                     .animate(onPlay: (c) => c.repeat(reverse: true))
@@ -242,12 +242,12 @@ class _OnboardingV2State extends State<OnboardingV2> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: VytalColors.primaryNeon.withValues(alpha: 0.3),
+                          color: VytalColors.primaryAccent.withValues(alpha: 0.3),
                           width: 1,
                         ),
                         gradient: LinearGradient(
                           colors: [
-                            VytalColors.primaryNeon.withValues(alpha: 0.1),
+                            VytalColors.surface,
                             Colors.transparent,
                           ],
                           begin: Alignment.topLeft,
@@ -257,7 +257,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
                       child: Icon(
                         data.icon,
                         size: 50,
-                        color: VytalColors.primaryNeon,
+                        color: VytalColors.primaryAccent,
                       ),
                     )
                     .animate(onPlay: (c) => c.repeat(reverse: true))
@@ -280,7 +280,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
             child: Text(
               data.tag,
               style: const TextStyle(
-                color: VytalColors.primaryNeon,
+                color: VytalColors.primaryAccent,
                 fontSize: 10,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 2,
@@ -296,7 +296,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
             style: const TextStyle(
               color: VytalColors.textPrimary,
               fontSize: 32,
-              fontWeight: FontWeight.w900,
+              fontWeight: FontWeight.w600,
               letterSpacing: 1.0,
               height: 1.1,
 
@@ -337,7 +337,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
                   margin: const EdgeInsets.only(right: 6),
                   decoration: BoxDecoration(
                     color: index <= _dataStepIndex
-                        ? VytalColors.primaryNeon
+                        ? VytalColors.primaryAccent
                         : VytalColors.textSecondary,
                     borderRadius: BorderRadius.circular(24),
                   ),
@@ -473,28 +473,21 @@ class _OnboardingV2State extends State<OnboardingV2> {
           duration: const Duration(milliseconds: 200),
           decoration: BoxDecoration(
             color: isSel
-                ? VytalColors.primaryNeon.withValues(alpha: 0.1)
+                ? VytalColors.surface
                 : VytalColors.surface,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: isSel ? VytalColors.primaryNeon : VytalColors.textSecondary,
+              color: isSel ? VytalColors.primaryAccent : VytalColors.textSecondary.withValues(alpha: 0.2),
               width: 2,
             ),
-            boxShadow: isSel
-                ? [
-                    BoxShadow(
-                      color: VytalColors.primaryNeon.withValues(alpha: 0.2),
-                      blurRadius: 20,
-                    ),
-                  ]
-                : [],
+            boxShadow: const [],
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
                 icon,
-                color: isSel ? VytalColors.primaryNeon : VytalColors.textSecondary,
+                color: isSel ? VytalColors.primaryAccent : VytalColors.textSecondary,
                 size: 60,
               ),
               const SizedBox(height: 20),
@@ -516,13 +509,13 @@ class _OnboardingV2State extends State<OnboardingV2> {
 
   Widget _stepAge() {
     String growthPlateStatus = "GROWTH PLATES: OPEN";
-    Color statusColor = VytalColors.secondaryNeon;
+    Color statusColor = VytalColors.secondaryAccent;
     if (_age >= 18 && _age < 22) {
       growthPlateStatus = "GROWTH PLATES: CLOSING";
       statusColor = Colors.orange;
     } else if (_age >= 22) {
       growthPlateStatus = "POSTURE CORRECTION PHASE";
-      statusColor = VytalColors.primaryNeon;
+      statusColor = VytalColors.primaryAccent;
     }
 
     return Column(
@@ -672,7 +665,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
         Center(
           child: Icon(
             Icons.group_work_rounded,
-            color: VytalColors.primaryNeon.withValues(alpha: 0.5),
+            color: VytalColors.primaryAccent.withValues(alpha: 0.5),
             size: 40,
           ),
         ),
@@ -720,7 +713,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
         Text(
           title,
           style: const TextStyle(
-            color: VytalColors.primaryNeon,
+            color: VytalColors.primaryAccent,
             fontSize: 12,
             fontWeight: FontWeight.bold,
             letterSpacing: 2,
@@ -738,7 +731,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
                 decoration: BoxDecoration(
                   border: Border.symmetric(
                     horizontal: BorderSide(
-                      color: VytalColors.primaryNeon.withValues(alpha: 0.3),
+                      color: VytalColors.primaryAccent.withValues(alpha: 0.3),
                     ),
                   ),
                 ),
@@ -790,7 +783,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
         Text(
           kicker,
           style: const TextStyle(
-            color: VytalColors.primaryNeon,
+            color: VytalColors.primaryAccent,
             fontSize: 12,
             letterSpacing: 2,
             fontWeight: FontWeight.bold,
@@ -803,7 +796,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
           style: const TextStyle(
             color: VytalColors.textPrimary,
             fontSize: 32,
-            fontWeight: FontWeight.w900,
+            fontWeight: FontWeight.w600,
             height: 1.1,
 
           ),
@@ -826,7 +819,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
                 height: 100,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
-                  color: VytalColors.primaryNeon.withValues(alpha: 0.3),
+                  color: VytalColors.primaryAccent.withValues(alpha: 0.3),
                 ),
               ),
               const SizedBox(
@@ -834,7 +827,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
                 height: 80,
                 child: CircularProgressIndicator(
                   strokeWidth: 4,
-                  color: VytalColors.primaryNeon,
+                  color: VytalColors.primaryAccent,
                 ),
               ),
               const Icon(Icons.fingerprint, size: 40, color: VytalColors.textPrimary),
@@ -867,7 +860,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
               child: const Text(
                 "CALCULATION COMPLETE",
                 style: TextStyle(
-                  color: VytalColors.secondaryNeon,
+                  color: VytalColors.secondaryAccent,
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1,
@@ -899,7 +892,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
                   style: const TextStyle(
                     color: VytalColors.textPrimary,
                     fontSize: 72,
-                    fontWeight: FontWeight.w900,
+                    fontWeight: FontWeight.w600,
                     height: 0.9,
 
                   ),
@@ -909,7 +902,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
                   child: Text(
                     "CM",
                     style: TextStyle(
-                      color: VytalColors.primaryNeon,
+                      color: VytalColors.primaryAccent,
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
 
@@ -925,15 +918,10 @@ class _OnboardingV2State extends State<OnboardingV2> {
               height: 220,
               padding: const EdgeInsets.only(top: 20, right: 20),
               decoration: BoxDecoration(
-                color: VytalColors.textPrimary,
+                color: VytalColors.surface,
                 borderRadius: BorderRadius.circular(24),
-                border: Border.all(color: VytalColors.textPrimary.withValues(alpha: 0.05)),
-                boxShadow: [
-                  BoxShadow(
-                    color: VytalColors.textPrimary.withValues(alpha: 0.5),
-                    blurRadius: 20,
-                  ),
-                ],
+                border: Border.all(color: VytalColors.textSecondary.withValues(alpha: 0.1)),
+                boxShadow: const [],
               ),
               child: Stack(
                 children: [
@@ -943,7 +931,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
                         show: true,
                         drawVerticalLine: false,
                         getDrawingHorizontalLine: (v) =>
-                            FlLine(color: VytalColors.textPrimary.withValues(alpha: 0.05)),
+                            FlLine(color: VytalColors.textSecondary.withValues(alpha: 0.1)),
                       ),
                       titlesData: const FlTitlesData(show: false),
                       borderData: FlBorderData(show: false),
@@ -956,14 +944,14 @@ class _OnboardingV2State extends State<OnboardingV2> {
                             FlSpot(10, improvement),
                           ],
                           isCurved: true,
-                          color: VytalColors.primaryNeon,
+                          color: VytalColors.primaryAccent,
                           barWidth: 4,
                           dotData: const FlDotData(show: false),
                           belowBarData: BarAreaData(
                             show: true,
                             gradient: LinearGradient(
                               colors: [
-                                VytalColors.primaryNeon.withValues(alpha: 0.3),
+                                VytalColors.primaryAccent.withValues(alpha: 0.1),
                                 Colors.transparent,
                               ],
                               begin: Alignment.topCenter,
@@ -997,7 +985,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 border: Border(
-                  left: BorderSide(color: VytalColors.primaryNeon, width: 4),
+                  left: BorderSide(color: VytalColors.primaryAccent, width: 4),
                 ),
                 color: VytalColors.textPrimary.withValues(alpha: 0.02),
               ),
@@ -1007,7 +995,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
                   Text(
                     "AI PROJECTION:",
                     style: TextStyle(
-                      color: VytalColors.primaryNeon,
+                      color: VytalColors.primaryAccent,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1.5,
                       fontSize: 12,
@@ -1084,21 +1072,15 @@ class _OnboardingV2State extends State<OnboardingV2> {
                   height: 60,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: VytalColors.primaryNeon,
+                    color: VytalColors.primaryAccent,
                     borderRadius: BorderRadius.circular(24),
-                    boxShadow: [
-                      BoxShadow(
-                        color: VytalColors.primaryNeon.withValues(alpha: 0.4),
-                        blurRadius: 20,
-                        offset: const Offset(0, 5),
-                      ),
-                    ],
+                    boxShadow: const [],
                   ),
                   child: Text(
                     label,
                     style: const TextStyle(
-                      color: VytalColors.textPrimary,
-                      fontWeight: FontWeight.w900,
+                      color: VytalColors.surface,
+                      fontWeight: FontWeight.w600,
                       fontSize: 16,
                       letterSpacing: 2,
 
@@ -1155,7 +1137,7 @@ class _AnimatedPhrasesState extends State<_AnimatedPhrases> {
         _phrases[_index],
         key: ValueKey(_index),
         style: const TextStyle(
-          color: VytalColors.primaryNeon,
+          color: VytalColors.primaryAccent,
           letterSpacing: 2,
           fontWeight: FontWeight.bold,
           fontSize: 12,

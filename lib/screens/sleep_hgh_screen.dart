@@ -90,7 +90,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
               child: const Text(
                 'DONE',
                 style: TextStyle(
-                  color: VytalColors.primaryNeon,
+                  color: VytalColors.primaryAccent,
 
                   fontWeight: FontWeight.bold,
                 ),
@@ -136,7 +136,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
             "SYSTEM ACTIVATED. Notifications set.",
             style: TextStyle(),
           ),
-          backgroundColor: VytalColors.secondaryNeon,
+          backgroundColor: VytalColors.secondaryAccent,
         ),
       );
     }
@@ -210,7 +210,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                           ),
                           const Icon(
                             Icons.edit,
-                            color: VytalColors.primaryNeon,
+                            color: VytalColors.primaryAccent,
                           ),
                         ],
                       ),
@@ -249,7 +249,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                     title: "SLEEP (MAXIMUM)",
                     desc: "9 hours (6 cycles). HGH peak.",
                     icon: Icons.bedtime,
-                    color: VytalColors.primaryNeon,
+                    color: VytalColors.primaryAccent,
                     isHighlight: true,
                   ),
 
@@ -272,7 +272,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                     decoration: BoxDecoration(
                       color: Colors.transparent, // Minimalist
                       border: Border.all(
-                        color: VytalColors.primaryNeon.withValues(alpha: 0.5),
+                        color: VytalColors.primaryAccent.withValues(alpha: 0.5),
                         width: 0.5,
                       ), // Sharp thin borders
                     ),
@@ -280,7 +280,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                       children: [
                         Icon(
                           Icons.info_outline,
-                          color: VytalColors.primaryNeon,
+                          color: VytalColors.primaryAccent,
                         ),
                         SizedBox(width: 12),
                         Expanded(
@@ -325,8 +325,8 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                       : Colors.transparent, // Sharp and minimal
                   border: Border.all(
                     color: _notificationsEnabled
-                        ? VytalColors.secondaryNeon
-                        : VytalColors.primaryNeon,
+                        ? VytalColors.secondaryAccent
+                        : VytalColors.primaryAccent,
                     width: 0.5,
                   ),
                 ),
@@ -338,8 +338,8 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                           ? Icons.check
                           : Icons.power_settings_new,
                       color: _notificationsEnabled
-                          ? VytalColors.secondaryNeon
-                          : VytalColors.primaryNeon,
+                          ? VytalColors.secondaryAccent
+                          : VytalColors.primaryAccent,
                     ),
                     const SizedBox(width: 10),
                     Text(
@@ -348,8 +348,8 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                           : "ACTIVATE PROTOCOL",
                       style: TextStyle(
                         color: _notificationsEnabled
-                            ? VytalColors.secondaryNeon
-                            : VytalColors.primaryNeon,
+                            ? VytalColors.secondaryAccent
+                            : VytalColors.primaryAccent,
                         fontWeight: FontWeight.w900,
                         fontSize: 16,
                         letterSpacing: 2,

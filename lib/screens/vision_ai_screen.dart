@@ -103,7 +103,7 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
     if (isVisible) {
       _stableFrames++;
       _statusMessage = "HOLD STILL...";
-      _statusColor = VytalColors.primaryNeon;
+      _statusColor = VytalColors.primaryAccent;
 
       // If standing still for 30 frames (about ~1 sec)
       if (_stableFrames > 30 && !_isCapturing) {
@@ -112,7 +112,7 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
     } else {
       _stableFrames = 0;
       _statusMessage = "STEP BACK";
-      _statusColor = VytalColors.warningNeon;
+      _statusColor = VytalColors.warningAccent;
     }
   }
 
@@ -139,7 +139,7 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24), // Sharp corners
             side: BorderSide(
-              color: VytalColors.primaryNeon,
+              color: VytalColors.primaryAccent,
               width: 0.5,
             ), // Minimalist border
           ),
@@ -157,7 +157,7 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
             children: [
               const Icon(
                 Icons.check_circle,
-                color: VytalColors.primaryNeon,
+                color: VytalColors.primaryAccent,
                 size: 60,
               ),
               const SizedBox(height: 20),
@@ -179,7 +179,7 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
               child: const Text(
                 "ACKNOWLEDGE",
                 style: TextStyle(
-                  color: VytalColors.primaryNeon,
+                  color: VytalColors.primaryAccent,
 
                   fontWeight: FontWeight.bold,
                 ),
@@ -244,7 +244,7 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
       return const Scaffold(
         backgroundColor: VytalColors.surface,
         body: Center(
-          child: CircularProgressIndicator(color: VytalColors.primaryNeon),
+          child: CircularProgressIndicator(color: VytalColors.primaryAccent),
         ),
       );
     }
@@ -298,7 +298,7 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
                             0,
                           ), // Sharp corners
                           border: Border.all(
-                            color: VytalColors.primaryNeon,
+                            color: VytalColors.primaryAccent,
                             width: 0.5,
                           ),
                         ),
@@ -306,7 +306,7 @@ class _VisionAiScreenState extends State<VisionAiScreen> {
                           children: [
                             Icon(
                               Icons.circle,
-                              color: VytalColors.warningNeon,
+                              color: VytalColors.warningAccent,
                               size: 10,
                             ),
                             SizedBox(width: 8),

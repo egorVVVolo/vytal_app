@@ -130,14 +130,14 @@ class _AppBootstrapState extends State<AppBootstrap> {
                 children: [
                   const Icon(
                     Icons.error_outline,
-                    color: VytalColors.warningNeon,
+                    color: VytalColors.warningAccent,
                     size: 50,
                   ),
                   const SizedBox(height: 20),
                   const Text(
                     "SYSTEM COMPROMISED",
                     style: TextStyle(
-                      color: VytalColors.warningNeon,
+                      color: VytalColors.warningAccent,
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                       letterSpacing: 2,
@@ -172,16 +172,16 @@ class _AppBootstrapState extends State<AppBootstrap> {
                 const Icon(
                   Icons.fingerprint,
                   size: 80,
-                  color: VytalColors.primaryNeon,
+                  color: VytalColors.primaryAccent,
                 ),
                 const SizedBox(height: 20),
-                const CircularProgressIndicator(color: VytalColors.primaryNeon),
+                const CircularProgressIndicator(color: VytalColors.primaryAccent),
                 const SizedBox(height: 20),
                 Text(
                   "VYTAL SYSTEM\nINITIALIZING...",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: VytalColors.primaryNeon.withValues(alpha: 0.5),
+                    color: VytalColors.primaryAccent.withValues(alpha: 0.5),
 
                     letterSpacing: 2,
                   ),
@@ -224,10 +224,10 @@ class VytalApp extends StatelessWidget {
         fontFamily: 'Roboto',
         useMaterial3: true,
         colorScheme: ColorScheme.light(
-          primary: VytalColors.primaryNeon,
-          secondary: VytalColors.secondaryNeon,
+          primary: VytalColors.primaryAccent,
+          secondary: VytalColors.secondaryAccent,
           surface: VytalColors.surface,
-          error: VytalColors.warningNeon,
+          error: VytalColors.warningAccent,
         ),
       ),
       home: isFirstRun

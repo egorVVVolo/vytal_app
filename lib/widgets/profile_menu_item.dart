@@ -30,20 +30,20 @@ class ProfileMenuItem extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             color: isDestructive
-                ? VytalColors.warningNeon.withValues(alpha: 0.1)
-                : VytalColors.primaryNeon.withValues(alpha: 0.1),
+                ? VytalColors.warningAccent.withValues(alpha: 0.1)
+                : VytalColors.primaryAccent.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(24),
           ),
           child: Icon(
             icon,
-            color: isDestructive ? VytalColors.warningNeon : VytalColors.primaryNeon,
+            color: isDestructive ? VytalColors.warningAccent : VytalColors.primaryAccent,
             size: 20,
           ),
         ),
         title: Text(
           title,
           style: TextStyle(
-            color: isDestructive ? VytalColors.warningNeon : VytalColors.textPrimary,
+            color: isDestructive ? VytalColors.warningAccent : VytalColors.textPrimary,
             fontWeight: FontWeight.w500,
           ),
         ),

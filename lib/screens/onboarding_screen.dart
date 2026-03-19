@@ -63,7 +63,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           // Фоновые эффекты
           Positioned(
             top: -100, left: -50,
-            child: _buildGlowOrb(VytalColors.primaryNeon),
+            child: _buildGlowOrb(VytalColors.primaryAccent),
           ),
           Positioned(
             bottom: -100, right: -50,
@@ -132,7 +132,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Spacer(),
-        const Text("Identification", style: TextStyle(color: VytalColors.primaryNeon, letterSpacing: 2, fontWeight: FontWeight.bold)),
+        const Text("Identification", style: TextStyle(color: VytalColors.primaryAccent, letterSpacing: 2, fontWeight: FontWeight.bold)),
         const SizedBox(height: 16),
         const Text("How should we address you?", style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: VytalColors.textPrimary, height: 1.2)),
         const SizedBox(height: 40),
@@ -144,7 +144,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             hintText: "Enter name...",
             hintStyle: TextStyle(color: VytalColors.textPrimary.withValues(alpha: 0.3)),
             enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: VytalColors.textSecondary)),
-            focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: VytalColors.primaryNeon)),
+            focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: VytalColors.primaryAccent)),
           ),
           // При нажатии Enter на клавиатуре тоже переходим дальше
           onSubmitted: (_) {
@@ -170,7 +170,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Spacer(),
-            const Text("Priorities", style: TextStyle(color: VytalColors.primaryNeon, letterSpacing: 2, fontWeight: FontWeight.bold)),
+            const Text("Priorities", style: TextStyle(color: VytalColors.primaryAccent, letterSpacing: 2, fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
             const Text("Choose your focus for the next month", style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: VytalColors.textPrimary)),
             const SizedBox(height: 40),
@@ -189,7 +189,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     });
                   },
                   backgroundColor: VytalColors.surface,
-                  selectedColor: VytalColors.primaryNeon,
+                  selectedColor: VytalColors.primaryAccent,
                   labelStyle: TextStyle(color: isSelected ? VytalColors.textPrimary : VytalColors.textPrimary, fontWeight: FontWeight.bold),
                   checkmarkColor: VytalColors.textPrimary,
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
@@ -226,7 +226,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       child: ElevatedButton(
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
-          backgroundColor: VytalColors.primaryNeon,
+          backgroundColor: VytalColors.primaryAccent,
           foregroundColor: VytalColors.textPrimary,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           elevation: 0,

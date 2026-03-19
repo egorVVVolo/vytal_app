@@ -110,9 +110,10 @@ class _ScanSimulationScreenState extends State<ScanSimulationScreen>
                 child: Container(
                   height: 1, // Thinner line for minimalism
                   decoration: BoxDecoration(
-                    color: VytalColors.primaryNeon,
+                    color: VytalColors.primaryAccent,
                     boxShadow: [
                       BoxShadow(
+                        color: VytalColors.primaryAccent.withOpacity(0.5),
                         color: VytalColors.primaryNeon.withValues(alpha: 0.5),
                         blurRadius: 4,
                         spreadRadius: 1,
@@ -171,7 +172,7 @@ class _ScanSimulationScreenState extends State<ScanSimulationScreen>
                 Text(
                   _statusText.toUpperCase(),
                   style: const TextStyle(
-                    color: VytalColors.primaryNeon,
+                    color: VytalColors.primaryAccent,
 
                     letterSpacing: 2,
                     fontSize: 12,
@@ -181,7 +182,7 @@ class _ScanSimulationScreenState extends State<ScanSimulationScreen>
                 LinearProgressIndicator(
                   value: _progress,
                   backgroundColor: VytalColors.textSecondary,
-                  color: VytalColors.primaryNeon,
+                  color: VytalColors.primaryAccent,
                   minHeight: 2, // Thinner progress bar
                 ),
               ],
@@ -197,11 +198,15 @@ class _ScanSimulationScreenState extends State<ScanSimulationScreen>
 class _GridPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = VytalColors.primaryAccent.withOpacity(0.2)
+      ..strokeWidth = 1;
+
     // Draw corners
     final double cornerSize = 40;
     final double stroke = 1; // Thinner border for minimalism
     final cornerPaint = Paint()
-      ..color = VytalColors.primaryNeon
+      ..color = VytalColors.primaryAccent
       ..strokeWidth = stroke
       ..style = PaintingStyle.stroke;
 
@@ -257,14 +262,14 @@ class _ScanResultSheet extends StatelessWidget {
           top: Radius.circular(0),
         ), // sharp corners
         border: Border(
-          top: BorderSide(color: VytalColors.primaryNeon, width: 1),
+          top: BorderSide(color: VytalColors.primaryAccent, width: 1),
         ),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Icon(Icons.check, color: VytalColors.primaryNeon, size: 40),
+          const Icon(Icons.check, color: VytalColors.primaryAccent, size: 40),
           const SizedBox(height: 20),
           const Text(
             "ANALYSIS COMPLETE",
@@ -292,9 +297,9 @@ class _ScanResultSheet extends StatelessWidget {
               onPressed: () => Navigator.pop(context),
               style: ElevatedButton.styleFrom(
                 backgroundColor: VytalColors.background,
-                foregroundColor: VytalColors.primaryNeon,
+                foregroundColor: VytalColors.primaryAccent,
                 side: const BorderSide(
-                  color: VytalColors.primaryNeon,
+                  color: VytalColors.primaryAccent,
                   width: 1,
                 ),
                 shape: RoundedRectangleBorder(

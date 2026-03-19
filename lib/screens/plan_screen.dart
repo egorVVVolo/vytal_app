@@ -147,7 +147,7 @@ class _PlanScreenState extends State<PlanScreen> {
                 ),
               ],
             ),
-            backgroundColor: VytalColors.primaryNeon,
+            backgroundColor: VytalColors.primaryAccent,
             duration: Duration(milliseconds: 600),
             behavior: SnackBarBehavior.floating,
           ),
@@ -215,7 +215,7 @@ class _PlanScreenState extends State<PlanScreen> {
               child: _isLoading
                   ? const Center(
                       child: CircularProgressIndicator(
-                        color: VytalColors.primaryNeon,
+                        color: VytalColors.primaryAccent,
                       ),
                     )
                   : visibleHabits.isEmpty
@@ -224,6 +224,28 @@ class _PlanScreenState extends State<PlanScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                       children: [
                         _buildTimeSection(
+                          "Protocols",
+                          visibleHabits
+                              .where((h) => h.type == HabitType.vitamin)
+                              .toList(),
+                        ),
+                        _buildTimeSection(
+                          "Activity",
+                          visibleHabits
+                              .where((h) => h.type == HabitType.activity)
+                              .toList(),
+                        ),
+                        _buildTimeSection(
+                          "Mental",
+                          visibleHabits
+                              .where((h) => h.type == HabitType.mental)
+                              .toList(),
+                        ),
+                        _buildTimeSection(
+                          "Sleep & Routine",
+                          visibleHabits
+                              .where((h) => h.type == HabitType.sleep)
+                              .toList(),
                           "PROTOCOLS",
                           vitaminHabits,
                         ),
@@ -256,9 +278,9 @@ class _PlanScreenState extends State<PlanScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Text(
-            "SCHEDULE",
+            "Schedule",
             style: TextStyle(
-              color: VytalColors.primaryNeon,
+              color: VytalColors.primaryAccent,
               fontSize: 24,
               fontWeight: FontWeight.bold,
               letterSpacing: 2,
@@ -276,7 +298,7 @@ class _PlanScreenState extends State<PlanScreen> {
               _headerBtn(
                 Icons.add,
                 _openAddHabitSheet,
-                VytalColors.primaryNeon,
+                VytalColors.primaryAccent,
               ),
             ],
           ),
@@ -294,10 +316,8 @@ class _PlanScreenState extends State<PlanScreen> {
         decoration: BoxDecoration(
           color: color?.withValues(alpha: 0.1) ?? VytalColors.surface,
           borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: color?.withValues(alpha: 0.5) ?? VytalColors.textSecondary),
-          boxShadow: color != null
-              ? [BoxShadow(color: color.withValues(alpha: 0.2), blurRadius: 8)]
-              : [],
+          border: Border.all(color: color?.withValues(alpha: 0.5) ?? VytalColors.textSecondary.withValues(alpha: 0.2)),
+          boxShadow: const [],
         ),
         child: Icon(icon, color: color ?? VytalColors.textSecondary, size: 20),
       ),
@@ -312,7 +332,7 @@ class _PlanScreenState extends State<PlanScreen> {
           Icon(Icons.memory, size: 60, color: VytalColors.textPrimary.withValues(alpha: 0.1)),
           const SizedBox(height: 16),
           const Text(
-            "SCHEDULE EMPTY",
+            "Schedule Empty",
             style: TextStyle(
               color: VytalColors.textSecondary,
               fontWeight: FontWeight.bold,
@@ -347,11 +367,11 @@ class _PlanScreenState extends State<PlanScreen> {
                 width: 6,
                 height: 6,
                 decoration: BoxDecoration(
-                  color: VytalColors.primaryNeon,
+                  color: VytalColors.primaryAccent,
                   shape: BoxShape.rectangle,
                   boxShadow: [
                     BoxShadow(
-                      color: VytalColors.primaryNeon.withValues(alpha: 0.5),
+                      color: VytalColors.primaryAccent.withValues(alpha: 0.5),
                       blurRadius: 4,
                     ),
                   ],
@@ -361,7 +381,7 @@ class _PlanScreenState extends State<PlanScreen> {
               Text(
                 title,
                 style: const TextStyle(
-                  color: VytalColors.primaryNeon,
+                  color: VytalColors.primaryAccent,
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2,
@@ -372,7 +392,7 @@ class _PlanScreenState extends State<PlanScreen> {
               Expanded(
                 child: Container(
                   height: 1,
-                  color: VytalColors.primaryNeon.withValues(alpha: 0.2),
+                  color: VytalColors.primaryAccent.withValues(alpha: 0.2),
                 ),
               ),
             ],

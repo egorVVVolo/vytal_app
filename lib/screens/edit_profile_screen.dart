@@ -92,7 +92,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       child: const Text(
                         "DONE",
                         style: TextStyle(
-                          color: VytalColors.primaryNeon,
+                          color: VytalColors.primaryAccent,
                           fontWeight: FontWeight.bold,
 
                         ),
@@ -171,7 +171,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.check, color: VytalColors.primaryNeon),
+            icon: const Icon(Icons.check, color: VytalColors.primaryAccent),
             onPressed: _save,
           ),
         ],
@@ -261,10 +261,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               onPressed: _save,
               style: ElevatedButton.styleFrom(
                 backgroundColor: VytalColors.surface, // Minimalist black
-                foregroundColor: VytalColors.primaryNeon,
+                foregroundColor: VytalColors.primaryAccent,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24),
-                  side: BorderSide(color: VytalColors.primaryNeon, width: 0.5),
+                  side: BorderSide(color: VytalColors.primaryAccent, width: 0.5),
                 ), // Sharp edges
                 elevation: 0,
               ),
@@ -380,7 +380,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   child: Text(
                     unit,
                     style: const TextStyle(
-                      color: VytalColors.primaryNeon,
+                      color: VytalColors.primaryAccent,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
 

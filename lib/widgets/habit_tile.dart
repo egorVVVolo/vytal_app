@@ -51,8 +51,8 @@ class HabitTile extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      VytalColors.secondaryNeon.withValues(alpha: 0.3),
-                      VytalColors.secondaryNeon.withValues(alpha: 0.05),
+                        VytalColors.secondaryAccent.withValues(alpha: 0.1),
+                        VytalColors.secondaryAccent.withValues(alpha: 0.0),
                     ],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
@@ -70,11 +70,9 @@ class HabitTile extends StatelessWidget {
                     width: 46, height: 46,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: habit.isCompleted ? VytalColors.secondaryNeon : VytalColors.textPrimary.withValues(alpha: 0.05),
+                        color: habit.isCompleted ? VytalColors.secondaryAccent.withValues(alpha: 0.2) : VytalColors.textPrimary.withValues(alpha: 0.05),
                       shape: BoxShape.circle,
-                      boxShadow: habit.isCompleted
-                          ? [BoxShadow(color: VytalColors.secondaryNeon.withValues(alpha: 0.6), blurRadius: 15)]
-                          : [],
+                        boxShadow: const [],
                     ),
                     child: Text(habit.icon, style: const TextStyle(fontSize: 22)),
                   ),
@@ -91,11 +89,9 @@ class HabitTile extends StatelessWidget {
                           style: TextStyle(
                             fontFamily: 'Roboto',
                             fontSize: 16,
-                            color: habit.isCompleted ? VytalColors.textPrimary : VytalColors.textPrimary,
+                              color: habit.isCompleted ? VytalColors.textSecondary : VytalColors.textPrimary,
                             fontWeight: FontWeight.bold,
-                            decoration: habit.isCompleted ? TextDecoration.lineThrough : null,
-                            decorationColor: VytalColors.secondaryNeon,
-                            decorationThickness: 2,
+                              decoration: null,
                           ),
                           child: Text(habit.title),
                         ),
@@ -114,10 +110,10 @@ class HabitTile extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                          color: habit.isCompleted ? VytalColors.secondaryNeon : VytalColors.textSecondary,
+                          color: habit.isCompleted ? VytalColors.secondaryAccent : VytalColors.textSecondary,
                           width: 2
                       ),
-                      color: habit.isCompleted ? VytalColors.secondaryNeon : Colors.transparent,
+                      color: habit.isCompleted ? VytalColors.secondaryAccent : Colors.transparent,
                     ),
                     child: habit.isCompleted
                         ? const Icon(Icons.check, size: 16, color: VytalColors.textPrimary)

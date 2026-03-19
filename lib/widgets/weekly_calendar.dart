@@ -38,17 +38,17 @@ class WeeklyCalendar extends StatelessWidget {
               duration: const Duration(milliseconds: 200),
               width: 60,
               decoration: BoxDecoration(
-                color: isSelected ? VytalColors.primaryNeon : VytalColors.surface,
+                color: isSelected ? VytalColors.primaryAccent : VytalColors.surface,
                 borderRadius: BorderRadius.circular(18),
                 border: Border.all(
                   color: isSelected
-                      ? VytalColors.primaryNeon
+                      ? VytalColors.primaryAccent
                       : VytalColors.textPrimary.withValues(alpha: 0.05),
                 ),
                 boxShadow: isSelected
                     ? [
                   BoxShadow(
-                    color: VytalColors.primaryNeon.withValues(alpha: 0.4),
+                    color: VytalColors.primaryAccent.withValues(alpha: 0.4),
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                   )

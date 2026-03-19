@@ -84,7 +84,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         if (mounted) {
           setState(
             () => _motionStatus = event.status == 'walking'
-                ? "ACTIVE 🔥"
+                ? "Active"
                 : "IDLE",
           );
         }
@@ -108,7 +108,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              backgroundColor: VytalColors.secondaryNeon,
+              backgroundColor: VytalColors.secondaryAccent,
               content: Text(
                 "STEP GOAL MET: +50 XP",
                 style: TextStyle(
@@ -216,7 +216,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             const Text(
               "SYSTEM LOG",
               style: TextStyle(
-                color: VytalColors.primaryNeon,
+                color: VytalColors.primaryAccent,
                 fontSize: 12,
                 letterSpacing: 2,
                 fontWeight: FontWeight.bold,
@@ -251,7 +251,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             width: 4,
             height: 4,
             decoration: const BoxDecoration(
-              color: VytalColors.secondaryNeon,
+              color: VytalColors.secondaryAccent,
               shape: BoxShape.circle,
             ),
           ),
@@ -316,7 +316,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       Text(
                         "Good morning,",
                         style: TextStyle(
-                          color: VytalColors.textSecondary.withOpacity(0.6),
+                          color: VytalColors.textSecondary.withValues(alpha: 0.6),
                           fontSize: 14,
                         ),
                       ),
@@ -362,12 +362,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       vertical: 12,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.orangeAccent.withOpacity(
-                        0.05,
-                      ), // Minimalist
+                      color: Colors.orangeAccent.withValues(alpha: 0.05), // Minimalist
                       borderRadius: BorderRadius.circular(24),
                       border: Border.all(
-                        color: Colors.orangeAccent.withOpacity(0.3),
+                        color: Colors.orangeAccent.withValues(alpha: 0.1),
                         width: 0.5,
                       ),
                     ),
@@ -383,7 +381,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           "$_streak",
                           style: const TextStyle(
                             color: Colors.orangeAccent,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w500,
                             fontSize: 18,
 
                           ),
@@ -405,7 +403,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             width: 24,
                             child: CircularProgressIndicator(
                               value: totalProgress,
-                              color: VytalColors.primaryNeon,
+                              color: VytalColors.primaryAccent,
                               backgroundColor: VytalColors.textSecondary,
                               strokeWidth: 2, // Thinner
                             ),
@@ -415,12 +413,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text(
-                                "DAILY PLAN",
+                                "Daily Plan",
                                 style: TextStyle(
                                   color: VytalColors.textSecondary,
                                   fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 1,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                               Text(
@@ -428,7 +425,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 style: const TextStyle(
                                   color: VytalColors.textPrimary,
                                   fontSize: 16,
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w500,
 
                                 ),
                               ),
@@ -445,12 +442,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
               // 3. BASELINE WIDGET
               const Text(
-                "GROWTH METRICS",
+                "Growth Metrics",
                 style: TextStyle(
                   color: VytalColors.textSecondary,
                   fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 2,
+                  fontWeight: FontWeight.w500,
 
                 ),
               ),
@@ -467,12 +463,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
-                            "VELOCITY",
+                            "Velocity",
                             style: TextStyle(
                               color: VytalColors.textSecondary,
                               fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -482,9 +477,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               Text(
                                 "+${_growthVelocity.toStringAsFixed(1)}",
                                 style: const TextStyle(
-                                  color: VytalColors.secondaryNeon,
+                                  color: VytalColors.secondaryAccent,
                                   fontSize: 28,
-                                  fontWeight: FontWeight.w900,
+                                  fontWeight: FontWeight.w500,
 
                                 ),
                               ),
@@ -493,9 +488,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 child: Text(
                                   "cm/mo",
                                   style: TextStyle(
-                                    color: VytalColors.secondaryNeon,
+                                    color: VytalColors.secondaryAccent,
                                     fontSize: 10,
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.w500,
 
                                   ),
                                 ),
@@ -522,12 +517,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
-                            "BASELINE",
+                            "Baseline",
                             style: TextStyle(
                               color: VytalColors.textSecondary,
                               fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -536,7 +530,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             style: const TextStyle(
                               color: VytalColors.textPrimary,
                               fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w500,
 
                             ),
                           ),
@@ -557,7 +551,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                             decoration: BoxDecoration(
                               color: _baselineLog != null
-                                  ? VytalColors.primaryNeon.withOpacity(0.2)
+                                  ? VytalColors.primaryAccent.withValues(alpha: 0.2)
                                   : VytalColors.textSecondary,
                               borderRadius: BorderRadius.circular(24),
                             ),
@@ -565,10 +559,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               _baselineLog != null ? "SCAN: OK" : "NO SCAN",
                               style: TextStyle(
                                 color: _baselineLog != null
-                                    ? VytalColors.primaryNeon
+                                    ? VytalColors.primaryAccent
                                     : VytalColors.textSecondary,
                                 fontSize: 8,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w500,
 
                               ),
                             ),
@@ -595,10 +589,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   decoration: BoxDecoration(
                     color: const Color(
                       0xFF0038FF,
-                    ).withOpacity(0.05), // Minimalist solid
+                    ).withValues(alpha: 0.05), // Minimalist solid
                     borderRadius: BorderRadius.circular(24),
                     border: Border.all(
-                      color: const Color(0xFF0038FF).withOpacity(0.3),
+                      color: const Color(0xFF0038FF).withValues(alpha: 0.1),
                       width: 0.5,
                     ),
                   ),
@@ -607,7 +601,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       Container(
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: const Color(0xFF0038FF).withOpacity(0.1),
+                          color: const Color(0xFF0038FF).withValues(alpha: 0.1),
                           shape: BoxShape.rectangle, // Square corners
                         ),
                         child: const Icon(
@@ -655,7 +649,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
               // 5. MOTION SENSOR
               const Text(
-                "ACTIVITY",
+                "Activity",
                 style: TextStyle(
                   color: VytalColors.textSecondary,
                   fontSize: 12,
@@ -678,8 +672,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             value: (_steps / _stepGoal).clamp(0.0, 1.0),
                             backgroundColor: VytalColors.textSecondary,
                             color: _steps >= _stepGoal
-                                ? VytalColors.secondaryNeon
-                                : VytalColors.primaryNeon,
+                                ? VytalColors.secondaryAccent
+                                : VytalColors.primaryAccent,
                             strokeWidth: 2, // Thinner
                           ),
                         ),
@@ -699,7 +693,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         Text(
                           _motionStatus,
                           style: const TextStyle(
-                            color: VytalColors.primaryNeon,
+                            color: VytalColors.primaryAccent,
                             fontSize: 10,
                             fontWeight: FontWeight.bold,
 
@@ -740,12 +734,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     children: [
                       const Icon(
                         Icons.science_rounded,
-                        color: VytalColors.purpleNeon,
+                        color: VytalColors.tertiaryAccent,
                         size: 28,
                       ),
                       const SizedBox(width: 16),
                       const Text(
-                        "KNOWLEDGE BASE",
+                        "Knowledge Base",
                         style: TextStyle(
                           color: VytalColors.textPrimary,
                           fontWeight: FontWeight.bold,
@@ -776,7 +770,7 @@ class _VelocityWavePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = VytalColors.secondaryNeon.withOpacity(0.6)
+      ..color = VytalColors.secondaryAccent.withValues(alpha: 0.6)
       ..strokeWidth =
           1 // Thinner line
       ..style = PaintingStyle.stroke;

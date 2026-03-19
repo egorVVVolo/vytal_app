@@ -24,16 +24,10 @@ class BiometricCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: VytalColors.textPrimary,
+          color: VytalColors.surface,
           borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: VytalColors.textPrimary.withValues(alpha: 0.05)),
-          boxShadow: [
-            BoxShadow(
-              color: VytalColors.textPrimary.withValues(alpha: 0.2),
-              blurRadius: 10,
-              offset: const Offset(0, 5),
-            )
-          ],
+          border: Border.all(color: VytalColors.textSecondary.withValues(alpha: 0.1)),
+          boxShadow: const [],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,7 +40,7 @@ class BiometricCard extends StatelessWidget {
                 Text(
                   label.toUpperCase(),
                   style: const TextStyle(
-                    color: VytalColors.textSecondary,
+                    color: VytalColors.textPrimary,
                     fontSize: 10,
                     letterSpacing: 1.5,
                     fontWeight: FontWeight.bold,
@@ -73,7 +67,7 @@ class BiometricCard extends StatelessWidget {
                   child: Text(
                     unit,
                     style: const TextStyle(
-                      color: VytalColors.primaryNeon,
+                      color: VytalColors.textSecondary,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                     ),
