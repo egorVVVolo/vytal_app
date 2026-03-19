@@ -176,29 +176,6 @@ class _PlanScreenState extends State<PlanScreen> {
       return h.copyWith(isCompleted: _completedIdsForDate.contains(h.id));
     }).toList();
 
-    // Group habits by type in a single pass
-    final vitaminHabits = <Habit>[];
-    final activityHabits = <Habit>[];
-    final mentalHabits = <Habit>[];
-    final sleepHabits = <Habit>[];
-
-    for (final habit in visibleHabits) {
-      switch (habit.type) {
-        case HabitType.vitamin:
-          vitaminHabits.add(habit);
-          break;
-        case HabitType.activity:
-          activityHabits.add(habit);
-          break;
-        case HabitType.mental:
-          mentalHabits.add(habit);
-          break;
-        case HabitType.sleep:
-          sleepHabits.add(habit);
-          break;
-      }
-    }
-
     return Scaffold(
       backgroundColor: VytalColors.background,
       body: SafeArea(
@@ -224,20 +201,28 @@ class _PlanScreenState extends State<PlanScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                       children: [
                         _buildTimeSection(
-                          "PROTOCOLS",
-                          vitaminHabits,
+                          "Protocols",
+                          visibleHabits
+                              .where((h) => h.type == HabitType.vitamin)
+                              .toList(),
                         ),
                         _buildTimeSection(
-                          "ACTIVITY",
-                          activityHabits,
+                          "Activity",
+                          visibleHabits
+                              .where((h) => h.type == HabitType.activity)
+                              .toList(),
                         ),
                         _buildTimeSection(
-                          "MENTAL",
-                          mentalHabits,
+                          "Mental",
+                          visibleHabits
+                              .where((h) => h.type == HabitType.mental)
+                              .toList(),
                         ),
                         _buildTimeSection(
-                          "SLEEP & ROUTINE",
-                          sleepHabits,
+                          "Sleep & Routine",
+                          visibleHabits
+                              .where((h) => h.type == HabitType.sleep)
+                              .toList(),
                         ),
                         const SizedBox(height: 80),
                       ],

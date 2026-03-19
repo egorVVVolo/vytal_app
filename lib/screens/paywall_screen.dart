@@ -174,7 +174,7 @@ class PaywallScreen extends StatelessWidget {
                         if (context.mounted) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                              content: Text("VYTAL PRO Активирован 🧬"),
+                              content: Text("VYTAL PRO Activated 🧬"),
                               backgroundColor: VytalColors.secondaryAccent,
                             ),
                           );
