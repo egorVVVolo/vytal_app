@@ -461,6 +461,14 @@ class WorkoutsData {
     ),
   ];
 
+  static List<Workout> get allWorkoutsPath {
+    return [
+      ...foundationLevels,
+      ...activationLevels,
+      ...evolutionLevels,
+    ];
+  }
+
   static const Color evolutionColor = Color(0xFFD500F9);
   static const List<Workout> evolutionLevels = [
     Workout(
