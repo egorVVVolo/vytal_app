@@ -125,8 +125,9 @@ class _GrowthScreenState extends State<GrowthScreen> {
                           targetHeight: _targetHeight,
                         );
 
-                        _loadData();
-                        Navigator.pop(context);
+                        await _loadData();
+                        if (!ctx.mounted) return;
+                        Navigator.pop(ctx);
                       },
                       child: const Text(
                         "SAVE",

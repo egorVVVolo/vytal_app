@@ -30,15 +30,13 @@ class WikiScreen extends StatelessWidget {
         centerTitle: true,
         leading: const BackButton(color: VytalColors.textPrimary),
       ),
-      body: Container(
-        // Добавил сетку для красоты
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "RESEARCH",
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "RESEARCH",
                 style: TextStyle(
                   color: VytalColors.textSecondary,
                   fontSize: 12,
@@ -221,11 +219,10 @@ class WikiScreen extends StatelessWidget {
                       )
                       .animate()
                       .fadeIn(delay: (100 * index).ms)
-                      .slideX(begin: 0.1, end: 0);
-                },
-              ),
-            ],
-          ),
+                    .slideX(begin: 0.1, end: 0);
+              },
+            ),
+          ],
         ),
       ),
     );
