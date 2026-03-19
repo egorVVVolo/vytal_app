@@ -117,7 +117,7 @@ class ProtocolLibraryScreen extends StatelessWidget {
             child: ListView.separated(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               itemCount: ProtocolsData.list.length,
-              separatorBuilder: (_, __) => const SizedBox(height: 20),
+              separatorBuilder: (context, index) => const SizedBox(height: 20),
               itemBuilder: (context, index) {
                 final protocol = ProtocolsData.list[index];
                 return _ProtocolCard(protocol: protocol, onAdd: onAddProtocol);

@@ -224,28 +224,6 @@ class _PlanScreenState extends State<PlanScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                       children: [
                         _buildTimeSection(
-                          "Protocols",
-                          visibleHabits
-                              .where((h) => h.type == HabitType.vitamin)
-                              .toList(),
-                        ),
-                        _buildTimeSection(
-                          "Activity",
-                          visibleHabits
-                              .where((h) => h.type == HabitType.activity)
-                              .toList(),
-                        ),
-                        _buildTimeSection(
-                          "Mental",
-                          visibleHabits
-                              .where((h) => h.type == HabitType.mental)
-                              .toList(),
-                        ),
-                        _buildTimeSection(
-                          "Sleep & Routine",
-                          visibleHabits
-                              .where((h) => h.type == HabitType.sleep)
-                              .toList(),
                           "PROTOCOLS",
                           vitaminHabits,
                         ),

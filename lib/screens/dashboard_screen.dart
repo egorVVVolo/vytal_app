@@ -44,10 +44,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
   List<Habit> _todayHabits = [];
   int _completedCount = 0;
 
-  double _sleepProgress = 0.0;
-  double _nutritionProgress = 0.0;
-  double _postureProgress = 0.0;
-
   int _streak = 0;
   double _growthVelocity = 0.0;
 
@@ -78,7 +74,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           setState(() => _steps = event.steps);
           _checkStepGoal(event.steps);
         }
-      }, onError: (error) => print("Step Error: $error"));
+      }, onError: (error) => debugPrint("Step Error: $error"));
 
       _statusSubscription = _pedometerService.statusStream!.listen((event) {
         if (mounted) {
@@ -88,7 +84,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 : "IDLE",
           );
         }
-      }, onError: (error) => print("Status Error: $error"));
+      }, onError: (error) => debugPrint("Status Error: $error"));
     }
   }
 
@@ -130,7 +126,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
     try {
       _stepSubscription.cancel();
       _statusSubscription.cancel();
-    } catch (e) {}
+    } catch (e) {
+      // ignore: empty_catches
+    }
     super.dispose();
   }
 
@@ -176,26 +174,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
         _baselineLog = baselineScan;
         _startHeight = startH;
         _startDateStr = startD;
-
-        _sleepProgress = _calculateCategoryProgress(actualHabits, [
-          HabitType.sleep,
-          HabitType.mental,
-        ]);
-        _nutritionProgress = _calculateCategoryProgress(actualHabits, [
-          HabitType.vitamin,
-        ]);
-        _postureProgress = _calculateCategoryProgress(actualHabits, [
-          HabitType.activity,
-        ]);
       });
     }
-  }
-
-  double _calculateCategoryProgress(List<Habit> all, List<HabitType> types) {
-    final categoryHabits = all.where((h) => types.contains(h.type)).toList();
-    if (categoryHabits.isEmpty) return 0.0;
-    final completed = categoryHabits.where((h) => h.isCompleted).length;
-    return completed / categoryHabits.length;
   }
 
   void _showNotifications() {
@@ -723,9 +703,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   Navigator.push(
                     context,
                     PageRouteBuilder(
-                      pageBuilder: (_, __, ___) => const WikiScreen(),
-                      transitionsBuilder: (_, a, __, c) =>
-                          FadeTransition(opacity: a, child: c),
+                      pageBuilder: (context, animation, secondaryAnimation) => const WikiScreen(),
+                      transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+                          FadeTransition(opacity: animation, child: child),
                     ),
                   );
                 },

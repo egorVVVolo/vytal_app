@@ -462,7 +462,7 @@ class _LevelChainList extends StatelessWidget {
                                     width: 40,
                                     height: 40,
                                     fit: BoxFit.cover,
-                                    errorBuilder: (_, __, ___) => const SizedBox(),
+                                    errorBuilder: (context, error, stackTrace) => const SizedBox(),
                                   ),
                                 ),
                               ),

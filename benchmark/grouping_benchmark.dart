@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable, avoid_print
+
 enum HabitType { vitamin, activity, sleep, mental }
 
 class Habit {

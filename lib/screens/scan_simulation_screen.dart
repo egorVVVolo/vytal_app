@@ -68,7 +68,10 @@ class _ScanSimulationScreenState extends State<ScanSimulationScreen>
       backgroundColor: Colors.transparent,
       builder: (context) => const _ScanResultSheet(),
     ).then(
-      (_) => Navigator.pop(context),
+      (_) {
+        if (!mounted) return;
+        Navigator.pop(context);
+      },
     ); // Когда закроют отчет, выходим из сканера
   }
 
@@ -113,7 +116,6 @@ class _ScanSimulationScreenState extends State<ScanSimulationScreen>
                     color: VytalColors.primaryAccent,
                     boxShadow: [
                       BoxShadow(
-                        color: VytalColors.primaryAccent.withOpacity(0.5),
                         color: VytalColors.primaryNeon.withValues(alpha: 0.5),
                         blurRadius: 4,
                         spreadRadius: 1,
@@ -198,10 +200,6 @@ class _ScanSimulationScreenState extends State<ScanSimulationScreen>
 class _GridPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = VytalColors.primaryAccent.withOpacity(0.2)
-      ..strokeWidth = 1;
-
     // Draw corners
     final double cornerSize = 40;
     final double stroke = 1; // Thinner border for minimalism

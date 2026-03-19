@@ -230,7 +230,7 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
                       child: Image.network(
                         currentEx.visualUrl!,
                         fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) => const Center(
+                        errorBuilder: (context, error, stackTrace) => const Center(
                           child: Icon(Icons.broken_image, color: VytalColors.textSecondary, size: 40),
                         ),
                       ),

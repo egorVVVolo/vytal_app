@@ -11,11 +11,10 @@ class PaywallScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: VytalColors.background,
-      body: Container(
-        child: SafeArea(
-          child: Column(
-            children: [
-              // 1. КНОПКА ЗАКРЫТЬ
+      body: SafeArea(
+        child: Column(
+          children: [
+            // 1. КНОПКА ЗАКРЫТЬ
               Align(
                 alignment: Alignment.topRight,
                 child: Padding(
@@ -224,8 +223,7 @@ class PaywallScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 
   Widget _buildFeatureRow(IconData icon, String title, String subtitle) {

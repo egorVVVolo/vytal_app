@@ -74,7 +74,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Future<void> _shareStats() async {
     if (StorageService.getSetting('haptic')) HapticFeedback.mediumImpact();
 
-    ScaffoldMessenger.of(context).showSnackBar(
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+
+    scaffoldMessenger.showSnackBar(
       const SnackBar(
         content: Text("Generating card..."),
         duration: Duration(milliseconds: 500),
@@ -101,7 +103,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     } catch (e) {
       debugPrint("Share error: $e");
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
+        scaffoldMessenger.showSnackBar(
           const SnackBar(
             content: Text("Error sharing data"),
             backgroundColor: VytalColors.warningAccent,
@@ -404,9 +406,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     icon: Icons.delete_forever_rounded,
                     isDestructive: true,
                     onTap: () async {
+                      final scaffoldMessenger = ScaffoldMessenger.of(context);
                       await StorageService.clearAll();
                       if (mounted) {
-                        ScaffoldMessenger.of(context).showSnackBar(
+                        scaffoldMessenger.showSnackBar(
                           const SnackBar(content: Text("Reset successful.")),
                         );
                         setState(() {
