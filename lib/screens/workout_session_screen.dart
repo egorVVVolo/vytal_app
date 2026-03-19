@@ -100,6 +100,7 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
     _exerciseTimer?.cancel();
     setState(() => _isSessionFinished = true);
     await StorageService.addXP(150);
+    await StorageService.incrementTodayWorkoutCount();
     if (StorageService.getSetting('haptic')) HapticFeedback.heavyImpact();
   }
 
