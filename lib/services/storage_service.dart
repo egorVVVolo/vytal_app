@@ -254,6 +254,21 @@ class StorageService {
 
   // === ФУНКЦИОНАЛ VYTAL 2.0 ===
 
+  static String _getWorkoutCountKey(DateTime date) {
+    return "workouts_count_${date.year}_${date.month.toString().padLeft(2, '0')}_${date.day.toString().padLeft(2, '0')}";
+  }
+
+  static Future<int> getTodayWorkoutCount() async {
+    final key = _getWorkoutCountKey(DateTime.now());
+    return _settingsBox.get(key, defaultValue: 0);
+  }
+
+  static Future<void> incrementTodayWorkoutCount() async {
+    final key = _getWorkoutCountKey(DateTime.now());
+    int current = await getTodayWorkoutCount();
+    await _settingsBox.put(key, current + 1);
+  }
+
   // 1. Флаг показа цели по шагам
   static String _getStepGoalKey(DateTime date) {
     return "steps_goal_shown_${date.year}_${date.month}_${date.day}";

@@ -50,7 +50,7 @@ void main() {
       expect(averagedLandmark.x, 150.0);
       expect(averagedLandmark.y, 300.0);
       expect(averagedLandmark.z, -10.0);
-      expect(averagedLandmark.likelihood, 0.8);
+      expect(averagedLandmark.likelihood, closeTo(0.8, 0.0001));
     });
 
     test('correctly averages different coordinates and likelihoods', () {
