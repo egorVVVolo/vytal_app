@@ -191,6 +191,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                       ),
                       decoration: BoxDecoration(
                         color: Colors.transparent, // Minimalist
+                        borderRadius: BorderRadius.circular(20),
                         border: Border.all(
                           color: VytalColors.textSecondary,
                           width: 0.5,
@@ -271,6 +272,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
                       color: Colors.transparent, // Minimalist
+                      borderRadius: BorderRadius.circular(20),
                       border: Border.all(
                         color: VytalColors.primaryAccent.withValues(alpha: 0.5),
                         width: 0.5,
@@ -323,6 +325,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                   color: _notificationsEnabled
                       ? VytalColors.textPrimary
                       : Colors.transparent, // Sharp and minimal
+                  borderRadius: BorderRadius.circular(20),
                   border: Border.all(
                     color: _notificationsEnabled
                         ? VytalColors.secondaryAccent
@@ -378,6 +381,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.transparent, // Minimalist transparent background
+        borderRadius: BorderRadius.circular(20),
         border: isHighlight
             ? Border.all(color: color, width: 1.0)
             : Border.all(color: VytalColors.textSecondary, width: 0.5),

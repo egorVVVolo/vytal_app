@@ -61,7 +61,7 @@ class WeeklyCalendar extends StatelessWidget {
                   Text(
                     _getWeekday(date.weekday),
                     style: TextStyle(
-                      color: isSelected ? VytalColors.textPrimary : VytalColors.textSecondary,
+                      color: isSelected ? Colors.white : VytalColors.textSecondary,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                     ),
@@ -70,7 +70,7 @@ class WeeklyCalendar extends StatelessWidget {
                   Text(
                     date.day.toString(),
                     style: TextStyle(
-                      color: isSelected ? VytalColors.textPrimary : VytalColors.textPrimary,
+                      color: isSelected ? Colors.white : VytalColors.textPrimary,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),

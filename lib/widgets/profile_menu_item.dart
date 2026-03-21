@@ -43,13 +43,13 @@ class ProfileMenuItem extends StatelessWidget {
         title: Text(
           title,
           style: TextStyle(
-            color: isDestructive ? VytalColors.warningAccent : VytalColors.textPrimary,
+            color: isDestructive ? VytalColors.warningAccent : Colors.white,
             fontWeight: FontWeight.w500,
           ),
         ),
         trailing: Icon(
           Icons.chevron_right_rounded,
-          color: VytalColors.textPrimary.withValues(alpha: 0.2),
+          color: Colors.white.withValues(alpha: 0.2),
         ),
       ),
     );

@@ -13,6 +13,7 @@ import '../models/posture_log.dart';
 import '../data/mock_data.dart';
 import '../widgets/glass_container.dart';
 import 'wiki_screen.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 // ВАЖНО: Добавляем импорт правильного сервиса и УДАЛЯЕМ дубликат класса PedometerService
 import '../services/pedometer_service.dart';
@@ -378,47 +379,62 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ).animate().scale(delay: 200.ms, curve: Curves.easeOutBack),
                   const SizedBox(width: 12),
                   Expanded(
-                    child: GlassContainer(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 14,
-                      ),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            height: 24,
-                            width: 24,
-                            child: CircularProgressIndicator(
-                              value: totalProgress,
-                              color: VytalColors.primaryAccent,
-                              backgroundColor: VytalColors.textSecondary,
-                              strokeWidth: 2,
-                            ),
+                    child: ValueListenableBuilder(
+                      valueListenable: Hive.box('settingsBox').listenable(),
+                      builder: (context, box, child) {
+                        // Recalculate based on current Hive state
+                        final date = DateTime.now();
+                        final key = "history_${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
+                        final completedIds = box.get(key, defaultValue: <String>[]);
+                        final int completedCount = completedIds.length;
+                        final double currentProgress = _todayHabits.isEmpty
+                            ? 0
+                            : completedCount / _todayHabits.length;
+                        final int currentPercentage = (currentProgress * 100).toInt();
+
+                        return GlassContainer(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 14,
                           ),
-                          const SizedBox(width: 16),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          child: Row(
                             children: [
-                              Text(
-                                L10n.t('daily_plan'),
-                                style: const TextStyle(
-                                  color: VytalColors.textSecondary,
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w500,
+                              SizedBox(
+                                height: 24,
+                                width: 24,
+                                child: CircularProgressIndicator(
+                                  value: currentProgress,
+                                  color: VytalColors.primaryAccent,
+                                  backgroundColor: VytalColors.textSecondary,
+                                  strokeWidth: 2,
                                 ),
                               ),
-                              Text(
-                                "$percentage% ${L10n.t('done')}",
-                                style: const TextStyle(
-                                  color: VytalColors.textPrimary,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                              const SizedBox(width: 16),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    L10n.t('daily_plan'),
+                                    style: const TextStyle(
+                                      color: VytalColors.textSecondary,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  Text(
+                                    "$currentPercentage% ${L10n.t('done')}",
+                                    style: const TextStyle(
+                                      color: VytalColors.textPrimary,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                        ],
-                      ),
+                        );
+                      },
                     ).animate().fadeIn(delay: 300.ms).slideX(begin: 0.1),
                   ),
                 ],

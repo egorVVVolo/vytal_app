@@ -348,7 +348,7 @@ class _ProtocolCard extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: VytalColors.textPrimary,
+                      color: Colors.white,
 
                     ),
                   ),
@@ -464,7 +464,7 @@ class _ProtocolCard extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: accentColor,
-                  foregroundColor: VytalColors.textPrimary,
+                  foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(24),
                   ),
@@ -497,7 +497,7 @@ class _ProtocolCard extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
-          color: color,
+          color: color == VytalColors.textPrimary ? Colors.white : color,
           fontSize: 10,
           fontWeight: FontWeight.bold,
 

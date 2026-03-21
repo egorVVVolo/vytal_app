@@ -88,64 +88,56 @@ class _LevelPathViewState extends State<LevelPathView> {
       iconData = Icons.lock_rounded;
     }
 
-    Widget nodeContent = Container(
-      width: 80,
-      height: 80,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        // RadialGradient for 3D sphere effect
-        gradient: RadialGradient(
-          center: const Alignment(-0.3, -0.3),
-          radius: 0.8,
-          colors: [
-            Colors.white.withValues(alpha: isLocked ? 0.3 : 0.8), // Highlight
-            baseColor.withValues(alpha: isLocked ? 0.5 : 0.9),    // Base color
-            baseColor.withValues(alpha: isLocked ? 0.8 : 1.0),    // Darker edge
-          ],
-          stops: const [0.0, 0.5, 1.0],
-        ),
-        // BoxShadow for outer neon glow
-        boxShadow: [
-          if (!isLocked)
-            BoxShadow(
-              color: glowColor,
-              blurRadius: 15,
-              spreadRadius: 2,
-            ),
-        ],
-      ),
-      child: ClipOval(
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5), // Glassmorphism blur
-          child: Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.white.withValues(alpha: 0.1), // Subtle glass tint
-              // Simulating inner shadow with an overlay gradient
-              gradient: RadialGradient(
-                center: const Alignment(0.5, 0.5),
-                radius: 1.0,
-                colors: [
-                  Colors.transparent,
-                  Colors.black.withValues(alpha: 0.3),
-                ],
-                stops: const [0.7, 1.0],
-              ),
-              border: Border.all(
-                color: Colors.white.withValues(alpha: isLocked ? 0.1 : 0.3),
-                width: 1.5,
-              ),
-            ),
-            child: Center(
-              child: Icon(
-                iconData,
-                color: isLocked ? Colors.white54 : Colors.white,
-                size: 32,
-              ),
+    Widget nodeContent = Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          width: 80,
+          height: 80,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: baseColor,
+            boxShadow: [
+              if (!isLocked)
+                BoxShadow(
+                  color: glowColor,
+                  blurRadius: 15,
+                  spreadRadius: 2,
+                ),
+            ],
+            border: Border.all(
+              color: Colors.white.withValues(alpha: isLocked ? 0.1 : 0.3),
+              width: 1.5,
             ),
           ),
+          child: Center(
+            child: isCompleted
+                ? Icon(
+                    Icons.check_rounded,
+                    color: isLocked ? Colors.white54 : Colors.white,
+                    size: 32,
+                  )
+                : Text(
+                    '${index + 1}',
+                    style: TextStyle(
+                      color: isLocked ? Colors.white54 : Colors.white,
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+          ),
         ),
-      ),
+        const SizedBox(height: 8),
+        Text(
+          workout.title,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: isLocked ? Colors.grey : Colors.white,
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
     );
 
     // Add interactivity and appearance animations
