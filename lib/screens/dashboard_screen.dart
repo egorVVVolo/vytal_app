@@ -68,24 +68,42 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   void _initPedometer() async {
-    bool granted = await _pedometerService.init();
-    if (granted) {
-      _stepSubscription = _pedometerService.stepStream!.listen((event) {
-        if (mounted) {
-          setState(() => _steps = event.steps);
-          _checkStepGoal(event.steps);
-        }
-      }, onError: (error) => debugPrint("Step Error: $error"));
+    try {
+      bool granted = await _pedometerService.init();
+      if (granted) {
+        _stepSubscription = _pedometerService.stepStream!.handleError((error) {
+          debugPrint("Step Error: $error");
+        }).listen((event) {
+          if (mounted) {
+            setState(() => _steps = event.steps);
+            _checkStepGoal(event.steps);
+          }
+        }, onError: (error) => debugPrint("Step Error on listen: $error"));
 
-      _statusSubscription = _pedometerService.statusStream!.listen((event) {
+        _statusSubscription = _pedometerService.statusStream!.handleError((error) {
+          debugPrint("Status Error: $error");
+          if (mounted) {
+            setState(() => _motionStatus = 'Unavailable');
+          }
+        }).listen((event) {
+          if (mounted) {
+            setState(
+              () => _motionStatus = event.status == 'walking'
+                  ? L10n.t('active')
+                  : L10n.t('idle'),
+            );
+          }
+        }, onError: (error) => debugPrint("Status Error on listen: $error"));
+      } else {
         if (mounted) {
-          setState(
-            () => _motionStatus = event.status == 'walking'
-                ? L10n.t('active')
-                : L10n.t('idle'),
-          );
+          setState(() => _motionStatus = 'Unavailable');
         }
-      }, onError: (error) => debugPrint("Status Error: $error"));
+      }
+    } catch (e) {
+      debugPrint("Pedometer Init Error: $e");
+      if (mounted) {
+        setState(() => _motionStatus = 'Unavailable');
+      }
     }
   }
 
