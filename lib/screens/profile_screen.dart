@@ -243,7 +243,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           radius: 45,
                           backgroundColor: VytalColors.surface,
                           child: Text(
-                            _name.isNotEmpty ? _name[0].toUpperCase() : "?",
+                            _name.isNotEmpty ? _name.characters.first.toUpperCase() : "?",
                             style: const TextStyle(
                               fontSize: 36,
                               color: VytalColors.textPrimary,

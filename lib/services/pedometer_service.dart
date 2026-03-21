@@ -13,8 +13,15 @@ class PedometerService {
     var status = await Permission.activityRecognition.request();
 
     if (status.isGranted) {
-      _stepCountStream = Pedometer.stepCountStream;
-      _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
+      // Catch errors directly at the source to prevent unhandled platform exceptions
+      _stepCountStream = Pedometer.stepCountStream.handleError((error) {
+        debugPrint("🛑 Caught Step Stream Error: $error");
+      });
+
+      _pedestrianStatusStream = Pedometer.pedestrianStatusStream.handleError((error) {
+        debugPrint("🛑 Caught Status Stream Error: $error");
+      });
+
       return true;
     } else {
       debugPrint("🛑 Pedometer permission denied");

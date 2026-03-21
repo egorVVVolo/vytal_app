@@ -11,25 +11,9 @@ import '../models/habit.dart';
 import '../models/posture_log.dart';
 import '../data/mock_data.dart';
 import '../widgets/glass_container.dart';
+import '../services/pedometer_service.dart';
 import 'wiki_screen.dart';
 
-class PedometerService {
-  Stream<StepCount>? _stepCountStream;
-  Stream<PedestrianStatus>? _pedestrianStatusStream;
-
-  Future<bool> init() async {
-    var status = await Permission.activityRecognition.request();
-    if (status.isGranted) {
-      _stepCountStream = Pedometer.stepCountStream;
-      _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
-      return true;
-    }
-    return false;
-  }
-
-  Stream<StepCount>? get stepStream => _stepCountStream;
-  Stream<PedestrianStatus>? get statusStream => _pedestrianStatusStream;
-}
 
 class DashboardScreen extends StatefulWidget {
   final String userName;
@@ -67,24 +51,45 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   void _initPedometer() async {
-    bool granted = await _pedometerService.init();
-    if (granted) {
-      _stepSubscription = _pedometerService.stepStream!.listen((event) {
-        if (mounted) {
-          setState(() => _steps = event.steps);
-          _checkStepGoal(event.steps);
-        }
-      }, onError: (error) => debugPrint("Step Error: $error"));
+    try {
+      bool granted = await _pedometerService.init();
+      if (granted) {
+        _stepSubscription = _pedometerService.stepStream!.listen(
+              (event) {
+            if (mounted) {
+              setState(() => _steps = event.steps);
+              _checkStepGoal(event.steps);
+            }
+          },
+          onError: (error) {
+            debugPrint("Step Error: $error");
+            if (mounted) setState(() => _motionStatus = "SENSOR UNAVAILABLE");
+          },
+          cancelOnError: true, // Forces the stream to close on error to prevent crashes
+        );
 
-      _statusSubscription = _pedometerService.statusStream!.listen((event) {
-        if (mounted) {
-          setState(
-            () => _motionStatus = event.status == 'walking'
-                ? "Active"
-                : "IDLE",
-          );
-        }
-      }, onError: (error) => debugPrint("Status Error: $error"));
+        _statusSubscription = _pedometerService.statusStream!.listen(
+              (event) {
+            if (mounted) {
+              setState(
+                    () => _motionStatus = event.status == 'walking'
+                    ? "Active"
+                    : "IDLE",
+              );
+            }
+          },
+          onError: (error) {
+            debugPrint("Status Error: $error");
+            if (mounted) setState(() => _motionStatus = "SENSOR UNAVAILABLE");
+          },
+          cancelOnError: true, // Forces the stream to close on error to prevent crashes
+        );
+      } else {
+        if (mounted) setState(() => _motionStatus = "PERMISSION DENIED");
+      }
+    } catch (e) {
+      debugPrint("Pedometer Init Error: $e");
+      if (mounted) setState(() => _motionStatus = "SENSOR UNAVAILABLE");
     }
   }
 
