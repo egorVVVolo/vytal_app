@@ -7,6 +7,7 @@ import 'package:fl_chart/fl_chart.dart';
 import '../theme/colors.dart';
 import '../services/storage_service.dart';
 import 'main_shell.dart';
+import '../utils/l10n.dart';
 
 class OnboardingV2 extends StatefulWidget {
   const OnboardingV2({super.key});
@@ -167,23 +168,20 @@ class _OnboardingV2State extends State<OnboardingV2> {
   Widget _buildStorytelling() {
     final stories = [
       _StoryData(
-        title: "GENETICS IS NOT\nA VERDICT",
-        text:
-            "Scientific fact: Your height is only 60% dependent on DNA. The remaining 40% is hormones, sleep, and mechanics. We will hack this 40%.",
+        title: L10n.t('genetics_not_verdict'),
+        text: L10n.t('genetics_text'),
         icon: Icons.science_rounded,
         tag: "SCIENTIFIC PROTOCOL",
       ),
       _StoryData(
-        title: "YOU ARE LOSING\nCENTIMETERS",
-        text:
-            "Right now, 'tech neck' and spinal compression are stealing 3-5 cm from you. Reclaim them in 30 days.",
+        title: L10n.t('losing_centimeters'),
+        text: L10n.t('losing_text'),
         icon: Icons.warning_amber_rounded,
         tag: "HIDDEN POTENTIAL",
       ),
       _StoryData(
-        title: "VYTAL\nSYSTEM",
-        text:
-            "Not just a tracker. It's an algorithm for HGH optimization and skeletal micro-correction. Your personal biohack.",
+        title: L10n.t('vytal_system'),
+        text: L10n.t('vytal_text'),
         icon: Icons.auto_awesome_rounded,
         tag: "GROWTH PROTOCOL",
       ),
@@ -197,7 +195,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
-                "STEP ${_storyIndex + 1}/3",
+                "${L10n.t('step')} ${_storyIndex + 1}/3",
                 style: const TextStyle(
                   color: VytalColors.textSecondary,
                   fontWeight: FontWeight.bold,
@@ -219,9 +217,9 @@ class _OnboardingV2State extends State<OnboardingV2> {
         ),
 
         _buildBottomBar(
-          label: _storyIndex == 2 ? "INITIATE ANALYSIS" : "NEXT",
+          label: _storyIndex == 2 ? L10n.t('initiate_analysis') : L10n.t('next'),
           onTap: _nextStory,
-          subLabel: "Takes 30 seconds",
+          subLabel: L10n.t('takes_30_seconds'),
         ),
       ],
     );
@@ -356,7 +354,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
           ),
 
           _buildBottomBar(
-            label: _dataStepIndex == 4 ? "CALCULATE POTENTIAL" : "PROCEED",
+            label: _dataStepIndex == 4 ? L10n.t('calculate_potential') : L10n.t('proceed'),
             onTap: () {
               // If name step, check input
               if (_dataStepIndex == 0 && _name.isEmpty) {
@@ -394,18 +392,18 @@ class _OnboardingV2State extends State<OnboardingV2> {
       key: const ValueKey("NameStep"),
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _stepHeader("IDENTIFICATION", "What's your designation?"),
+        _stepHeader(L10n.t('identification'), L10n.t('designation')),
         const SizedBox(height: 10),
-        const Text(
-          "This designation will be used across the system.",
-          style: TextStyle(color: VytalColors.textSecondary, ),
+        Text(
+          L10n.t('designation_sub'),
+          style: const TextStyle(color: VytalColors.textSecondary, ),
         ),
         const SizedBox(height: 40),
 
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
           decoration: BoxDecoration(
-            color: VytalColors.textPrimary,
+            color: VytalColors.surface,
             borderRadius: BorderRadius.circular(24),
             border: Border.all(color: VytalColors.textSecondary),
           ),
@@ -417,10 +415,10 @@ class _OnboardingV2State extends State<OnboardingV2> {
               fontWeight: FontWeight.bold,
 
             ),
-            decoration: const InputDecoration(
-              hintText: "Enter designation...",
+            decoration: InputDecoration(
+              hintText: L10n.t('enter_designation'),
               hintStyle: TextStyle(
-                color: VytalColors.textSecondary,
+                color: VytalColors.textSecondary.withValues(alpha: 0.5),
 
               ),
               border: InputBorder.none,
@@ -440,19 +438,19 @@ class _OnboardingV2State extends State<OnboardingV2> {
       key: const ValueKey(0),
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _stepHeader("BIOLOGY", "Define physiological baseline"),
+        _stepHeader(L10n.t('biology'), L10n.t('define_baseline')),
         const SizedBox(height: 10),
-        const Text(
-          "Critical parameter for Tanner calculation formula.",
-          style: TextStyle(color: VytalColors.textSecondary, ),
+        Text(
+          L10n.t('critical_parameter'),
+          style: const TextStyle(color: VytalColors.textSecondary, ),
         ),
         const SizedBox(height: 40),
         Expanded(
           child: Row(
             children: [
-              _genderCard("Male", "MALE", Icons.male_rounded),
+              _genderCard("Male", L10n.t('male'), Icons.male_rounded),
               const SizedBox(width: 16),
-              _genderCard("Female", "FEMALE", Icons.female_rounded),
+              _genderCard("Female", L10n.t('female'), Icons.female_rounded),
             ],
           ),
         ),
@@ -508,13 +506,13 @@ class _OnboardingV2State extends State<OnboardingV2> {
   }
 
   Widget _stepAge() {
-    String growthPlateStatus = "GROWTH PLATES: OPEN";
+    String growthPlateStatus = L10n.t('growth_plates_open');
     Color statusColor = VytalColors.secondaryAccent;
     if (_age >= 18 && _age < 22) {
-      growthPlateStatus = "GROWTH PLATES: CLOSING";
+      growthPlateStatus = L10n.t('growth_plates_closing');
       statusColor = Colors.orange;
     } else if (_age >= 22) {
-      growthPlateStatus = "POSTURE CORRECTION PHASE";
+      growthPlateStatus = L10n.t('posture_correction_phase');
       statusColor = VytalColors.primaryAccent;
     }
 
@@ -522,7 +520,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
       key: const ValueKey(1),
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _stepHeader("CHRONOLOGY", "Input your age"),
+        _stepHeader(L10n.t('chronology'), L10n.t('input_age')),
         const SizedBox(height: 20),
 
         Container(
@@ -613,11 +611,11 @@ class _OnboardingV2State extends State<OnboardingV2> {
       key: const ValueKey(2),
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _stepHeader("ARCHITECTURE", "Current parameters"),
+        _stepHeader(L10n.t('architecture'), L10n.t('current_parameters')),
         const SizedBox(height: 10),
-        const Text(
-          "Required for calculating current skeletal load.",
-          style: TextStyle(color: VytalColors.textSecondary, ),
+        Text(
+          L10n.t('required_calculating'),
+          style: const TextStyle(color: VytalColors.textSecondary, ),
         ),
         const SizedBox(height: 40),
 
@@ -625,7 +623,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
           children: [
             Expanded(
               child: _buildDrumColumn(
-                "HEIGHT",
+                L10n.t('height'),
                 _height,
                 120,
                 220,
@@ -636,7 +634,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
             Container(width: 1, height: 100, color: VytalColors.textSecondary),
             Expanded(
               child: _buildDrumColumn(
-                "WEIGHT",
+                L10n.t('weight'),
                 _weight,
                 30,
                 150,
@@ -655,11 +653,11 @@ class _OnboardingV2State extends State<OnboardingV2> {
       key: const ValueKey(3),
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _stepHeader("HEREDITY", "Parental Height"),
+        _stepHeader(L10n.t('heredity'), L10n.t('parental_height')),
         const SizedBox(height: 10),
-        const Text(
-          "Baseline genetic variables for the prediction engine.",
-          style: TextStyle(color: VytalColors.textSecondary, ),
+        Text(
+          L10n.t('baseline_variables'),
+          style: const TextStyle(color: VytalColors.textSecondary, ),
         ),
         const SizedBox(height: 20),
         Center(
@@ -675,7 +673,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
           children: [
             Expanded(
               child: _buildDrumColumn(
-                "FATHER",
+                L10n.t('father'),
                 _fatherHeight,
                 140,
                 220,
@@ -686,7 +684,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
             Container(width: 1, height: 100, color: VytalColors.textSecondary),
             Expanded(
               child: _buildDrumColumn(
-                "MOTHER",
+                L10n.t('mother'),
                 _motherHeight,
                 130,
                 200,
@@ -857,9 +855,9 @@ class _OnboardingV2State extends State<OnboardingV2> {
                 borderRadius: BorderRadius.circular(24),
                 border: Border.all(color: VytalColors.textSecondary),
               ),
-              child: const Text(
-                "CALCULATION COMPLETE",
-                style: TextStyle(
+              child: Text(
+                L10n.t('calculation_complete'),
+                style: const TextStyle(
                   color: VytalColors.secondaryAccent,
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
@@ -871,9 +869,9 @@ class _OnboardingV2State extends State<OnboardingV2> {
 
             const SizedBox(height: 30),
 
-            const Text(
-              "YOUR POTENTIAL",
-              style: TextStyle(
+            Text(
+              L10n.t('your_potential'),
+              style: const TextStyle(
                 color: VytalColors.textSecondary,
                 fontSize: 12,
                 letterSpacing: 3,
@@ -962,12 +960,12 @@ class _OnboardingV2State extends State<OnboardingV2> {
                       ],
                     ),
                   ),
-                  const Positioned(
+                  Positioned(
                     bottom: 10,
                     right: 10,
                     child: Text(
-                      "12 MONTHS",
-                      style: TextStyle(
+                      L10n.t('months_12'),
+                      style: const TextStyle(
                         color: VytalColors.textSecondary,
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
@@ -993,8 +991,8 @@ class _OnboardingV2State extends State<OnboardingV2> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "AI PROJECTION:",
-                    style: TextStyle(
+                    L10n.t('ai_projection'),
+                    style: const TextStyle(
                       color: VytalColors.primaryAccent,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1.5,
@@ -1012,8 +1010,8 @@ class _OnboardingV2State extends State<OnboardingV2> {
 
                       ),
                       children: [
-                        const TextSpan(
-                          text: "We detected a potential margin of ",
+                        TextSpan(
+                          text: L10n.t('detected_margin'),
                         ),
                         TextSpan(
                           text: "+${improvement.toStringAsFixed(1)} cm",
@@ -1022,9 +1020,9 @@ class _OnboardingV2State extends State<OnboardingV2> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const TextSpan(
+                        TextSpan(
                           text:
-                              ". This is possible through spinal decompression and sleeping HGH optimization.",
+                              L10n.t('this_is_possible'),
                         ),
                       ],
                     ),
@@ -1034,7 +1032,7 @@ class _OnboardingV2State extends State<OnboardingV2> {
             ).animate().fadeIn(delay: 500.ms),
 
             const SizedBox(height: 40),
-            _buildBottomBar(label: "INITIALIZE PLAN", onTap: _finishOnboarding),
+            _buildBottomBar(label: L10n.t('initialize_plan'), onTap: _finishOnboarding),
           ],
         ),
       ),

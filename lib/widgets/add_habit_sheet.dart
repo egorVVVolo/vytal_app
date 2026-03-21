@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../theme/colors.dart';
 import '../models/habit.dart';
+import '../utils/l10n.dart';
 
 class AddHabitSheet extends StatefulWidget {
   // Function to return created habit back to parent screen
@@ -53,7 +54,7 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
     return Container(
       padding: EdgeInsets.fromLTRB(24, 24, 24, bottomPadding + 24),
       decoration: const BoxDecoration(
-        color: VytalColors.textPrimary,
+        color: VytalColors.surface,
         borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
       ),
       child: Column(
@@ -72,9 +73,9 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
             ),
           ),
           const SizedBox(height: 24),
-          const Text(
-            "NEW DIRECTIVE",
-            style: TextStyle(
+          Text(
+            L10n.t('new_directive'),
+            style: const TextStyle(
               color: VytalColors.primaryAccent,
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -86,16 +87,16 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
           const SizedBox(height: 24),
 
           // 1. Title Input
-          _buildInput(_titleController, "Designation (e.g. Magnesium)"),
+          _buildInput(_titleController, L10n.t('designation_input')),
           const SizedBox(height: 16),
-          _buildInput(_subtitleController, "Parameters (e.g. 400 mg)"),
+          _buildInput(_subtitleController, L10n.t('parameters_input')),
 
           const SizedBox(height: 24),
 
           // 2. Category Selection (Chips)
-          const Text(
-            "CATEGORY",
-            style: TextStyle(
+          Text(
+            L10n.t('category'),
+            style: const TextStyle(
               color: VytalColors.textSecondary,
               fontSize: 10,
               fontWeight: FontWeight.bold,
@@ -141,9 +142,9 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
           const SizedBox(height: 24),
 
           // 3. Icon Selection
-          const Text(
-            "ICON",
-            style: TextStyle(
+          Text(
+            L10n.t('icon'),
+            style: const TextStyle(
               color: VytalColors.textSecondary,
               fontSize: 10,
               fontWeight: FontWeight.bold,
@@ -194,15 +195,15 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
               onPressed: _save,
               style: ElevatedButton.styleFrom(
                 backgroundColor: VytalColors.primaryAccent,
-                foregroundColor: VytalColors.textPrimary,
+                foregroundColor: VytalColors.surface,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24),
                 ),
                 elevation: 0,
               ),
-              child: const Text(
-                "INITIALIZE PROTOCOL",
-                style: TextStyle(
+              child: Text(
+                L10n.t('initialize_protocol'),
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2,
 
@@ -220,9 +221,9 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       decoration: BoxDecoration(
-        color: VytalColors.textPrimary.withValues(alpha: 0.05),
+        color: Colors.transparent,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: VytalColors.textPrimary.withValues(alpha: 0.1)),
+        border: Border.all(color: VytalColors.textSecondary.withValues(alpha: 0.5)),
       ),
       child: TextField(
         controller: controller,
@@ -231,7 +232,7 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
           border: InputBorder.none,
           hintText: hint,
           hintStyle: TextStyle(
-            color: VytalColors.textPrimary.withValues(alpha: 0.3),
+            color: VytalColors.textSecondary.withValues(alpha: 0.5),
 
           ),
         ),

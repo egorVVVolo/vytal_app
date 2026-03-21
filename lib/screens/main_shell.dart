@@ -5,6 +5,7 @@ import 'growth_screen.dart';
 import 'plan_screen.dart';
 import 'profile_screen.dart';
 import 'training_hub_screen.dart';
+import '../utils/l10n.dart';
 
 class MainShell extends StatefulWidget {
   final String userName;
@@ -81,26 +82,26 @@ class _MainShellState extends State<MainShell> {
 
           ),
           showUnselectedLabels: true,
-          items: const [
+          items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.grid_view_rounded),
-              label: 'DASH',
+              icon: const Icon(Icons.grid_view_rounded),
+              label: L10n.t('dash'),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.height_rounded),
-              label: 'GROWTH',
+              icon: const Icon(Icons.height_rounded),
+              label: L10n.t('growth'),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.fitness_center_rounded),
-              label: 'LAB',
+              icon: const Icon(Icons.fitness_center_rounded),
+              label: L10n.t('lab'),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_month_rounded),
-              label: 'PLAN',
+              icon: const Icon(Icons.calendar_month_rounded),
+              label: L10n.t('plan'),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline_rounded),
-              label: 'PROFILE',
+              icon: const Icon(Icons.person_outline_rounded),
+              label: L10n.t('profile'),
             ),
           ],
         ),

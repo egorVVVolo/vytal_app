@@ -28,6 +28,14 @@ class StorageService {
     await _postureBox.clear();
   }
 
+  static Future<String> getLanguage() async {
+    return _settingsBox.get('language', defaultValue: 'en');
+  }
+
+  static Future<void> saveLanguage(String lang) async {
+    await _settingsBox.put('language', lang);
+  }
+
   static Future<bool> isFirstRun() async {
     return !_settingsBox.containsKey('onboarding_complete');
   }
