@@ -99,6 +99,7 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
   Future<void> _finishSession() async {
     _exerciseTimer?.cancel();
     setState(() => _isSessionFinished = true);
+    await StorageService.incrementTodayWorkoutCount();
     await StorageService.addXP(150);
     if (StorageService.getSetting('haptic')) HapticFeedback.heavyImpact();
   }

@@ -126,7 +126,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title: const Text(
           "Biohacker Metrics",
           style: TextStyle(
-            color: VytalColors.textPrimary,
+            color: Colors.white,
             fontWeight: FontWeight.bold,
 
             letterSpacing: 2,
@@ -247,7 +247,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             _name.isNotEmpty ? _name.characters.first.toUpperCase() : "?",
                             style: const TextStyle(
                               fontSize: 36,
-                              color: VytalColors.textPrimary,
+                              color: Colors.white,
                             ),
                           ),
                         ),
@@ -261,7 +261,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         style: const TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
-                          color: VytalColors.textPrimary,
+                          color: Colors.white,
                           letterSpacing: 1,
                         ),
                       ).animate().fadeIn(delay: 200.ms),
@@ -450,7 +450,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Text(
               value,
               style: const TextStyle(
-                color: VytalColors.textPrimary,
+                color: Colors.white,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
 

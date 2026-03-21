@@ -110,6 +110,7 @@ class _TrainingHubScreenState extends State<TrainingHubScreen> {
                           // Берем объединенный длинный список из всех категорий
                           workouts: WorkoutsData.allWorkoutsPath,
                           todayWorkoutCount: _todayWorkoutCount,
+                          currentLevelIndex: _todayWorkoutCount,
                           onNodeTapped: (workout) async {
                             // Если лимит достигнут, клик не работает
                             if (_todayWorkoutCount >= 3) return;

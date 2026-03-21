@@ -505,7 +505,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
               ),
               child: const Icon(
                 Icons.center_focus_strong,
-                color: VytalColors.primaryAccent,
+                color: Colors.white,
               ),
             ),
             const SizedBox(width: 16),
