@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // For haptics
 import 'package:pedometer/pedometer.dart';
-import 'package:permission_handler/permission_handler.dart';
+// Удален импорт permission_handler из этого файла, так как он теперь обрабатывается внутри сервиса
 import 'package:flutter_animate/flutter_animate.dart';
 import 'dart:async';
 import 'sleep_hgh_screen.dart';
@@ -14,23 +14,8 @@ import '../data/mock_data.dart';
 import '../widgets/glass_container.dart';
 import 'wiki_screen.dart';
 
-class PedometerService {
-  Stream<StepCount>? _stepCountStream;
-  Stream<PedestrianStatus>? _pedestrianStatusStream;
-
-  Future<bool> init() async {
-    var status = await Permission.activityRecognition.request();
-    if (status.isGranted) {
-      _stepCountStream = Pedometer.stepCountStream;
-      _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
-      return true;
-    }
-    return false;
-  }
-
-  Stream<StepCount>? get stepStream => _stepCountStream;
-  Stream<PedestrianStatus>? get statusStream => _pedestrianStatusStream;
-}
+// ВАЖНО: Добавляем импорт правильного сервиса и УДАЛЯЕМ дубликат класса PedometerService
+import '../services/pedometer_service.dart';
 
 class DashboardScreen extends StatefulWidget {
   final String userName;
@@ -54,10 +39,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
   String _startDateStr = "---";
 
   int _steps = 0;
-  String _motionStatus = L10n.t('calibrating'); // Handled in initPedometer
+  String _motionStatus = L10n.t('calibrating');
   final int _stepGoal = 5000;
-  late StreamSubscription<StepCount> _stepSubscription;
-  late StreamSubscription<PedestrianStatus> _statusSubscription;
+
+  // Делаем подписки nullable, так как на эмуляторе они могут не инициализироваться
+  StreamSubscription<StepCount>? _stepSubscription;
+  StreamSubscription<PedestrianStatus>? _statusSubscription;
   final PedometerService _pedometerService = PedometerService();
 
   @override
@@ -68,24 +55,50 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   void _initPedometer() async {
-    bool granted = await _pedometerService.init();
-    if (granted) {
-      _stepSubscription = _pedometerService.stepStream!.listen((event) {
-        if (mounted) {
-          setState(() => _steps = event.steps);
-          _checkStepGoal(event.steps);
-        }
-      }, onError: (error) => debugPrint("Step Error: $error"));
-
-      _statusSubscription = _pedometerService.statusStream!.listen((event) {
-        if (mounted) {
-          setState(
-            () => _motionStatus = event.status == 'walking'
-                ? L10n.t('active')
-                : L10n.t('idle'),
+    try {
+      bool granted = await _pedometerService.init();
+      if (granted) {
+        // Безопасная проверка и подписка на шаги
+        if (_pedometerService.stepStream != null) {
+          _stepSubscription = _pedometerService.stepStream!.listen(
+                (event) {
+              if (mounted) {
+                setState(() => _steps = event.steps);
+                _checkStepGoal(event.steps);
+              }
+            },
+            onError: (error) {
+              debugPrint("Step Error (Sensor missing?): $error");
+              if (mounted) setState(() => _motionStatus = "NO SENSOR");
+            },
+            cancelOnError: true,
           );
         }
-      }, onError: (error) => debugPrint("Status Error: $error"));
+
+        // Безопасная проверка и подписка на статус
+        if (_pedometerService.statusStream != null) {
+          _statusSubscription = _pedometerService.statusStream!.listen(
+                (event) {
+              if (mounted) {
+                setState(
+                      () => _motionStatus = event.status == 'walking'
+                      ? L10n.t('active')
+                      : L10n.t('idle'),
+                );
+              }
+            },
+            onError: (error) {
+              debugPrint("Status Error: $error");
+            },
+            cancelOnError: true,
+          );
+        }
+      } else {
+        if (mounted) setState(() => _motionStatus = "DENIED");
+      }
+    } catch (e) {
+      debugPrint("🛑 Critical Pedometer Error (Emulator?): $e");
+      if (mounted) setState(() => _motionStatus = "SIMULATOR");
     }
   }
 
@@ -124,12 +137,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   void dispose() {
-    try {
-      _stepSubscription.cancel();
-      _statusSubscription.cancel();
-    } catch (e) {
-      // ignore: empty_catches
-    }
+    // Безопасная отмена подписок
+    _stepSubscription?.cancel();
+    _statusSubscription?.cancel();
     super.dispose();
   }
 
@@ -157,7 +167,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       heightLogs.sort((a, b) => a.date.compareTo(b.date));
       startH = heightLogs.first.value;
       startD =
-          "${heightLogs.first.date.month}/${heightLogs.first.date.day}/${heightLogs.first.date.year}";
+      "${heightLogs.first.date.month}/${heightLogs.first.date.day}/${heightLogs.first.date.year}";
     }
 
     final actualHabits = allHabits.map((h) {
@@ -201,7 +211,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 fontSize: 12,
                 letterSpacing: 2,
                 fontWeight: FontWeight.bold,
-
               ),
             ),
             const SizedBox(height: 20),
@@ -246,7 +255,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   style: const TextStyle(
                     color: VytalColors.textPrimary,
                     fontWeight: FontWeight.bold,
-
                   ),
                 ),
                 Text(
@@ -264,7 +272,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
             style: const TextStyle(
               color: VytalColors.textSecondary,
               fontSize: 10,
-
             ),
           ),
         ],
@@ -343,7 +350,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       vertical: 12,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.orangeAccent.withValues(alpha: 0.05), // Minimalist
+                      color: Colors.orangeAccent.withValues(alpha: 0.05),
                       borderRadius: BorderRadius.circular(24),
                       border: Border.all(
                         color: Colors.orangeAccent.withValues(alpha: 0.1),
@@ -364,7 +371,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             color: Colors.orangeAccent,
                             fontWeight: FontWeight.w500,
                             fontSize: 18,
-
                           ),
                         ),
                       ],
@@ -386,7 +392,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               value: totalProgress,
                               color: VytalColors.primaryAccent,
                               backgroundColor: VytalColors.textSecondary,
-                              strokeWidth: 2, // Thinner
+                              strokeWidth: 2,
                             ),
                           ),
                           const SizedBox(width: 16),
@@ -407,7 +413,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                   color: VytalColors.textPrimary,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
-
                                 ),
                               ),
                             ],
@@ -428,7 +433,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   color: VytalColors.textSecondary,
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
-
                 ),
               ),
               const SizedBox(height: 16),
@@ -461,7 +465,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                   color: VytalColors.secondaryAccent,
                                   fontSize: 28,
                                   fontWeight: FontWeight.w500,
-
                                 ),
                               ),
                               const Padding(
@@ -472,7 +475,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     color: VytalColors.secondaryAccent,
                                     fontSize: 10,
                                     fontWeight: FontWeight.w500,
-
                                   ),
                                 ),
                               ),
@@ -512,7 +514,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               color: VytalColors.textPrimary,
                               fontSize: 20,
                               fontWeight: FontWeight.w500,
-
                             ),
                           ),
                           const SizedBox(height: 4),
@@ -521,7 +522,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             style: const TextStyle(
                               color: VytalColors.textSecondary,
                               fontSize: 10,
-
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -544,7 +544,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     : VytalColors.textSecondary,
                                 fontSize: 8,
                                 fontWeight: FontWeight.w500,
-
                               ),
                             ),
                           ),
@@ -568,9 +567,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 child: Container(
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: const Color(
-                      0xFF0038FF,
-                    ).withValues(alpha: 0.05), // Minimalist solid
+                    color: const Color(0xFF0038FF).withValues(alpha: 0.05),
                     borderRadius: BorderRadius.circular(24),
                     border: Border.all(
                       color: const Color(0xFF0038FF).withValues(alpha: 0.1),
@@ -583,7 +580,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
                           color: const Color(0xFF0038FF).withValues(alpha: 0.1),
-                          shape: BoxShape.rectangle, // Square corners
+                          shape: BoxShape.rectangle,
                         ),
                         child: const Icon(
                           Icons.bedtime_rounded,
@@ -601,7 +598,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               fontWeight: FontWeight.bold,
                               fontSize: 14,
                               letterSpacing: 1,
-
                             ),
                           ),
                           const SizedBox(height: 2),
@@ -610,7 +606,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             style: const TextStyle(
                               color: VytalColors.textSecondary,
                               fontSize: 10,
-
                             ),
                           ),
                         ],
@@ -636,7 +631,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2,
-
                 ),
               ),
               const SizedBox(height: 16),
@@ -655,7 +649,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             color: _steps >= _stepGoal
                                 ? VytalColors.secondaryAccent
                                 : VytalColors.primaryAccent,
-                            strokeWidth: 2, // Thinner
+                            strokeWidth: 2,
                           ),
                         ),
                         Icon(
@@ -677,7 +671,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             color: VytalColors.primaryAccent,
                             fontSize: 10,
                             fontWeight: FontWeight.bold,
-
                           ),
                         ),
                         const SizedBox(height: 4),
@@ -687,7 +680,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             color: VytalColors.textPrimary,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-
                           ),
                         ),
                       ],
@@ -726,7 +718,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
                           letterSpacing: 2,
-
                         ),
                       ),
                       const Spacer(),
@@ -752,8 +743,7 @@ class _VelocityWavePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
       ..color = VytalColors.secondaryAccent.withValues(alpha: 0.6)
-      ..strokeWidth =
-          1 // Thinner line
+      ..strokeWidth = 1
       ..style = PaintingStyle.stroke;
 
     final path = Path();
