@@ -30,15 +30,31 @@ class GlassContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: margin,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(borderRadius),
+        boxShadow: [
+          BoxShadow(
+            color: VytalColors.textPrimary.withValues(alpha: 0.05), // Soft drop shadow for elevation
+            blurRadius: 20,
+            spreadRadius: -5,
+            offset: const Offset(0, 10),
+          )
+        ],
+      ),
       child: GestureDetector(
         onTap: onTap,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(borderRadius),
           child: Stack(
             children: [
-              // 1. Apple Liquid Glass Blur Layer
+              // 1. Shadow Layer (Placed outside the glass effect, usually on a container around the ClipRRect,
+              // but we can fake a glow/shadow inside or add it to the parent wrapper.)
+              // The shadow doesn't work well *inside* the ClipRRect because it gets clipped.
+              // So, we'll draw the glass layer with a subtle gradient and use the border.
+
+              // 2. Apple Liquid Glass Blur Layer
               BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10), // Increased blur for glassmorphism
+                filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20), // Whoop style heavy blur
                 child: Container(
                   width: width,
                   height: height,
@@ -46,7 +62,7 @@ class GlassContainer extends StatelessWidget {
                 ),
               ),
 
-              // 2. Light Glass Layer
+              // 3. Light Glass Layer
               Container(
                 width: width,
                 height: height,
@@ -55,17 +71,17 @@ class GlassContainer extends StatelessWidget {
                   borderRadius: BorderRadius.circular(borderRadius),
                   border: border ??
                       Border.all(
-                        color: Colors.white.withValues(alpha: 0.4),
-                        width: 1,
-                      ), // Subtle white border
-                  color: color ?? Colors.white.withValues(alpha: 0.5), // Highly transparent white
-                  boxShadow: [
-                    BoxShadow(
-                      color: VytalColors.textPrimary.withValues(alpha: 0.02), // Soft drop shadow
-                      blurRadius: 10,
-                      offset: const Offset(0, 4),
-                    )
-                  ],
+                        color: Colors.white.withValues(alpha: 0.6), // Pronounced white edge
+                        width: 1.5,
+                      ),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      color ?? Colors.white.withValues(alpha: 0.7), // More solid white at top left
+                      color?.withValues(alpha: 0.3) ?? Colors.white.withValues(alpha: 0.3), // More transparent at bottom right
+                    ],
+                  ),
                 ),
                 child: child,
               ),

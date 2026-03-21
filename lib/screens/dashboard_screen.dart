@@ -8,6 +8,7 @@ import 'sleep_hgh_screen.dart';
 import '../theme/colors.dart';
 import '../services/storage_service.dart';
 import '../models/habit.dart';
+import '../utils/l10n.dart';
 import '../models/posture_log.dart';
 import '../data/mock_data.dart';
 import '../widgets/glass_container.dart';
@@ -53,7 +54,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   String _startDateStr = "---";
 
   int _steps = 0;
-  String _motionStatus = "CALIBRATING...";
+  String _motionStatus = L10n.t('calibrating'); // Handled in initPedometer
   final int _stepGoal = 5000;
   late StreamSubscription<StepCount> _stepSubscription;
   late StreamSubscription<PedestrianStatus> _statusSubscription;
@@ -80,8 +81,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
         if (mounted) {
           setState(
             () => _motionStatus = event.status == 'walking'
-                ? "Active"
-                : "IDLE",
+                ? L10n.t('active')
+                : L10n.t('idle'),
           );
         }
       }, onError: (error) => debugPrint("Status Error: $error"));
@@ -294,7 +295,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Good morning,",
+                        L10n.t('good_morning'),
                         style: TextStyle(
                           color: VytalColors.textSecondary.withValues(alpha: 0.6),
                           fontSize: 14,
@@ -392,16 +393,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
-                                "Daily Plan",
-                                style: TextStyle(
+                              Text(
+                                L10n.t('daily_plan'),
+                                style: const TextStyle(
                                   color: VytalColors.textSecondary,
                                   fontSize: 10,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
                               Text(
-                                "$percentage% DONE",
+                                "$percentage% ${L10n.t('done')}",
                                 style: const TextStyle(
                                   color: VytalColors.textPrimary,
                                   fontSize: 16,
@@ -421,9 +422,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
               const SizedBox(height: 32),
 
               // 3. BASELINE WIDGET
-              const Text(
-                "Growth Metrics",
-                style: TextStyle(
+              Text(
+                L10n.t('growth_metrics'),
+                style: const TextStyle(
                   color: VytalColors.textSecondary,
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
@@ -442,9 +443,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "Velocity",
-                            style: TextStyle(
+                          Text(
+                            L10n.t('velocity'),
+                            style: const TextStyle(
                               color: VytalColors.textSecondary,
                               fontSize: 10,
                               fontWeight: FontWeight.w500,
@@ -496,9 +497,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "Baseline",
-                            style: TextStyle(
+                          Text(
+                            L10n.t('baseline'),
+                            style: const TextStyle(
                               color: VytalColors.textSecondary,
                               fontSize: 10,
                               fontWeight: FontWeight.w500,
@@ -536,7 +537,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               borderRadius: BorderRadius.circular(24),
                             ),
                             child: Text(
-                              _baselineLog != null ? "SCAN: OK" : "NO SCAN",
+                              _baselineLog != null ? L10n.t('scan_ok') : L10n.t('no_scan'),
                               style: TextStyle(
                                 color: _baselineLog != null
                                     ? VytalColors.primaryAccent
@@ -590,12 +591,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ),
                       ),
                       const SizedBox(width: 16),
-                      const Column(
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "HGH SLEEP",
-                            style: TextStyle(
+                            L10n.t('hgh_sleep'),
+                            style: const TextStyle(
                               color: VytalColors.textPrimary,
                               fontWeight: FontWeight.bold,
                               fontSize: 14,
@@ -603,10 +604,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
                             ),
                           ),
-                          SizedBox(height: 2),
+                          const SizedBox(height: 2),
                           Text(
-                            "Hormone optimization",
-                            style: TextStyle(
+                            L10n.t('hormone_optimization'),
+                            style: const TextStyle(
                               color: VytalColors.textSecondary,
                               fontSize: 10,
 
@@ -628,9 +629,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
               const SizedBox(height: 32),
 
               // 5. MOTION SENSOR
-              const Text(
-                "Activity",
-                style: TextStyle(
+              Text(
+                L10n.t('activity'),
+                style: const TextStyle(
                   color: VytalColors.textSecondary,
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
@@ -681,7 +682,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          "$_steps STEPS",
+                          "$_steps ${L10n.t('steps')}",
                           style: const TextStyle(
                             color: VytalColors.textPrimary,
                             fontSize: 20,
@@ -718,9 +719,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         size: 28,
                       ),
                       const SizedBox(width: 16),
-                      const Text(
-                        "Knowledge Base",
-                        style: TextStyle(
+                      Text(
+                        L10n.t('knowledge_base'),
+                        style: const TextStyle(
                           color: VytalColors.textPrimary,
                           fontWeight: FontWeight.bold,
                           fontSize: 14,

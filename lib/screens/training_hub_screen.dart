@@ -5,6 +5,7 @@ import '../theme/colors.dart';
 import '../data/workouts_data.dart';
 import '../widgets/glass_container.dart';
 import 'workout_session_screen.dart';
+import '../utils/l10n.dart';
 
 class TrainingHubScreen extends StatefulWidget {
   const TrainingHubScreen({super.key});
@@ -43,9 +44,9 @@ class _TrainingHubScreenState extends State<TrainingHubScreen>
             child: Container(color: VytalColors.background.withValues(alpha: 0.5)),
           ),
         ),
-        title: const Text(
-          "KINETIC LAB",
-          style: TextStyle(
+        title: Text(
+          L10n.t('kinetic_lab'),
+          style: const TextStyle(
             color: VytalColors.textPrimary,
             fontWeight: FontWeight.w900,
             letterSpacing: 2,
@@ -90,10 +91,10 @@ class _TrainingHubScreenState extends State<TrainingHubScreen>
                 letterSpacing: 2,
 
               ),
-              tabs: const [
-                Tab(text: "FOUNDATION"),
-                Tab(text: "ACTIVATION"),
-                Tab(text: "EVOLUTION"),
+              tabs: [
+                Tab(text: L10n.t('foundation')),
+                Tab(text: L10n.t('activation')),
+                Tab(text: L10n.t('evolution')),
               ],
             ),
           ),
@@ -103,22 +104,22 @@ class _TrainingHubScreenState extends State<TrainingHubScreen>
         controller: _tabController,
         children: [
           _buildCategoryPage(
-            title: "CORRECTION\n& DECOMPRESSION",
-            subtitle: "Base level. Spinal alignment and tension release.",
+            title: L10n.t('correction_and_decompression'),
+            subtitle: L10n.t('correction_subtitle'),
             color: WorkoutsData.foundationColor,
             icon: Icons.accessibility_new_rounded,
             workouts: WorkoutsData.foundationLevels,
           ),
           _buildCategoryPage(
-            title: "HGH & METABOLISM\nACCELERATION",
-            subtitle: "HIIT protocols for peak growth hormone release.",
+            title: L10n.t('hgh_and_metabolism'),
+            subtitle: L10n.t('hgh_subtitle'),
             color: WorkoutsData.activationColor,
             icon: Icons.local_fire_department_rounded,
             workouts: WorkoutsData.activationLevels,
           ),
           _buildCategoryPage(
-            title: "WOLFF'S LAW\nFORTIFICATION",
-            subtitle: "Impact loading to stimulate bone tissue growth.",
+            title: L10n.t('wolffs_law'),
+            subtitle: L10n.t('wolffs_subtitle'),
             color: WorkoutsData.evolutionColor,
             icon: Icons.architecture_rounded,
             workouts: WorkoutsData.evolutionLevels,
@@ -292,7 +293,7 @@ class _LevelChainList extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "LEVEL ${workout.levelNumber}",
+                              "${L10n.t('level').toUpperCase()} ${workout.levelNumber}",
                               style: TextStyle(
                                 color: color,
                                 fontSize: 10,
@@ -380,7 +381,7 @@ class _LevelChainList extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "LEVEL ${workout.levelNumber}",
+                            "${L10n.t('level').toUpperCase()} ${workout.levelNumber}",
                             style: TextStyle(
                               color: workout.color,
                               fontSize: 12,
@@ -514,9 +515,9 @@ class _LevelChainList extends StatelessWidget {
                         elevation: 0,
                       ),
                       icon: const Icon(Icons.play_arrow_rounded, size: 28),
-                      label: const Text(
-                        "START TRAINING",
-                        style: TextStyle(
+                      label: Text(
+                        L10n.t('start_training'),
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                           letterSpacing: 2,

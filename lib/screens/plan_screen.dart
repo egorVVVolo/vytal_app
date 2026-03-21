@@ -8,6 +8,7 @@ import '../models/habit.dart';
 import '../data/mock_data.dart';
 import '../services/storage_service.dart';
 import 'protocol_library_screen.dart';
+import '../utils/l10n.dart';
 
 class PlanScreen extends StatefulWidget {
   const PlanScreen({super.key});
@@ -224,19 +225,19 @@ class _PlanScreenState extends State<PlanScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                       children: [
                         _buildTimeSection(
-                          "PROTOCOLS",
+                          L10n.t('protocols'),
                           vitaminHabits,
                         ),
                         _buildTimeSection(
-                          "ACTIVITY",
+                          L10n.t('activity').toUpperCase(),
                           activityHabits,
                         ),
                         _buildTimeSection(
-                          "MENTAL",
+                          L10n.t('mental'),
                           mentalHabits,
                         ),
                         _buildTimeSection(
-                          "SLEEP & ROUTINE",
+                          L10n.t('sleep_and_routine'),
                           sleepHabits,
                         ),
                         const SizedBox(height: 80),
@@ -255,9 +256,9 @@ class _PlanScreenState extends State<PlanScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text(
-            "Schedule",
-            style: TextStyle(
+          Text(
+            L10n.t('schedule'),
+            style: const TextStyle(
               color: VytalColors.primaryAccent,
               fontSize: 24,
               fontWeight: FontWeight.bold,
