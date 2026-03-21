@@ -51,8 +51,8 @@ class HabitTile extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                        VytalColors.secondaryAccent.withValues(alpha: 0.1),
-                        VytalColors.secondaryAccent.withValues(alpha: 0.0),
+                          Colors.greenAccent.withValues(alpha: 0.1),
+                          Colors.greenAccent.withValues(alpha: 0.0),
                     ],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
@@ -70,7 +70,7 @@ class HabitTile extends StatelessWidget {
                     width: 46, height: 46,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                        color: habit.isCompleted ? VytalColors.secondaryAccent.withValues(alpha: 0.2) : VytalColors.textPrimary.withValues(alpha: 0.05),
+                          color: habit.isCompleted ? Colors.greenAccent.withValues(alpha: 0.2) : VytalColors.textPrimary.withValues(alpha: 0.05),
                       shape: BoxShape.circle,
                         boxShadow: const [],
                     ),
@@ -110,13 +110,13 @@ class HabitTile extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                          color: habit.isCompleted ? VytalColors.secondaryAccent : VytalColors.textSecondary,
+                            color: habit.isCompleted ? Colors.greenAccent : VytalColors.textSecondary,
                           width: 2
                       ),
-                      color: habit.isCompleted ? VytalColors.secondaryAccent : Colors.transparent,
+                        color: habit.isCompleted ? Colors.greenAccent : Colors.transparent,
                     ),
                     child: habit.isCompleted
-                        ? const Icon(Icons.check, size: 16, color: VytalColors.textPrimary)
+                          ? const Icon(Icons.check, size: 16, color: Colors.white)
                         : null,
                   ),
                 ],

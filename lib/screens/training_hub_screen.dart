@@ -69,29 +69,72 @@ class _TrainingHubScreenState extends State<TrainingHubScreen> {
           ? const Center(
         child: CircularProgressIndicator(color: VytalColors.primaryNeon),
       )
-          : LevelPathView(
-        // Берем объединенный длинный список из всех категорий
-        workouts: WorkoutsData.allWorkoutsPath,
-        todayWorkoutCount: _todayWorkoutCount,
-        onNodeTapped: (workout) async {
-          // Если лимит достигнут, клик не работает
-          if (_todayWorkoutCount >= 3) return;
+          : Stack(
+              children: [
+                Positioned.fill(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Container(
+                      width: 300,
+                      height: 300,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: VytalColors.primaryAccent.withValues(alpha: 0.1),
+                      ),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
+                        child: Container(color: Colors.transparent),
+                      ),
+                    ),
+                  ),
+                ),
+                SafeArea(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 20.0),
+                        child: Center(
+                          child: Text(
+                            "$_todayWorkoutCount/3 COMPLETED PROTOCOLS",
+                            style: const TextStyle(
+                              color: VytalColors.primaryAccent,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                              letterSpacing: 2,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: LevelPathView(
+                          // Берем объединенный длинный список из всех категорий
+                          workouts: WorkoutsData.allWorkoutsPath,
+                          todayWorkoutCount: _todayWorkoutCount,
+                          onNodeTapped: (workout) async {
+                            // Если лимит достигнут, клик не работает
+                            if (_todayWorkoutCount >= 3) return;
 
-          // Открываем экран тренировки и ждем возврата
-          await Navigator.push(
-            context,
-            PageRouteBuilder(
-              pageBuilder: (c, a1, a2) => WorkoutSessionScreen(workout: workout),
-              transitionsBuilder: (c, anim, a2, child) =>
-                  FadeTransition(opacity: anim, child: child),
-              transitionDuration: const Duration(milliseconds: 500),
+                            // Открываем экран тренировки и ждем возврата
+                            await Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                pageBuilder: (c, a1, a2) => WorkoutSessionScreen(workout: workout),
+                                transitionsBuilder: (c, anim, a2, child) =>
+                                    FadeTransition(opacity: anim, child: child),
+                                transitionDuration: const Duration(milliseconds: 500),
+                              ),
+                            );
+
+                            // После возврата с тренировки обновляем счетчик лимитов
+                            _loadProgress();
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          );
-
-          // После возврата с тренировки обновляем счетчик лимитов
-          _loadProgress();
-        },
-      ),
     );
   }
 }

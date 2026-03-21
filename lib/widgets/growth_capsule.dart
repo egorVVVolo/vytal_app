@@ -30,7 +30,7 @@ class GrowthCapsule extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: VytalColors.textPrimary,
+        color: VytalColors.surface,
         borderRadius: BorderRadius.circular(24),
         border: Border.all(color: VytalColors.textPrimary.withValues(alpha: 0.05)),
         boxShadow: [
