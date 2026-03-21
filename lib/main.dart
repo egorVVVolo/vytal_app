@@ -15,6 +15,7 @@ import 'theme/colors.dart';
 import 'models/habit.dart';
 import 'models/height_log.dart';
 import 'models/posture_log.dart';
+import 'utils/l10n.dart';
 
 void main() {
   // Run app immediately
@@ -89,7 +90,11 @@ class _AppBootstrapState extends State<AppBootstrap> {
       await Hive.openBox('settingsBox');
       await Hive.openBox<PostureLog>('postureBox');
 
-      // 6. Check First Run
+      // 6. Language setting
+      String lang = await StorageService.getLanguage();
+      L10n.setLanguage(lang);
+
+      // 7. Check First Run
       _isFirstRun = await StorageService.isFirstRun();
       if (!_isFirstRun) {
         _savedName = await StorageService.getUserName();
@@ -134,9 +139,9 @@ class _AppBootstrapState extends State<AppBootstrap> {
                     size: 50,
                   ),
                   const SizedBox(height: 20),
-                  const Text(
-                    "SYSTEM COMPROMISED",
-                    style: TextStyle(
+                  Text(
+                    L10n.t('system_compromised'),
+                    style: const TextStyle(
                       color: VytalColors.warningAccent,
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
@@ -165,29 +170,71 @@ class _AppBootstrapState extends State<AppBootstrap> {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(scaffoldBackgroundColor: VytalColors.background),
         home: Scaffold(
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(
-                  Icons.fingerprint,
-                  size: 80,
-                  color: VytalColors.primaryAccent,
+          body: Stack(
+            children: [
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.fingerprint,
+                      size: 80,
+                      color: VytalColors.primaryAccent,
+                    ),
+                    const SizedBox(height: 20),
+                    const CircularProgressIndicator(color: VytalColors.primaryAccent),
+                    const SizedBox(height: 20),
+                    Text(
+                      L10n.t('system_initializing'),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: VytalColors.primaryAccent.withValues(alpha: 0.5),
+                        letterSpacing: 2,
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 20),
-                const CircularProgressIndicator(color: VytalColors.primaryAccent),
-                const SizedBox(height: 20),
-                Text(
-                  "VYTAL SYSTEM\nINITIALIZING...",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: VytalColors.primaryAccent.withValues(alpha: 0.5),
-
-                    letterSpacing: 2,
+              ),
+              Positioned(
+                top: 40,
+                right: 20,
+                child: SafeArea(
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () async {
+                          await StorageService.saveLanguage('en');
+                          L10n.setLanguage('en');
+                          setState(() {});
+                        },
+                        child: Text(
+                          "EN",
+                          style: TextStyle(
+                            color: L10n.currentLanguage == 'en' ? VytalColors.primaryAccent : VytalColors.textSecondary,
+                            fontWeight: L10n.currentLanguage == 'en' ? FontWeight.bold : FontWeight.normal,
+                          ),
+                        ),
+                      ),
+                      const Text(" / ", style: TextStyle(color: VytalColors.textSecondary)),
+                      GestureDetector(
+                        onTap: () async {
+                          await StorageService.saveLanguage('ru');
+                          L10n.setLanguage('ru');
+                          setState(() {});
+                        },
+                        child: Text(
+                          "RU",
+                          style: TextStyle(
+                            color: L10n.currentLanguage == 'ru' ? VytalColors.primaryAccent : VytalColors.textSecondary,
+                            fontWeight: L10n.currentLanguage == 'ru' ? FontWeight.bold : FontWeight.normal,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       );

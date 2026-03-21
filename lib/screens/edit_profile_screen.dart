@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart'; // Нужно для "dials"
 import 'package:flutter/services.dart'; // Для вибрации
 import '../theme/colors.dart';
 import '../services/storage_service.dart';
+import '../utils/l10n.dart';
 
 class EditProfileScreen extends StatefulWidget {
   final VoidCallback onSave;
@@ -89,9 +90,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ),
                     GestureDetector(
                       onTap: () => Navigator.pop(context),
-                      child: const Text(
-                        "DONE",
-                        style: TextStyle(
+                      child: Text(
+                        L10n.t('done'),
+                        style: const TextStyle(
                           color: VytalColors.primaryAccent,
                           fontWeight: FontWeight.bold,
 
@@ -155,9 +156,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       backgroundColor: VytalColors.background,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: const Text(
-          "PARAMETERS",
-          style: TextStyle(
+        title: Text(
+          L10n.t('parameters'),
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 16,
             letterSpacing: 2,
@@ -179,21 +180,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       body: ListView(
         padding: const EdgeInsets.all(24),
         children: [
-          _buildSection("PERSONAL DATA"),
+          _buildSection(L10n.t('personal_data')),
 
           // Имя оставляем обычным вводом (тут крутилка не поможет)
           _buildNameInput(),
 
           const SizedBox(height: 30),
 
-          _buildSection("BIOMETRICS"),
+          _buildSection(L10n.t('biometrics')),
 
           // Карточки, которые открывают крутилки
           Row(
             children: [
               Expanded(
                 child: _buildPickerCard(
-                  label: "Height",
+                  label: L10n.t('height'),
                   value: "${_height.toInt()}",
                   unit: "cm",
                   icon: Icons.height,
@@ -213,7 +214,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               const SizedBox(width: 16),
               Expanded(
                 child: _buildPickerCard(
-                  label: "Weight",
+                  label: L10n.t('weight'),
                   value: "${_weight.toInt()}",
                   unit: "kg",
                   icon: Icons.monitor_weight_outlined,
@@ -236,7 +237,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           const SizedBox(height: 16),
 
           _buildPickerCard(
-            label: "Age",
+            label: L10n.t('age'),
             value: "$_age",
             unit: "yrs",
             icon: Icons.cake_outlined,
@@ -268,9 +269,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ), // Sharp edges
                 elevation: 0,
               ),
-              child: const Text(
-                "SAVE CHANGES",
-                style: TextStyle(
+              child: Text(
+                L10n.t('save_changes'),
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2,
                   fontSize: 16,
@@ -316,11 +317,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           fontWeight: FontWeight.bold,
 
         ),
-        decoration: const InputDecoration(
-          label: Text("Name", style: TextStyle()),
-          labelStyle: TextStyle(color: VytalColors.textSecondary, fontSize: 14),
+        decoration: InputDecoration(
+          label: Text(L10n.t('name'), style: const TextStyle()),
+          labelStyle: const TextStyle(color: VytalColors.textSecondary, fontSize: 14),
           border: InputBorder.none,
-          icon: Icon(Icons.person_outline, color: VytalColors.textSecondary),
+          icon: const Icon(Icons.person_outline, color: VytalColors.textSecondary),
         ),
       ),
     );

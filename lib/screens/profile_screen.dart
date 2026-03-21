@@ -11,6 +11,7 @@ import '../widgets/stats_hexagon.dart';
 import '../widgets/profile_menu_item.dart';
 import '../services/storage_service.dart';
 import 'edit_profile_screen.dart';
+import '../utils/l10n.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -269,7 +270,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Column(
                         children: [
                           Text(
-                            "Level $_level Biohacker",
+                            "${L10n.t('level')} $_level ${L10n.t('biohacker')}",
                             style: const TextStyle(
                               color: VytalColors.primaryAccent,
                               fontSize: 12,
@@ -293,7 +294,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            "$_xp XP Total",
+                            "$_xp ${L10n.t('xp_total')}",
                             style: TextStyle(
                               color: VytalColors.textPrimary.withValues(alpha: 0.4),
                               fontSize: 10,
@@ -351,9 +352,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 color: VytalColors.primaryAccent,
                 size: 16,
               ),
-              label: const Text(
-                "Share Progress",
-                style: TextStyle(
+              label: Text(
+                L10n.t('share_progress'),
+                style: const TextStyle(
                   color: VytalColors.primaryAccent,
                   letterSpacing: 1,
                 ),
@@ -374,11 +375,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    _buildMiniStat("WEIGHT", _weight.toStringAsFixed(1), "kg"),
+                    _buildMiniStat(L10n.t('weight'), _weight.toStringAsFixed(1), "kg"),
                     Container(width: 1, height: 30, color: VytalColors.textSecondary),
-                    _buildMiniStat("HEIGHT", _height.toStringAsFixed(0), "cm"),
+                    _buildMiniStat(L10n.t('height'), _height.toStringAsFixed(0), "cm"),
                     Container(width: 1, height: 30, color: VytalColors.textSecondary),
-                    _buildMiniStat("AGE", _age.toString(), "yrs"),
+                    _buildMiniStat(L10n.t('age'), _age.toString(), "yrs"),
                   ],
                 ),
               ).animate().fadeIn(delay: 600.ms).slideY(begin: 0.2),
@@ -392,17 +393,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Column(
                 children: [
                   ProfileMenuItem(
-                    title: "My Devices",
+                    title: L10n.t('my_devices'),
                     icon: Icons.watch_rounded,
                     onTap: _showDevicesSheet,
                   ).animate().fadeIn(delay: 700.ms).slideX(begin: 0.1),
                   ProfileMenuItem(
-                    title: "Settings",
+                    title: L10n.t('settings'),
                     icon: Icons.settings_rounded,
                     onTap: _showSettingsSheet,
                   ).animate().fadeIn(delay: 800.ms).slideX(begin: 0.1),
                   ProfileMenuItem(
-                    title: "Reset Progress",
+                    title: L10n.t('reset_progress'),
                     icon: Icons.delete_forever_rounded,
                     isDestructive: true,
                     onTap: () async {

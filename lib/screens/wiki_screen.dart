@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../theme/colors.dart';
 import '../data/wiki_data.dart';
 import '../widgets/glass_container.dart';
+import '../utils/l10n.dart';
 
 class WikiScreen extends StatelessWidget {
   const WikiScreen({super.key});
@@ -18,9 +19,9 @@ class WikiScreen extends StatelessWidget {
       backgroundColor: VytalColors.background, // Фикс белого экрана
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: const Text(
-          "KNOWLEDGE BASE",
-          style: TextStyle(
+        title: Text(
+          L10n.t('knowledge_base').toUpperCase(),
+          style: const TextStyle(
             fontWeight: FontWeight.w900,
             letterSpacing: 2,
             fontSize: 16,
@@ -35,9 +36,9 @@ class WikiScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "RESEARCH",
-                style: TextStyle(
+            Text(
+              L10n.t('research'),
+                style: const TextStyle(
                   color: VytalColors.textSecondary,
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
@@ -131,9 +132,9 @@ class WikiScreen extends StatelessWidget {
               ).animate().fadeIn().scale(),
 
               const SizedBox(height: 40),
-              const Text(
-                "LIBRARY",
-                style: TextStyle(
+              Text(
+                L10n.t('library'),
+                style: const TextStyle(
                   color: VytalColors.textSecondary,
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
@@ -197,7 +198,7 @@ class WikiScreen extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        "${article.readTimeMin} min read",
+                                        "${article.readTimeMin} ${L10n.t('min_read')}",
                                         style: const TextStyle(
                                           color: VytalColors.textSecondary,
                                           fontSize: 12,
@@ -238,9 +239,18 @@ class WikiScreen extends StatelessWidget {
   }
 }
 
-class _ArticleDetailScreen extends StatelessWidget {
+class _ArticleDetailScreen extends StatefulWidget {
   final WikiArticle article;
   const _ArticleDetailScreen({required this.article});
+
+  @override
+  State<_ArticleDetailScreen> createState() => _ArticleDetailScreenState();
+}
+
+class _ArticleDetailScreenState extends State<_ArticleDetailScreen> {
+  bool _isMythExpanded = false;
+  int? _selectedAnswerIndex;
+  bool _showQuizResult = false;
 
   @override
   Widget build(BuildContext context) {
@@ -250,27 +260,36 @@ class _ArticleDetailScreen extends StatelessWidget {
         slivers: [
           SliverAppBar(
             backgroundColor: VytalColors.background,
-            expandedHeight: 200,
+            expandedHeight: 250,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
-              background: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      article.color.withValues(alpha: 0.2),
-                      VytalColors.background,
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
+              background: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Image.network(
+                    widget.article.imageUrl,
+                    fit: BoxFit.cover,
                   ),
-                ),
-                child: Center(
-                  child: Icon(
-                    article.icon,
-                    size: 80,
-                    color: article.color.withValues(alpha: 0.5),
+                  Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          VytalColors.background.withValues(alpha: 0.2),
+                          VytalColors.background,
+                        ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                      ),
+                    ),
                   ),
-                ),
+                  Center(
+                    child: Icon(
+                      widget.article.icon,
+                      size: 80,
+                      color: widget.article.color.withValues(alpha: 0.8),
+                    ),
+                  ),
+                ],
               ),
             ),
             leading: IconButton(
@@ -283,17 +302,16 @@ class _ArticleDetailScreen extends StatelessWidget {
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 Text(
-                  article.category.toUpperCase(),
+                  widget.article.category.toUpperCase(),
                   style: TextStyle(
-                    color: article.color,
+                    color: widget.article.color,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 2,
-
                   ),
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  article.title,
+                  widget.article.title,
                   style: const TextStyle(
                     color: VytalColors.textPrimary,
                     fontSize: 32,
@@ -303,11 +321,11 @@ class _ArticleDetailScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
 
-                // Контент в стекле
+                // Content
                 GlassContainer(
                   padding: const EdgeInsets.all(24),
                   child: Text(
-                    article.content,
+                    widget.article.content,
                     style: const TextStyle(
                       color: VytalColors.textPrimary,
                       fontSize: 16,
@@ -318,33 +336,152 @@ class _ArticleDetailScreen extends StatelessWidget {
 
                 const SizedBox(height: 40),
 
-                // Интерактивный элемент (Квиз / Факт)
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    border: Border.all(
-                      color: article.color.withValues(alpha: 0.5),
-                      width: 0.5,
+                // Interactive Element: Myth vs Fact Accordion
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _isMythExpanded = !_isMythExpanded;
+                    });
+                  },
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: _isMythExpanded ? widget.article.color.withValues(alpha: 0.1) : Colors.transparent,
+                      border: Border.all(
+                        color: widget.article.color.withValues(alpha: 0.5),
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.lightbulb_outline, color: widget.article.color),
+                                const SizedBox(width: 16),
+                                const Text(
+                                  "Myth vs Fact",
+                                  style: TextStyle(
+                                    color: VytalColors.textPrimary,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Icon(
+                              _isMythExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+                              color: VytalColors.textSecondary,
+                            ),
+                          ],
+                        ),
+                        if (_isMythExpanded) ...[
+                          const SizedBox(height: 20),
+                          Text(
+                            "Myth: ${widget.article.mythVsFact['Myth']}",
+                            style: const TextStyle(
+                              color: VytalColors.textSecondary,
+                              fontStyle: FontStyle.italic,
+                              fontSize: 14,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            "Fact: ${widget.article.mythVsFact['Fact']}",
+                            style: const TextStyle(
+                              color: VytalColors.textPrimary,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ]
+                      ],
                     ),
                   ),
-                  child: Row(
-                    children: [
-                      Icon(Icons.lightbulb_outline, color: article.color),
-                      const SizedBox(width: 16),
-                      const Expanded(
-                        child: Text(
-                          "Did you know? This method is used by Olympic athletes for recovery.",
-                          style: TextStyle(
-                            color: VytalColors.textSecondary,
-                            fontSize: 12,
+                ),
 
+                if (widget.article.quiz != null) ...[
+                  const SizedBox(height: 40),
+                  const Text(
+                    "Knowledge Check",
+                    style: TextStyle(
+                      color: VytalColors.textPrimary,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  GlassContainer(
+                    padding: const EdgeInsets.all(24),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.article.quiz!['question'],
+                          style: const TextStyle(
+                            color: VytalColors.textPrimary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
                           ),
                         ),
-                      ),
-                    ],
+                        const SizedBox(height: 20),
+                        ...List.generate((widget.article.quiz!['options'] as List).length, (index) {
+                          bool isSelected = _selectedAnswerIndex == index;
+                          bool isCorrect = index == widget.article.quiz!['correctIndex'];
+
+                          Color buttonColor = Colors.transparent;
+                          Color borderColor = VytalColors.textSecondary.withValues(alpha: 0.5);
+                          if (_showQuizResult) {
+                            if (isCorrect) {
+                              buttonColor = Colors.green.withValues(alpha: 0.2);
+                              borderColor = Colors.green;
+                            } else if (isSelected && !isCorrect) {
+                              buttonColor = Colors.red.withValues(alpha: 0.2);
+                              borderColor = Colors.red;
+                            }
+                          } else if (isSelected) {
+                            buttonColor = widget.article.color.withValues(alpha: 0.2);
+                            borderColor = widget.article.color;
+                          }
+
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 12.0),
+                            child: InkWell(
+                              onTap: _showQuizResult ? null : () {
+                                setState(() {
+                                  _selectedAnswerIndex = index;
+                                  _showQuizResult = true;
+                                });
+                              },
+                              borderRadius: BorderRadius.circular(12),
+                              child: Container(
+                                width: double.infinity,
+                                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+                                decoration: BoxDecoration(
+                                  color: buttonColor,
+                                  border: Border.all(color: borderColor),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Text(
+                                  widget.article.quiz!['options'][index],
+                                  style: TextStyle(
+                                    color: VytalColors.textPrimary,
+                                    fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        }),
+                      ],
+                    ),
                   ),
-                ),
+                ],
 
                 const SizedBox(height: 40),
                 Center(
@@ -354,12 +491,12 @@ class _ArticleDetailScreen extends StatelessWidget {
                       vertical: 10,
                     ),
                     decoration: BoxDecoration(
-                      border: Border.all(color: article.color, width: 0.5),
+                      border: Border.all(color: widget.article.color, width: 0.5),
                     ),
                     child: Text(
-                      "READ",
+                      L10n.t('read'),
                       style: TextStyle(
-                        color: article.color,
+                        color: widget.article.color,
                         fontWeight: FontWeight.bold,
 
                         letterSpacing: 2,
