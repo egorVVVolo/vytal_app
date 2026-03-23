@@ -133,6 +133,7 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
               child: Row(
                 children: [
                   IconButton(
+                    tooltip: 'Quit Session',
                     icon: const Icon(Icons.close, color: VytalColors.textSecondary),
                     onPressed: _quit,
                     padding: EdgeInsets.zero,
