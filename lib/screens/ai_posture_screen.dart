@@ -138,6 +138,7 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: IconButton(
+          tooltip: 'Back',
           icon: const Icon(Icons.arrow_back_ios, color: VytalColors.textPrimary),
           onPressed: () => Navigator.pop(context),
         ),
@@ -154,6 +155,7 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
         actions: [
           // History Button
           IconButton(
+            tooltip: 'History',
             icon: const Icon(Icons.history, color: VytalColors.textPrimary),
             onPressed: () => Navigator.push(
               context,

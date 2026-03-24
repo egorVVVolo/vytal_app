@@ -217,6 +217,7 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
         leading: const BackButton(color: VytalColors.textPrimary),
         actions: [
           IconButton(
+            tooltip: 'Save Protocol',
             icon: const Icon(Icons.check, color: VytalColors.secondaryAccent),
             onPressed: _saveProtocol,
           ),

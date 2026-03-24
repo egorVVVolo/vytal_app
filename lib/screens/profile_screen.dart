@@ -211,6 +211,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   top: 50,
                   right: 20,
                   child: IconButton(
+                    tooltip: 'Edit Profile',
                     icon: const Icon(
                       Icons.edit_outlined,
                       color: VytalColors.textSecondary,
@@ -333,6 +334,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ).animate().scale(curve: Curves.easeOutBack, delay: 400.ms),
                     IconButton(
+                      tooltip: 'Biohacker Metrics Info',
                       icon: const Icon(
                         Icons.info_outline,
                         color: VytalColors.textSecondary,
