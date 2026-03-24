@@ -2,6 +2,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:vytal_app/utils/l10n.dart';
 
 void main() {
+  setUp(() {
+    // Reset to default before each test to ensure test isolation
+    L10n.setLanguage('en');
+  });
+
   group('L10n Tests', () {
     test('L10n.t() should return the same key string when key does not exist', () {
       // Act
@@ -9,9 +14,7 @@ void main() {
 
       // Assert
       expect(result, 'non_existent_key_12345');
-  setUp(() {
-    // Reset to default before each test to ensure test isolation
-    L10n.setLanguage('en');
+    });
   });
 
   group('L10n', () {
@@ -36,5 +39,5 @@ void main() {
       expect(L10n.currentLanguage, 'en');
     });
   });
-};;
+}
 

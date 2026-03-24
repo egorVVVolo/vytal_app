@@ -29,7 +29,6 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   String _name = "User";
   List<Habit> _todayHabits = [];
-  int _completedCount = 0;
 
   int _streak = 0;
   double _growthVelocity = 0.0;
@@ -179,7 +178,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
       setState(() {
         _name = savedName.isNotEmpty ? savedName : widget.userName;
         _todayHabits = actualHabits;
-        _completedCount = actualHabits.where((h) => h.isCompleted).length;
         _streak = streak;
         _growthVelocity = velocity;
 
@@ -282,11 +280,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double totalProgress = _todayHabits.isEmpty
-        ? 0
-        : _completedCount / _todayHabits.length;
-    int percentage = (totalProgress * 100).toInt();
-
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: SafeArea(

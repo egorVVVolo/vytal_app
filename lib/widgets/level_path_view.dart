@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../data/workouts_data.dart';
@@ -78,14 +77,12 @@ class _LevelPathViewState extends State<LevelPathView> {
     // Determine colors
     Color baseColor = workout.color;
     Color glowColor = baseColor.withValues(alpha: 0.6);
-    IconData iconData = workout.icon;
 
     if (isCompleted) {
-      iconData = Icons.check_rounded;
+      // Logic handled in UI
     } else if (isLocked) {
       baseColor = Colors.grey.shade600;
       glowColor = Colors.transparent;
-      iconData = Icons.lock_rounded;
     }
 
     Widget nodeContent = Column(
