@@ -140,6 +140,7 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
         leading: IconButton(
           tooltip: 'Back',
           icon: const Icon(Icons.arrow_back_ios, color: VytalColors.textPrimary),
+          tooltip: 'Back',
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
@@ -157,6 +158,7 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
           IconButton(
             tooltip: 'History',
             icon: const Icon(Icons.history, color: VytalColors.textPrimary),
+            tooltip: 'View History',
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(

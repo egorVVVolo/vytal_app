@@ -168,12 +168,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.close, color: VytalColors.textPrimary),
+          tooltip: 'Close',
           tooltip: "Close",
           onPressed: () => Navigator.pop(context),
         ),
         actions: [
           IconButton(
             icon: const Icon(Icons.check, color: VytalColors.primaryAccent),
+            tooltip: 'Save Profile',
             tooltip: "Save",
             onPressed: _save,
           ),
