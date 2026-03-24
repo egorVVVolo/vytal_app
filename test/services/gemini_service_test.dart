@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:vytal_app/services/gemini_service.dart';
+import 'package:vytal_app/services/ai_posture_service.dart';
 
 void main() {
   group('AiPostureResult.fromJson', () {

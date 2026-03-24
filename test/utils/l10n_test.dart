@@ -36,4 +36,5 @@ void main() {
       expect(L10n.currentLanguage, 'en');
     });
   });
-}
+};;
+

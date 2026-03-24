@@ -1,13 +1,12 @@
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../theme/colors.dart';
-import '../services/gemini_service.dart';
-import '../services/storage_service.dart'; // <--- Imprt storage
-import '../models/posture_log.dart'; // <--- Import model
-import 'posture_history_screen.dart'; // <--- Import history screen
+import '../services/ai_posture_service.dart'; // <-- ИЗМЕНЕН ИМПОРТ
+import '../services/storage_service.dart';
+import '../models/posture_log.dart';
+import 'posture_history_screen.dart';
 
 class AiPostureScreen extends StatefulWidget {
   const AiPostureScreen({super.key});
@@ -40,7 +39,7 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
               ),
               title: const Text(
                 'Camera',
-                style: TextStyle(color: VytalColors.textPrimary, ),
+                style: TextStyle(color: VytalColors.textPrimary),
               ),
               onTap: () => Navigator.pop(context, ImageSource.camera),
             ),
@@ -51,7 +50,7 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
               ),
               title: const Text(
                 'Gallery',
-                style: TextStyle(color: VytalColors.textPrimary, ),
+                style: TextStyle(color: VytalColors.textPrimary),
               ),
               onTap: () => Navigator.pop(context, ImageSource.gallery),
             ),
@@ -83,8 +82,8 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
     if (_sidePhoto == null || _backPhoto == null) return;
     setState(() => _isLoading = true);
 
-    // Call API
-    final data = await GeminiService.analyzePosture(_sidePhoto!, _backPhoto!);
+    // ВЫЗОВ НОВОГО СЕРВИСА
+    final data = await AiPostureService.analyzePosture(_sidePhoto!, _backPhoto!);
 
     if (mounted) {
       setState(() {
@@ -94,11 +93,9 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
     }
   }
 
-  // --- SAVE METHOD ---
   Future<void> _saveResult() async {
     if (_result == null || _backPhoto == null || _sidePhoto == null) return;
 
-    // Create log
     final log = PostureLog(
       date: DateTime.now(),
       overallScore: _result!.overallScore,
@@ -111,10 +108,8 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
       sideImagePath: _sidePhoto!.path,
     );
 
-    // Save
     await StorageService.savePostureLog(log);
 
-    // Notify & Navigate
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -123,7 +118,6 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
         ),
       );
 
-      // Go to history, replace screen so user cannot hit "save" again by turning back
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const PostureHistoryScreen()),
@@ -140,13 +134,11 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
         leading: IconButton(
           tooltip: 'Back',
           icon: const Icon(Icons.arrow_back_ios, color: VytalColors.textPrimary),
-          tooltip: 'Back',
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
           "NEURAL SCAN",
           style: TextStyle(
-
             color: VytalColors.primaryAccent,
             letterSpacing: 2,
             fontWeight: FontWeight.bold,
@@ -154,11 +146,9 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
         ),
         centerTitle: true,
         actions: [
-          // History Button
           IconButton(
             tooltip: 'History',
             icon: const Icon(Icons.history, color: VytalColors.textPrimary),
-            tooltip: 'View History',
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(
@@ -179,7 +169,7 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
 
   Widget _buildBody() {
     if (_isLoading) return const _LoadingView();
-    // SHOW RESULT IF AVAILABLE
+
     if (_result != null) {
       return SingleChildScrollView(
         padding: const EdgeInsets.all(24),
@@ -235,48 +225,46 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
 
           const SizedBox(height: 50),
 
-          // Start Button
           GestureDetector(
-                onTap: (_sidePhoto != null && _backPhoto != null)
-                    ? _analyze
-                    : null,
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  width: double.infinity,
-                  height: 60,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: (_sidePhoto != null && _backPhoto != null)
-                        ? VytalColors.primaryAccent
-                        : VytalColors.textSecondary,
-                    borderRadius: BorderRadius.circular(24),
-                    boxShadow: (_sidePhoto != null && _backPhoto != null)
-                        ? [
-                            BoxShadow(
-                              color: VytalColors.primaryAccent.withValues(alpha: 0.6),
-                              blurRadius: 20,
-                            ),
-                          ]
-                        : [],
-                    border: Border.all(
-                      color: (_sidePhoto != null && _backPhoto != null)
-                          ? Colors.transparent
-                          : VytalColors.textSecondary,
-                    ),
+            onTap: (_sidePhoto != null && _backPhoto != null)
+                ? _analyze
+                : null,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              width: double.infinity,
+              height: 60,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: (_sidePhoto != null && _backPhoto != null)
+                    ? VytalColors.primaryAccent
+                    : VytalColors.textSecondary,
+                borderRadius: BorderRadius.circular(24),
+                boxShadow: (_sidePhoto != null && _backPhoto != null)
+                    ? [
+                  BoxShadow(
+                    color: VytalColors.primaryAccent.withValues(alpha: 0.6),
+                    blurRadius: 20,
                   ),
-                  child: Text(
-                    "INITIATE SCAN_PROTOCOL",
-                    style: TextStyle(
-
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.5,
-                      color: (_sidePhoto != null && _backPhoto != null)
-                          ? VytalColors.textPrimary
-                          : VytalColors.textSecondary,
-                    ),
-                  ),
+                ]
+                    : [],
+                border: Border.all(
+                  color: (_sidePhoto != null && _backPhoto != null)
+                      ? Colors.transparent
+                      : VytalColors.textSecondary,
                 ),
-              )
+              ),
+              child: Text(
+                "INITIATE SCAN_PROTOCOL",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.5,
+                  color: (_sidePhoto != null && _backPhoto != null)
+                      ? VytalColors.textPrimary
+                      : VytalColors.textSecondary,
+                ),
+              ),
+            ),
+          )
               .animate()
               .fadeIn(delay: 400.ms)
               .scale(curve: Curves.easeOutBack, delay: 400.ms),
@@ -294,7 +282,6 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
   }
 }
 
-// --- SCANNER SLOT ---
 class _ScannerSlot extends StatelessWidget {
   final String label;
   final File? file;
@@ -319,40 +306,40 @@ class _ScannerSlot extends StatelessWidget {
               color: VytalColors.textSecondary,
               image: file != null
                   ? DecorationImage(
-                      image: FileImage(file!),
-                      fit: BoxFit.cover,
-                      opacity: 0.8,
-                    )
+                image: FileImage(file!),
+                fit: BoxFit.cover,
+                opacity: 0.8,
+              )
                   : null,
             ),
             child: CustomPaint(
               painter: _CornerPainter(isActive: file != null),
               child: file == null
                   ? Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.add,
-                            color: VytalColors.textPrimary.withValues(alpha: 0.3),
-                            size: 40,
-                          ),
-                        ],
-                      ),
-                    )
-                  : Center(
-                      child: Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: VytalColors.textPrimary.withValues(alpha: 0.7),
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Icon(
-                          Icons.check,
-                          color: VytalColors.secondaryAccent,
-                        ),
-                      ).animate().scale(curve: Curves.elasticOut),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.add,
+                      color: VytalColors.textPrimary.withValues(alpha: 0.3),
+                      size: 40,
                     ),
+                  ],
+                ),
+              )
+                  : Center(
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: VytalColors.textPrimary.withValues(alpha: 0.7),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.check,
+                    color: VytalColors.secondaryAccent,
+                  ),
+                ).animate().scale(curve: Curves.elasticOut),
+              ),
             ),
           ),
           const SizedBox(height: 12),
@@ -360,7 +347,6 @@ class _ScannerSlot extends StatelessWidget {
             label,
             style: const TextStyle(
               color: VytalColors.primaryAccent,
-
               fontWeight: FontWeight.bold,
               letterSpacing: 2,
             ),
@@ -371,7 +357,6 @@ class _ScannerSlot extends StatelessWidget {
   }
 }
 
-// --- RESULT VIEW ---
 class _ResultView extends StatelessWidget {
   final AiPostureResult result;
   final VoidCallback onRetry;
@@ -393,7 +378,6 @@ class _ResultView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 1. Alert Banner
         Container(
           width: double.infinity,
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
@@ -420,7 +404,6 @@ class _ResultView extends StatelessWidget {
                       color: statusColor,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1,
-
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -429,7 +412,6 @@ class _ResultView extends StatelessWidget {
                     style: const TextStyle(
                       color: VytalColors.textPrimary,
                       fontSize: 12,
-
                     ),
                   ),
                 ],
@@ -440,11 +422,9 @@ class _ResultView extends StatelessWidget {
 
         const SizedBox(height: 30),
 
-        // 2. Schematic Spine + Stats
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Schematic spine
             Container(
               width: 100,
               height: 250,
@@ -458,7 +438,6 @@ class _ResultView extends StatelessWidget {
               ),
             ).animate().fadeIn(delay: 200.ms),
             const SizedBox(width: 20),
-            // Metrics
             Expanded(
               child: Column(
                 children: [
@@ -477,7 +456,6 @@ class _ResultView extends StatelessWidget {
                     score: result.headPostureScore,
                   ).animate().fadeIn(delay: 500.ms),
                   const SizedBox(height: 24),
-                  // Lost Height
                   Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
@@ -504,7 +482,6 @@ class _ResultView extends StatelessWidget {
                             color: VytalColors.textPrimary,
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
-
                           ),
                         ),
                       ],
@@ -518,7 +495,6 @@ class _ResultView extends StatelessWidget {
 
         const SizedBox(height: 30),
 
-        // 3. Terminal Recommendation
         Container(
           width: double.infinity,
           padding: const EdgeInsets.all(20),
@@ -535,7 +511,6 @@ class _ResultView extends StatelessWidget {
                 style: TextStyle(
                   color: VytalColors.primaryAccent,
                   fontSize: 10,
-
                 ),
               ),
               const SizedBox(height: 10),
@@ -544,7 +519,6 @@ class _ResultView extends StatelessWidget {
                 style: const TextStyle(
                   color: VytalColors.textPrimary,
                   height: 1.5,
-
                 ),
               ),
             ],
@@ -553,35 +527,33 @@ class _ResultView extends StatelessWidget {
 
         const SizedBox(height: 40),
 
-        // 4. Save Button
         GestureDetector(
-              onTap: onSave,
-              child: Container(
-                width: double.infinity,
-                height: 60,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: VytalColors.primaryAccent,
-                  borderRadius: BorderRadius.circular(24),
-                  boxShadow: [
-                    BoxShadow(
-                      color: VytalColors.primaryAccent.withValues(alpha: 0.5),
-                      blurRadius: 20,
-                    ),
-                  ],
+          onTap: onSave,
+          child: Container(
+            width: double.infinity,
+            height: 60,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: VytalColors.primaryAccent,
+              borderRadius: BorderRadius.circular(24),
+              boxShadow: [
+                BoxShadow(
+                  color: VytalColors.primaryAccent.withValues(alpha: 0.5),
+                  blurRadius: 20,
                 ),
-                child: const Text(
-                  "DUMP TO HISTORY",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-
-                    fontSize: 16,
-                    color: VytalColors.textPrimary,
-                    letterSpacing: 1,
-                  ),
-                ),
+              ],
+            ),
+            child: const Text(
+              "DUMP TO HISTORY",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+                color: VytalColors.textPrimary,
+                letterSpacing: 1,
               ),
-            )
+            ),
+          ),
+        )
             .animate()
             .fadeIn(delay: 800.ms)
             .scale(curve: Curves.easeOutBack, delay: 800.ms),
@@ -596,7 +568,6 @@ class _ResultView extends StatelessWidget {
               "PURGE & RETRY",
               style: TextStyle(
                 color: VytalColors.textSecondary,
-
                 letterSpacing: 1,
               ),
             ),
@@ -639,7 +610,6 @@ class _MetricRow extends StatelessWidget {
               style: TextStyle(
                 color: color,
                 fontWeight: FontWeight.bold,
-
               ),
             ),
           ],
@@ -658,8 +628,6 @@ class _MetricRow extends StatelessWidget {
     );
   }
 }
-
-// --- PAINTERS ---
 
 class _CornerPainter extends CustomPainter {
   final bool isActive;
@@ -804,7 +772,6 @@ class _LoadingView extends StatelessWidget {
             "AI ANALYZING...",
             style: TextStyle(
               color: VytalColors.primaryAccent.withValues(alpha: 0.8),
-
               letterSpacing: 2,
             ),
           ),

@@ -35,7 +35,6 @@ class ProtocolLibraryScreen extends StatelessWidget {
             size: 20,
             color: VytalColors.primaryAccent,
           ),
-          tooltip: "Back",
           onPressed: () => Navigator.pop(context),
         ),
       ),
