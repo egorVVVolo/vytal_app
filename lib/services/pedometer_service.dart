@@ -1,7 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'dart:async';
-import 'dart:io' show Platform;
-import 'package:flutter/services.dart';
 import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -11,24 +9,31 @@ class PedometerService {
 
   // Инициализация и запрос прав
   Future<bool> init() async {
-    // Запрашиваем разрешение на "Physical activity"
-    var status = await Permission.activityRecognition.request();
+    try {
+      // Запрашиваем разрешение на "Physical activity"
+      var status = await Permission.activityRecognition.request();
 
-    if (status.isGranted) {
-      // Catch errors directly at the source to prevent unhandled platform exceptions
-      _stepCountStream = Pedometer.stepCountStream.handleError((error) {
-        debugPrint("🛑 Caught Step Stream Error: $error");
-      });
+      if (status.isGranted) {
+        // Catch errors directly at the source to prevent unhandled platform exceptions
+        _stepCountStream = Pedometer.stepCountStream.handleError((error) {
+          debugPrint("🛑 Caught Step Stream Error: $error");
+        });
 
-      // Instead of using Pedometer.pedestrianStatusStream directly (which has a bug on Android
-      // where it throws unhandled exceptions if the sensor is missing), we implement a safe wrapper.
-      _pedestrianStatusStream = _getSafePedestrianStatusStream().handleError((error) {
-        debugPrint("🛑 Caught Status Stream Error: $error");
-      });
+        // Instead of using Pedometer.pedestrianStatusStream directly (which has a bug on Android
+        // where it throws unhandled exceptions if the sensor is missing), we implement a safe wrapper.
+        _pedestrianStatusStream = _getSafePedestrianStatusStream().handleError((error) {
+          debugPrint("🛑 Caught Status Stream Error: $error");
+        });
 
-      return true;
-    } else {
-      debugPrint("🛑 Pedometer permission denied");
+        return true;
+      } else {
+        debugPrint("🛑 Pedometer permission denied");
+        return false;
+      }
+    } catch (e) {
+      // Catch PlatformException or generic Exception thrown during initialization
+      // This often occurs on emulators where physical sensors are missing.
+      debugPrint("🛑 Pedometer init error (likely emulator or missing sensor): $e");
       return false;
     }
   }
