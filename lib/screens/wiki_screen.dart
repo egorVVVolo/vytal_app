@@ -293,6 +293,7 @@ class _ArticleDetailScreenState extends State<_ArticleDetailScreen> {
               ),
             ),
             leading: IconButton(
+              tooltip: 'Back',
               icon: const Icon(Icons.arrow_back, color: VytalColors.textPrimary),
               onPressed: () => Navigator.pop(context),
             ),
