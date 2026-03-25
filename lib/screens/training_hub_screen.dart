@@ -57,6 +57,7 @@ class _TrainingHubScreenState extends State<TrainingHubScreen> {
         ),
         centerTitle: true,
         leading: IconButton(
+          tooltip: 'Back',
           icon: const Icon(
             Icons.arrow_back_ios_new_rounded,
             size: 20,

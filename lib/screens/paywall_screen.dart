@@ -20,6 +20,7 @@ class PaywallScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(right: 16, top: 8),
                   child: IconButton(
+                    tooltip: 'Close',
                     icon: const Icon(Icons.close, color: VytalColors.textSecondary),
                     onPressed: () => Navigator.pop(context),
                   ),

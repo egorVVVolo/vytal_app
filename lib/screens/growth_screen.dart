@@ -342,12 +342,12 @@ class _GrowthScreenState extends State<GrowthScreen> {
                 children: [
                   _buildSectionHeader("DYNAMICS"),
                   IconButton(
+                    tooltip: 'Add Measurement',
                     onPressed: _showAddLogDialog,
                     icon: const Icon(
                       Icons.add_circle_outline,
                       color: VytalColors.primaryAccent,
                     ),
-                    tooltip: "Add Measurement",
                   ),
                 ],
               ).animate().fadeIn(delay: 700.ms),
