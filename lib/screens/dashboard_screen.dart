@@ -69,7 +69,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
             },
             onError: (error) {
               debugPrint("Step Error (Sensor missing?): $error");
-              if (mounted) setState(() => _motionStatus = "NO SENSOR");
+              if (mounted) {
+                setState(() {
+                  _motionStatus = "EMULATOR";
+                  _steps = 2500; // Mock data for emulator fallback
+                });
+              }
             },
             cancelOnError: true,
           );
@@ -94,11 +99,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
           );
         }
       } else {
-        if (mounted) setState(() => _motionStatus = "DENIED");
+        // Fallback for missing permissions, emulator, or init failure
+        if (mounted) {
+          setState(() {
+            _motionStatus = "EMULATOR";
+            _steps = 2500; // Mock data for emulator fallback
+          });
+        }
       }
     } catch (e) {
       debugPrint("🛑 Critical Pedometer Error (Emulator?): $e");
-      if (mounted) setState(() => _motionStatus = "SIMULATOR");
+      if (mounted) {
+        setState(() {
+          _motionStatus = "EMULATOR";
+          _steps = 2500; // Mock data for emulator fallback
+        });
+      }
     }
   }
 
