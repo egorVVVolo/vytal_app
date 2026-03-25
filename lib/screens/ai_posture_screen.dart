@@ -26,7 +26,7 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
   Future<void> _pickImage(bool isSide) async {
     final ImageSource? source = await showModalBottomSheet<ImageSource>(
       context: context,
-      backgroundColor: const Color(0xFF13141B),
+      backgroundColor: VytalColors.surface,
       builder: (context) => Padding(
         padding: const EdgeInsets.all(20),
         child: Column(

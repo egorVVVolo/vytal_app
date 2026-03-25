@@ -37,7 +37,7 @@ class AiPostureService {
   static const String _apiKey = String.fromEnvironment('VSEGPT_API_KEY');
 
   // Идеальный баланс цены и качества для Vision + JSON
-  static const String _modelName = 'vis-google/gemini-3-flash-pre-thinking';
+  static const String _modelName = 'openai/gpt-4o-mini';
 
   static bool _isInitialized = false;
 
@@ -45,7 +45,7 @@ class AiPostureService {
     if (!_isInitialized) {
       OpenAI.apiKey = _apiKey;
       // Направляем запросы на сервер VseGPT вместо оригинального OpenAI
-      OpenAI.baseUrl = "https://api.vsegpt.ru/v1";
+      OpenAI.baseUrl = "https://api.vsegpt.ru";
       _isInitialized = true;
     }
   }
