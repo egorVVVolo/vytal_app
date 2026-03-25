@@ -135,6 +135,7 @@ class _ScanSimulationScreenState extends State<ScanSimulationScreen>
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
+                    tooltip: 'Close',
                     icon: const Icon(Icons.close, color: VytalColors.textSecondary),
                     onPressed: () => Navigator.pop(context),
                   ),

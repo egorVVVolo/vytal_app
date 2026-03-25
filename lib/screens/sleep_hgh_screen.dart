@@ -158,6 +158,7 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
         ),
         centerTitle: true,
         leading: IconButton(
+          tooltip: 'Back',
           icon: const Icon(Icons.arrow_back, color: VytalColors.textPrimary),
           onPressed: () => Navigator.pop(context),
         ),
