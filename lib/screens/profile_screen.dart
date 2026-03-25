@@ -118,10 +118,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        backgroundColor: VytalColors.surface, // Minimal black
+        backgroundColor: VytalColors.surface,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
-          side: BorderSide(color: VytalColors.textSecondary),
+          side: const BorderSide(color: VytalColors.textSecondary),
         ),
         title: const Text(
           "Biohacker Metrics",

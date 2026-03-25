@@ -207,7 +207,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void _showNotifications() {
     showModalBottomSheet(
       context: context,
-      backgroundColor: VytalColors.surface, // Minimal black
+      backgroundColor: VytalColors.surface,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(0),

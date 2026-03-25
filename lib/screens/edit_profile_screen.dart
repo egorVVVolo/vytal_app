@@ -106,8 +106,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               Expanded(
                 child: CupertinoTheme(
                   data: const CupertinoThemeData(
-                    brightness:
-                        Brightness.dark, // Темная тема для iOS компонентов
+                    brightness: Brightness.light,
                     textTheme: CupertinoTextThemeData(
                       pickerTextStyle: TextStyle(
                         color: VytalColors.textPrimary,
@@ -263,7 +262,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             child: ElevatedButton(
               onPressed: _save,
               style: ElevatedButton.styleFrom(
-                backgroundColor: VytalColors.surface, // Minimalist black
+                backgroundColor: VytalColors.surface,
                 foregroundColor: VytalColors.primaryAccent,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24),

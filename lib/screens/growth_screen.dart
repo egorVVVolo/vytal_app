@@ -87,7 +87,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
 
     showModalBottomSheet(
       context: context,
-      backgroundColor: VytalColors.surface, // Minimal pitch black
+      backgroundColor: VytalColors.surface,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(0),
@@ -162,7 +162,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
                       width: 70,
                       child: CupertinoTheme(
                         data: const CupertinoThemeData(
-                          brightness: Brightness.dark,
+                          brightness: Brightness.light,
                         ),
                         child: CupertinoPicker(
                           scrollController: FixedExtentScrollController(
@@ -205,7 +205,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
                       width: 60,
                       child: CupertinoTheme(
                         data: const CupertinoThemeData(
-                          brightness: Brightness.dark,
+                          brightness: Brightness.light,
                         ),
                         child: CupertinoPicker(
                           scrollController: FixedExtentScrollController(
