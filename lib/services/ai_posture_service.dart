@@ -34,7 +34,10 @@ class AiPostureResult {
 
 class AiPostureService {
   // Ключ VseGPT теперь берем из параметров сборки
-  static const String _apiKey = String.fromEnvironment('VSEGPT_API_KEY');
+  static const String _apiKey = String.fromEnvironment(
+    'VSEGPT_API_KEY',
+    defaultValue: 'sk-or-vv-7370ab2c2f91c3946add4bd5044aa7e485235eef67810f16d4b09d852df3fe8b',
+  );
 
   // Идеальный баланс цены и качества для Vision + JSON
   static const String _modelName = 'openai/gpt-4o-mini';
