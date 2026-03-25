@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:vytal_app/screens/vision_ai_screen.dart';
+import '../screens/ai_posture_screen.dart';
 import '../theme/colors.dart';
 import '../widgets/growth_capsule.dart';
 import '../services/storage_service.dart';
@@ -482,7 +482,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const VisionAiScreen()),
+          MaterialPageRoute(builder: (context) => const AiPostureScreen()),
         );
       },
       child: Container(
