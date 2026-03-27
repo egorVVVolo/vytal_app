@@ -272,12 +272,14 @@ class _PlanScreenState extends State<PlanScreen> {
                 Icons.auto_stories_outlined,
                 _openProtocolLibrary,
                 null,
+                L10n.t('library'),
               ),
               const SizedBox(width: 12),
               _headerBtn(
                 Icons.add,
                 _openAddHabitSheet,
                 VytalColors.primaryAccent,
+                L10n.t('initialize_protocol'),
               ),
             ],
           ),
@@ -286,19 +288,22 @@ class _PlanScreenState extends State<PlanScreen> {
     );
   }
 
-  Widget _headerBtn(IconData icon, VoidCallback onTap, Color? color) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(
-          color: color?.withValues(alpha: 0.1) ?? VytalColors.surface,
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: color?.withValues(alpha: 0.5) ?? VytalColors.textSecondary.withValues(alpha: 0.2)),
-          boxShadow: const [],
+  Widget _headerBtn(IconData icon, VoidCallback onTap, Color? color, String tooltipMessage) {
+    return Tooltip(
+      message: tooltipMessage,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            color: color?.withValues(alpha: 0.1) ?? VytalColors.surface,
+            borderRadius: BorderRadius.circular(24),
+            border: Border.all(color: color?.withValues(alpha: 0.5) ?? VytalColors.textSecondary.withValues(alpha: 0.2)),
+            boxShadow: const [],
+          ),
+          child: Icon(icon, color: color ?? VytalColors.textSecondary, size: 20),
         ),
-        child: Icon(icon, color: color ?? VytalColors.textSecondary, size: 20),
       ),
     );
   }
