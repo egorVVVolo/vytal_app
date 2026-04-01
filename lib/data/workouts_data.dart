@@ -16,7 +16,8 @@ class Exercise {
     required this.description,
     required this.type,
     this.durationSeconds,
-    this.visualUrl = 'https://via.placeholder.com/400x300.png?text=Exercise+Animation',
+    this.visualUrl =
+        'https://via.placeholder.com/400x300.png?text=Exercise+Animation',
   });
 }
 
@@ -57,7 +58,8 @@ class WorkoutsData {
         Exercise(
           title: 'Wall Angels',
           subtitle: '15 slow reps',
-          description: 'Back pressed against the wall. Elbows slide up and down.',
+          description:
+              'Back pressed against the wall. Elbows slide up and down.',
           type: ExerciseType.reps,
         ),
         Exercise(
@@ -87,7 +89,8 @@ class WorkoutsData {
         Exercise(
           title: 'Dead Hang',
           subtitle: '45 sec hang',
-          description: 'Passive dead hang on a pull-up bar. Complete back relaxation.',
+          description:
+              'Passive dead hang on a pull-up bar. Complete back relaxation.',
           type: ExerciseType.timer,
           durationSeconds: 45,
         ),
@@ -101,7 +104,8 @@ class WorkoutsData {
         Exercise(
           title: 'Cobra Pose Hold',
           subtitle: '45 sec static',
-          description: 'Cobra pose. Pull the crown of your head up, shoulders down.',
+          description:
+              'Cobra pose. Pull the crown of your head up, shoulders down.',
           type: ExerciseType.timer,
           durationSeconds: 45,
         ),
@@ -119,19 +123,22 @@ class WorkoutsData {
         Exercise(
           title: 'Y-W-T Raises',
           subtitle: '10 reps each letter',
-          description: 'Lying on your stomach, raise your arms forming the letters Y, W, T. Squeeze your shoulder blades.',
+          description:
+              'Lying on your stomach, raise your arms forming the letters Y, W, T. Squeeze your shoulder blades.',
           type: ExerciseType.reps,
         ),
         Exercise(
           title: 'Plank Scapula Pushups',
           subtitle: '15 reps',
-          description: 'In a plank, pinch and spread only your shoulder blades. Keep arms straight.',
+          description:
+              'In a plank, pinch and spread only your shoulder blades. Keep arms straight.',
           type: ExerciseType.reps,
         ),
         Exercise(
           title: 'Wall Sit Posture',
           subtitle: '90 sec',
-          description: 'Wall sit with a perfectly straight back and pressed back of the head.',
+          description:
+              'Wall sit with a perfectly straight back and pressed back of the head.',
           type: ExerciseType.timer,
           durationSeconds: 90,
         ),
@@ -149,19 +156,22 @@ class WorkoutsData {
         Exercise(
           title: 'Bird Dog',
           subtitle: '12 reps per side',
-          description: 'On all fours, extend opposite arm and leg while keeping torso stable.',
+          description:
+              'On all fours, extend opposite arm and leg while keeping torso stable.',
           type: ExerciseType.reps,
         ),
         Exercise(
           title: 'Dead Bug',
           subtitle: '15 reps per side',
-          description: 'Lying on back, alternate extending opposite arm and leg without arching lower back.',
+          description:
+              'Lying on back, alternate extending opposite arm and leg without arching lower back.',
           type: ExerciseType.reps,
         ),
         Exercise(
           title: 'Forearm Plank',
           subtitle: '60 sec hold',
-          description: 'Maintain a straight line from head to heels on forearms and toes.',
+          description:
+              'Maintain a straight line from head to heels on forearms and toes.',
           type: ExerciseType.timer,
           durationSeconds: 60,
         ),
@@ -179,7 +189,8 @@ class WorkoutsData {
         Exercise(
           title: 'World\'s Greatest Stretch',
           subtitle: '5 reps per side',
-          description: 'Lunge with torso rotation, feeling stretch in hips and mid-back.',
+          description:
+              'Lunge with torso rotation, feeling stretch in hips and mid-back.',
           type: ExerciseType.reps,
         ),
         Exercise(
@@ -191,7 +202,8 @@ class WorkoutsData {
         Exercise(
           title: 'Deep Squat Hold',
           subtitle: '60 sec hold',
-          description: 'Sit in a deep, active squat, pressing knees out with elbows.',
+          description:
+              'Sit in a deep, active squat, pressing knees out with elbows.',
           type: ExerciseType.timer,
           durationSeconds: 60,
         ),
@@ -209,20 +221,23 @@ class WorkoutsData {
         Exercise(
           title: 'Jefferson Curls',
           subtitle: '10 slow reps',
-          description: 'Slowly articulate the spine downwards with a light weight, then roll back up.',
+          description:
+              'Slowly articulate the spine downwards with a light weight, then roll back up.',
           type: ExerciseType.reps,
         ),
         Exercise(
           title: 'Hollow Body Hold',
           subtitle: '45 sec hold',
-          description: 'Lower back pressed into floor, arms and legs extended and lifted.',
+          description:
+              'Lower back pressed into floor, arms and legs extended and lifted.',
           type: ExerciseType.timer,
           durationSeconds: 45,
         ),
         Exercise(
           title: 'Back Extensions',
           subtitle: '15 reps',
-          description: 'Lying face down, lift chest and legs off the ground simultaneously.',
+          description:
+              'Lying face down, lift chest and legs off the ground simultaneously.',
           type: ExerciseType.reps,
         ),
       ],
@@ -462,11 +477,7 @@ class WorkoutsData {
   ];
 
   static List<Workout> get allWorkoutsPath {
-    return [
-      ...foundationLevels,
-      ...activationLevels,
-      ...evolutionLevels,
-    ];
+    return [...foundationLevels, ...activationLevels, ...evolutionLevels];
   }
 
   static const Color evolutionColor = Color(0xFFD500F9);
@@ -483,19 +494,22 @@ class WorkoutsData {
         Exercise(
           title: 'Pogo Jumps (Ankle)',
           subtitle: '50 jumps',
-          description: 'Jumps only on straight legs using calves. Focus on a hard landing.',
+          description:
+              'Jumps only on straight legs using calves. Focus on a hard landing.',
           type: ExerciseType.reps,
         ),
         Exercise(
           title: 'Drop Jumps',
           subtitle: '10 reps',
-          description: 'Jump down from a small height (step) and instantly jump up.',
+          description:
+              'Jump down from a small height (step) and instantly jump up.',
           type: ExerciseType.reps,
         ),
         Exercise(
           title: 'Farmer Walks',
           subtitle: '60 sec',
-          description: 'Walking with heavy dumbbells in hands. Posture is straight.',
+          description:
+              'Walking with heavy dumbbells in hands. Posture is straight.',
           type: ExerciseType.timer,
           durationSeconds: 60,
         ),
@@ -513,7 +527,8 @@ class WorkoutsData {
         Exercise(
           title: 'Sprinting',
           subtitle: '3 x 60 meters',
-          description: 'Sprint outside with maximum effort. Impact load on the skeleton.',
+          description:
+              'Sprint outside with maximum effort. Impact load on the skeleton.',
           type: ExerciseType.reps,
         ),
         Exercise(
@@ -542,19 +557,22 @@ class WorkoutsData {
         Exercise(
           title: 'Extensive Pogo Jumps',
           subtitle: '100 jumps',
-          description: 'Continuous stiff-legged hops, prioritizing minimal ground contact time.',
+          description:
+              'Continuous stiff-legged hops, prioritizing minimal ground contact time.',
           type: ExerciseType.reps,
         ),
         Exercise(
           title: 'Depth Drops',
           subtitle: '5 reps',
-          description: 'Step off a box, land softly and hold the absorbing position.',
+          description:
+              'Step off a box, land softly and hold the absorbing position.',
           type: ExerciseType.reps,
         ),
         Exercise(
           title: 'Isometric Calf Raise Hold',
           subtitle: '60 sec',
-          description: 'Hold the top position of a calf raise with added weight.',
+          description:
+              'Hold the top position of a calf raise with added weight.',
           type: ExerciseType.timer,
           durationSeconds: 60,
         ),
@@ -572,13 +590,15 @@ class WorkoutsData {
         Exercise(
           title: 'Broad Jumps',
           subtitle: '10 jumps',
-          description: 'Maximal effort jumps for distance. Reset between each jump.',
+          description:
+              'Maximal effort jumps for distance. Reset between each jump.',
           type: ExerciseType.reps,
         ),
         Exercise(
           title: 'Heavy Sled Push (or Wall Sits)',
           subtitle: '45 sec',
-          description: 'Maximum exertion pushing a heavy load, or an intense wall sit.',
+          description:
+              'Maximum exertion pushing a heavy load, or an intense wall sit.',
           type: ExerciseType.timer,
           durationSeconds: 45,
         ),
@@ -602,7 +622,8 @@ class WorkoutsData {
         Exercise(
           title: 'Max Vertical Jump',
           subtitle: '5 jumps',
-          description: 'Absolute maximum effort vertical jump. Full recovery between.',
+          description:
+              'Absolute maximum effort vertical jump. Full recovery between.',
           type: ExerciseType.reps,
         ),
         Exercise(

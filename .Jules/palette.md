@@ -1,3 +1,7 @@
 ## 2024-03-22 - Add Tooltips to Icon Buttons
 **Learning:** Found multiple instances of `IconButton` across different screens (`ai_posture_screen.dart`, `edit_profile_screen.dart`, `profile_screen.dart`) that lacked tooltips. In Flutter, adding a `tooltip` property to an `IconButton` not only displays a helpful text hint on long press/hover, but it also automatically provides a semantic label for screen readers. Some existing buttons (like in `growth_screen.dart`) correctly had them, but many did not.
 **Action:** When adding or reviewing `IconButton`s in the future, always ensure a concise, descriptive `tooltip` is included to improve both general usability and accessibility.
+
+## 2024-04-01 - Wrap Custom Gestures in Tooltips
+**Learning:** Found multiple instances of custom icon buttons built using `GestureDetector` (e.g., `_headerBtn` in `plan_screen.dart`, `_DeviceTile` in `profile_screen.dart`, `_buildPickerCard` in `edit_profile_screen.dart`) that did not have any explicit ARIA-like labels for screen readers. While native `IconButton`s support a `tooltip` property directly, custom widgets do not natively expose themselves well without additional wrapping.
+**Action:** When creating custom interactive icons or elements wrapped with `GestureDetector` or `InkWell`, always wrap them with a `Tooltip` widget. This displays a helpful text hint on long press/hover, and automatically provides a semantic label for screen readers.

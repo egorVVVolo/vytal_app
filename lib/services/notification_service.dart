@@ -68,7 +68,8 @@ class NotificationService {
       minute: 30,
       id: 101,
       title: "Sleep Preparation 🌙",
-      body: "Don't forget to take magnesium and prepare your body for recovery.",
+      body:
+          "Don't forget to take magnesium and prepare your body for recovery.",
     );
   }
 

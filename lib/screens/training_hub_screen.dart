@@ -43,7 +43,9 @@ class _TrainingHubScreenState extends State<TrainingHubScreen> {
         flexibleSpace: ClipRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-            child: Container(color: VytalColors.background.withValues(alpha: 0.5)),
+            child: Container(
+              color: VytalColors.background.withValues(alpha: 0.5),
+            ),
           ),
         ),
         title: const Text(
@@ -68,8 +70,8 @@ class _TrainingHubScreenState extends State<TrainingHubScreen> {
       ),
       body: _isLoading
           ? const Center(
-        child: CircularProgressIndicator(color: VytalColors.primaryNeon),
-      )
+              child: CircularProgressIndicator(color: VytalColors.primaryNeon),
+            )
           : Stack(
               children: [
                 Positioned.fill(
@@ -119,10 +121,13 @@ class _TrainingHubScreenState extends State<TrainingHubScreen> {
                             await Navigator.push(
                               context,
                               PageRouteBuilder(
-                                pageBuilder: (c, a1, a2) => WorkoutSessionScreen(workout: workout),
+                                pageBuilder: (c, a1, a2) =>
+                                    WorkoutSessionScreen(workout: workout),
                                 transitionsBuilder: (c, anim, a2, child) =>
                                     FadeTransition(opacity: anim, child: child),
-                                transitionDuration: const Duration(milliseconds: 500),
+                                transitionDuration: const Duration(
+                                  milliseconds: 500,
+                                ),
                               ),
                             );
 

@@ -179,7 +179,6 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 2,
-
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -207,7 +206,6 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                               color: VytalColors.textPrimary,
                               fontSize: 40,
                               fontWeight: FontWeight.bold,
-
                             ),
                           ),
                           const Icon(
@@ -229,7 +227,6 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 2,
-
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -292,7 +289,6 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                             style: TextStyle(
                               color: VytalColors.textSecondary,
                               fontSize: 12,
-
                             ),
                           ),
                         ),
@@ -312,7 +308,9 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
             decoration: BoxDecoration(
               color: VytalColors.background,
               border: Border(
-                top: BorderSide(color: VytalColors.textPrimary.withValues(alpha: 0.1)),
+                top: BorderSide(
+                  color: VytalColors.textPrimary.withValues(alpha: 0.1),
+                ),
               ),
             ),
             child: GestureDetector(
@@ -357,7 +355,6 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                         fontWeight: FontWeight.w900,
                         fontSize: 16,
                         letterSpacing: 2,
-
                       ),
                     ),
                   ],
@@ -398,7 +395,6 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                   color: color,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-
                 ),
               ),
               if (isHighlight)
@@ -431,7 +427,10 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                 const SizedBox(height: 4),
                 Text(
                   desc,
-                  style: const TextStyle(color: VytalColors.textSecondary, fontSize: 12),
+                  style: const TextStyle(
+                    color: VytalColors.textSecondary,
+                    fontSize: 12,
+                  ),
                 ),
               ],
             ),
