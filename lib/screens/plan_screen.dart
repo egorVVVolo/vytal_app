@@ -292,6 +292,10 @@ class _PlanScreenState extends State<PlanScreen> {
   ) {
     return Tooltip(
       message: tooltipMsg,
+    String tooltip,
+  ) {
+    return Tooltip(
+      message: tooltip,
       child: GestureDetector(
         onTap: onTap,
         child: Container(
