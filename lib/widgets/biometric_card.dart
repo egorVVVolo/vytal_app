@@ -26,7 +26,9 @@ class BiometricCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: VytalColors.surface,
           borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: VytalColors.textSecondary.withValues(alpha: 0.1)),
+          border: Border.all(
+            color: VytalColors.textSecondary.withValues(alpha: 0.1),
+          ),
           boxShadow: const [],
         ),
         child: Column(

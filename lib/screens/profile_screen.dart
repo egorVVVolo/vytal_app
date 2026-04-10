@@ -234,8 +234,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: VytalColors.primaryAccent.withValues(alpha:
-                                0.1,
+                              color: VytalColors.primaryAccent.withValues(
+                                alpha: 0.1,
                               ), // Reduced glow
                               blurRadius: 4,
                             ),
@@ -245,7 +245,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           radius: 45,
                           backgroundColor: VytalColors.surface,
                           child: Text(
-                            _name.isNotEmpty ? _name.characters.first.toUpperCase() : "?",
+                            _name.isNotEmpty
+                                ? _name.characters.first.toUpperCase()
+                                : "?",
                             style: const TextStyle(
                               fontSize: 36,
                               color: VytalColors.textPrimary,
@@ -277,7 +279,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               fontSize: 12,
                               letterSpacing: 1,
                               fontWeight: FontWeight.bold,
-
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -288,7 +289,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               borderRadius: BorderRadius.circular(24),
                               child: LinearProgressIndicator(
                                 value: _levelProgress,
-                                backgroundColor: VytalColors.textSecondary.withValues(alpha: 0.2),
+                                backgroundColor: VytalColors.textSecondary
+                                    .withValues(alpha: 0.2),
                                 color: VytalColors.textPrimary,
                               ),
                             ),
@@ -297,9 +299,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Text(
                             "$_xp ${L10n.t('xp_total')}",
                             style: TextStyle(
-                              color: VytalColors.textPrimary.withValues(alpha: 0.4),
+                              color: VytalColors.textPrimary.withValues(
+                                alpha: 0.4,
+                              ),
                               fontSize: 10,
-
                             ),
                           ),
                         ],
@@ -372,15 +375,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 decoration: BoxDecoration(
                   color: Colors.transparent, // Transparent for minimalism
-                  border: Border.all(color: VytalColors.textSecondary, width: 0.5),
+                  border: Border.all(
+                    color: VytalColors.textSecondary,
+                    width: 0.5,
+                  ),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    _buildMiniStat(L10n.t('weight'), _weight.toStringAsFixed(1), "kg"),
-                    Container(width: 1, height: 30, color: VytalColors.textSecondary),
-                    _buildMiniStat(L10n.t('height'), _height.toStringAsFixed(0), "cm"),
-                    Container(width: 1, height: 30, color: VytalColors.textSecondary),
+                    _buildMiniStat(
+                      L10n.t('weight'),
+                      _weight.toStringAsFixed(1),
+                      "kg",
+                    ),
+                    Container(
+                      width: 1,
+                      height: 30,
+                      color: VytalColors.textSecondary,
+                    ),
+                    _buildMiniStat(
+                      L10n.t('height'),
+                      _height.toStringAsFixed(0),
+                      "cm",
+                    ),
+                    Container(
+                      width: 1,
+                      height: 30,
+                      color: VytalColors.textSecondary,
+                    ),
                     _buildMiniStat(L10n.t('age'), _age.toString(), "yrs"),
                   ],
                 ),
@@ -441,7 +463,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             fontSize: 10,
             fontWeight: FontWeight.bold,
             letterSpacing: 2,
-
           ),
         ),
         const SizedBox(height: 6),
@@ -455,7 +476,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 color: VytalColors.textPrimary,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-
               ),
             ),
             const SizedBox(width: 2),
@@ -518,7 +538,6 @@ class _RealSettingsSheetState extends State<_RealSettingsSheet> {
               fontSize: 16,
               fontWeight: FontWeight.bold,
               letterSpacing: 1.5,
-
             ),
           ),
           const SizedBox(height: 20),
@@ -542,11 +561,7 @@ class _RealSettingsSheetState extends State<_RealSettingsSheet> {
           const SizedBox(height: 10),
           const Text(
             "Vytal v1.2.0 (Stable)",
-            style: TextStyle(
-              color: VytalColors.textSecondary,
-              fontSize: 10,
-
-            ),
+            style: TextStyle(color: VytalColors.textSecondary, fontSize: 10),
           ),
         ],
       ),
@@ -607,7 +622,6 @@ class _DevicesSheetState extends State<_DevicesSheet> {
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1.5,
-
                 ),
               ),
               if (_isScanning)
@@ -663,58 +677,65 @@ class _DeviceTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: isConnected
-              ? VytalColors.primaryAccent.withValues(alpha: 0.05)
-              : Colors.transparent,
-          border: Border.all(
-            color: isConnected ? VytalColors.primaryAccent : VytalColors.textSecondary,
-            width: 0.5,
+    return Tooltip(
+      message: isConnected ? "Disconnect $name" : "Connect $name",
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: isConnected
+                ? VytalColors.primaryAccent.withValues(alpha: 0.05)
+                : Colors.transparent,
+            border: Border.all(
+              color: isConnected
+                  ? VytalColors.primaryAccent
+                  : VytalColors.textSecondary,
+              width: 0.5,
+            ),
           ),
-        ),
-        child: Row(
-          children: [
-            Icon(
-              icon,
-              color: isConnected ? VytalColors.primaryAccent : VytalColors.textSecondary,
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    name.toUpperCase(),
-                    style: const TextStyle(
-                      color: VytalColors.textPrimary,
-                      fontWeight: FontWeight.bold,
+          child: Row(
+            children: [
+              Icon(
+                icon,
+                color: isConnected
+                    ? VytalColors.primaryAccent
+                    : VytalColors.textSecondary,
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      name.toUpperCase(),
+                      style: const TextStyle(
+                        color: VytalColors.textPrimary,
+                        fontWeight: FontWeight.bold,
 
-                      letterSpacing: 1,
+                        letterSpacing: 1,
+                      ),
                     ),
-                  ),
-                  Text(
-                    isConnected ? "Synchronized" : "Tap to connect",
-                    style: TextStyle(
-                      color: isConnected
-                          ? VytalColors.primaryAccent
-                          : VytalColors.textSecondary,
-                      fontSize: 10,
+                    Text(
+                      isConnected ? "Synchronized" : "Tap to connect",
+                      style: TextStyle(
+                        color: isConnected
+                            ? VytalColors.primaryAccent
+                            : VytalColors.textSecondary,
+                        fontSize: 10,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            if (isConnected)
-              const Icon(
-                Icons.check_circle,
-                color: VytalColors.primaryAccent,
-                size: 18,
-              ),
-          ],
+              if (isConnected)
+                const Icon(
+                  Icons.check_circle,
+                  color: VytalColors.primaryAccent,
+                  size: 18,
+                ),
+            ],
+          ),
         ),
       ),
     );
@@ -739,14 +760,16 @@ class _InfoRow extends StatelessWidget {
               style: const TextStyle(
                 color: VytalColors.primaryAccent,
                 fontWeight: FontWeight.bold,
-
               ),
             ),
           ),
           Expanded(
             child: Text(
               text,
-              style: const TextStyle(color: VytalColors.textSecondary, fontSize: 12),
+              style: const TextStyle(
+                color: VytalColors.textSecondary,
+                fontSize: 12,
+              ),
             ),
           ),
         ],
@@ -771,11 +794,7 @@ class _SwitchRow extends StatelessWidget {
       contentPadding: EdgeInsets.zero,
       title: Text(
         label.toUpperCase(),
-        style: const TextStyle(
-          color: VytalColors.textPrimary,
-
-          fontSize: 12,
-        ),
+        style: const TextStyle(color: VytalColors.textPrimary, fontSize: 12),
       ),
       value: value,
       activeThumbColor: VytalColors.primaryAccent,

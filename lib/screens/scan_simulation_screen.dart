@@ -67,12 +67,10 @@ class _ScanSimulationScreenState extends State<ScanSimulationScreen>
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (context) => const _ScanResultSheet(),
-    ).then(
-      (_) {
-        if (!mounted) return;
-        Navigator.pop(context);
-      },
-    ); // Когда закроют отчет, выходим из сканера
+    ).then((_) {
+      if (!mounted) return;
+      Navigator.pop(context);
+    }); // Когда закроют отчет, выходим из сканера
   }
 
   @override
@@ -136,7 +134,10 @@ class _ScanSimulationScreenState extends State<ScanSimulationScreen>
                 children: [
                   IconButton(
                     tooltip: 'Close',
-                    icon: const Icon(Icons.close, color: VytalColors.textSecondary),
+                    icon: const Icon(
+                      Icons.close,
+                      color: VytalColors.textSecondary,
+                    ),
                     onPressed: () => Navigator.pop(context),
                   ),
                   Container(
@@ -256,7 +257,8 @@ class _ScanResultSheet extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(32),
       decoration: const BoxDecoration(
-        color: VytalColors.textPrimary, // minimal surface color, likely deep dark
+        color:
+            VytalColors.textPrimary, // minimal surface color, likely deep dark
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(0),
         ), // sharp corners
@@ -282,11 +284,7 @@ class _ScanResultSheet extends StatelessWidget {
           const SizedBox(height: 16),
           const Text(
             "Forward head posture (Text Neck) detected. Estimated height loss: 1.2 cm.",
-            style: TextStyle(
-              color: VytalColors.textSecondary,
-
-              fontSize: 12,
-            ),
+            style: TextStyle(color: VytalColors.textSecondary, fontSize: 12),
           ),
           const SizedBox(height: 40),
           SizedBox(
@@ -308,7 +306,7 @@ class _ScanResultSheet extends StatelessWidget {
               ),
               child: const Text(
                 "SAVE TO PROFILE",
-                style: TextStyle( letterSpacing: 2),
+                style: TextStyle(letterSpacing: 2),
               ),
             ),
           ),

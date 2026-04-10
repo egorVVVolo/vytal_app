@@ -75,12 +75,8 @@ class _MainShellState extends State<MainShell> {
             fontWeight: FontWeight.bold,
             fontSize: 10,
             letterSpacing: 1,
-
           ),
-          unselectedLabelStyle: const TextStyle(
-            fontSize: 10,
-
-          ),
+          unselectedLabelStyle: const TextStyle(fontSize: 10),
           showUnselectedLabels: true,
           items: [
             BottomNavigationBarItem(

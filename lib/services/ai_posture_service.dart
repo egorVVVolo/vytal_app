@@ -36,7 +36,8 @@ class AiPostureService {
   // Ключ VseGPT теперь берем из параметров сборки
   static const String _apiKey = String.fromEnvironment(
     'VSEGPT_API_KEY',
-    defaultValue: 'sk-or-vv-7370ab2c2f91c3946add4bd5044aa7e485235eef67810f16d4b09d852df3fe8b',
+    defaultValue:
+        'sk-or-vv-7370ab2c2f91c3946add4bd5044aa7e485235eef67810f16d4b09d852df3fe8b',
   );
 
   // Идеальный баланс цены и качества для Vision + JSON
@@ -54,9 +55,9 @@ class AiPostureService {
   }
 
   static Future<AiPostureResult?> analyzePosture(
-      File sidePhoto,
-      File backPhoto,
-      ) async {
+    File sidePhoto,
+    File backPhoto,
+  ) async {
     _initApi();
 
     try {
@@ -93,13 +94,18 @@ class AiPostureService {
 
       final chatCompletion = await OpenAI.instance.chat.create(
         model: _modelName,
-        temperature: 0.1, // Низкая температура = строгое соблюдение правил и JSON
-        responseFormat: {"type": "json_object"}, // Гарантирует, что вернется JSON
+        temperature:
+            0.1, // Низкая температура = строгое соблюдение правил и JSON
+        responseFormat: {
+          "type": "json_object",
+        }, // Гарантирует, что вернется JSON
         messages: [
           OpenAIChatCompletionChoiceMessageModel(
             role: OpenAIChatMessageRole.system,
             content: [
-              OpenAIChatCompletionChoiceMessageContentItemModel.text(systemPrompt),
+              OpenAIChatCompletionChoiceMessageContentItemModel.text(
+                systemPrompt,
+              ),
             ],
           ),
           OpenAIChatCompletionChoiceMessageModel(
@@ -117,7 +123,8 @@ class AiPostureService {
       );
 
       // Извлекаем текст ответа
-      String text = chatCompletion.choices.first.message.content?.first.text ?? "";
+      String text =
+          chatCompletion.choices.first.message.content?.first.text ?? "";
 
       // На всякий случай чистим от артефактов маркдауна, если они проскочат
       text = text.replaceAll('```json', '').replaceAll('```', '').trim();
@@ -125,7 +132,6 @@ class AiPostureService {
 
       final jsonMap = json.decode(text);
       return AiPostureResult.fromJson(jsonMap);
-
     } catch (e) {
       debugPrint("AI API Error: $e");
       return AiPostureResult(

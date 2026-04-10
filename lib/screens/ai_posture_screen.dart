@@ -83,7 +83,10 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
     setState(() => _isLoading = true);
 
     // ВЫЗОВ НОВОГО СЕРВИСА
-    final data = await AiPostureService.analyzePosture(_sidePhoto!, _backPhoto!);
+    final data = await AiPostureService.analyzePosture(
+      _sidePhoto!,
+      _backPhoto!,
+    );
 
     if (mounted) {
       setState(() {
@@ -133,7 +136,10 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
         backgroundColor: Colors.transparent,
         leading: IconButton(
           tooltip: 'Back',
-          icon: const Icon(Icons.arrow_back_ios, color: VytalColors.textPrimary),
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: VytalColors.textPrimary,
+          ),
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
@@ -198,7 +204,11 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
           const SizedBox(height: 8),
           const Text(
             "Ensure good lighting and contrast background for high AI accuracy.",
-            style: TextStyle(color: VytalColors.textSecondary, fontSize: 13, height: 1.5),
+            style: TextStyle(
+              color: VytalColors.textSecondary,
+              fontSize: 13,
+              height: 1.5,
+            ),
           ).animate().fadeIn(delay: 100.ms),
 
           const SizedBox(height: 40),
@@ -226,45 +236,47 @@ class _AiPostureScreenState extends State<AiPostureScreen> {
           const SizedBox(height: 50),
 
           GestureDetector(
-            onTap: (_sidePhoto != null && _backPhoto != null)
-                ? _analyze
-                : null,
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              width: double.infinity,
-              height: 60,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: (_sidePhoto != null && _backPhoto != null)
-                    ? VytalColors.primaryAccent
-                    : VytalColors.textSecondary,
-                borderRadius: BorderRadius.circular(24),
-                boxShadow: (_sidePhoto != null && _backPhoto != null)
-                    ? [
-                  BoxShadow(
-                    color: VytalColors.primaryAccent.withValues(alpha: 0.6),
-                    blurRadius: 20,
+                onTap: (_sidePhoto != null && _backPhoto != null)
+                    ? _analyze
+                    : null,
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  width: double.infinity,
+                  height: 60,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: (_sidePhoto != null && _backPhoto != null)
+                        ? VytalColors.primaryAccent
+                        : VytalColors.textSecondary,
+                    borderRadius: BorderRadius.circular(24),
+                    boxShadow: (_sidePhoto != null && _backPhoto != null)
+                        ? [
+                            BoxShadow(
+                              color: VytalColors.primaryAccent.withValues(
+                                alpha: 0.6,
+                              ),
+                              blurRadius: 20,
+                            ),
+                          ]
+                        : [],
+                    border: Border.all(
+                      color: (_sidePhoto != null && _backPhoto != null)
+                          ? Colors.transparent
+                          : VytalColors.textSecondary,
+                    ),
                   ),
-                ]
-                    : [],
-                border: Border.all(
-                  color: (_sidePhoto != null && _backPhoto != null)
-                      ? Colors.transparent
-                      : VytalColors.textSecondary,
+                  child: Text(
+                    "INITIATE SCAN_PROTOCOL",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.5,
+                      color: (_sidePhoto != null && _backPhoto != null)
+                          ? VytalColors.textPrimary
+                          : VytalColors.textSecondary,
+                    ),
+                  ),
                 ),
-              ),
-              child: Text(
-                "INITIATE SCAN_PROTOCOL",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.5,
-                  color: (_sidePhoto != null && _backPhoto != null)
-                      ? VytalColors.textPrimary
-                      : VytalColors.textSecondary,
-                ),
-              ),
-            ),
-          )
+              )
               .animate()
               .fadeIn(delay: 400.ms)
               .scale(curve: Curves.easeOutBack, delay: 400.ms),
@@ -306,40 +318,42 @@ class _ScannerSlot extends StatelessWidget {
               color: VytalColors.textSecondary,
               image: file != null
                   ? DecorationImage(
-                image: FileImage(file!),
-                fit: BoxFit.cover,
-                opacity: 0.8,
-              )
+                      image: FileImage(file!),
+                      fit: BoxFit.cover,
+                      opacity: 0.8,
+                    )
                   : null,
             ),
             child: CustomPaint(
               painter: _CornerPainter(isActive: file != null),
               child: file == null
                   ? Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.add,
-                      color: VytalColors.textPrimary.withValues(alpha: 0.3),
-                      size: 40,
-                    ),
-                  ],
-                ),
-              )
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.add,
+                            color: VytalColors.textPrimary.withValues(
+                              alpha: 0.3,
+                            ),
+                            size: 40,
+                          ),
+                        ],
+                      ),
+                    )
                   : Center(
-                child: Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: VytalColors.textPrimary.withValues(alpha: 0.7),
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.check,
-                    color: VytalColors.secondaryAccent,
-                  ),
-                ).animate().scale(curve: Curves.elasticOut),
-              ),
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: VytalColors.textPrimary.withValues(alpha: 0.7),
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.check,
+                          color: VytalColors.secondaryAccent,
+                        ),
+                      ).animate().scale(curve: Curves.elasticOut),
+                    ),
             ),
           ),
           const SizedBox(height: 12),
@@ -431,7 +445,9 @@ class _ResultView extends StatelessWidget {
               decoration: BoxDecoration(
                 color: VytalColors.textPrimary.withValues(alpha: 0.02),
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: VytalColors.textPrimary.withValues(alpha: 0.05)),
+                border: Border.all(
+                  color: VytalColors.textPrimary.withValues(alpha: 0.05),
+                ),
               ),
               child: CustomPaint(
                 painter: _SpinePainter(score: result.kyphosisScore),
@@ -500,7 +516,9 @@ class _ResultView extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             color: VytalColors.textPrimary,
-            border: Border.all(color: VytalColors.primaryAccent.withValues(alpha: 0.5)),
+            border: Border.all(
+              color: VytalColors.primaryAccent.withValues(alpha: 0.5),
+            ),
             borderRadius: BorderRadius.circular(24),
           ),
           child: Column(
@@ -528,32 +546,32 @@ class _ResultView extends StatelessWidget {
         const SizedBox(height: 40),
 
         GestureDetector(
-          onTap: onSave,
-          child: Container(
-            width: double.infinity,
-            height: 60,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: VytalColors.primaryAccent,
-              borderRadius: BorderRadius.circular(24),
-              boxShadow: [
-                BoxShadow(
-                  color: VytalColors.primaryAccent.withValues(alpha: 0.5),
-                  blurRadius: 20,
+              onTap: onSave,
+              child: Container(
+                width: double.infinity,
+                height: 60,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: VytalColors.primaryAccent,
+                  borderRadius: BorderRadius.circular(24),
+                  boxShadow: [
+                    BoxShadow(
+                      color: VytalColors.primaryAccent.withValues(alpha: 0.5),
+                      blurRadius: 20,
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            child: const Text(
-              "DUMP TO HISTORY",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-                color: VytalColors.textPrimary,
-                letterSpacing: 1,
+                child: const Text(
+                  "DUMP TO HISTORY",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: VytalColors.textPrimary,
+                    letterSpacing: 1,
+                  ),
+                ),
               ),
-            ),
-          ),
-        )
+            )
             .animate()
             .fadeIn(delay: 800.ms)
             .scale(curve: Curves.easeOutBack, delay: 800.ms),
@@ -607,10 +625,7 @@ class _MetricRow extends StatelessWidget {
             ),
             Text(
               "$score%",
-              style: TextStyle(
-                color: color,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(color: color, fontWeight: FontWeight.bold),
             ),
           ],
         ),
@@ -636,7 +651,9 @@ class _CornerPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = isActive ? VytalColors.secondaryAccent : VytalColors.primaryAccent
+      ..color = isActive
+          ? VytalColors.secondaryAccent
+          : VytalColors.primaryAccent
       ..strokeWidth = 2
       ..style = PaintingStyle.stroke;
 
@@ -699,7 +716,9 @@ class _SpinePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = score < 60 ? VytalColors.warningAccent : VytalColors.secondaryAccent
+      ..color = score < 60
+          ? VytalColors.warningAccent
+          : VytalColors.secondaryAccent
       ..strokeWidth = 3
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
