@@ -269,6 +269,7 @@ class _PlanScreenState extends State<PlanScreen> {
                 Icons.auto_stories_outlined,
                 _openProtocolLibrary,
                 null,
+                L10n.t('library'),
                 'Protocol Library',
               ),
               const SizedBox(width: 12),
@@ -277,6 +278,18 @@ class _PlanScreenState extends State<PlanScreen> {
                 Icons.add,
                 _openAddHabitSheet,
                 VytalColors.primaryAccent,
+                L10n.t('initialize_protocol'),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _headerBtn(IconData icon, VoidCallback onTap, Color? color, String tooltipMessage) {
+    return Tooltip(
+      message: tooltipMessage,
                 'Add Habit',
               ),
             ],
