@@ -265,16 +265,13 @@ class _PlanScreenState extends State<PlanScreen> {
           Row(
             children: [
               _headerBtn(
-                'Protocol Library',
                 Icons.auto_stories_outlined,
                 _openProtocolLibrary,
                 null,
                 L10n.t('library'),
-                'Protocol Library',
               ),
               const SizedBox(width: 12),
               _headerBtn(
-                'Add Habit',
                 Icons.add,
                 _openAddHabitSheet,
                 VytalColors.primaryAccent,
@@ -287,25 +284,6 @@ class _PlanScreenState extends State<PlanScreen> {
     );
   }
 
-  Widget _headerBtn(IconData icon, VoidCallback onTap, Color? color, String tooltipMessage) {
-    return Tooltip(
-      message: tooltipMessage,
-                'Add Habit',
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _headerBtn(IconData icon, VoidCallback onTap, Color? color, String tooltipText) {
-  Widget _headerBtn(String tooltipMessage, IconData icon, VoidCallback onTap, Color? color) {
-    return Tooltip(
-      message: tooltipMessage,
-  Widget _headerBtn(IconData icon, VoidCallback onTap, Color? color, String tooltip) {
-    return Tooltip(
-      message: tooltip,
   Widget _headerBtn(
     IconData icon,
     VoidCallback onTap,
@@ -322,16 +300,10 @@ class _PlanScreenState extends State<PlanScreen> {
           decoration: BoxDecoration(
             color: color?.withValues(alpha: 0.1) ?? VytalColors.surface,
             borderRadius: BorderRadius.circular(24),
-            border: Border.all(color: color?.withValues(alpha: 0.5) ?? VytalColors.textSecondary.withValues(alpha: 0.2)),
-            boxShadow: const [],
-          ),
-          child: Icon(icon, color: color ?? VytalColors.textSecondary, size: 20),
             border: Border.all(
-              color:
-                  color?.withValues(alpha: 0.5) ??
+              color: color?.withValues(alpha: 0.5) ??
                   VytalColors.textSecondary.withValues(alpha: 0.2),
             ),
-            boxShadow: const [],
           ),
           child: Icon(
             icon,
