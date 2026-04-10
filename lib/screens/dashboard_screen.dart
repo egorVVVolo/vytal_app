@@ -61,7 +61,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         // Безопасная проверка и подписка на шаги
         if (_pedometerService.stepStream != null) {
           _stepSubscription = _pedometerService.stepStream!.listen(
-                (event) {
+            (event) {
               if (mounted) {
                 setState(() => _steps = event.steps);
                 _checkStepGoal(event.steps);
@@ -83,10 +83,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
         // Безопасная проверка и подписка на статус
         if (_pedometerService.statusStream != null) {
           _statusSubscription = _pedometerService.statusStream!.listen(
-                (event) {
+            (event) {
               if (mounted) {
                 setState(
-                      () => _motionStatus = event.status == 'walking'
+                  () => _motionStatus = event.status == 'walking'
                       ? L10n.t('active')
                       : L10n.t('idle'),
                 );
@@ -183,7 +183,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       heightLogs.sort((a, b) => a.date.compareTo(b.date));
       startH = heightLogs.first.value;
       startD =
-      "${heightLogs.first.date.month}/${heightLogs.first.date.day}/${heightLogs.first.date.year}";
+          "${heightLogs.first.date.month}/${heightLogs.first.date.day}/${heightLogs.first.date.year}";
     }
 
     final actualHabits = allHabits.map((h) {
@@ -314,7 +314,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       Text(
                         L10n.t('good_morning'),
                         style: TextStyle(
-                          color: VytalColors.textSecondary.withValues(alpha: 0.6),
+                          color: VytalColors.textSecondary.withValues(
+                            alpha: 0.6,
+                          ),
                           fontSize: 14,
                         ),
                       ),
@@ -338,6 +340,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                   Tooltip(
                     message: "Notifications",
+                    message: 'Notifications',
                     child: GestureDetector(
                       onTap: _showNotifications,
                       child: GlassContainer(
@@ -396,13 +399,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       builder: (context, box, child) {
                         // Recalculate based on current Hive state
                         final date = DateTime.now();
-                        final key = "history_${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
-                        final completedIds = box.get(key, defaultValue: <String>[]);
+                        final key =
+                            "history_${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
+                        final completedIds = box.get(
+                          key,
+                          defaultValue: <String>[],
+                        );
                         final int completedCount = completedIds.length;
                         final double currentProgress = _todayHabits.isEmpty
                             ? 0
                             : completedCount / _todayHabits.length;
-                        final int currentPercentage = (currentProgress * 100).toInt();
+                        final int currentPercentage = (currentProgress * 100)
+                            .toInt();
 
                         return GlassContainer(
                           padding: const EdgeInsets.symmetric(
@@ -560,12 +568,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                             decoration: BoxDecoration(
                               color: _baselineLog != null
-                                  ? VytalColors.primaryAccent.withValues(alpha: 0.2)
+                                  ? VytalColors.primaryAccent.withValues(
+                                      alpha: 0.2,
+                                    )
                                   : VytalColors.textSecondary,
                               borderRadius: BorderRadius.circular(24),
                             ),
                             child: Text(
-                              _baselineLog != null ? L10n.t('scan_ok') : L10n.t('no_scan'),
+                              _baselineLog != null
+                                  ? L10n.t('scan_ok')
+                                  : L10n.t('no_scan'),
                               style: TextStyle(
                                 color: _baselineLog != null
                                     ? VytalColors.primaryAccent
@@ -724,9 +736,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   Navigator.push(
                     context,
                     PageRouteBuilder(
-                      pageBuilder: (context, animation, secondaryAnimation) => const WikiScreen(),
-                      transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-                          FadeTransition(opacity: animation, child: child),
+                      pageBuilder: (context, animation, secondaryAnimation) =>
+                          const WikiScreen(),
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) =>
+                              FadeTransition(opacity: animation, child: child),
                     ),
                   );
                 },

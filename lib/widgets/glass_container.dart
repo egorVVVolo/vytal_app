@@ -34,11 +34,13 @@ class GlassContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(borderRadius),
         boxShadow: [
           BoxShadow(
-            color: VytalColors.textPrimary.withValues(alpha: 0.05), // Soft drop shadow for elevation
+            color: VytalColors.textPrimary.withValues(
+              alpha: 0.05,
+            ), // Soft drop shadow for elevation
             blurRadius: 20,
             spreadRadius: -5,
             offset: const Offset(0, 10),
-          )
+          ),
         ],
       ),
       child: GestureDetector(
@@ -54,7 +56,10 @@ class GlassContainer extends StatelessWidget {
 
               // 2. Apple Liquid Glass Blur Layer
               BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20), // Whoop style heavy blur
+                filter: ImageFilter.blur(
+                  sigmaX: 20,
+                  sigmaY: 20,
+                ), // Whoop style heavy blur
                 child: Container(
                   width: width,
                   height: height,
@@ -69,17 +74,26 @@ class GlassContainer extends StatelessWidget {
                 padding: padding ?? const EdgeInsets.all(24),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(borderRadius),
-                  border: border ??
+                  border:
+                      border ??
                       Border.all(
-                        color: Colors.white.withValues(alpha: 0.6), // Pronounced white edge
+                        color: Colors.white.withValues(
+                          alpha: 0.6,
+                        ), // Pronounced white edge
                         width: 1.5,
                       ),
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      color ?? Colors.white.withValues(alpha: 0.7), // More solid white at top left
-                      color?.withValues(alpha: 0.3) ?? Colors.white.withValues(alpha: 0.3), // More transparent at bottom right
+                      color ??
+                          Colors.white.withValues(
+                            alpha: 0.7,
+                          ), // More solid white at top left
+                      color?.withValues(alpha: 0.3) ??
+                          Colors.white.withValues(
+                            alpha: 0.3,
+                          ), // More transparent at bottom right
                     ],
                   ),
                 ),

@@ -25,12 +25,12 @@ class StatsHexagon extends StatelessWidget {
   Widget build(BuildContext context) {
     // Данные для отображения (порядок важен - по часовой стрелке)
     final features = [
-      "Height",      // Top
-      "Sleep",       // Top-Right
-      "Posture",    // Bottom-Right
-      "Body",      // Bottom
-      "Focus",     // Bottom-Left
-      "Routine",     // Top-Left
+      "Height", // Top
+      "Sleep", // Top-Right
+      "Posture", // Bottom-Right
+      "Body", // Bottom
+      "Focus", // Bottom-Left
+      "Routine", // Top-Left
     ];
 
     final data = [
@@ -48,8 +48,13 @@ class StatsHexagon extends StatelessWidget {
         RadarChartData(
           radarTouchData: RadarTouchData(enabled: false),
           tickCount: 5,
-          ticksTextStyle: const TextStyle(color: Colors.transparent), // Скрываем цифры шкалы
-          gridBorderData: const BorderSide(color: VytalColors.textSecondary, width: 1),
+          ticksTextStyle: const TextStyle(
+            color: Colors.transparent,
+          ), // Скрываем цифры шкалы
+          gridBorderData: const BorderSide(
+            color: VytalColors.textSecondary,
+            width: 1,
+          ),
           titlePositionPercentageOffset: 0.1, // Отступ текста от графика
           titleTextStyle: const TextStyle(
             color: VytalColors.textSecondary,
@@ -72,7 +77,9 @@ class StatsHexagon extends StatelessWidget {
               // Цвет точек теперь берется из borderColor автоматически.
               borderWidth: 2,
               entryRadius: 3, // Размер точек на углах
-              dataEntries: data.map((value) => RadarEntry(value: value)).toList(),
+              dataEntries: data
+                  .map((value) => RadarEntry(value: value))
+                  .toList(),
             ),
           ],
         ),
