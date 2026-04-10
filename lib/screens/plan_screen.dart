@@ -284,6 +284,9 @@ class _PlanScreenState extends State<PlanScreen> {
     );
   }
 
+  Widget _headerBtn(IconData icon, VoidCallback onTap, Color? color, String tooltip) {
+    return Tooltip(
+      message: tooltip,
   Widget _headerBtn(
     IconData icon,
     VoidCallback onTap,
@@ -300,6 +303,10 @@ class _PlanScreenState extends State<PlanScreen> {
           decoration: BoxDecoration(
             color: color?.withValues(alpha: 0.1) ?? VytalColors.surface,
             borderRadius: BorderRadius.circular(24),
+            border: Border.all(color: color?.withValues(alpha: 0.5) ?? VytalColors.textSecondary.withValues(alpha: 0.2)),
+            boxShadow: const [],
+          ),
+          child: Icon(icon, color: color ?? VytalColors.textSecondary, size: 20),
             border: Border.all(
               color:
                   color?.withValues(alpha: 0.5) ??
