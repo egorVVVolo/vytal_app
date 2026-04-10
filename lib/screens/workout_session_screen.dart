@@ -134,7 +134,10 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
                 children: [
                   IconButton(
                     tooltip: 'Quit Session',
-                    icon: const Icon(Icons.close, color: VytalColors.textSecondary),
+                    icon: const Icon(
+                      Icons.close,
+                      color: VytalColors.textSecondary,
+                    ),
                     onPressed: _quit,
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints(),
@@ -217,7 +220,10 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
               Expanded(
                 flex: 3,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 8,
+                  ),
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
@@ -231,9 +237,14 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
                       child: Image.network(
                         currentEx.visualUrl!,
                         fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) => const Center(
-                          child: Icon(Icons.broken_image, color: VytalColors.textSecondary, size: 40),
-                        ),
+                        errorBuilder: (context, error, stackTrace) =>
+                            const Center(
+                              child: Icon(
+                                Icons.broken_image,
+                                color: VytalColors.textSecondary,
+                                size: 40,
+                              ),
+                            ),
                       ),
                     ),
                   ),
@@ -278,7 +289,9 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
                       child: Container(
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                          color: VytalColors.textPrimary.withValues(alpha: 0.05),
+                          color: VytalColors.textPrimary.withValues(
+                            alpha: 0.05,
+                          ),
                           borderRadius: BorderRadius.circular(24),
                           border: Border.all(color: VytalColors.textSecondary),
                         ),
@@ -324,7 +337,6 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20,
                                 letterSpacing: 2,
-
                               ),
                             ),
                           ),
@@ -346,7 +358,10 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
         width: double.infinity,
         decoration: BoxDecoration(
           gradient: RadialGradient(
-            colors: [widget.workout.color.withValues(alpha: 0.3), VytalColors.textPrimary],
+            colors: [
+              widget.workout.color.withValues(alpha: 0.3),
+              VytalColors.textPrimary,
+            ],
             radius: 1.5,
             center: Alignment.topCenter,
           ),
@@ -419,7 +434,6 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                     letterSpacing: 2,
-
                   ),
                 ),
               ),

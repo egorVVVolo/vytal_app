@@ -288,14 +288,10 @@ class _PlanScreenState extends State<PlanScreen> {
     IconData icon,
     VoidCallback onTap,
     Color? color,
-    String tooltipMsg,
+    String tooltipText,
   ) {
     return Tooltip(
-      message: tooltipMsg,
-    String tooltip,
-  ) {
-    return Tooltip(
-      message: tooltip,
+      message: tooltipText,
       child: GestureDetector(
         onTap: onTap,
         child: Container(

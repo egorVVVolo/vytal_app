@@ -185,10 +185,7 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
     if (_selectedHabits.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text(
-            "Select at least one metric!",
-            style: TextStyle(),
-          ),
+          content: Text("Select at least one metric!", style: TextStyle()),
         ),
       );
       return;
@@ -210,7 +207,6 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
             color: VytalColors.primaryAccent,
             fontWeight: FontWeight.bold,
             letterSpacing: 2,
-
           ),
         ),
         centerTitle: true,
@@ -315,7 +311,6 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
                         style: const TextStyle(
                           color: VytalColors.textPrimary,
                           fontWeight: FontWeight.bold,
-
                         ),
                       ),
                       Text(
@@ -323,7 +318,6 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
                         style: const TextStyle(
                           color: VytalColors.textSecondary,
                           fontSize: 12,
-
                         ),
                       ),
                     ],
@@ -339,7 +333,11 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
                         : VytalColors.textSecondary,
                   ),
                   child: isSelected
-                      ? const Icon(Icons.check, size: 16, color: VytalColors.textPrimary)
+                      ? const Icon(
+                          Icons.check,
+                          size: 16,
+                          color: VytalColors.textPrimary,
+                        )
                       : null,
                 ),
               ],
@@ -355,7 +353,11 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: VytalColors.background,
-        border: Border(top: BorderSide(color: VytalColors.textPrimary.withValues(alpha: 0.1))),
+        border: Border(
+          top: BorderSide(
+            color: VytalColors.textPrimary.withValues(alpha: 0.1),
+          ),
+        ),
       ),
       child: SafeArea(
         child: Row(
@@ -382,7 +384,6 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
                     color: VytalColors.textPrimary,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-
                   ),
                 ),
               ],
@@ -393,11 +394,7 @@ class _CreateProtocolScreenState extends State<CreateProtocolScreen>
               icon: const Icon(Icons.add_task),
               label: const Text(
                 "INITIALIZE",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1,
-
-                ),
+                style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1),
               ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: VytalColors.primaryAccent,

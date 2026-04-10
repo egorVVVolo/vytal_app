@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -182,7 +181,9 @@ class _AppBootstrapState extends State<AppBootstrap> {
                       color: VytalColors.primaryAccent,
                     ),
                     const SizedBox(height: 20),
-                    const CircularProgressIndicator(color: VytalColors.primaryAccent),
+                    const CircularProgressIndicator(
+                      color: VytalColors.primaryAccent,
+                    ),
                     const SizedBox(height: 20),
                     Text(
                       L10n.t('system_initializing'),
@@ -201,38 +202,43 @@ class _AppBootstrapState extends State<AppBootstrap> {
                 child: SafeArea(
                   child: Row(
                     children: [
-                      Tooltip(
-                        message: L10n.t('english'),
-                        child: GestureDetector(
-                          onTap: () async {
-                            await StorageService.saveLanguage('en');
-                            L10n.setLanguage('en');
-                            setState(() {});
-                          },
-                          child: Text(
-                            "EN",
-                            style: TextStyle(
-                              color: L10n.currentLanguage == 'en' ? VytalColors.primaryAccent : VytalColors.textSecondary,
-                              fontWeight: L10n.currentLanguage == 'en' ? FontWeight.bold : FontWeight.normal,
-                            ),
+                      GestureDetector(
+                        onTap: () async {
+                          await StorageService.saveLanguage('en');
+                          L10n.setLanguage('en');
+                          setState(() {});
+                        },
+                        child: Text(
+                          "EN",
+                          style: TextStyle(
+                            color: L10n.currentLanguage == 'en'
+                                ? VytalColors.primaryAccent
+                                : VytalColors.textSecondary,
+                            fontWeight: L10n.currentLanguage == 'en'
+                                ? FontWeight.bold
+                                : FontWeight.normal,
                           ),
                         ),
                       ),
-                      const Text(" / ", style: TextStyle(color: VytalColors.textSecondary)),
-                      Tooltip(
-                        message: L10n.t('russian'),
-                        child: GestureDetector(
-                          onTap: () async {
-                            await StorageService.saveLanguage('ru');
-                            L10n.setLanguage('ru');
-                            setState(() {});
-                          },
-                          child: Text(
-                            "RU",
-                            style: TextStyle(
-                              color: L10n.currentLanguage == 'ru' ? VytalColors.primaryAccent : VytalColors.textSecondary,
-                              fontWeight: L10n.currentLanguage == 'ru' ? FontWeight.bold : FontWeight.normal,
-                            ),
+                      const Text(
+                        " / ",
+                        style: TextStyle(color: VytalColors.textSecondary),
+                      ),
+                      GestureDetector(
+                        onTap: () async {
+                          await StorageService.saveLanguage('ru');
+                          L10n.setLanguage('ru');
+                          setState(() {});
+                        },
+                        child: Text(
+                          "RU",
+                          style: TextStyle(
+                            color: L10n.currentLanguage == 'ru'
+                                ? VytalColors.primaryAccent
+                                : VytalColors.textSecondary,
+                            fontWeight: L10n.currentLanguage == 'ru'
+                                ? FontWeight.bold
+                                : FontWeight.normal,
                           ),
                         ),
                       ),

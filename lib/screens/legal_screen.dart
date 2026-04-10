@@ -57,7 +57,6 @@ class _LegalScreenState extends State<LegalScreen> {
                   fontWeight: FontWeight.w900,
                   letterSpacing: 2,
                   height: 1.1,
-
                 ),
               ),
               const SizedBox(height: 10),
@@ -66,7 +65,6 @@ class _LegalScreenState extends State<LegalScreen> {
                 style: TextStyle(
                   color: VytalColors.textSecondary,
                   fontSize: 14,
-
                 ),
               ),
 
@@ -134,7 +132,6 @@ class _LegalScreenState extends State<LegalScreen> {
                             : VytalColors.textSecondary,
                         fontWeight: FontWeight.w900,
                         letterSpacing: 2,
-
                       ),
                     ),
                   ),
@@ -177,12 +174,18 @@ class _LegalScreenState extends State<LegalScreen> {
               decoration: BoxDecoration(
                 color: value ? VytalColors.primaryAccent : Colors.transparent,
                 border: Border.all(
-                  color: value ? VytalColors.primaryAccent : VytalColors.textSecondary,
+                  color: value
+                      ? VytalColors.primaryAccent
+                      : VytalColors.textSecondary,
                   width: 1,
                 ),
               ),
               child: value
-                  ? const Icon(Icons.check, size: 16, color: VytalColors.textPrimary)
+                  ? const Icon(
+                      Icons.check,
+                      size: 16,
+                      color: VytalColors.textPrimary,
+                    )
                   : null,
             ),
             const SizedBox(width: 16),
@@ -193,11 +196,12 @@ class _LegalScreenState extends State<LegalScreen> {
                   Text(
                     title,
                     style: TextStyle(
-                      color: value ? VytalColors.primaryAccent : VytalColors.textPrimary,
+                      color: value
+                          ? VytalColors.primaryAccent
+                          : VytalColors.textPrimary,
                       fontWeight: FontWeight.bold,
                       fontSize: 12,
                       letterSpacing: 2,
-
                     ),
                   ),
                   const SizedBox(height: 6),
@@ -207,7 +211,6 @@ class _LegalScreenState extends State<LegalScreen> {
                       color: VytalColors.textSecondary,
                       fontSize: 12,
                       height: 1.4,
-
                     ),
                   ),
                 ],

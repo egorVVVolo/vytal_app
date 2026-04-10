@@ -66,7 +66,6 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
             letterSpacing: 2,
             fontSize: 16,
             color: VytalColors.textPrimary,
-
           ),
         ),
         centerTitle: true,
@@ -87,7 +86,6 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 2,
-
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -116,7 +114,6 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 2,
-
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -149,17 +146,12 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
               color: VytalColors.textSecondary,
               fontWeight: FontWeight.bold,
               letterSpacing: 2,
-
             ),
           ),
           const SizedBox(height: 8),
           const Text(
             "Perform a scan in the GROWTH section",
-            style: TextStyle(
-              color: VytalColors.textSecondary,
-
-              fontSize: 12,
-            ),
+            style: TextStyle(color: VytalColors.textSecondary, fontSize: 12),
           ),
         ],
       ),
@@ -174,7 +166,9 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
       decoration: BoxDecoration(
         color: VytalColors.textPrimary,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: VytalColors.primaryAccent.withValues(alpha: 0.2)),
+        border: Border.all(
+          color: VytalColors.primaryAccent.withValues(alpha: 0.2),
+        ),
       ),
       child: Stack(
         alignment: Alignment.center,
@@ -216,7 +210,6 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
                       color: VytalColors.textPrimary,
                       fontWeight: FontWeight.bold,
                       fontSize: 24,
-
                     ),
                   ),
                   const Text(
@@ -225,7 +218,6 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
                       color: VytalColors.primaryAccent,
                       fontSize: 10,
                       fontWeight: FontWeight.bold,
-
                     ),
                   ),
                 ],
@@ -241,7 +233,6 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
                 color: VytalColors.textSecondary,
                 fontSize: 10,
                 letterSpacing: 2,
-
               ),
             ),
           ),
@@ -263,7 +254,6 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
             fontSize: 12,
             fontWeight: FontWeight.bold,
             letterSpacing: 2,
-
           ),
         ),
         const SizedBox(height: 16),
@@ -312,7 +302,6 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
                   color: VytalColors.textPrimary,
                   height: 1.5,
                   fontSize: 14,
-
                 ),
               ),
             ],
@@ -341,7 +330,9 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
           child: Container(
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: VytalColors.textPrimary.withValues(alpha: 0.2), // Легкое затемнение
+              color: VytalColors.textPrimary.withValues(
+                alpha: 0.2,
+              ), // Легкое затемнение
               borderRadius: BorderRadius.circular(24),
             ),
             child: Column(
@@ -372,7 +363,6 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       letterSpacing: 2,
-
                     ),
                   ),
                 ),
@@ -428,7 +418,6 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
               color: VytalColors.textPrimary,
               fontSize: 24,
               fontWeight: FontWeight.bold,
-
             ),
           ),
           Text(
@@ -454,7 +443,10 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.transparent, // Minimalist transparent
-        border: Border.all(color: VytalColors.textPrimary.withValues(alpha: 0.1), width: 0.5),
+        border: Border.all(
+          color: VytalColors.textPrimary.withValues(alpha: 0.1),
+          width: 0.5,
+        ),
       ),
       child: Row(
         children: [
@@ -470,7 +462,6 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
                 color: scoreColor,
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
-
               ),
             ),
           ),
@@ -494,7 +485,6 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
                   style: const TextStyle(
                     color: VytalColors.textSecondary,
                     fontSize: 12,
-
                   ),
                 ),
               ],
@@ -513,7 +503,8 @@ class _PostureHistoryScreenState extends State<PostureHistoryScreen> {
                 ),
               ),
             ),
-          if (!_isPro) const Icon(Icons.lock, size: 16, color: VytalColors.textSecondary),
+          if (!_isPro)
+            const Icon(Icons.lock, size: 16, color: VytalColors.textSecondary),
         ],
       ),
     );
