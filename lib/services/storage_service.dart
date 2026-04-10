@@ -84,14 +84,18 @@ class StorageService {
     await _habitsBox.addAll(habits);
 
     // Конвертируем привычки в JSON для облака
-    final habitsJson = habits.map((h) => {
-      'id': h.id,
-      'title': h.title,
-      'subtitle': h.subtitle,
-      'type': h.type.index,
-      'icon': h.icon,
-      'isCompleted': h.isCompleted
-    }).toList();
+    final habitsJson = habits
+        .map(
+          (h) => {
+            'id': h.id,
+            'title': h.title,
+            'subtitle': h.subtitle,
+            'type': h.type.index,
+            'icon': h.icon,
+            'isCompleted': h.isCompleted,
+          },
+        )
+        .toList();
 
     _syncToCloud('habits_data', {'list': habitsJson});
   }
@@ -111,7 +115,10 @@ class StorageService {
     return List<String>.from(ids);
   }
 
-  static Future<void> toggleHabitCompletion(DateTime date, String habitId) async {
+  static Future<void> toggleHabitCompletion(
+    DateTime date,
+    String habitId,
+  ) async {
     final key = _getDateKey(date);
     final List<String> currentIds = await getCompletedHabitIds(date);
 
@@ -139,7 +146,9 @@ class StorageService {
     int current = _settingsBox.get(key, defaultValue: 0);
     int newVal = current + amount;
     await _settingsBox.put(key, newVal);
-    _userCloudDoc.collection('history').doc(key).set({'water': newVal}, SetOptions(merge: true));
+    _userCloudDoc.collection('history').doc(key).set({
+      'water': newVal,
+    }, SetOptions(merge: true));
   }
 
   static Future<int> calculateStreak() async {
@@ -206,7 +215,7 @@ class StorageService {
     _userCloudDoc.collection('growth_logs').add({
       'date': newLog.date.toIso8601String(),
       'value': value,
-      'isMorning': isMorning
+      'isMorning': isMorning,
     });
 
     _syncToCloud('biometrics', {'height': value});
@@ -226,23 +235,26 @@ class StorageService {
         'score': log.overallScore,
         'lost_height': log.lostHeight,
         'advice': log.advice,
-      }
+      },
     });
 
     try {
       final uid = AuthService.userId;
       if (uid.isNotEmpty) {
-        await FirebaseFirestore.instance.collection('users').doc(uid)
-            .collection('posture_logs').add({
-          'date': log.date.toIso8601String(),
-          'overall': log.overallScore,
-          'kyphosis': log.kyphosisScore,
-          'lordosis': log.lordosisScore,
-          'head': log.headPostureScore,
-          'lost_height': log.lostHeight,
-        });
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(uid)
+            .collection('posture_logs')
+            .add({
+              'date': log.date.toIso8601String(),
+              'overall': log.overallScore,
+              'kyphosis': log.kyphosisScore,
+              'lordosis': log.lordosisScore,
+              'head': log.headPostureScore,
+              'lost_height': log.lostHeight,
+            });
       }
-    } catch(e) {
+    } catch (e) {
       debugPrint("Cloud save error: $e");
     }
   }
@@ -299,7 +311,7 @@ class StorageService {
 
     final latest = logs.last;
     final pastLog = logs.firstWhere(
-          (l) => l.date.isAfter(DateTime.now().subtract(const Duration(days: 60))),
+      (l) => l.date.isAfter(DateTime.now().subtract(const Duration(days: 60))),
       orElse: () => logs.first,
     );
 
@@ -351,11 +363,17 @@ class StorageService {
   }
 
   // === ВНУТРЕННЯЯ СИНХРОНИЗАЦИЯ ===
-  static Future<void> _syncToCloud(String docId, Map<String, dynamic> data) async {
+  static Future<void> _syncToCloud(
+    String docId,
+    Map<String, dynamic> data,
+  ) async {
     try {
       final uid = AuthService.userId;
       if (uid.isEmpty) return;
-      await _userCloudDoc.collection('app_data').doc(docId).set(data, SetOptions(merge: true));
+      await _userCloudDoc
+          .collection('app_data')
+          .doc(docId)
+          .set(data, SetOptions(merge: true));
     } catch (e) {
       debugPrint("☁️ Cloud Sync Error ($docId): $e");
     }

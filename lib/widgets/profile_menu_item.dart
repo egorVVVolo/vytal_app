@@ -22,7 +22,9 @@ class ProfileMenuItem extends StatelessWidget {
       decoration: BoxDecoration(
         color: VytalColors.textPrimary,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: VytalColors.textPrimary.withValues(alpha: 0.03)),
+        border: Border.all(
+          color: VytalColors.textPrimary.withValues(alpha: 0.03),
+        ),
       ),
       child: ListTile(
         onTap: onTap,
@@ -36,7 +38,9 @@ class ProfileMenuItem extends StatelessWidget {
           ),
           child: Icon(
             icon,
-            color: isDestructive ? VytalColors.warningAccent : VytalColors.primaryAccent,
+            color: isDestructive
+                ? VytalColors.warningAccent
+                : VytalColors.primaryAccent,
             size: 20,
           ),
         ),

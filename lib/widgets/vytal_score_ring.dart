@@ -5,11 +5,7 @@ class VytalScoreRing extends StatelessWidget {
   final double score; // от 0.0 до 100.0
   final String label; // Например "Recovery" или "Age"
 
-  const VytalScoreRing({
-    super.key,
-    required this.score,
-    required this.label,
-  });
+  const VytalScoreRing({super.key, required this.score, required this.label});
 
   @override
   Widget build(BuildContext context) {

@@ -12,7 +12,7 @@ enum HabitType {
   @HiveField(2)
   sleep,
   @HiveField(3)
-  mental
+  mental,
 }
 
 @HiveType(typeId: 1)

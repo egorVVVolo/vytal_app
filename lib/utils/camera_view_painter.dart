@@ -8,7 +8,12 @@ class PosePainter extends CustomPainter {
   final InputImageRotation rotation;
   final bool isFrontCamera;
 
-  PosePainter(this.poses, this.absoluteImageSize, this.rotation, this.isFrontCamera);
+  PosePainter(
+    this.poses,
+    this.absoluteImageSize,
+    this.rotation,
+    this.isFrontCamera,
+  );
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -29,8 +34,22 @@ class PosePainter extends CustomPainter {
         if (joint1 == null || joint2 == null) return;
 
         // Трансформация координат
-        final p1 = _translatePoint(joint1.x, joint1.y, size, absoluteImageSize, rotation, isFrontCamera);
-        final p2 = _translatePoint(joint2.x, joint2.y, size, absoluteImageSize, rotation, isFrontCamera);
+        final p1 = _translatePoint(
+          joint1.x,
+          joint1.y,
+          size,
+          absoluteImageSize,
+          rotation,
+          isFrontCamera,
+        );
+        final p2 = _translatePoint(
+          joint2.x,
+          joint2.y,
+          size,
+          absoluteImageSize,
+          rotation,
+          isFrontCamera,
+        );
 
         if (p1 != null && p2 != null) {
           canvas.drawLine(p1, p2, paint);
@@ -58,7 +77,14 @@ class PosePainter extends CustomPainter {
 
       // Рисуем суставы (точки)
       for (final landmark in pose.landmarks.values) {
-        final point = _translatePoint(landmark.x, landmark.y, size, absoluteImageSize, rotation, isFrontCamera);
+        final point = _translatePoint(
+          landmark.x,
+          landmark.y,
+          size,
+          absoluteImageSize,
+          rotation,
+          isFrontCamera,
+        );
         if (point != null) {
           canvas.drawCircle(point, 4, paintJoint);
         }
@@ -68,8 +94,13 @@ class PosePainter extends CustomPainter {
 
   // --- МАТЕМАТИКА ТРАНСФОРМАЦИИ КООРДИНАТ ---
   Offset? _translatePoint(
-      double x, double y, Size screenSize, Size imageSize, InputImageRotation rotation, bool isFront) {
-
+    double x,
+    double y,
+    Size screenSize,
+    Size imageSize,
+    InputImageRotation rotation,
+    bool isFront,
+  ) {
     // В вертикальном режиме (Portrait) оси меняются местами для камеры
     double imageW = imageSize.width;
     double imageH = imageSize.height;
@@ -79,7 +110,8 @@ class PosePainter extends CustomPainter {
     double scaleY = screenSize.height / imageH;
 
     // Если камера повернута (обычно на 90 или 270 градусов в портрете)
-    if (rotation == InputImageRotation.rotation90deg || rotation == InputImageRotation.rotation270deg) {
+    if (rotation == InputImageRotation.rotation90deg ||
+        rotation == InputImageRotation.rotation270deg) {
       imageW = imageSize.height;
       imageH = imageSize.width;
       scaleX = screenSize.width / imageW;
@@ -93,16 +125,18 @@ class PosePainter extends CustomPainter {
     double finalX = x * scaleX;
     double finalY = y * scaleY;
 
-    if (rotation == InputImageRotation.rotation90deg || rotation == InputImageRotation.rotation270deg) {
+    if (rotation == InputImageRotation.rotation90deg ||
+        rotation == InputImageRotation.rotation270deg) {
       // X и Y меняются местами в исходных данных ML Kit при повороте
-      finalX = x * scaleX; // Тут надо быть осторожным, часто x это на самом деле y.
+      finalX =
+          x * scaleX; // Тут надо быть осторожным, часто x это на самом деле y.
       // Для упрощения: в Flutter Camera плагин + ML Kit:
       // x - это горизонталь на картинке. Если картинка повернута, x становится y экрана.
 
       // Давай используем проверенную формулу для портрета:
       return Offset(
-          isFront ? screenSize.width - (x * scaleX) : x * scaleX,
-          y * scaleY
+        isFront ? screenSize.width - (x * scaleX) : x * scaleX,
+        y * scaleY,
       );
     }
 

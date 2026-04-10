@@ -24,7 +24,6 @@ class ProtocolLibraryScreen extends StatelessWidget {
             letterSpacing: 2,
             fontSize: 16,
             color: VytalColors.primaryAccent,
-
           ),
         ),
         centerTitle: true,
@@ -87,7 +86,6 @@ class ProtocolLibraryScreen extends StatelessWidget {
                         color: VytalColors.textPrimary,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 2,
-
                       ),
                     ),
                   ],
@@ -107,7 +105,6 @@ class ProtocolLibraryScreen extends StatelessWidget {
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2,
-
                 ),
               ),
             ),
@@ -165,7 +162,9 @@ class _ProtocolCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: VytalColors.textPrimary,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: VytalColors.textPrimary.withValues(alpha: 0.05)),
+          border: Border.all(
+            color: VytalColors.textPrimary.withValues(alpha: 0.05),
+          ),
         ),
         child: Column(
           children: [
@@ -177,7 +176,10 @@ class _ProtocolCard extends StatelessWidget {
                   top: Radius.circular(16),
                 ),
                 gradient: LinearGradient(
-                  colors: [accentColor.withValues(alpha: 0.15), Colors.transparent],
+                  colors: [
+                    accentColor.withValues(alpha: 0.15),
+                    Colors.transparent,
+                  ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -191,7 +193,9 @@ class _ProtocolCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: VytalColors.textPrimary.withValues(alpha: 0.3),
                       borderRadius: BorderRadius.circular(24),
-                      border: Border.all(color: accentColor.withValues(alpha: 0.5)),
+                      border: Border.all(
+                        color: accentColor.withValues(alpha: 0.5),
+                      ),
                     ),
                     child: Center(
                       child: Text(
@@ -212,7 +216,6 @@ class _ProtocolCard extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                             letterSpacing: 1,
-
                           ),
                         ),
                         const SizedBox(height: 4),
@@ -221,7 +224,6 @@ class _ProtocolCard extends StatelessWidget {
                           style: const TextStyle(
                             color: VytalColors.textSecondary,
                             fontSize: 12,
-
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -239,7 +241,6 @@ class _ProtocolCard extends StatelessWidget {
                                 color: accentColor,
                                 fontSize: 10,
                                 fontWeight: FontWeight.bold,
-
                               ),
                             ),
                           ],
@@ -277,7 +278,6 @@ class _ProtocolCard extends StatelessWidget {
                                 color: VytalColors.textSecondary,
                                 fontSize: 9,
                                 fontWeight: FontWeight.bold,
-
                               ),
                             ),
                           ),
@@ -297,7 +297,6 @@ class _ProtocolCard extends StatelessWidget {
                         style: const TextStyle(
                           color: VytalColors.textSecondary,
                           fontSize: 10,
-
                         ),
                       ),
                     ],
@@ -350,7 +349,6 @@ class _ProtocolCard extends StatelessWidget {
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
-
                     ),
                   ),
                 ),
@@ -374,7 +372,6 @@ class _ProtocolCard extends StatelessWidget {
               style: const TextStyle(
                 color: VytalColors.textSecondary,
                 height: 1.5,
-
               ),
             ),
 
@@ -386,7 +383,6 @@ class _ProtocolCard extends StatelessWidget {
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 2,
-
               ),
             ),
             const SizedBox(height: 16),
@@ -406,7 +402,9 @@ class _ProtocolCard extends StatelessWidget {
                           Container(
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                              color: VytalColors.textPrimary.withValues(alpha: 0.05),
+                              color: VytalColors.textPrimary.withValues(
+                                alpha: 0.05,
+                              ),
                               shape: BoxShape.circle,
                             ),
                             child: Text(h.icon),
@@ -420,7 +418,6 @@ class _ProtocolCard extends StatelessWidget {
                                 style: const TextStyle(
                                   color: VytalColors.textPrimary,
                                   fontWeight: FontWeight.bold,
-
                                 ),
                               ),
                               Text(
@@ -428,7 +425,6 @@ class _ProtocolCard extends StatelessWidget {
                                 style: const TextStyle(
                                   color: VytalColors.textSecondary,
                                   fontSize: 12,
-
                                 ),
                               ),
                             ],
@@ -454,7 +450,6 @@ class _ProtocolCard extends StatelessWidget {
                       content: Text(
                         "Protocol '${protocol.title}' initialized!",
                         style: const TextStyle(
-
                           fontWeight: FontWeight.bold,
                           color: VytalColors.textPrimary,
                         ),
@@ -476,7 +471,6 @@ class _ProtocolCard extends StatelessWidget {
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     letterSpacing: 2,
-
                   ),
                 ),
               ),
@@ -501,7 +495,6 @@ class _ProtocolCard extends StatelessWidget {
           color: color == VytalColors.textPrimary ? Colors.white : color,
           fontSize: 10,
           fontWeight: FontWeight.bold,
-
         ),
       ),
     );

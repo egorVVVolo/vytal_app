@@ -9,11 +9,7 @@ class HabitTile extends StatelessWidget {
   final Habit habit;
   final VoidCallback onTap;
 
-  const HabitTile({
-    super.key,
-    required this.habit,
-    required this.onTap,
-  });
+  const HabitTile({super.key, required this.habit, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -46,13 +42,15 @@ class HabitTile extends StatelessWidget {
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 600),
                 curve: Curves.easeInOutCubic,
-                width: habit.isCompleted ? MediaQuery.of(context).size.width : 0,
+                width: habit.isCompleted
+                    ? MediaQuery.of(context).size.width
+                    : 0,
                 height: double.infinity,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                          Colors.greenAccent.withValues(alpha: 0.1),
-                          Colors.greenAccent.withValues(alpha: 0.0),
+                      Colors.greenAccent.withValues(alpha: 0.1),
+                      Colors.greenAccent.withValues(alpha: 0.0),
                     ],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
@@ -67,14 +65,20 @@ class HabitTile extends StatelessWidget {
                 children: [
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
-                    width: 46, height: 46,
+                    width: 46,
+                    height: 46,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                          color: habit.isCompleted ? Colors.greenAccent.withValues(alpha: 0.2) : VytalColors.textPrimary.withValues(alpha: 0.05),
+                      color: habit.isCompleted
+                          ? Colors.greenAccent.withValues(alpha: 0.2)
+                          : VytalColors.textPrimary.withValues(alpha: 0.05),
                       shape: BoxShape.circle,
-                        boxShadow: const [],
+                      boxShadow: const [],
                     ),
-                    child: Text(habit.icon, style: const TextStyle(fontSize: 22)),
+                    child: Text(
+                      habit.icon,
+                      style: const TextStyle(fontSize: 22),
+                    ),
                   ),
 
                   const SizedBox(width: 16),
@@ -89,16 +93,21 @@ class HabitTile extends StatelessWidget {
                           style: TextStyle(
                             fontFamily: 'Roboto',
                             fontSize: 16,
-                              color: habit.isCompleted ? VytalColors.textSecondary : VytalColors.textPrimary,
+                            color: habit.isCompleted
+                                ? VytalColors.textSecondary
+                                : VytalColors.textPrimary,
                             fontWeight: FontWeight.bold,
-                              decoration: null,
+                            decoration: null,
                           ),
                           child: Text(habit.title),
                         ),
                         const SizedBox(height: 4),
                         Text(
                           habit.subtitle,
-                          style: const TextStyle(color: VytalColors.textSecondary, fontSize: 12),
+                          style: const TextStyle(
+                            color: VytalColors.textSecondary,
+                            fontSize: 12,
+                          ),
                         ),
                       ],
                     ),
@@ -106,17 +115,22 @@ class HabitTile extends StatelessWidget {
 
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
-                    width: 24, height: 24,
+                    width: 24,
+                    height: 24,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                            color: habit.isCompleted ? Colors.greenAccent : VytalColors.textSecondary,
-                          width: 2
+                        color: habit.isCompleted
+                            ? Colors.greenAccent
+                            : VytalColors.textSecondary,
+                        width: 2,
                       ),
-                        color: habit.isCompleted ? Colors.greenAccent : Colors.transparent,
+                      color: habit.isCompleted
+                          ? Colors.greenAccent
+                          : Colors.transparent,
                     ),
                     child: habit.isCompleted
-                          ? const Icon(Icons.check, size: 16, color: Colors.white)
+                        ? const Icon(Icons.check, size: 16, color: Colors.white)
                         : null,
                   ),
                 ],

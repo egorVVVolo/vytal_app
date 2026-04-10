@@ -80,7 +80,6 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
               fontSize: 20,
               fontWeight: FontWeight.bold,
               letterSpacing: 2,
-
             ),
           ),
 
@@ -101,7 +100,6 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
               fontSize: 10,
               fontWeight: FontWeight.bold,
               letterSpacing: 2,
-
             ),
           ),
           const SizedBox(height: 12),
@@ -122,10 +120,11 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
                 backgroundColor: VytalColors.background,
                 selectedColor: VytalColors.primaryAccent.withValues(alpha: 0.2),
                 labelStyle: TextStyle(
-                  color: isSelected ? VytalColors.primaryAccent : VytalColors.textSecondary,
+                  color: isSelected
+                      ? VytalColors.primaryAccent
+                      : VytalColors.textSecondary,
                   fontWeight: FontWeight.bold,
                   fontSize: 10,
-
                 ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24),
@@ -149,7 +148,6 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
               fontSize: 10,
               fontWeight: FontWeight.bold,
               letterSpacing: 2,
-
             ),
           ),
           const SizedBox(height: 12),
@@ -206,7 +204,6 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2,
-
                 ),
               ),
             ),
@@ -223,17 +220,18 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
       decoration: BoxDecoration(
         color: Colors.transparent,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: VytalColors.textSecondary.withValues(alpha: 0.5)),
+        border: Border.all(
+          color: VytalColors.textSecondary.withValues(alpha: 0.5),
+        ),
       ),
       child: TextField(
         controller: controller,
-        style: const TextStyle(color: VytalColors.textPrimary, ),
+        style: const TextStyle(color: VytalColors.textPrimary),
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: hint,
           hintStyle: TextStyle(
             color: VytalColors.textSecondary.withValues(alpha: 0.5),
-
           ),
         ),
       ),
