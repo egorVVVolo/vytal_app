@@ -286,6 +286,7 @@ class _PlanScreenState extends State<PlanScreen> {
     );
   }
 
+  Widget _headerBtn(IconData icon, VoidCallback onTap, Color? color, String tooltipText) {
   Widget _headerBtn(String tooltipMessage, IconData icon, VoidCallback onTap, Color? color) {
     return Tooltip(
       message: tooltipMessage,
