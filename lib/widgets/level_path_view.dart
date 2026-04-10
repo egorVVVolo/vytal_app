@@ -66,7 +66,8 @@ class _LevelPathViewState extends State<LevelPathView> {
   Widget _buildNode(BuildContext context, Workout workout, int index) {
     bool isCompleted = index < widget.currentLevelIndex;
     bool isCurrent = index == widget.currentLevelIndex;
-    bool isLocked = index > widget.currentLevelIndex || widget.todayWorkoutCount >= 3;
+    bool isLocked =
+        index > widget.currentLevelIndex || widget.todayWorkoutCount >= 3;
 
     // If todayWorkoutCount >= 3, even the current becomes locked (limit reached)
     if (widget.todayWorkoutCount >= 3 && isCurrent) {
@@ -96,11 +97,7 @@ class _LevelPathViewState extends State<LevelPathView> {
             color: baseColor,
             boxShadow: [
               if (!isLocked)
-                BoxShadow(
-                  color: glowColor,
-                  blurRadius: 15,
-                  spreadRadius: 2,
-                ),
+                BoxShadow(color: glowColor, blurRadius: 15, spreadRadius: 2),
             ],
             border: Border.all(
               color: Colors.white.withValues(alpha: isLocked ? 0.1 : 0.3),
@@ -140,19 +137,30 @@ class _LevelPathViewState extends State<LevelPathView> {
     // Add interactivity and appearance animations
     // Since it's in a ListView.builder, it builds as it scrolls.
     // We animate it entering the screen.
-    Widget animatedNode = GestureDetector(
-      onTap: isLocked ? null : () => widget.onNodeTapped(workout),
-      child: nodeContent,
-    )
-    .animate()
-    .fade(duration: 500.ms, curve: Curves.easeOut)
-    .slideY(begin: 0.5, end: 0, duration: 500.ms, curve: Curves.easeOut);
+    Widget animatedNode =
+        GestureDetector(
+              onTap: isLocked ? null : () => widget.onNodeTapped(workout),
+              child: nodeContent,
+            )
+            .animate()
+            .fade(duration: 500.ms, curve: Curves.easeOut)
+            .slideY(
+              begin: 0.5,
+              end: 0,
+              duration: 500.ms,
+              curve: Curves.easeOut,
+            );
 
     if (isCurrent) {
       // Pulsing animation for current available node
       animatedNode = animatedNode
           .animate(onPlay: (controller) => controller.repeat(reverse: true))
-          .scale(begin: const Offset(1.0, 1.0), end: const Offset(1.05, 1.05), duration: 1000.ms, curve: Curves.easeInOut)
+          .scale(
+            begin: const Offset(1.0, 1.0),
+            end: const Offset(1.05, 1.05),
+            duration: 1000.ms,
+            curve: Curves.easeInOut,
+          )
           .shimmer(duration: 2000.ms, color: Colors.white24);
     }
 
@@ -180,7 +188,10 @@ class _LineSegmentPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = 12.0
       ..strokeCap = StrokeCap.round
-      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 5); // Glow effect for the line
+      ..maskFilter = const MaskFilter.blur(
+        BlurStyle.normal,
+        5,
+      ); // Glow effect for the line
 
     final corePaint = Paint()
       ..color = Colors.white.withValues(alpha: 0.5)
@@ -209,7 +220,14 @@ class _LineSegmentPainter extends CustomPainter {
 
       // Control points for the bottom half of the S-curve (from y=0 to currentY)
       // We want the curve to start vertically at midXTop and end vertically at currentX
-      path.cubicTo(midXTop, currentY * 0.5, currentX, currentY * 0.5, currentX, currentY);
+      path.cubicTo(
+        midXTop,
+        currentY * 0.5,
+        currentX,
+        currentY * 0.5,
+        currentX,
+        currentY,
+      );
     } else {
       path.moveTo(currentX, currentY);
     }
@@ -228,7 +246,14 @@ class _LineSegmentPainter extends CustomPainter {
       double controlY1 = currentY + (size.height - currentY) * 0.5;
       double controlY2 = currentY + (size.height - currentY) * 0.5;
 
-      path.cubicTo(currentX, controlY1, midXBottom, controlY2, midXBottom, size.height);
+      path.cubicTo(
+        currentX,
+        controlY1,
+        midXBottom,
+        controlY2,
+        midXBottom,
+        size.height,
+      );
     }
 
     canvas.drawPath(path, paint);
@@ -238,7 +263,7 @@ class _LineSegmentPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant _LineSegmentPainter oldDelegate) {
     return oldDelegate.index != index ||
-           oldDelegate.totalItems != totalItems ||
-           oldDelegate.color != color;
+        oldDelegate.totalItems != totalItems ||
+        oldDelegate.color != color;
   }
 }

@@ -21,7 +21,9 @@ class PedometerService {
 
         // Instead of using Pedometer.pedestrianStatusStream directly (which has a bug on Android
         // where it throws unhandled exceptions if the sensor is missing), we implement a safe wrapper.
-        _pedestrianStatusStream = _getSafePedestrianStatusStream().handleError((error) {
+        _pedestrianStatusStream = _getSafePedestrianStatusStream().handleError((
+          error,
+        ) {
           debugPrint("🛑 Caught Status Stream Error: $error");
         });
 
@@ -33,7 +35,9 @@ class PedometerService {
     } catch (e) {
       // Catch PlatformException or generic Exception thrown during initialization
       // This often occurs on emulators where physical sensors are missing.
-      debugPrint("🛑 Pedometer init error (likely emulator or missing sensor): $e");
+      debugPrint(
+        "🛑 Pedometer init error (likely emulator or missing sensor): $e",
+      );
       return false;
     }
   }
@@ -54,29 +58,33 @@ class PedometerService {
     // We can't catch the error in _androidStream's listen because it's inside the plugin.
     // But we CAN provide a wrapper that uses `runZonedGuarded` to catch the unhandled asynchronous exception when listening to the stream!
 
-    StreamController<PedestrianStatus> controller = StreamController<PedestrianStatus>.broadcast();
+    StreamController<PedestrianStatus> controller =
+        StreamController<PedestrianStatus>.broadcast();
 
-    runZonedGuarded(() {
-      StreamSubscription<PedestrianStatus>? subscription;
-      controller.onListen = () {
-        try {
-          subscription = Pedometer.pedestrianStatusStream.listen(
-            (status) => controller.add(status),
-            onError: (error) => controller.addError(error),
-            cancelOnError: true,
-          );
-        } catch (e) {
-          controller.addError(e);
-        }
-      };
+    runZonedGuarded(
+      () {
+        StreamSubscription<PedestrianStatus>? subscription;
+        controller.onListen = () {
+          try {
+            subscription = Pedometer.pedestrianStatusStream.listen(
+              (status) => controller.add(status),
+              onError: (error) => controller.addError(error),
+              cancelOnError: true,
+            );
+          } catch (e) {
+            controller.addError(e);
+          }
+        };
 
-      controller.onCancel = () {
-        subscription?.cancel();
-      };
-    }, (error, stackTrace) {
-      // This catches the unhandled PlatformException thrown by the plugin's _androidStream missing onError!
-      controller.addError(error);
-    });
+        controller.onCancel = () {
+          subscription?.cancel();
+        };
+      },
+      (error, stackTrace) {
+        // This catches the unhandled PlatformException thrown by the plugin's _androidStream missing onError!
+        controller.addError(error);
+      },
+    );
 
     return controller.stream;
   }

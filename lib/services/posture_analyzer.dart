@@ -1,8 +1,6 @@
 import 'package:google_mlkit_pose_detection/google_mlkit_pose_detection.dart';
 
-enum PostureIssue {
-  forwardHead, kyphosis, lordosis, good
-}
+enum PostureIssue { forwardHead, kyphosis, lordosis, good }
 
 class PostureReport {
   final List<PostureIssue> issues;
@@ -10,7 +8,6 @@ class PostureReport {
 }
 
 class PostureAnalyzer {
-
   // --- МАГИЯ УСРЕДНЕНИЯ ---
   // Берет список последних 10 поз и создает одну "stable"
   static Pose getAveragePose(List<Pose> buffer) {
@@ -57,7 +54,8 @@ class PostureAnalyzer {
     final rightShoulder = pose.landmarks[PoseLandmarkType.rightShoulder];
     final rightHip = pose.landmarks[PoseLandmarkType.rightHip];
 
-    if (leftShoulder == null || rightShoulder == null || rightHip == null) return false;
+    if (leftShoulder == null || rightShoulder == null || rightHip == null)
+      return false;
 
     // Считаем ширину плеч
     double shoulderWidth = (leftShoulder.x - rightShoulder.x).abs();
@@ -72,7 +70,10 @@ class PostureAnalyzer {
     final ear = pose.landmarks[PoseLandmarkType.rightEar];
     final ankle = pose.landmarks[PoseLandmarkType.rightAnkle];
 
-    if (ear == null || ankle == null || ear.likelihood < 0.6 || ankle.likelihood < 0.6) {
+    if (ear == null ||
+        ankle == null ||
+        ear.likelihood < 0.6 ||
+        ankle.likelihood < 0.6) {
       return false;
     }
 
