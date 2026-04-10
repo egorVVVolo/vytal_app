@@ -201,32 +201,38 @@ class _AppBootstrapState extends State<AppBootstrap> {
                 child: SafeArea(
                   child: Row(
                     children: [
-                      GestureDetector(
-                        onTap: () async {
-                          await StorageService.saveLanguage('en');
-                          L10n.setLanguage('en');
-                          setState(() {});
-                        },
-                        child: Text(
-                          "EN",
-                          style: TextStyle(
-                            color: L10n.currentLanguage == 'en' ? VytalColors.primaryAccent : VytalColors.textSecondary,
-                            fontWeight: L10n.currentLanguage == 'en' ? FontWeight.bold : FontWeight.normal,
+                      Tooltip(
+                        message: L10n.t('english'),
+                        child: GestureDetector(
+                          onTap: () async {
+                            await StorageService.saveLanguage('en');
+                            L10n.setLanguage('en');
+                            setState(() {});
+                          },
+                          child: Text(
+                            "EN",
+                            style: TextStyle(
+                              color: L10n.currentLanguage == 'en' ? VytalColors.primaryAccent : VytalColors.textSecondary,
+                              fontWeight: L10n.currentLanguage == 'en' ? FontWeight.bold : FontWeight.normal,
+                            ),
                           ),
                         ),
                       ),
                       const Text(" / ", style: TextStyle(color: VytalColors.textSecondary)),
-                      GestureDetector(
-                        onTap: () async {
-                          await StorageService.saveLanguage('ru');
-                          L10n.setLanguage('ru');
-                          setState(() {});
-                        },
-                        child: Text(
-                          "RU",
-                          style: TextStyle(
-                            color: L10n.currentLanguage == 'ru' ? VytalColors.primaryAccent : VytalColors.textSecondary,
-                            fontWeight: L10n.currentLanguage == 'ru' ? FontWeight.bold : FontWeight.normal,
+                      Tooltip(
+                        message: L10n.t('russian'),
+                        child: GestureDetector(
+                          onTap: () async {
+                            await StorageService.saveLanguage('ru');
+                            L10n.setLanguage('ru');
+                            setState(() {});
+                          },
+                          child: Text(
+                            "RU",
+                            style: TextStyle(
+                              color: L10n.currentLanguage == 'ru' ? VytalColors.primaryAccent : VytalColors.textSecondary,
+                              fontWeight: L10n.currentLanguage == 'ru' ? FontWeight.bold : FontWeight.normal,
+                            ),
                           ),
                         ),
                       ),
