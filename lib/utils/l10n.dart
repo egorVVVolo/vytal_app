@@ -112,6 +112,9 @@ class L10n {
       'next': 'NEXT',
       'initiate_analysis': 'INITIATE ANALYSIS',
       'takes_30_seconds': 'Takes 30 seconds',
+      'notifications': 'Notifications',
+      'english': 'English',
+      'russian': 'Russian',
     },
     'ru': {
       'system_initializing': 'СИСТЕМА VYTAL\nИНИЦИАЛИЗАЦИЯ...',
@@ -226,6 +229,9 @@ class L10n {
       'next': 'ДАЛЕЕ',
       'initiate_analysis': 'НАЧАТЬ АНАЛИЗ',
       'takes_30_seconds': 'Займет 30 секунд',
+      'notifications': 'Уведомления',
+      'english': 'Английский',
+      'russian': 'Русский',
     },
   };
 

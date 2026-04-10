@@ -338,13 +338,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ),
                     ],
                   ),
-                  GestureDetector(
-                    onTap: _showNotifications,
-                    child: GlassContainer(
-                      padding: const EdgeInsets.all(12),
-                      child: const Icon(
-                        Icons.notifications_none,
-                        color: VytalColors.textPrimary,
+                  Tooltip(
+                    message: 'Notifications', // using simple string as fallback for now
+                    message: L10n.t('notifications'),
+                    message: 'Notifications',
+                    child: GestureDetector(
+                      onTap: _showNotifications,
+                      child: GlassContainer(
+                        padding: const EdgeInsets.all(12),
+                        child: const Icon(
+                          Icons.notifications_none,
+                          color: VytalColors.textPrimary,
+                        ),
                       ),
                     ),
                   ),
