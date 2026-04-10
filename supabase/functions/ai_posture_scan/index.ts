@@ -44,12 +44,12 @@ serve(async (req) => {
       });
     }
 
-    // 4. Parse request body (expecting base64 image)
+    // 4. Parse request body (expecting base64 images)
     const body = await req.json();
-    const { image_base64 } = body;
+    const { side_image_base64, back_image_base64 } = body;
 
-    if (!image_base64) {
-       return new Response(JSON.stringify({ error: "Missing image_base64 in request body" }), {
+    if (!side_image_base64 || !back_image_base64) {
+       return new Response(JSON.stringify({ error: "Missing side_image_base64 or back_image_base64 in request body" }), {
         status: 400,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
@@ -114,12 +114,38 @@ serve(async (req) => {
           content: [
             {
               type: "text",
-              text: "Analyze this image for posture. Return a JSON with the following structure: { overallScore: number, kyphosisScore: number, lordosisScore: number, neckScore: number, lostHeight: number, advice: string }",
+              text: `You are a strict biomechanical analysis algorithm.
+        Analyze two photos (side and back) and output a JSON with metrics.
+
+        STRICT RULES:
+        1. Do not artificially lower scores. If the back is straight — give 90-100.
+        2. If posture is bad, evaluate honestly.
+        3. Lost Height:
+           - 0.0 cm, if posture is perfect.
+           - 0.5-1.5 cm with a slight neck tilt.
+           - 2.0-5.0 cm with severe kyphosis.
+        4. Advice: Must be short (max 10 words), technical, and clinical. No greetings.
+
+        JSON FORMAT:
+        {
+          "overallScore": number,
+          "kyphosisScore": number,
+          "lordosisScore": number,
+          "neckScore": number,
+          "lostHeight": number,
+          "advice": "string"
+        }`,
             },
             {
               type: "image_url",
               image_url: {
-                url: `data:image/jpeg;base64,${image_base64}`,
+                url: `data:image/jpeg;base64,${side_image_base64}`,
+              },
+            },
+            {
+              type: "image_url",
+              image_url: {
+                url: `data:image/jpeg;base64,${back_image_base64}`,
               },
             },
           ],
