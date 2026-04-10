@@ -32,7 +32,9 @@ class GrowthCapsule extends StatelessWidget {
       decoration: BoxDecoration(
         color: VytalColors.surface,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: VytalColors.textPrimary.withValues(alpha: 0.05)),
+        border: Border.all(
+          color: VytalColors.textPrimary.withValues(alpha: 0.05),
+        ),
         boxShadow: [
           BoxShadow(
             color: VytalColors.textPrimary.withValues(alpha: 0.2),
@@ -55,7 +57,10 @@ class GrowthCapsule extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: VytalColors.background,
                     borderRadius: BorderRadius.circular(35),
-                    border: Border.all(color: VytalColors.textSecondary, width: 2),
+                    border: Border.all(
+                      color: VytalColors.textSecondary,
+                      width: 2,
+                    ),
                   ),
                 ),
 
@@ -84,7 +89,9 @@ class GrowthCapsule extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30),
                       boxShadow: [
                         BoxShadow(
-                          color: VytalColors.primaryAccent.withValues(alpha: 0.4),
+                          color: VytalColors.primaryAccent.withValues(
+                            alpha: 0.4,
+                          ),
                           blurRadius: 20,
                         ),
                       ],
@@ -204,7 +211,6 @@ class GrowthCapsule extends StatelessWidget {
             fontSize: 32,
             fontWeight: FontWeight.bold,
             height: 1.0,
-
           ),
         ),
         const SizedBox(width: 4),

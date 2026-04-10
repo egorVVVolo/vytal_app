@@ -95,7 +95,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         style: const TextStyle(
                           color: VytalColors.primaryAccent,
                           fontWeight: FontWeight.bold,
-
                         ),
                       ),
                     ),
@@ -161,7 +160,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             fontWeight: FontWeight.bold,
             fontSize: 16,
             letterSpacing: 2,
-
           ),
         ),
         centerTitle: true,
@@ -266,7 +264,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 foregroundColor: VytalColors.primaryAccent,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24),
-                  side: BorderSide(color: VytalColors.primaryAccent, width: 0.5),
+                  side: BorderSide(
+                    color: VytalColors.primaryAccent,
+                    width: 0.5,
+                  ),
                 ), // Sharp edges
                 elevation: 0,
               ),
@@ -276,7 +277,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2,
                   fontSize: 16,
-
                 ),
               ),
             ),
@@ -296,7 +296,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           fontSize: 12,
           fontWeight: FontWeight.bold,
           letterSpacing: 2,
-
         ),
       ),
     );
@@ -308,7 +307,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
       decoration: BoxDecoration(
         color: Colors.transparent, // Minimalist
-        border: Border.all(color: VytalColors.textSecondary, width: 0.5), // Sharp borders
+        border: Border.all(
+          color: VytalColors.textSecondary,
+          width: 0.5,
+        ), // Sharp borders
       ),
       child: TextField(
         controller: _nameController,
@@ -316,13 +318,18 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           color: VytalColors.textPrimary,
           fontSize: 18,
           fontWeight: FontWeight.bold,
-
         ),
         decoration: InputDecoration(
           label: Text(L10n.t('name'), style: const TextStyle()),
-          labelStyle: const TextStyle(color: VytalColors.textSecondary, fontSize: 14),
+          labelStyle: const TextStyle(
+            color: VytalColors.textSecondary,
+            fontSize: 14,
+          ),
           border: InputBorder.none,
-          icon: const Icon(Icons.person_outline, color: VytalColors.textSecondary),
+          icon: const Icon(
+            Icons.person_outline,
+            color: VytalColors.textSecondary,
+          ),
         ),
       ),
     );
@@ -336,62 +343,62 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     required IconData icon,
     required VoidCallback onTap,
   }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: Colors.transparent, // Minimalist
-          border: Border.all(color: VytalColors.textSecondary, width: 0.5),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Icon(icon, size: 18, color: VytalColors.textSecondary),
-                const SizedBox(width: 8),
-                Text(
-                  label.toUpperCase(),
-                  style: const TextStyle(
-                    color: VytalColors.textSecondary,
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 2,
-
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  value,
-                  style: const TextStyle(
-                    color: VytalColors.textPrimary,
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-
-                  ),
-                ),
-                const SizedBox(width: 4),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 4),
-                  child: Text(
-                    unit,
+    return Tooltip(
+      message: "Edit $label",
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.transparent, // Minimalist
+            border: Border.all(color: VytalColors.textSecondary, width: 0.5),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(icon, size: 18, color: VytalColors.textSecondary),
+                  const SizedBox(width: 8),
+                  Text(
+                    label.toUpperCase(),
                     style: const TextStyle(
-                      color: VytalColors.primaryAccent,
-                      fontSize: 14,
+                      color: VytalColors.textSecondary,
+                      fontSize: 10,
                       fontWeight: FontWeight.bold,
-
+                      letterSpacing: 2,
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+              const SizedBox(height: 12),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    value,
+                    style: const TextStyle(
+                      color: VytalColors.textPrimary,
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 4),
+                    child: Text(
+                      unit,
+                      style: const TextStyle(
+                        color: VytalColors.primaryAccent,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

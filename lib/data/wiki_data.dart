@@ -38,14 +38,22 @@ class WikiData {
       icon: Icons.science_rounded,
       color: Colors.blueAccent,
       readTimeMin: 3,
-      imageUrl: 'https://images.unsplash.com/photo-1530210124550-912dc1381cb8?auto=format&fit=crop&q=80&w=800',
+      imageUrl:
+          'https://images.unsplash.com/photo-1530210124550-912dc1381cb8?auto=format&fit=crop&q=80&w=800',
       mythVsFact: {
-        'Myth': 'Bones cannot change shape or density once you reach adulthood.',
-        'Fact': 'Bones continuously remodel themselves based on the physical stress placed upon them.'
+        'Myth':
+            'Bones cannot change shape or density once you reach adulthood.',
+        'Fact':
+            'Bones continuously remodel themselves based on the physical stress placed upon them.',
       },
       quiz: {
         'question': 'Who discovered the law of bone remodeling?',
-        'options': ['Isaac Newton', 'Julius Wolff', 'Albert Einstein', 'Galileo Galilei'],
+        'options': [
+          'Isaac Newton',
+          'Julius Wolff',
+          'Albert Einstein',
+          'Galileo Galilei',
+        ],
         'correctIndex': 1,
       },
       content: """
@@ -64,14 +72,22 @@ In the context of growth: proper axial load and subsequent recovery (sleep) stim
       icon: Icons.bolt_rounded,
       color: Colors.amberAccent,
       readTimeMin: 5,
-      imageUrl: 'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&q=80&w=800',
+      imageUrl:
+          'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&q=80&w=800',
       mythVsFact: {
-        'Myth': 'You can produce the most HGH by sleeping 10 hours during the day.',
-        'Fact': 'HGH release is closely tied to your circadian rhythm, peaking during deep sleep before midnight.'
+        'Myth':
+            'You can produce the most HGH by sleeping 10 hours during the day.',
+        'Fact':
+            'HGH release is closely tied to your circadian rhythm, peaking during deep sleep before midnight.',
       },
       quiz: {
         'question': 'What blocks the release of HGH before sleep?',
-        'options': ['Protein', 'High blood sugar (Insulin)', 'Drinking water', 'Stretching'],
+        'options': [
+          'Protein',
+          'High blood sugar (Insulin)',
+          'Drinking water',
+          'Stretching',
+        ],
         'correctIndex': 1,
       },
       content: """
@@ -93,13 +109,17 @@ Vytal recommends sleeping before 23:00 to catch the first and most powerful horm
       icon: Icons.phone_iphone_rounded,
       color: Colors.redAccent,
       readTimeMin: 2,
-      imageUrl: 'https://images.unsplash.com/photo-1515378960530-7c0da622941f?auto=format&fit=crop&q=80&w=800',
+      imageUrl:
+          'https://images.unsplash.com/photo-1515378960530-7c0da622941f?auto=format&fit=crop&q=80&w=800',
       mythVsFact: {
-        'Myth': 'Looking down at your phone only affects your neck muscles temporarily.',
-        'Fact': 'It can lead to permanent changes in the cervical spine curve and early disc degeneration.'
+        'Myth':
+            'Looking down at your phone only affects your neck muscles temporarily.',
+        'Fact':
+            'It can lead to permanent changes in the cervical spine curve and early disc degeneration.',
       },
       quiz: {
-        'question': 'How much load does a 60-degree forward head tilt place on the spine?',
+        'question':
+            'How much load does a 60-degree forward head tilt place on the spine?',
         'options': ['5 kg', '10 kg', '15 kg', '27 kg'],
         'correctIndex': 3,
       },
@@ -122,13 +142,16 @@ Solution: Raise your phone to eye level. Do 'Chin Tucks' daily.
       icon: Icons.restaurant_menu_rounded,
       color: Colors.greenAccent,
       readTimeMin: 4,
-      imageUrl: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=800',
+      imageUrl:
+          'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=800',
       mythVsFact: {
         'Myth': 'Fasting means you will lose muscle mass immediately.',
-        'Fact': 'During intermittent fasting, the body spikes HGH to preserve muscle and bone.'
+        'Fact':
+            'During intermittent fasting, the body spikes HGH to preserve muscle and bone.',
       },
       quiz: {
-        'question': 'Which fast is mentioned as a trigger for hormonal response?',
+        'question':
+            'Which fast is mentioned as a trigger for hormonal response?',
         'options': ['12/12', '16/8', '20/4', '24/0'],
         'correctIndex': 1,
       },

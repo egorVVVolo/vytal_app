@@ -34,17 +34,19 @@ class AiPostureResult {
 }
 
 class AiPostureService {
-  // Base URL of the Supabase instance, expected to be provided via build environment
-  // e.g., --dart-define=SUPABASE_URL=https://<PROJECT_REF>.supabase.co
-  static const String _supabaseUrl = String.fromEnvironment(
-    'SUPABASE_URL',
-    defaultValue: 'https://ccdfsabkulrqbsiupcyd.supabase.co', // Use the user provided URL as fallback
+  // Ключ VseGPT теперь берем из параметров сборки
+  static const String _apiKey = String.fromEnvironment(
+    'VSEGPT_API_KEY',
+    defaultValue:
+        'sk-or-vv-7370ab2c2f91c3946add4bd5044aa7e485235eef67810f16d4b09d852df3fe8b',
   );
 
   static Future<AiPostureResult?> analyzePosture(
     File sidePhoto,
     File backPhoto,
   ) async {
+    _initApi();
+
     try {
       // 1. Get the current user's session token
       final session = Supabase.instance.client.auth.currentSession;
@@ -60,36 +62,70 @@ class AiPostureService {
       final sideBase64 = base64Encode(sideBytes);
       final backBase64 = base64Encode(backBytes);
 
-      // 3. Prepare the request
-      final url = Uri.parse('$_supabaseUrl/functions/v1/ai_posture_scan');
-      final headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $accessToken',
-      };
-      final body = jsonEncode({
-        'side_image_base64': sideBase64,
-        'back_image_base64': backBase64,
-      });
+      final systemPrompt = """
+        You are a strict biomechanical analysis algorithm.
+        Analyze two photos (side and back) and output a JSON with metrics.
+        
+        STRICT RULES:
+        1. Do not artificially lower scores. If the back is straight — give 90-100.
+        2. If posture is bad, evaluate honestly.
+        3. Lost Height: 
+           - 0.0 cm, if posture is perfect.
+           - 0.5-1.5 cm with a slight neck tilt.
+           - 2.0-5.0 cm with severe kyphosis.
+        4. Advice: Must be short (max 10 words), technical, and clinical. No greetings.
+        
+        JSON FORMAT:
+        {
+          "overall": int,
+          "kyphosis": int,
+          "lordosis": int,
+          "head_posture": int,
+          "lost_height": double,
+          "advice": "String"
+        }
+      """;
 
-      // 4. Send the POST request to the Edge Function
-      final response = await http.post(url, headers: headers, body: body);
+      final chatCompletion = await OpenAI.instance.chat.create(
+        model: _modelName,
+        temperature:
+            0.1, // Низкая температура = строгое соблюдение правил и JSON
+        responseFormat: {
+          "type": "json_object",
+        }, // Гарантирует, что вернется JSON
+        messages: [
+          OpenAIChatCompletionChoiceMessageModel(
+            role: OpenAIChatMessageRole.system,
+            content: [
+              OpenAIChatCompletionChoiceMessageContentItemModel.text(
+                systemPrompt,
+              ),
+            ],
+          ),
+          OpenAIChatCompletionChoiceMessageModel(
+            role: OpenAIChatMessageRole.user,
+            content: [
+              OpenAIChatCompletionChoiceMessageContentItemModel.imageUrl(
+                "data:image/jpeg;base64,$sideBase64",
+              ),
+              OpenAIChatCompletionChoiceMessageContentItemModel.imageUrl(
+                "data:image/jpeg;base64,$backBase64",
+              ),
+            ],
+          ),
+        ],
+      );
 
-      // 5. Handle the response
-      if (response.statusCode == 200) {
-        final jsonMap = jsonDecode(response.body);
-        return AiPostureResult.fromJson(jsonMap);
-      } else if (response.statusCode == 429) {
-         // Quota exceeded
-         debugPrint("AI API Error: Quota exceeded (${response.body})");
-         return _fallbackResult("Quota exceeded. Please upgrade to Pro for unlimited scans.");
-      } else if (response.statusCode == 401) {
-         debugPrint("AI API Error: Unauthorized (${response.body})");
-         return _fallbackResult("Unauthorized. Please log in again.");
-      } else {
-        // Other errors (500, 400, etc.)
-        debugPrint("AI API Error: HTTP ${response.statusCode} - ${response.body}");
-        return _fallbackResult("Server error. Try again later.");
-      }
+      // Извлекаем текст ответа
+      String text =
+          chatCompletion.choices.first.message.content?.first.text ?? "";
+
+      // На всякий случай чистим от артефактов маркдауна, если они проскочат
+      text = text.replaceAll('```json', '').replaceAll('```', '').trim();
+      debugPrint("AI ANALYSIS: $text");
+
+      final jsonMap = json.decode(text);
+      return AiPostureResult.fromJson(jsonMap);
     } catch (e) {
       // Network errors, parsing errors, etc.
       debugPrint("AI API Exception: $e");

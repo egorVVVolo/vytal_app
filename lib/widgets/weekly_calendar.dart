@@ -38,7 +38,9 @@ class WeeklyCalendar extends StatelessWidget {
               duration: const Duration(milliseconds: 200),
               width: 60,
               decoration: BoxDecoration(
-                color: isSelected ? VytalColors.primaryAccent : VytalColors.surface,
+                color: isSelected
+                    ? VytalColors.primaryAccent
+                    : VytalColors.surface,
                 borderRadius: BorderRadius.circular(18),
                 border: Border.all(
                   color: isSelected
@@ -47,12 +49,14 @@ class WeeklyCalendar extends StatelessWidget {
                 ),
                 boxShadow: isSelected
                     ? [
-                  BoxShadow(
-                    color: VytalColors.primaryAccent.withValues(alpha: 0.4),
-                    blurRadius: 10,
-                    offset: const Offset(0, 4),
-                  )
-                ]
+                        BoxShadow(
+                          color: VytalColors.primaryAccent.withValues(
+                            alpha: 0.4,
+                          ),
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        ),
+                      ]
                     : [],
               ),
               child: Column(
@@ -61,7 +65,9 @@ class WeeklyCalendar extends StatelessWidget {
                   Text(
                     _getWeekday(date.weekday),
                     style: TextStyle(
-                      color: isSelected ? Colors.white : VytalColors.textSecondary,
+                      color: isSelected
+                          ? Colors.white
+                          : VytalColors.textSecondary,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                     ),
@@ -70,7 +76,9 @@ class WeeklyCalendar extends StatelessWidget {
                   Text(
                     date.day.toString(),
                     style: TextStyle(
-                      color: isSelected ? Colors.white : VytalColors.textPrimary,
+                      color: isSelected
+                          ? Colors.white
+                          : VytalColors.textPrimary,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
