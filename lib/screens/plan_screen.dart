@@ -136,14 +136,17 @@ class _PlanScreenState extends State<PlanScreen> {
           const SnackBar(
             content: Row(
               children: [
-                Icon(Icons.auto_awesome, color: VytalColors.textPrimary, size: 16),
+                Icon(
+                  Icons.auto_awesome,
+                  color: VytalColors.textPrimary,
+                  size: 16,
+                ),
                 SizedBox(width: 8),
                 Text(
                   "+10 XP  Task Complete",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: VytalColors.textPrimary,
-
                   ),
                 ),
               ],
@@ -224,18 +227,12 @@ class _PlanScreenState extends State<PlanScreen> {
                   : ListView(
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                       children: [
-                        _buildTimeSection(
-                          L10n.t('protocols'),
-                          vitaminHabits,
-                        ),
+                        _buildTimeSection(L10n.t('protocols'), vitaminHabits),
                         _buildTimeSection(
                           L10n.t('activity').toUpperCase(),
                           activityHabits,
                         ),
-                        _buildTimeSection(
-                          L10n.t('mental'),
-                          mentalHabits,
-                        ),
+                        _buildTimeSection(L10n.t('mental'), mentalHabits),
                         _buildTimeSection(
                           L10n.t('sleep_and_routine'),
                           sleepHabits,
@@ -263,7 +260,6 @@ class _PlanScreenState extends State<PlanScreen> {
               fontSize: 24,
               fontWeight: FontWeight.bold,
               letterSpacing: 2,
-
             ),
           ),
           Row(
@@ -272,12 +268,14 @@ class _PlanScreenState extends State<PlanScreen> {
                 Icons.auto_stories_outlined,
                 _openProtocolLibrary,
                 null,
+                'Protocol Library',
               ),
               const SizedBox(width: 12),
               _headerBtn(
                 Icons.add,
                 _openAddHabitSheet,
                 VytalColors.primaryAccent,
+                'Add Habit',
               ),
             ],
           ),
@@ -286,19 +284,35 @@ class _PlanScreenState extends State<PlanScreen> {
     );
   }
 
-  Widget _headerBtn(IconData icon, VoidCallback onTap, Color? color) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(
-          color: color?.withValues(alpha: 0.1) ?? VytalColors.surface,
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: color?.withValues(alpha: 0.5) ?? VytalColors.textSecondary.withValues(alpha: 0.2)),
-          boxShadow: const [],
+  Widget _headerBtn(
+    IconData icon,
+    VoidCallback onTap,
+    Color? color,
+    String tooltip,
+  ) {
+    return Tooltip(
+      message: tooltip,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            color: color?.withValues(alpha: 0.1) ?? VytalColors.surface,
+            borderRadius: BorderRadius.circular(24),
+            border: Border.all(
+              color:
+                  color?.withValues(alpha: 0.5) ??
+                  VytalColors.textSecondary.withValues(alpha: 0.2),
+            ),
+            boxShadow: const [],
+          ),
+          child: Icon(
+            icon,
+            color: color ?? VytalColors.textSecondary,
+            size: 20,
+          ),
         ),
-        child: Icon(icon, color: color ?? VytalColors.textSecondary, size: 20),
       ),
     );
   }
@@ -308,7 +322,11 @@ class _PlanScreenState extends State<PlanScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.memory, size: 60, color: VytalColors.textPrimary.withValues(alpha: 0.1)),
+          Icon(
+            Icons.memory,
+            size: 60,
+            color: VytalColors.textPrimary.withValues(alpha: 0.1),
+          ),
           const SizedBox(height: 16),
           const Text(
             "Schedule Empty",
@@ -316,17 +334,12 @@ class _PlanScreenState extends State<PlanScreen> {
               color: VytalColors.textSecondary,
               fontWeight: FontWeight.bold,
               letterSpacing: 1.5,
-
             ),
           ),
           const SizedBox(height: 8),
           const Text(
             "Add protocols or initialize a new sequence.",
-            style: TextStyle(
-              color: VytalColors.textSecondary,
-
-              fontSize: 12,
-            ),
+            style: TextStyle(color: VytalColors.textSecondary, fontSize: 12),
           ),
         ],
       ),
@@ -364,7 +377,6 @@ class _PlanScreenState extends State<PlanScreen> {
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2,
-
                 ),
               ),
               const SizedBox(width: 12),
