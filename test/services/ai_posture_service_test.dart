@@ -36,25 +36,28 @@ void main() {
       expect(result.advice, 'No recommendations');
     });
 
-    test('uses fallback values for missing keys in a partially populated JSON map', () {
-      final json = {
-        'overall': 70,
-        // 'kyphosis' is missing
-        'lordosis': 60,
-        // 'head_posture' is missing
-        'lost_height': 2.0,
-        // 'advice' is missing
-      };
+    test(
+      'uses fallback values for missing keys in a partially populated JSON map',
+      () {
+        final json = {
+          'overall': 70,
+          // 'kyphosis' is missing
+          'lordosis': 60,
+          // 'head_posture' is missing
+          'lost_height': 2.0,
+          // 'advice' is missing
+        };
 
-      final result = AiPostureResult.fromJson(json);
+        final result = AiPostureResult.fromJson(json);
 
-      expect(result.overallScore, 70);
-      expect(result.kyphosisScore, 0); // fallback
-      expect(result.lordosisScore, 60);
-      expect(result.headPostureScore, 0); // fallback
-      expect(result.lostHeight, 2.0);
-      expect(result.advice, 'No recommendations'); // fallback
-    });
+        expect(result.overallScore, 70);
+        expect(result.kyphosisScore, 0); // fallback
+        expect(result.lordosisScore, 60);
+        expect(result.headPostureScore, 0); // fallback
+        expect(result.lostHeight, 2.0);
+        expect(result.advice, 'No recommendations'); // fallback
+      },
+    );
 
     test('handles lost_height correctly when it is an integer', () {
       final json = {

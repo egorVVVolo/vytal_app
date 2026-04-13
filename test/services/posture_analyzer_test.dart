@@ -12,46 +12,54 @@ void main() {
       expect(averagePose.landmarks, isEmpty);
     });
 
-    test('returns a Pose identical to the input for a single pose in the buffer', () {
-      final landmark = createMockLandmark(
-        type: PoseLandmarkType.rightEar,
-        x: 100.0,
-        y: 200.0,
-        z: 50.0,
-        likelihood: 0.9,
-      );
-      final pose = createMockPose({PoseLandmarkType.rightEar: landmark});
-      final buffer = [pose];
+    test(
+      'returns a Pose identical to the input for a single pose in the buffer',
+      () {
+        final landmark = createMockLandmark(
+          type: PoseLandmarkType.rightEar,
+          x: 100.0,
+          y: 200.0,
+          z: 50.0,
+          likelihood: 0.9,
+        );
+        final pose = createMockPose({PoseLandmarkType.rightEar: landmark});
+        final buffer = [pose];
 
-      final averagePose = PostureAnalyzer.getAveragePose(buffer);
+        final averagePose = PostureAnalyzer.getAveragePose(buffer);
 
-      expect(averagePose.landmarks.length, 1);
-      final averagedLandmark = averagePose.landmarks[PoseLandmarkType.rightEar]!;
-      expect(averagedLandmark.x, 100.0);
-      expect(averagedLandmark.y, 200.0);
-      expect(averagedLandmark.z, 50.0);
-      expect(averagedLandmark.likelihood, 0.9);
-    });
+        expect(averagePose.landmarks.length, 1);
+        final averagedLandmark =
+            averagePose.landmarks[PoseLandmarkType.rightEar]!;
+        expect(averagedLandmark.x, 100.0);
+        expect(averagedLandmark.y, 200.0);
+        expect(averagedLandmark.z, 50.0);
+        expect(averagedLandmark.likelihood, 0.9);
+      },
+    );
 
-    test('correctly averages coordinates and likelihood for multiple identical poses', () {
-      final landmark = createMockLandmark(
-        type: PoseLandmarkType.rightShoulder,
-        x: 150.0,
-        y: 300.0,
-        z: -10.0,
-        likelihood: 0.8,
-      );
-      final pose = createMockPose({PoseLandmarkType.rightShoulder: landmark});
-      final buffer = [pose, pose, pose];
+    test(
+      'correctly averages coordinates and likelihood for multiple identical poses',
+      () {
+        final landmark = createMockLandmark(
+          type: PoseLandmarkType.rightShoulder,
+          x: 150.0,
+          y: 300.0,
+          z: -10.0,
+          likelihood: 0.8,
+        );
+        final pose = createMockPose({PoseLandmarkType.rightShoulder: landmark});
+        final buffer = [pose, pose, pose];
 
-      final averagePose = PostureAnalyzer.getAveragePose(buffer);
+        final averagePose = PostureAnalyzer.getAveragePose(buffer);
 
-      final averagedLandmark = averagePose.landmarks[PoseLandmarkType.rightShoulder]!;
-      expect(averagedLandmark.x, 150.0);
-      expect(averagedLandmark.y, 300.0);
-      expect(averagedLandmark.z, -10.0);
-      expect(averagedLandmark.likelihood, closeTo(0.8, 0.0001));
-    });
+        final averagedLandmark =
+            averagePose.landmarks[PoseLandmarkType.rightShoulder]!;
+        expect(averagedLandmark.x, 150.0);
+        expect(averagedLandmark.y, 300.0);
+        expect(averagedLandmark.z, -10.0);
+        expect(averagedLandmark.likelihood, closeTo(0.8, 0.0001));
+      },
+    );
 
     test('correctly averages different coordinates and likelihoods', () {
       final landmark1 = createMockLandmark(
@@ -76,7 +84,8 @@ void main() {
 
       final averagePose = PostureAnalyzer.getAveragePose(buffer);
 
-      final averagedLandmark = averagePose.landmarks[PoseLandmarkType.rightHip]!;
+      final averagedLandmark =
+          averagePose.landmarks[PoseLandmarkType.rightHip]!;
       expect(averagedLandmark.x, 150.0);
       expect(averagedLandmark.y, 250.0);
       expect(averagedLandmark.z, 5.0);
@@ -86,11 +95,17 @@ void main() {
     test('averages only the poses that contain a specific landmark', () {
       final ear = createMockLandmark(
         type: PoseLandmarkType.rightEar,
-        x: 10.0, y: 10.0, z: 10.0, likelihood: 1.0,
+        x: 10.0,
+        y: 10.0,
+        z: 10.0,
+        likelihood: 1.0,
       );
       final shoulder = createMockLandmark(
         type: PoseLandmarkType.rightShoulder,
-        x: 20.0, y: 20.0, z: 20.0, likelihood: 0.8,
+        x: 20.0,
+        y: 20.0,
+        z: 20.0,
+        likelihood: 0.8,
       );
 
       // Pose 1 has ear and shoulder
@@ -102,7 +117,10 @@ void main() {
       final pose2 = createMockPose({
         PoseLandmarkType.rightShoulder: createMockLandmark(
           type: PoseLandmarkType.rightShoulder,
-          x: 40.0, y: 40.0, z: 40.0, likelihood: 0.4,
+          x: 40.0,
+          y: 40.0,
+          z: 40.0,
+          likelihood: 0.4,
         ),
       });
 
@@ -116,9 +134,13 @@ void main() {
       expect(averagedEar.likelihood, 1.0);
 
       // Shoulder should be averaged from 2 poses
-      final averagedShoulder = averagePose.landmarks[PoseLandmarkType.rightShoulder]!;
+      final averagedShoulder =
+          averagePose.landmarks[PoseLandmarkType.rightShoulder]!;
       expect(averagedShoulder.x, 30.0); // (20 + 40) / 2
-      expect(averagedShoulder.likelihood, closeTo(0.6, 0.0001)); // (0.8 + 0.4) / 2
+      expect(
+        averagedShoulder.likelihood,
+        closeTo(0.6, 0.0001),
+      ); // (0.8 + 0.4) / 2
     });
   });
 }
