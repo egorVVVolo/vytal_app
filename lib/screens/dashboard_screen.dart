@@ -340,7 +340,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                   Tooltip(
                     message: "Notifications",
-                    message: 'Notifications',
                     child: GestureDetector(
                       onTap: _showNotifications,
                       child: GlassContainer(

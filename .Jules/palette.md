@@ -20,3 +20,9 @@
 ## 2024-04-09 - Custom Icon Button Tooltips
 **Learning:** Custom icon buttons (those built using `GestureDetector` instead of `IconButton`) lack native tooltips. In Flutter, `Tooltip` widgets act as ARIA labels for screen readers. Using `Tooltip` around `GestureDetector` that wrap `Icon` is a simple micro-UX win that significantly improves accessibility.
 **Action:** Always verify if `GestureDetector` wrappers around icons lack `Tooltip`, and wrap them to provide both a visual hint and an accessible screen reader label.
+## 2026-04-13 - Double Tooltip Property Bug
+**Learning:** Found an interesting compilation bug waiting to happen. The same argument (`message`) is provided twice in the `Tooltip` widget constructor in `lib/screens/dashboard_screen.dart`. Flutter compilation will fail or give a static error for duplicate named arguments.
+**Action:** Ensure that `Tooltip` and other widgets only specify named arguments once.
+## 2025-01-20 - Adding Tooltips to Interactive Elements
+**Learning:** Flutter's semantic accessibility features are relatively easy to implement using the `Tooltip` widget. However, there are many custom widgets built with `GestureDetector` acting as buttons that lack semantics or tooltips, meaning screen readers would just announce 'button' or nothing at all depending on semantics. Adding a tooltip not only adds an on-long-press label for regular users but it gets integrated into the accessibility tree.
+**Action:** Always wrap custom button-like `GestureDetector` widgets with `Tooltip` to provide accessible labels.

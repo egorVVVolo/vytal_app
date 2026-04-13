@@ -135,12 +135,12 @@ class AiPostureService {
 
   static AiPostureResult _fallbackResult(String message) {
     return AiPostureResult(
-        overallScore: 0,
-        kyphosisScore: 0,
-        lordosisScore: 0,
-        headPostureScore: 0,
-        lostHeight: 0.0,
-        advice: message,
+      overallScore: 0,
+      kyphosisScore: 0,
+      lordosisScore: 0,
+      headPostureScore: 0,
+      lostHeight: 0.0,
+      advice: message,
     );
   }
 }
