@@ -20,3 +20,6 @@
 ## 2024-04-09 - Custom Icon Button Tooltips
 **Learning:** Custom icon buttons (those built using `GestureDetector` instead of `IconButton`) lack native tooltips. In Flutter, `Tooltip` widgets act as ARIA labels for screen readers. Using `Tooltip` around `GestureDetector` that wrap `Icon` is a simple micro-UX win that significantly improves accessibility.
 **Action:** Always verify if `GestureDetector` wrappers around icons lack `Tooltip`, and wrap them to provide both a visual hint and an accessible screen reader label.
+## 2024-05-25 - Prevent Tooltip message duplication
+**Learning:** In Dart/Flutter, passing duplicate named arguments (like `message: "Notifications", message: 'Notifications'`) causes a static analysis compilation error `duplicate_named_argument`. I found this when reviewing `Tooltip` widgets applied to custom gestural icon buttons.
+**Action:** When adding or modifying tooltips, specifically for custom `GestureDetector` icon buttons, ensure the `message` argument is defined exactly once to prevent compilation failures.
