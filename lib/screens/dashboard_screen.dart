@@ -339,7 +339,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ],
                   ),
                   Tooltip(
-                    message: "Notifications",
                     message: 'Notifications',
                     child: GestureDetector(
                       onTap: _showNotifications,
@@ -597,8 +596,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
               const SizedBox(height: 32),
 
               // 4. SLEEP WIDGET
-              GestureDetector(
-                onTap: () => Navigator.push(
+              Semantics(
+                button: true,
+                label: 'Sleep HGH Module',
+                child: GestureDetector(
+                  onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => const SleepHghScreen(),
@@ -659,6 +661,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ],
                   ),
                 ).animate().slideY(delay: 600.ms, begin: 0.2).fadeIn(),
+                ),
               ),
 
               const SizedBox(height: 32),
@@ -731,8 +734,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
               const SizedBox(height: 32),
 
               // 6. WIKI
-              GestureDetector(
-                onTap: () {
+              Semantics(
+                button: true,
+                label: 'Knowledge Base',
+                child: GestureDetector(
+                  onTap: () {
                   Navigator.push(
                     context,
                     PageRouteBuilder(
@@ -770,7 +776,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ],
                   ),
                 ),
-              ).animate().fadeIn(delay: 800.ms),
+                ).animate().fadeIn(delay: 800.ms),
+              ),
               const SizedBox(height: 40),
             ],
           ),
