@@ -32,58 +32,63 @@ class WeeklyCalendar extends StatelessWidget {
           final date = days[index];
           final isSelected = _isSameDay(date, selectedDate);
 
-          return GestureDetector(
-            onTap: () => onDateSelected(date),
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
-              width: 60,
-              decoration: BoxDecoration(
-                color: isSelected
-                    ? VytalColors.primaryAccent
-                    : VytalColors.surface,
-                borderRadius: BorderRadius.circular(18),
-                border: Border.all(
+          return Semantics(
+            button: true,
+            label: 'Select date ${_getWeekday(date.weekday)}, ${date.day}',
+            selected: isSelected,
+            child: GestureDetector(
+              onTap: () => onDateSelected(date),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                width: 60,
+                decoration: BoxDecoration(
                   color: isSelected
                       ? VytalColors.primaryAccent
-                      : VytalColors.textPrimary.withValues(alpha: 0.05),
-                ),
-                boxShadow: isSelected
-                    ? [
-                        BoxShadow(
-                          color: VytalColors.primaryAccent.withValues(
-                            alpha: 0.4,
+                      : VytalColors.surface,
+                  borderRadius: BorderRadius.circular(18),
+                  border: Border.all(
+                    color: isSelected
+                        ? VytalColors.primaryAccent
+                        : VytalColors.textPrimary.withValues(alpha: 0.05),
+                  ),
+                  boxShadow: isSelected
+                      ? [
+                          BoxShadow(
+                            color: VytalColors.primaryAccent.withValues(
+                              alpha: 0.4,
+                            ),
+                            blurRadius: 10,
+                            offset: const Offset(0, 4),
                           ),
-                          blurRadius: 10,
-                          offset: const Offset(0, 4),
-                        ),
-                      ]
-                    : [],
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    _getWeekday(date.weekday),
-                    style: TextStyle(
-                      color: isSelected
-                          ? Colors.white
-                          : VytalColors.textSecondary,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
+                        ]
+                      : [],
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      _getWeekday(date.weekday),
+                      style: TextStyle(
+                        color: isSelected
+                            ? Colors.white
+                            : VytalColors.textSecondary,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    date.day.toString(),
-                    style: TextStyle(
-                      color: isSelected
-                          ? Colors.white
-                          : VytalColors.textPrimary,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                    const SizedBox(height: 6),
+                    Text(
+                      date.day.toString(),
+                      style: TextStyle(
+                        color: isSelected
+                            ? Colors.white
+                            : VytalColors.textPrimary,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );
