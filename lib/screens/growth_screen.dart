@@ -411,44 +411,48 @@ class _GrowthScreenState extends State<GrowthScreen> {
               // Paywall Button
               Padding(
                 padding: const EdgeInsets.only(bottom: 50.0),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const PaywallScreen(),
-                        fullscreenDialog: true,
-                      ),
-                    );
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      border: Border.all(
-                        color: VytalColors.warningAccent,
-                        width: 0.5,
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(
-                          Icons.lock_outline,
+                child: Semantics(
+                  button: true,
+                  label: "Open Subscription Options",
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const PaywallScreen(),
+                          fullscreenDialog: true,
+                        ),
+                      );
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        border: Border.all(
                           color: VytalColors.warningAccent,
-                          size: 16,
+                          width: 0.5,
                         ),
-                        SizedBox(width: 10),
-                        Text(
-                          "UNLOCK AI FORECAST",
-                          style: TextStyle(
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(
+                            Icons.lock_outline,
                             color: VytalColors.warningAccent,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
-                            letterSpacing: 2,
+                            size: 16,
                           ),
-                        ),
-                      ],
+                          SizedBox(width: 10),
+                          Text(
+                            "UNLOCK AI FORECAST",
+                            style: TextStyle(
+                              color: VytalColors.warningAccent,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                              letterSpacing: 2,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -479,68 +483,72 @@ class _GrowthScreenState extends State<GrowthScreen> {
   }
 
   Widget _buildScannerCard() {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const AiPostureScreen()),
-        );
-      },
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: Colors.transparent, // Transparent minimalism
-          border: Border.all(
-            color: VytalColors.primaryAccent,
-            width: 0.5,
-          ), // Thin border
-        ),
-        child: Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: const BoxDecoration(
-                color: VytalColors.textPrimary,
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(
-                Icons.center_focus_strong,
-                color: VytalColors.primaryAccent,
-              ),
-            ),
-            const SizedBox(width: 16),
-            const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "AI POSTURE SCAN",
-                  style: TextStyle(
-                    color: VytalColors.textPrimary,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                    letterSpacing: 1,
-                  ),
+    return Semantics(
+      button: true,
+      label: "Open AI Posture Scan",
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const AiPostureScreen()),
+          );
+        },
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.transparent, // Transparent minimalism
+            border: Border.all(
+              color: VytalColors.primaryAccent,
+              width: 0.5,
+            ), // Thin border
+          ),
+          child: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: const BoxDecoration(
+                  color: VytalColors.textPrimary,
+                  shape: BoxShape.circle,
                 ),
-                SizedBox(height: 4),
-                Text(
-                  "ACCURACY: 98%",
-                  style: TextStyle(
-                    color: VytalColors.primaryAccent,
-                    fontSize: 10,
+                child: const Icon(
+                  Icons.center_focus_strong,
+                  color: VytalColors.primaryAccent,
+                ),
+              ),
+              const SizedBox(width: 16),
+              const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "AI POSTURE SCAN",
+                    style: TextStyle(
+                      color: VytalColors.textPrimary,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                      letterSpacing: 1,
+                    ),
+                  ),
+                  SizedBox(height: 4),
+                  Text(
+                    "ACCURACY: 98%",
+                    style: TextStyle(
+                      color: VytalColors.primaryAccent,
+                      fontSize: 10,
 
-                    letterSpacing: 1,
+                      letterSpacing: 1,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            const Spacer(),
-            const Icon(
-              Icons.arrow_forward_ios_rounded,
-              color: VytalColors.textSecondary,
-              size: 16,
-            ),
-          ],
+                ],
+              ),
+              const Spacer(),
+              const Icon(
+                Icons.arrow_forward_ios_rounded,
+                color: VytalColors.textSecondary,
+                size: 16,
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -321,22 +321,26 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen>
                 width: double.infinity,
                 height: 70, // Фиксированная высота кнопки
                 child: !_isTimerRunning
-                    ? GestureDetector(
-                        onTap: _manualFinish,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color:
-                                Colors.transparent, // Minimalist transparent bg
-                            border: Border.all(color: accent, width: 0.5),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "DONE",
-                              style: TextStyle(
-                                color: accent,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                                letterSpacing: 2,
+                    ? Semantics(
+                        button: true,
+                        label: "Finish Workout",
+                        child: GestureDetector(
+                          onTap: _manualFinish,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors
+                                  .transparent, // Minimalist transparent bg
+                              border: Border.all(color: accent, width: 0.5),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "DONE",
+                                style: TextStyle(
+                                  color: accent,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  letterSpacing: 2,
+                                ),
                               ),
                             ),
                           ),
