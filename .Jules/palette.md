@@ -20,3 +20,6 @@
 ## 2024-04-09 - Custom Icon Button Tooltips
 **Learning:** Custom icon buttons (those built using `GestureDetector` instead of `IconButton`) lack native tooltips. In Flutter, `Tooltip` widgets act as ARIA labels for screen readers. Using `Tooltip` around `GestureDetector` that wrap `Icon` is a simple micro-UX win that significantly improves accessibility.
 **Action:** Always verify if `GestureDetector` wrappers around icons lack `Tooltip`, and wrap them to provide both a visual hint and an accessible screen reader label.
+## 2024-05-24 - Interactive Widget Accessibility
+**Learning:** In this Flutter application, custom interactive widgets using `GestureDetector` or `InkWell` (like `BiometricCard` and `WeeklyCalendar`) are often invisible to screen readers because they lack semantic wrappers.
+**Action:** Always wrap custom interactive UI elements with a `Semantics` widget, setting `button: true` and providing a clear, descriptive `label` summarizing the action or state (e.g., "Select date: [Day]"). Also, remember to clean up throwaway scripting files before final submission.
