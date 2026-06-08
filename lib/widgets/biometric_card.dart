@@ -19,65 +19,70 @@ class BiometricCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: VytalColors.surface,
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(
-            color: VytalColors.textSecondary.withValues(alpha: 0.1),
-          ),
-          boxShadow: const [],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Иконка и Лейбл
-            Row(
-              children: [
-                Icon(icon, size: 16, color: VytalColors.textSecondary),
-                const SizedBox(width: 8),
-                Text(
-                  label.toUpperCase(),
-                  style: const TextStyle(
-                    color: VytalColors.textPrimary,
-                    fontSize: 10,
-                    letterSpacing: 1.5,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
+    return Semantics(
+      button: true,
+      label: '$label, $value $unit',
+      excludeSemantics: true,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: VytalColors.surface,
+            borderRadius: BorderRadius.circular(24),
+            border: Border.all(
+              color: VytalColors.textSecondary.withValues(alpha: 0.1),
             ),
-            const Spacer(),
-            // Значение и Единица измерения
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  value,
-                  style: const TextStyle(
-                    color: VytalColors.textPrimary,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(width: 4),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 4.0),
-                  child: Text(
-                    unit,
+            boxShadow: const [],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Иконка и Лейбл
+              Row(
+                children: [
+                  Icon(icon, size: 16, color: VytalColors.textSecondary),
+                  const SizedBox(width: 8),
+                  Text(
+                    label.toUpperCase(),
                     style: const TextStyle(
-                      color: VytalColors.textSecondary,
-                      fontSize: 12,
+                      color: VytalColors.textPrimary,
+                      fontSize: 10,
+                      letterSpacing: 1.5,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+              const Spacer(),
+              // Значение и Единица измерения
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    value,
+                    style: const TextStyle(
+                      color: VytalColors.textPrimary,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 4.0),
+                    child: Text(
+                      unit,
+                      style: const TextStyle(
+                        color: VytalColors.textSecondary,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
