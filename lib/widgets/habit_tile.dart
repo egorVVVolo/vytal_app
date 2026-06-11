@@ -13,7 +13,11 @@ class HabitTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return Semantics(
+      button: true,
+      excludeSemantics: true,
+      label: '${habit.title}. ${habit.subtitle}. ${habit.isCompleted ? "Completed" : "Not completed"}. Tap to toggle.',
+      child: GestureDetector(
       onTap: () {
         // ПРОВЕРКА НАСТРОЕК ПЕРЕД ВИБРАЦИЕЙ
         if (StorageService.getSetting('haptic')) {
@@ -138,6 +142,7 @@ class HabitTile extends StatelessWidget {
             ),
           ],
         ),
+      ),
       ),
     );
   }
