@@ -339,15 +339,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ],
                   ),
                   Tooltip(
-                    message: "Notifications",
                     message: 'Notifications',
-                    child: GestureDetector(
-                      onTap: _showNotifications,
-                      child: GlassContainer(
-                        padding: const EdgeInsets.all(12),
-                        child: const Icon(
-                          Icons.notifications_none,
-                          color: VytalColors.textPrimary,
+                    child: Semantics(
+                      button: true,
+                      label: 'Notifications',
+                      child: GestureDetector(
+                        onTap: _showNotifications,
+                        child: GlassContainer(
+                          padding: const EdgeInsets.all(12),
+                          child: const Icon(
+                            Icons.notifications_none,
+                            color: VytalColors.textPrimary,
+                          ),
                         ),
                       ),
                     ),
@@ -597,68 +600,71 @@ class _DashboardScreenState extends State<DashboardScreen> {
               const SizedBox(height: 32),
 
               // 4. SLEEP WIDGET
-              GestureDetector(
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SleepHghScreen(),
-                  ),
-                ),
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF0038FF).withValues(alpha: 0.05),
-                    borderRadius: BorderRadius.circular(24),
-                    border: Border.all(
-                      color: const Color(0xFF0038FF).withValues(alpha: 0.1),
-                      width: 0.5,
+              Semantics(
+                button: true,
+                child: GestureDetector(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SleepHghScreen(),
                     ),
                   ),
-                  child: Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF0038FF).withValues(alpha: 0.1),
-                          shape: BoxShape.rectangle,
-                        ),
-                        child: const Icon(
-                          Icons.bedtime_rounded,
-                          color: Color(0xFF00D1FF),
-                        ),
+                  child: Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF0038FF).withValues(alpha: 0.05),
+                      borderRadius: BorderRadius.circular(24),
+                      border: Border.all(
+                        color: const Color(0xFF0038FF).withValues(alpha: 0.1),
+                        width: 0.5,
                       ),
-                      const SizedBox(width: 16),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            L10n.t('hgh_sleep'),
-                            style: const TextStyle(
-                              color: VytalColors.textPrimary,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14,
-                              letterSpacing: 1,
-                            ),
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF0038FF).withValues(alpha: 0.1),
+                            shape: BoxShape.rectangle,
                           ),
-                          const SizedBox(height: 2),
-                          Text(
-                            L10n.t('hormone_optimization'),
-                            style: const TextStyle(
-                              color: VytalColors.textSecondary,
-                              fontSize: 10,
-                            ),
+                          child: const Icon(
+                            Icons.bedtime_rounded,
+                            color: Color(0xFF00D1FF),
                           ),
-                        ],
-                      ),
-                      const Spacer(),
-                      const Icon(
-                        Icons.arrow_forward_ios,
-                        color: VytalColors.textSecondary,
-                        size: 16,
-                      ),
-                    ],
-                  ),
-                ).animate().slideY(delay: 600.ms, begin: 0.2).fadeIn(),
+                        ),
+                        const SizedBox(width: 16),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              L10n.t('hgh_sleep'),
+                              style: const TextStyle(
+                                color: VytalColors.textPrimary,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                letterSpacing: 1,
+                              ),
+                            ),
+                            const SizedBox(height: 2),
+                            Text(
+                              L10n.t('hormone_optimization'),
+                              style: const TextStyle(
+                                color: VytalColors.textSecondary,
+                                fontSize: 10,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const Spacer(),
+                        const Icon(
+                          Icons.arrow_forward_ios,
+                          color: VytalColors.textSecondary,
+                          size: 16,
+                        ),
+                      ],
+                    ),
+                  ).animate().slideY(delay: 600.ms, begin: 0.2).fadeIn(),
+                ),
               ),
 
               const SizedBox(height: 32),
@@ -731,43 +737,46 @@ class _DashboardScreenState extends State<DashboardScreen> {
               const SizedBox(height: 32),
 
               // 6. WIKI
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    PageRouteBuilder(
-                      pageBuilder: (context, animation, secondaryAnimation) =>
-                          const WikiScreen(),
-                      transitionsBuilder:
-                          (context, animation, secondaryAnimation, child) =>
-                              FadeTransition(opacity: animation, child: child),
-                    ),
-                  );
-                },
-                child: GlassContainer(
-                  child: Row(
-                    children: [
-                      const Icon(
-                        Icons.science_rounded,
-                        color: VytalColors.tertiaryAccent,
-                        size: 28,
+              Semantics(
+                button: true,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            const WikiScreen(),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) =>
+                                FadeTransition(opacity: animation, child: child),
                       ),
-                      const SizedBox(width: 16),
-                      Text(
-                        L10n.t('knowledge_base'),
-                        style: const TextStyle(
-                          color: VytalColors.textPrimary,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                          letterSpacing: 2,
+                    );
+                  },
+                  child: GlassContainer(
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.science_rounded,
+                          color: VytalColors.tertiaryAccent,
+                          size: 28,
                         ),
-                      ),
-                      const Spacer(),
-                      const Icon(
-                        Icons.arrow_forward_rounded,
-                        color: VytalColors.textSecondary,
-                      ),
-                    ],
+                        const SizedBox(width: 16),
+                        Text(
+                          L10n.t('knowledge_base'),
+                          style: const TextStyle(
+                            color: VytalColors.textPrimary,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            letterSpacing: 2,
+                          ),
+                        ),
+                        const Spacer(),
+                        const Icon(
+                          Icons.arrow_forward_rounded,
+                          color: VytalColors.textSecondary,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ).animate().fadeIn(delay: 800.ms),
