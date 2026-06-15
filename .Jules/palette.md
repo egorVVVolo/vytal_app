@@ -20,3 +20,6 @@
 ## 2024-04-09 - Custom Icon Button Tooltips
 **Learning:** Custom icon buttons (those built using `GestureDetector` instead of `IconButton`) lack native tooltips. In Flutter, `Tooltip` widgets act as ARIA labels for screen readers. Using `Tooltip` around `GestureDetector` that wrap `Icon` is a simple micro-UX win that significantly improves accessibility.
 **Action:** Always verify if `GestureDetector` wrappers around icons lack `Tooltip`, and wrap them to provide both a visual hint and an accessible screen reader label.
+## 2024-05-18 - [Accessibility on Custom Interactive Elements]
+**Learning:** When using `GestureDetector` as an action element without `excludeSemantics: true`, Flutter doesn't inherently treat the child elements as a single "button" for screen readers. Using `Semantics(button: true)` wraps the children and announces the entire element correctly. Attempting to use `excludeSemantics: true` with a hardcoded `label` breaks internationalization since screen readers will read the hardcoded label rather than the localized text of the child widgets (like `Text(L10n.t('key'))`).
+**Action:** When adding button semantics to interactive widgets that contain localized child text, wrap the widget in `Semantics(button: true)` but DO NOT use `excludeSemantics: true` with a hardcoded label. Allow the localized child text to bubble up naturally.
