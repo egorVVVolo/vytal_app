@@ -339,15 +339,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ],
                   ),
                   Tooltip(
-                    message: "Notifications",
-                    message: 'Notifications',
-                    child: GestureDetector(
-                      onTap: _showNotifications,
-                      child: GlassContainer(
-                        padding: const EdgeInsets.all(12),
-                        child: const Icon(
-                          Icons.notifications_none,
-                          color: VytalColors.textPrimary,
+                    message: L10n.t('notifications'),
+                    child: Semantics(
+                      button: true,
+                      child: GestureDetector(
+                        onTap: _showNotifications,
+                        child: GlassContainer(
+                          padding: const EdgeInsets.all(12),
+                          child: const Icon(
+                            Icons.notifications_none,
+                            color: VytalColors.textPrimary,
+                          ),
                         ),
                       ),
                     ),
