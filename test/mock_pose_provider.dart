@@ -15,11 +15,5 @@ PoseLandmark createMockLandmark({
   required double z,
   required double likelihood,
 }) {
-  return PoseLandmark(
-    type: type,
-    x: x,
-    y: y,
-    z: z,
-    likelihood: likelihood,
-  );
+  return PoseLandmark(type: type, x: x, y: y, z: z, likelihood: likelihood);
 }
