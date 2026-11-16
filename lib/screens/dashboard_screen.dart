@@ -616,49 +616,62 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       width: 0.5,
                     ),
                   ),
-                  child: Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF0038FF).withValues(alpha: 0.1),
-                          shape: BoxShape.rectangle,
-                        ),
-                        child: const Icon(
-                          Icons.bedtime_rounded,
-                          color: Color(0xFF00D1FF),
-                        ),
+                  child: Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF0038FF).withValues(alpha: 0.05),
+                      borderRadius: BorderRadius.circular(24),
+                      border: Border.all(
+                        color: const Color(0xFF0038FF).withValues(alpha: 0.1),
+                        width: 0.5,
                       ),
-                      const SizedBox(width: 16),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            L10n.t('hgh_sleep'),
-                            style: const TextStyle(
-                              color: VytalColors.textPrimary,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14,
-                              letterSpacing: 1,
-                            ),
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: const Color(
+                              0xFF0038FF,
+                            ).withValues(alpha: 0.1),
+                            shape: BoxShape.rectangle,
                           ),
-                          const SizedBox(height: 2),
-                          Text(
-                            L10n.t('hormone_optimization'),
-                            style: const TextStyle(
-                              color: VytalColors.textSecondary,
-                              fontSize: 10,
-                            ),
+                          child: const Icon(
+                            Icons.bedtime_rounded,
+                            color: Color(0xFF00D1FF),
                           ),
-                        ],
-                      ),
-                      const Spacer(),
-                      const Icon(
-                        Icons.arrow_forward_ios,
-                        color: VytalColors.textSecondary,
-                        size: 16,
-                      ),
-                    ],
+                        ),
+                        const SizedBox(width: 16),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              L10n.t('hgh_sleep'),
+                              style: const TextStyle(
+                                color: VytalColors.textPrimary,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                letterSpacing: 1,
+                              ),
+                            ),
+                            const SizedBox(height: 2),
+                            Text(
+                              L10n.t('hormone_optimization'),
+                              style: const TextStyle(
+                                color: VytalColors.textSecondary,
+                                fontSize: 10,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const Spacer(),
+                        const Icon(
+                          Icons.arrow_forward_ios,
+                          color: VytalColors.textSecondary,
+                          size: 16,
+                        ),
+                      ],
+                    ),
                   ),
                 ).animate().slideY(delay: 600.ms, begin: 0.2).fadeIn(),
                 ),
