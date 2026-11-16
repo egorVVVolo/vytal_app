@@ -42,53 +42,56 @@ class ProtocolLibraryScreen extends StatelessWidget {
           // 1. "CREATE OWN" BUTTON (Top)
           Padding(
             padding: const EdgeInsets.fromLTRB(24, 10, 24, 20),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        CreateProtocolScreen(onCreate: onAddProtocol),
-                  ),
-                );
-              },
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      VytalColors.primaryAccent.withValues(alpha: 0.2),
-                      VytalColors.primaryAccent.withValues(alpha: 0.05),
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: VytalColors.primaryAccent.withValues(alpha: 0.5),
-                    width: 1,
-                    style: BorderStyle.solid,
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.build_circle_outlined,
-                      color: VytalColors.primaryAccent,
-                      size: 28,
+            child: Tooltip(
+              message: "Create Own Protocol",
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          CreateProtocolScreen(onCreate: onAddProtocol),
                     ),
-                    const SizedBox(width: 12),
-                    const Text(
-                      "CREATE CUSTOM PROTOCOL",
-                      style: TextStyle(
-                        color: VytalColors.textPrimary,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 2,
+                  );
+                },
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        VytalColors.primaryAccent.withValues(alpha: 0.2),
+                        VytalColors.primaryAccent.withValues(alpha: 0.05),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(
+                      color: VytalColors.primaryAccent.withValues(alpha: 0.5),
+                      width: 1,
+                      style: BorderStyle.solid,
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.build_circle_outlined,
+                        color: VytalColors.primaryAccent,
+                        size: 28,
                       ),
-                    ),
-                  ],
+                      const SizedBox(width: 12),
+                      const Text(
+                        "CREATE CUSTOM PROTOCOL",
+                        style: TextStyle(
+                          color: VytalColors.textPrimary,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 2,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
