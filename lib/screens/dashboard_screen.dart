@@ -669,6 +669,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                   ),
                 ).animate().slideY(delay: 600.ms, begin: 0.2).fadeIn(),
+                ),
               ),
 
               const SizedBox(height: 32),
@@ -787,7 +788,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                   ),
                 ),
-              ).animate().fadeIn(delay: 800.ms),
+                ).animate().fadeIn(delay: 800.ms),
+              ),
               const SizedBox(height: 40),
             ],
           ),

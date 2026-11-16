@@ -157,26 +157,29 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
               scrollDirection: Axis.horizontal,
               children: _iconsMap[_selectedType]!.map((icon) {
                 final isSelected = _selectedIcon == icon;
-                return GestureDetector(
-                  onTap: () => setState(() => _selectedIcon = icon),
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 200),
-                    margin: const EdgeInsets.only(right: 12),
-                    width: 50,
-                    height: 50,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: isSelected
-                          ? VytalColors.primaryAccent.withValues(alpha: 0.2)
-                          : VytalColors.textPrimary.withValues(alpha: 0.05),
-                      shape: BoxShape.circle,
-                      border: Border.all(
+                return Tooltip(
+                  message: 'Select $icon icon',
+                  child: GestureDetector(
+                    onTap: () => setState(() => _selectedIcon = icon),
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
+                      margin: const EdgeInsets.only(right: 12),
+                      width: 50,
+                      height: 50,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
                         color: isSelected
-                            ? VytalColors.primaryAccent
-                            : Colors.transparent,
+                            ? VytalColors.primaryAccent.withValues(alpha: 0.2)
+                            : VytalColors.textPrimary.withValues(alpha: 0.05),
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: isSelected
+                              ? VytalColors.primaryAccent
+                              : Colors.transparent,
+                        ),
                       ),
+                      child: Text(icon, style: const TextStyle(fontSize: 24)),
                     ),
-                    child: Text(icon, style: const TextStyle(fontSize: 24)),
                   ),
                 );
               }).toList(),

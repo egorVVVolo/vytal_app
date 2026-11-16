@@ -54,8 +54,9 @@ class PostureAnalyzer {
     final rightShoulder = pose.landmarks[PoseLandmarkType.rightShoulder];
     final rightHip = pose.landmarks[PoseLandmarkType.rightHip];
 
-    if (leftShoulder == null || rightShoulder == null || rightHip == null)
+    if (leftShoulder == null || rightShoulder == null || rightHip == null) {
       return false;
+    }
 
     // Считаем ширину плеч
     double shoulderWidth = (leftShoulder.x - rightShoulder.x).abs();
