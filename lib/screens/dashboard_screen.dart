@@ -596,13 +596,24 @@ class _DashboardScreenState extends State<DashboardScreen> {
               const SizedBox(height: 32),
 
               // 4. SLEEP WIDGET
-              Tooltip(
-                message: L10n.t('hgh_sleep'),
+              Semantics(
+                button: true,
+                label: 'Sleep HGH Module',
                 child: GestureDetector(
                   onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SleepHghScreen(),
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SleepHghScreen(),
+                  ),
+                ),
+                child: Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF0038FF).withValues(alpha: 0.05),
+                    borderRadius: BorderRadius.circular(24),
+                    border: Border.all(
+                      color: const Color(0xFF0038FF).withValues(alpha: 0.1),
+                      width: 0.5,
                     ),
                   ),
                   child: Container(
@@ -663,6 +674,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                   ),
                 ).animate().slideY(delay: 600.ms, begin: 0.2).fadeIn(),
+                ),
               ),
 
               const SizedBox(height: 32),
@@ -735,8 +747,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
               const SizedBox(height: 32),
 
               // 6. WIKI
-              GestureDetector(
-                onTap: () {
+              Semantics(
+                button: true,
+                label: 'Knowledge Base',
+                child: GestureDetector(
+                  onTap: () {
                   Navigator.push(
                     context,
                     PageRouteBuilder(
@@ -774,7 +789,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ],
                   ),
                 ),
-              ).animate().fadeIn(delay: 800.ms),
+                ).animate().fadeIn(delay: 800.ms),
+              ),
               const SizedBox(height: 40),
             ],
           ),
