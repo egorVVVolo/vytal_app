@@ -338,12 +338,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ),
                     ],
                   ),
-                  Semantics(
-                    button: true,
-                    excludeSemantics: true,
-                    label: L10n.t('notifications'),
-                    child: Tooltip(
-                      message: L10n.t('notifications'),
+                  Tooltip(
+                    message: 'Notifications',
+                    child: Semantics(
+                      button: true,
+                      label: 'Notifications',
                       child: GestureDetector(
                         onTap: _showNotifications,
                         child: GlassContainer(
@@ -603,7 +602,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
               // 4. SLEEP WIDGET
               Semantics(
                 button: true,
-                label: L10n.t('hgh_sleep'),
                 child: GestureDetector(
                   onTap: () => Navigator.push(
                     context,
@@ -626,9 +624,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         Container(
                           padding: const EdgeInsets.all(12),
                           decoration: BoxDecoration(
-                            color: const Color(
-                              0xFF0038FF,
-                            ).withValues(alpha: 0.1),
+                            color: const Color(0xFF0038FF).withValues(alpha: 0.1),
                             shape: BoxShape.rectangle,
                           ),
                           child: const Icon(
@@ -667,8 +663,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ),
                       ],
                     ),
-                  ),
-                ).animate().slideY(delay: 600.ms, begin: 0.2).fadeIn(),
+                  ).animate().slideY(delay: 600.ms, begin: 0.2).fadeIn(),
                 ),
               ),
 
@@ -744,7 +739,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
               // 6. WIKI
               Semantics(
                 button: true,
-                label: L10n.t('knowledge_base'),
                 child: GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -754,10 +748,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             const WikiScreen(),
                         transitionsBuilder:
                             (context, animation, secondaryAnimation, child) =>
-                                FadeTransition(
-                                  opacity: animation,
-                                  child: child,
-                                ),
+                                FadeTransition(opacity: animation, child: child),
                       ),
                     );
                   },
