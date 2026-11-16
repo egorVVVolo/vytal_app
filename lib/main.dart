@@ -202,7 +202,11 @@ class _AppBootstrapState extends State<AppBootstrap> {
                 child: SafeArea(
                   child: Row(
                     children: [
-                      GestureDetector(
+                      Semantics(
+                        button: true,
+                        excludeSemantics: true,
+                        label: 'Switch language to English',
+                        child: GestureDetector(
                         onTap: () async {
                           await StorageService.saveLanguage('en');
                           L10n.setLanguage('en');
@@ -220,11 +224,16 @@ class _AppBootstrapState extends State<AppBootstrap> {
                           ),
                         ),
                       ),
+                      ),
                       const Text(
                         " / ",
                         style: TextStyle(color: VytalColors.textSecondary),
                       ),
-                      GestureDetector(
+                      Semantics(
+                        button: true,
+                        excludeSemantics: true,
+                        label: 'Switch language to Russian',
+                        child: GestureDetector(
                         onTap: () async {
                           await StorageService.saveLanguage('ru');
                           L10n.setLanguage('ru');
@@ -241,6 +250,7 @@ class _AppBootstrapState extends State<AppBootstrap> {
                                 : FontWeight.normal,
                           ),
                         ),
+                      ),
                       ),
                     ],
                   ),
