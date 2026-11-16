@@ -313,51 +313,56 @@ class _SleepHghScreenState extends State<SleepHghScreen> {
                 ),
               ),
             ),
-            child: GestureDetector(
-              onTap: _activateProtocol,
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 300),
-                width: double.infinity,
-                height: 60,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: _notificationsEnabled
-                      ? VytalColors.textPrimary
-                      : Colors.transparent, // Sharp and minimal
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
+            child: Tooltip(
+              message: _notificationsEnabled
+                  ? "Deactivate Protocol"
+                  : "Activate Protocol",
+              child: GestureDetector(
+                onTap: _activateProtocol,
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  width: double.infinity,
+                  height: 60,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
                     color: _notificationsEnabled
-                        ? VytalColors.secondaryAccent
-                        : VytalColors.primaryAccent,
-                    width: 0.5,
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      _notificationsEnabled
-                          ? Icons.check
-                          : Icons.power_settings_new,
+                        ? VytalColors.textPrimary
+                        : Colors.transparent, // Sharp and minimal
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
                       color: _notificationsEnabled
                           ? VytalColors.secondaryAccent
                           : VytalColors.primaryAccent,
+                      width: 0.5,
                     ),
-                    const SizedBox(width: 10),
-                    Text(
-                      _notificationsEnabled
-                          ? "PROTOCOL ACTIVE"
-                          : "ACTIVATE PROTOCOL",
-                      style: TextStyle(
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        _notificationsEnabled
+                            ? Icons.check
+                            : Icons.power_settings_new,
                         color: _notificationsEnabled
                             ? VytalColors.secondaryAccent
                             : VytalColors.primaryAccent,
-                        fontWeight: FontWeight.w900,
-                        fontSize: 16,
-                        letterSpacing: 2,
                       ),
-                    ),
-                  ],
+                      const SizedBox(width: 10),
+                      Text(
+                        _notificationsEnabled
+                            ? "PROTOCOL ACTIVE"
+                            : "ACTIVATE PROTOCOL",
+                        style: TextStyle(
+                          color: _notificationsEnabled
+                              ? VytalColors.secondaryAccent
+                              : VytalColors.primaryAccent,
+                          fontWeight: FontWeight.w900,
+                          fontSize: 16,
+                          letterSpacing: 2,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
