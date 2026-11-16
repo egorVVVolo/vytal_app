@@ -269,6 +269,7 @@ class _PlanScreenState extends State<PlanScreen> {
                 _openProtocolLibrary,
                 null,
                 'Protocol Library',
+                L10n.t('library'),
               ),
               const SizedBox(width: 12),
               _headerBtn(
@@ -301,11 +302,9 @@ class _PlanScreenState extends State<PlanScreen> {
             color: color?.withValues(alpha: 0.1) ?? VytalColors.surface,
             borderRadius: BorderRadius.circular(24),
             border: Border.all(
-              color:
-                  color?.withValues(alpha: 0.5) ??
+              color: color?.withValues(alpha: 0.5) ??
                   VytalColors.textSecondary.withValues(alpha: 0.2),
             ),
-            boxShadow: const [],
           ),
           child: Icon(
             icon,
